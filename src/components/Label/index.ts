@@ -1,2 +1,2 @@
-export { Label } from "./index.tsx";
-export type { LabelProps } from "./index.tsx";
+export { Label } from "./Label";
+export type { LabelProps } from "./Label";

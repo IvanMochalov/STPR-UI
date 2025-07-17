@@ -13,13 +13,12 @@ export default defineConfig({
       fileName: (format) => `test-stpr-ui-kit.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "react/jsx-runtime"],
       output: {
-        preserveModules: true,
-        preserveModulesRoot: "src/components",
         globals: {
           react: "React",
-          "react-dom": "ReactDOM"
+          "react-dom": "ReactDOM",
+          "react/jsx-runtime": "jsxRuntime"
         },
       },
     },
@@ -28,18 +27,8 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
-      exclude: ["**/*.stories.ts"]
+      exclude: ["**/*.stories.ts"],
+      rollupTypes: true,
     }),
   ],
-  css: {
-    modules: {
-      localsConvention: "camelCase"
-    },
-    preprocessorOptions: {
-      scss: {
-        silenceDeprecations: ["legacy-js-api"],
-        // additionalData: `@forward "./src/styles/_variables.scss";`
-      }
-    }
-  }
 });

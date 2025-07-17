@@ -1,19 +1,19 @@
 {
   "name": "test-stpr-ui-kit",
-  "private": false,
   "version": "0.0.1",
   "type": "module",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/test-stpr-ui-kit.umd.js",
-  "module": "./dist/test-stpr-ui-kit.es.js",
+  "files": ["dist"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "types": "./dist/test-stpr-ui-kit.es.d.ts",
-      "import": "./dist/test-stpr-ui-kit.es.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "dev": "vite",

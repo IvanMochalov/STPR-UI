@@ -1,1 +1,1 @@
-export * from "./Label/index.ts";
+export * from "./Label";

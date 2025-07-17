@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./label.module.scss";
+import styles from "./Label.module.scss";
 import cx from 'clsx';
 
 export interface LabelProps {
