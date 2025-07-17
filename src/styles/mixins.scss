@@ -1,0 +1,19 @@
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media only screen and (max-width: 767px) {
+      @content
+    }
+  } @else if $breakpoint == sm {
+    @media only screen and (min-width: 768px) {
+      @content
+    }
+  } @else if $breakpoint == xl {
+    @media only screen and (min-width: 1440px) {
+      @content
+    }
+  }
+}
+
+@mixin calc-width-with-gutter($gutter, $countElement) {
+  width: calc((100% - (#{$gutter} * ($countElement - 1))) / $countElement) !important;
+}

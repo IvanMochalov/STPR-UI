@@ -1,0 +1,33 @@
+@use "../../styles/main" as styles;
+
+.spLabel {
+  // Общие стили блока
+  $block: &;
+
+  margin-bottom: styles.$spLabel-mb;
+  position: relative;
+  display: flex;
+  color: styles.$color-agr-gray-1;
+
+  // Элементы
+  &__text {
+    font: styles.$font-ALS_Hauss-400-16;
+
+    @include styles.respond-to(sm) {
+      font: styles.$font-ALS_Hauss-400-18;
+    }
+  }
+
+  &__tooltip {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+
+  &__required {
+    display: inline-block;
+    line-height: 18px;
+    color: styles.$color-cim-red;
+    margin-left: 4px;
+  }
+}
