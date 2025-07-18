@@ -9,7 +9,6 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/components/index.ts"),
       name: "test-stpr-ui-kit",
-      formats: ["es", "cjs"],
       fileName: (format) => `test-stpr-ui-kit.${format}.js`,
     },
     rollupOptions: {
