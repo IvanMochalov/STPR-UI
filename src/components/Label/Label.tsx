@@ -1,12 +1,17 @@
+import cx from "clsx";
 import React from "react";
+
+import {TBaseTooltipPosition} from "../BaseTooltip";
+import {Icon} from "../Icons";
+import {IconName} from "../Icons/constants";
+import {Tooltip} from "../Tooltip";
 import styles from "./Label.module.scss";
-import cx from 'clsx';
 
 export interface LabelProps {
     required?: boolean
     label?: string
-    isVisibleTooltip?: boolean
-    tooltip?: JSX.Element
+    infoTooltipText?: string,
+    tooltipPosition?: TBaseTooltipPosition,
     classNameRoot?: string
 }
 
@@ -14,44 +19,51 @@ export const Label: React.FC<LabelProps> = (props) => {
     const {
         required,
         label,
-        isVisibleTooltip = true,
-        tooltip,
+        infoTooltipText,
+        tooltipPosition,
     } = props;
 
-    const classNameRoot = cx(
-        styles.spLabel,
-        props.classNameRoot && props.classNameRoot,
-    );
+    const classNameRoot = cx({
+        [styles.spLabel]: true,
+        [props.classNameRoot]: props.classNameRoot,
+    });
 
-    const classNameLabelText = cx(
-        styles.spLabel__text,
-    );
+    const classNameLabelText = cx({
+        [styles.spLabel__text]: true,
+    });
 
-    const classNameLabelRequired = cx(
-        required&& styles.spLabel__required,
-    );
+    const classNameLabelRequired = cx({
+        [styles.spLabel__required]: required,
+    });
 
-    const classNameLabelTooltip = cx(
-        styles.spLabel__tooltip,
-    );
+    const classNameLabelTooltip = cx({
+        [styles.spLabel__tooltip]: true,
+    });
 
-  return (
-      <div className={classNameRoot}>
-          <label className={classNameLabelText}>
-              {label}
-          </label>
-          {
-              required &&
-              <div className={classNameLabelRequired}>
-                  *
-              </div>
-          }
-          {
-              tooltip && isVisibleTooltip &&
-              <div className={classNameLabelTooltip}>
-                  {tooltip}
-              </div>
-          }
-      </div>
-  );
+    return (
+        <div className={classNameRoot}>
+            <label className={classNameLabelText}>
+                {label}
+            </label>
+            {
+                required &&
+                <div className={classNameLabelRequired}>
+                    *
+                </div>
+            }
+            {
+                infoTooltipText &&
+                <div className={classNameLabelTooltip}>
+                    <Tooltip
+                        position={tooltipPosition}
+                        text={infoTooltipText}
+                        hover={true}
+                        trigger={
+                            <Icon name={IconName.info}/>
+                        }
+                    />
+                </div>
+            }
+        </div>
+    );
 };

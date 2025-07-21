@@ -2,3 +2,9 @@
 @forward "mixins";
 @forward "fonts";
 @forward "colors";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

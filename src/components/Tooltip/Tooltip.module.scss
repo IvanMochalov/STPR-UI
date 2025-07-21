@@ -1,0 +1,27 @@
+@use "../../styles/main" as styles;
+
+.spTooltip {
+  $block: &;
+
+  display: flex;
+  position: relative;
+  width: max-content;
+  color: styles.$color-agr-gray-1;
+
+  &_hover:hover > #{$block}__spTooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__spTooltip {
+    visibility: hidden;
+    opacity: 0;
+
+    transition: opacity 0.2s ease-in-out;
+
+    &_isOpen {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

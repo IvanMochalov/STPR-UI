@@ -1,0 +1,89 @@
+@use "../../styles/main" as styles;
+
+.spBaseTooltip {
+  $block: &;
+  background-color: styles.$color-agr-white;
+  padding: 20px;
+  box-shadow: 0 10px 45px 0 styles.$color-agr-rgba-19-15;
+  position: absolute;
+  width: max-content;
+  max-width: 600px;
+  min-width: 80px;
+  z-index: 199;
+
+  &_noPadding {
+    padding: 0;
+  }
+
+  &_position {
+    &-bottom {
+      top: calc(100% + #{styles.$spLabel-offset});
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      &-left {
+        top: calc(100% + #{styles.$spLabel-offset});
+        left: 0;
+      }
+
+      &-right {
+        top: calc(100% + #{styles.$spLabel-offset});
+        right: 0;
+      }
+    }
+
+    &-top {
+      bottom: calc(100% + #{styles.$spLabel-offset});
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      &-left {
+        bottom: calc(100% + #{styles.$spLabel-offset});
+        left: 0;
+      }
+
+      &-right {
+        bottom: calc(100% + #{styles.$spLabel-offset});
+        right: 0;
+      }
+    }
+
+    &-left {
+      top: 50%;
+      right: calc(100% + #{styles.$spLabel-offset});
+      transform: translate(0, -50%);
+
+      &-bottom {
+        bottom: 0;
+        right: calc(100% + #{styles.$spLabel-offset});
+      }
+
+      &-top {
+        top: 0;
+        right: calc(100% + #{styles.$spLabel-offset});
+      }
+    }
+
+    &-right {
+      top: 50%;
+      left: calc(100% + #{styles.$spLabel-offset});
+      transform: translate(0, -50%);
+
+      &-bottom {
+        bottom: 0;
+        left: calc(100% + #{styles.$spLabel-offset});
+      }
+
+      &-top {
+        top: 0;
+        left: calc(100% + #{styles.$spLabel-offset});
+      }
+    }
+  }
+
+  &__content {
+    font: styles.$font-ALS_Hauss-400-14;
+    white-space: pre-line;
+    color: styles.$color-agr-black;
+  }
+}
