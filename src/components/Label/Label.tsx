@@ -3,7 +3,7 @@ import React from "react";
 
 import {TBaseTooltipPosition} from "../BaseTooltip";
 import {Icon} from "../Icons";
-import {IconName} from "../Icons/constants";
+import {IconName} from "../Icons";
 import {Tooltip} from "../Tooltip";
 import styles from "./Label.module.scss";
 

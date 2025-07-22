@@ -6,7 +6,7 @@
   display: flex;
   position: relative;
   width: max-content;
-  color: styles.$color-agr-gray-1;
+  color: styles.$color-gray-1;
 
   &_hover:hover > #{$block}__spTooltip {
     visibility: visible;

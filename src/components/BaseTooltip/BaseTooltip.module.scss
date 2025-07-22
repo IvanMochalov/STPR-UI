@@ -2,9 +2,9 @@
 
 .spBaseTooltip {
   $block: &;
-  background-color: styles.$color-agr-white;
+  background-color: styles.$color-white;
   padding: 20px;
-  box-shadow: 0 10px 45px 0 styles.$color-agr-rgba-19-15;
+  box-shadow: 0 10px 45px 0 styles.$color-rgba-19-15;
   position: absolute;
   width: max-content;
   max-width: 600px;
@@ -82,8 +82,10 @@
   }
 
   &__content {
-    font: styles.$font-ALS_Hauss-400-14;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 14px;
     white-space: pre-line;
-    color: styles.$color-agr-black;
+    color: styles.$color-black;
   }
 }

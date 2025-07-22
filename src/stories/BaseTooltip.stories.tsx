@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {BaseTooltip} from "./BaseTooltip.tsx";
+import {BaseTooltip} from "../components";
 
 const meta: Meta<typeof BaseTooltip> = {
     component: BaseTooltip,
@@ -29,11 +29,16 @@ const meta: Meta<typeof BaseTooltip> = {
     },
     decorators: [
         (Story) => (
-            <div style={{position: "relative", border: "1px dashed black", padding: "20px 40px"}}>
-                <Story/>
+            <div style={{minHeight: "20vh", display: "flex", alignItems: "center"}}>
+                <div style={{position: "relative", border: "1px dashed black", padding: "20px 40px"}}>
+                    <Story/>
+                </div>
             </div>
         )
     ],
+    args: {
+        position: "bottom-left",
+    }
 };
 
 export default meta;

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {Label} from "./Label.tsx";
+import {Label} from "../components";
 
 const meta: Meta<typeof Label> = {
     component: Label,
@@ -9,7 +9,14 @@ const meta: Meta<typeof Label> = {
         classNameRoot: {
             control: false,
         },
-    }
+    },
+    decorators: [
+        (Story) => (
+            <div style={{minHeight: "20vh", display: "flex", alignItems: "center"}}>
+                <Story/>
+            </div>
+        )
+    ],
 };
 
 export default meta;

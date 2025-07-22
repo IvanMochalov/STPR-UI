@@ -3,8 +3,27 @@
 @forward "fonts";
 @forward "colors";
 
+@use './constants' as *;
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+  height: $scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+  background: $scrollbar-track-background;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb-background;
+
+  &:hover {
+    background: $scrollbar-thumb-background-hover;
+  }
 }

@@ -1,11 +1,15 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {useState} from "react";
 
-import {Input} from "./Input.tsx";
+import {Select} from "../components";
+import {OKRUG_OPTIONS} from "./constants";
 
-const meta: Meta<typeof Input> = {
-    component: Input,
+const meta: Meta<typeof Select> = {
+    component: Select,
     tags: ["autodocs"],
+    args: {
+        options: OKRUG_OPTIONS,
+    },
     argTypes: {
         classNameRoot: {
             control: false,
@@ -16,15 +20,16 @@ const meta: Meta<typeof Input> = {
         classNameError: {
             control: false,
         },
-        pattern: {
-            description: "RegExp.\n" +
-                "\ninput will be ignored if the value does not match the regular expression (pattern)"
-        }
+        options: {
+            control: false,
+        },
     },
     decorators: [
         (Story) => (
-            <div style={{width: "400px"}}>
-                <Story/>
+            <div style={{minHeight: "40vh", display: "flex", alignItems: "start"}}>
+                <div style={{width: "400px", marginTop: "80px"}}>
+                    <Story/>
+                </div>
             </div>
         )
     ],
@@ -32,13 +37,13 @@ const meta: Meta<typeof Input> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
-    name: "Default input",
+    name: "Default select",
     render: (args) => {
         const [formData, setFormData] = useState({
-            description: ""
+            okrug: ""
         });
 
         const onChange = (_event, {name, checked, value}) => {
@@ -48,36 +53,32 @@ export const Default: Story = {
             }));
         };
         return (
-            <Input
+            <Select
                 {...args}
-                name={"description"}
-                value={formData.description}
+                name={"okrug"}
+                value={formData.okrug}
                 onChange={onChange}
             />
         )
     },
-    args: {
-        placeholder: "Введите описание...",
-    }
 };
 export const WithLabel: Story = {
-    name: "Input with label",
+    name: "Select with label",
     render: Default.render,
     args: {
-        label: "Описание строения",
-        isClearable: true,
+        label: "Округ",
     },
 };
 export const WithLabelAndTooltip: Story = {
-    name: "Input with label and tooltip",
+    name: "Select with label and tooltip",
     render: Default.render,
     args: {
-        label: "Описание строения",
-        infoTooltipText: "Подсказка для поля 'Описание строения'"
+        label: "Округ",
+        infoTooltipText: "Подсказка для поля 'Округ'"
     },
 };
 export const WithLabelAndTooltipAndError: Story = {
-    name: "Input with label, tooltip and error",
+    name: "Select with label, tooltip and error",
     render: Default.render,
     args: {
         label: "Описание строения",

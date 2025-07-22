@@ -8,4 +8,5 @@ export const IconName = {
     check: "check",
     copy: "copy",
     close: "close",
+    plusSquare: "plusSquare",
 };

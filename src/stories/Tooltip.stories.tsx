@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {Tooltip} from "./Tooltip.tsx";
+import {Tooltip} from "../components";
 
 const meta: Meta<typeof Tooltip> = {
     component: Tooltip,
@@ -36,6 +36,16 @@ const meta: Meta<typeof Tooltip> = {
             control: {type: "radio"},
         },
     },
+    decorators: [
+        (Story) => (
+            <div style={{minHeight: "20vh", display: "flex", alignItems: "center"}}>
+                <Story/>
+            </div>
+        )
+    ],
+    args: {
+        position: "bottom-left",
+    }
 };
 
 export default meta;
@@ -64,7 +74,7 @@ export const Clickable: Story = {
     name: "Clickable tooltip",
     args: {
         hover: false,
-        text: "Дефолтный тултип",
+        text: "Появляющийся по клику тултип",
         trigger:
             <div
                 style={{

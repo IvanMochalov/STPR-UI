@@ -8,6 +8,7 @@ export {
     Icon,
     InfoIcon,
     PlusIcon,
+    PlusSquareIcon,
     SelectChevronDownIcon,
     TrashIcon,
     UploadIcon,

@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "types": [
       "vite/client",
-      "storybook__react"
+      "storybook__react",
+      "@storybook/react"
     ],
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -32,7 +33,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.stories.tsx",
-    ".storybook"
+    ".storybook/**/*.ts",
+    ".storybook",
+    "vite.config.ts"
   ],
   "references": [
     {

@@ -3,7 +3,7 @@ import React from "react";
 
 import {TBaseTooltipPosition} from "../BaseTooltip";
 import {Icon} from "../Icons";
-import {IconName} from "../Icons/constants";
+import {IconName} from "../Icons";
 import {Label} from "../Label";
 import styles from "./Input.module.scss";
 
@@ -123,8 +123,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
             {
                 label &&
                 <Label
-                    tooltipPosition={tooltipPosition}
                     classNameRoot={_classNameLabel}
+                    tooltipPosition={tooltipPosition}
                     required={required}
                     label={label}
                     infoTooltipText={infoTooltipText}

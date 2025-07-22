@@ -6,6 +6,7 @@ import CloseIcon from "../../images/close.svg?react";
 import CopyIcon from "../../images/copy.svg?react";
 import InfoIcon from "../../images/info.svg?react";
 import PlusIcon from "../../images/plus.svg?react";
+import PlusSquareIcon from "../../images/plus-square.svg?react";
 import SelectChevronDownIcon from "../../images/select-chevron-down.svg?react";
 import TrashIcon from "../../images/trash.svg?react";
 import UploadIcon from "../../images/upload.svg?react";
@@ -41,6 +42,7 @@ export const Icon: React.FC<IconProps> = (props) => {
         check: CheckIcon as SVGComponent,
         copy: CopyIcon as SVGComponent,
         close: CloseIcon as SVGComponent,
+        plusSquare: PlusSquareIcon as SVGComponent,
     };
 
     return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -56,6 +58,7 @@ export {
     CopyIcon,
     InfoIcon,
     PlusIcon,
+    PlusSquareIcon,
     SelectChevronDownIcon,
     TrashIcon,
     UploadIcon,
