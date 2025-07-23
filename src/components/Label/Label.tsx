@@ -5,6 +5,7 @@ import {TBaseTooltipPosition} from "../BaseTooltip";
 import {Icon} from "../Icons";
 import {IconName} from "../Icons";
 import {Tooltip} from "../Tooltip";
+import {InfoTooltip} from "../Tooltip/Tooltip.tsx";
 import styles from "./Label.module.scss";
 
 export interface LabelProps {
@@ -54,13 +55,9 @@ export const Label: React.FC<LabelProps> = (props) => {
             {
                 infoTooltipText &&
                 <div className={classNameLabelTooltip}>
-                    <Tooltip
+                    <InfoTooltip
                         position={tooltipPosition}
                         text={infoTooltipText}
-                        hover={true}
-                        trigger={
-                            <Icon name={IconName.info}/>
-                        }
                     />
                 </div>
             }

@@ -6,6 +6,16 @@ const meta: Meta<typeof Tooltip> = {
     component: Tooltip,
     tags: ["autodocs"],
     argTypes: {
+        hover: {
+            table: {
+                defaultValue: {summary: "true"},
+            },
+        },
+        noPadding: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
         trigger: {
             control: false,
         },
@@ -33,7 +43,10 @@ const meta: Meta<typeof Tooltip> = {
                 "right-top",
                 "right-bottom",
             ],
-            control: {type: "radio"},
+            control: {type: "select"},
+            table: {
+                defaultValue: {summary: "bottom-left"},
+            },
         },
     },
     decorators: [

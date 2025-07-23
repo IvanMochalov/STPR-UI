@@ -38,7 +38,7 @@ export const Default: Story = {
                     gap: "8px"
                 }}
             >
-                <Icon {...args} />
+                <Icon name={args.name} rotate={args.rotate} color={args.color}/>
                 <span
                     style={{
                         fontSize: "12px",
@@ -75,7 +75,6 @@ export const Gallery: Story = {
                 display: "flex",
                 gap: "8px",
                 flexWrap: "wrap",
-                font: "400 18px ALS_Hauss",
             }}
         >
             {Object.values(IconName).map((name) => (
@@ -93,6 +92,7 @@ export const Gallery: Story = {
                     <Icon {...args} name={name}/>
                     <span
                         style={{
+                            fontFamily: "ALSHauss",
                             fontSize: "12px",
                             color: "#666",
                             textAlign: "center",

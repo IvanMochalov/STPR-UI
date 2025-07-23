@@ -11,6 +11,37 @@ const meta: Meta<typeof Select> = {
         options: OKRUG_OPTIONS,
     },
     argTypes: {
+        placeholder: {
+            table: {
+                defaultValue: {summary: "Выберите из списка..."},
+            },
+        },
+        disabled: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        maxHeightList: {
+            table: {
+                defaultValue: {summary: "160"},
+            },
+        },
+        required: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        isVisibleDefaultTitle: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+
+        tooltipPosition: {
+            table: {
+                defaultValue: {summary: "bottom-left"},
+            },
+        },
         classNameRoot: {
             control: false,
         },
@@ -55,6 +86,7 @@ export const Default: Story = {
         return (
             <Select
                 {...args}
+                error={!formData.okrug ? args.error : undefined}
                 name={"okrug"}
                 value={formData.okrug}
                 onChange={onChange}

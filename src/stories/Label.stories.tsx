@@ -9,6 +9,16 @@ const meta: Meta<typeof Label> = {
         classNameRoot: {
             control: false,
         },
+        required: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        tooltipPosition: {
+            table: {
+                defaultValue: {summary: "bottom-left"},
+            },
+        },
     },
     decorators: [
         (Story) => (

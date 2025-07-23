@@ -9,13 +9,13 @@ interface AccordionProps {
     children: ReactNode,
     onOpen?: (open: boolean) => void,
     defaultOpen?: boolean,
+    isHiddenExpandIcon?: boolean,
+    noBorder?: boolean,
+    noPadding?: boolean,
     classNameRoot?: string,
     classNameHeader?: string,
     classNameTitle?: string,
     classNameIcon?: string,
-    noBorder?: boolean,
-    noPadding?: boolean,
-    isHiddenExpandIcon?: boolean,
 }
 
 export const Accordion: React.FC<AccordionProps> = (props) => {
@@ -25,8 +25,8 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
         defaultOpen = false,
         isHiddenExpandIcon = false,
         onOpen,
-        noBorder,
-        noPadding,
+        noBorder = false,
+        noPadding = false,
     } = props;
     const [open, setOpen] = useState(defaultOpen);
 

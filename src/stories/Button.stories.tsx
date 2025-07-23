@@ -12,6 +12,36 @@ const meta: Meta<typeof Button> = {
         form: {
             control: false,
         },
+        isOnlyIcon: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        isFullWidth: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        disabled: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        variant: {
+            table: {
+                defaultValue: {summary: "primary"},
+            },
+        },
+        color: {
+            table: {
+                defaultValue: {summary: "blue"},
+            },
+        },
+        type: {
+            table: {
+                defaultValue: {summary: "button"},
+            },
+        },
     },
     decorators: [
         (Story) => (
@@ -30,7 +60,7 @@ const meta: Meta<typeof Button> = {
         children: "Button",
         variant: "primary",
         color: "blue",
-        type: "submit",
+        type: "button",
     }
 };
 

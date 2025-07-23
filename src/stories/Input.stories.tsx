@@ -7,6 +7,31 @@ const meta: Meta<typeof Input> = {
     component: Input,
     tags: ["autodocs"],
     argTypes: {
+        disabled: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        isVisibleDefaultTitle: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        isClearable: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        tooltipPosition: {
+            table: {
+                defaultValue: {summary: "bottom-left"},
+            },
+        },
+        required: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
         classNameRoot: {
             control: false,
         },
@@ -52,6 +77,7 @@ export const Default: Story = {
         return (
             <Input
                 {...args}
+                error={!formData.description ? args.error : undefined}
                 name={"description"}
                 value={formData.description}
                 onChange={onChange}

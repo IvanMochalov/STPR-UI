@@ -6,6 +6,29 @@ const meta: Meta<typeof Accordion> = {
     component: Accordion,
     tags: ["autodocs"],
     argTypes: {
+        children: {
+            control: false,
+        },
+        defaultOpen: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        isHiddenExpandIcon: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        noBorder: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        noPadding: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
         classNameRoot: {
             control: false,
         },
@@ -16,9 +39,6 @@ const meta: Meta<typeof Accordion> = {
             control: false,
         },
         classNameIcon: {
-            control: false,
-        },
-        children: {
             control: false,
         },
     },

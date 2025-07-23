@@ -3,6 +3,7 @@ import React, {useState} from "react";
 
 import {useClickOutside} from "../../hooks/useClickOutside.ts";
 import {BaseTooltip, BaseTooltipProps} from "../BaseTooltip";
+import {Icon, IconName} from "../Icons";
 import styles from "./Tooltip.module.scss"
 
 export interface TooltipProps extends BaseTooltipProps {
@@ -67,3 +68,15 @@ export const Tooltip: React.FC<TooltipProps> = props => {
         </div>
     );
 };
+
+export const InfoTooltip: React.FC<TooltipProps> = props => {
+    return (
+        <Tooltip
+            {...props}
+            hover={true}
+            trigger={
+                <Icon name={IconName.info}/>
+            }
+        />
+    );
+}
