@@ -1,0 +1,40 @@
+@use "../../styles/main" as styles;
+
+.spForm {
+  width: fit-content;
+  // Модификаторы блока
+  &_fullWidth {
+    width: 100%;
+  }
+
+  &_withSeparator {
+    & > div:not(:first-child) {
+      position: relative;
+      padding-top: 24px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: 0;
+        height: 1px;
+        background: styles.$color-secondary-blue-light-dark;
+      }
+
+      @include styles.respond-to(sm) {
+        padding-top: 32px
+      }
+    }
+  }
+
+  &_addMargin {
+    & > div:not(:last-child) {
+      margin-bottom: 24px;
+
+      @include styles.respond-to(sm) {
+        margin-bottom: 32px
+      }
+    }
+  }
+}

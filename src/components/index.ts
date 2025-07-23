@@ -2,6 +2,7 @@ export * from "./Accordion";
 export * from "./BaseTooltip";
 export * from "./Button";
 export * from "./Checkbox";
+export * from "./Form";
 export * from "./Icons";
 export * from "./Input";
 export * from "./Label";
