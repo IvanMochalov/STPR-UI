@@ -2,13 +2,15 @@
 
 .spButton {
   // Общие стили блока
-  border: none;
   $block: &;
-  cursor: pointer;
-  padding: 11.5px 23px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  padding: 11.5px 23px;
 
   @include styles.respond-to(sm) {
     padding: 16.5px 33px;
