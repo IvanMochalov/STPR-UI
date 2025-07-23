@@ -1,5 +1,4 @@
 export {IconName} from "./constants"
-export type {IconProps, TIconName} from "./Icon.tsx";
 export {
     CheckIcon,
     ChevronDownIcon,
@@ -13,3 +12,4 @@ export {
     TrashIcon,
     UploadIcon,
 } from "./Icon.tsx";
+export type {IconProps, SVGComponent,TIconName} from "./types";

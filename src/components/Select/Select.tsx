@@ -2,40 +2,11 @@ import cx from "clsx";
 import React, {useState} from "react";
 
 import {useClickOutside} from "../../hooks/useClickOutside.ts";
-import {TBaseTooltipPosition} from "../BaseTooltip";
 import {Icon, IconName} from "../Icons";
 import {Label} from "../Label";
 import {MAX_HEIGHT_SELECT_LIST} from "./constants";
 import styles from "./Select.module.scss";
-
-export type SelectOption = {
-    value: string | null;
-    label: string;
-}
-
-interface SelectProps {
-    options: SelectOption[];
-    placeholder?: string;
-    value?: string;
-    name: string;
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>, data: {
-        name: string;
-        value?: string,
-        checked?: boolean
-    }) => void;
-    onMouseEnter?: () => void;
-    error?: string;
-    label?: string;
-    infoTooltipText?: string;
-    tooltipPosition?: TBaseTooltipPosition;
-    disabled?: boolean;
-    required?: boolean;
-    maxHeightList?: number;
-    isVisibleDefaultTitle?: boolean;
-    classNameRoot?: string;
-    classNameError?: string;
-    classNameLabel?: string;
-}
+import {SelectProps} from "./types";
 
 export const Select: React.FC<SelectProps> = (props) => {
     const {

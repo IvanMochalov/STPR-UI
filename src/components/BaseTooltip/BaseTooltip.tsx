@@ -1,31 +1,12 @@
 import cx from "clsx";
-import React, {ReactNode} from "react";
+import React from "react";
 
 import styles from "./BaseTooltip.module.scss"
-
-export type TBaseTooltipPosition = "top" |
-    "top-left" |
-    "top-right" |
-    "bottom" |
-    "bottom-left" |
-    "bottom-right" |
-    "left" |
-    "left-top" |
-    "left-bottom" |
-    "right" |
-    "right-top" |
-    "right-bottom";
-
-export interface BaseTooltipProps {
-    position?: TBaseTooltipPosition,
-    text?: string | ReactNode,
-    noPadding?: boolean,
-    classNameRoot?: string,
-}
+import {BaseTooltipProps, ETooltipPosition} from "./types";
 
 export const BaseTooltip: React.FC<BaseTooltipProps> = (props) => {
     const {
-        position = "bottom-left",
+        position = ETooltipPosition.BottomLeft,
         text,
         noPadding = false,
     } = props;

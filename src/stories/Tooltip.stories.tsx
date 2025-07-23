@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {Tooltip} from "../components";
+import {ETooltipPosition,Tooltip} from "../components";
 
 const meta: Meta<typeof Tooltip> = {
     component: Tooltip,
@@ -57,7 +57,7 @@ const meta: Meta<typeof Tooltip> = {
         )
     ],
     args: {
-        position: "bottom-left",
+        position: ETooltipPosition.BottomLeft,
     }
 };
 

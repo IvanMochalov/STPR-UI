@@ -1,37 +1,12 @@
 import cx from "clsx";
 import React from "react";
 
-import {TBaseTooltipPosition} from "../BaseTooltip";
 import {Icon} from "../Icons";
 import {IconName} from "../Icons";
 import {Label} from "../Label";
 import styles from "./Input.module.scss";
+import {InputProps} from "./types";
 
-interface InputProps {
-    name: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, data: {
-        name: string;
-        value?: string,
-        checked?: boolean
-    }) => void;
-    value?: string;
-    error?: string;
-    isClearable?: boolean;
-    pattern?: RegExp | string;
-    onMouseEnter?: () => void;
-    label?: string;
-    infoTooltipText?: string;
-    tooltipPosition?: TBaseTooltipPosition;
-    disabled?: boolean;
-    required?: boolean;
-    isVisibleDefaultTitle?: boolean;
-    placeholder?: string;
-    classNameError?: string;
-    classNameLabel?: string;
-    classNameRoot?: string;
-
-    [key: string]: React.InputHTMLAttributes<InputProps>;
-}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const {

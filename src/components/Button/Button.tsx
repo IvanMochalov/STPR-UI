@@ -1,29 +1,9 @@
 import cx from "clsx";
-import React, {CSSProperties, ReactNode} from "react";
+import React from "react";
 
-import {Icon, TIconName} from "../Icons";
+import {Icon} from "../Icons";
 import styles from "./Button.module.scss"
-
-export type TSPButtonColor = "blue" | "white";
-
-export type TSPButtonType = "submit" | "reset" | "button";
-
-export type TSPButtonVariant = "primary" | "secondary" | "link";
-
-interface ButtonProps {
-    color?: TSPButtonColor,
-    variant?: TSPButtonVariant,
-    style?: CSSProperties,
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    disabled?: boolean,
-    type?: TSPButtonType,
-    form?: string,
-    children?: ReactNode | string | null,
-    isFullWidth?: boolean,
-    isOnlyIcon?: boolean,
-    iconName?: TIconName;
-    classNameRoot?: string,
-}
+import {ButtonProps} from "./types";
 
 export const Button: React.FC<ButtonProps> = (props) => {
     const {

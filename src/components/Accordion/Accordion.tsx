@@ -1,22 +1,9 @@
 import cx from "clsx";
-import React, {ReactNode, useState} from "react";
+import React, {useState} from "react";
 
 import {Icon, IconName} from "../Icons";
 import styles from "./Accordion.module.scss"
-
-interface AccordionProps {
-    name?: string,
-    children: ReactNode,
-    onOpen?: (open: boolean) => void,
-    defaultOpen?: boolean,
-    isHiddenExpandIcon?: boolean,
-    noBorder?: boolean,
-    noPadding?: boolean,
-    classNameRoot?: string,
-    classNameHeader?: string,
-    classNameTitle?: string,
-    classNameIcon?: string,
-}
+import {AccordionProps} from "./types";
 
 export const Accordion: React.FC<AccordionProps> = (props) => {
     const {

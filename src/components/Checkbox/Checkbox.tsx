@@ -1,29 +1,9 @@
 import cx from "clsx";
 import React from "react";
 
-import {TBaseTooltipPosition} from "../BaseTooltip";
 import {InfoTooltip} from "../Tooltip";
 import styles from "./Checkbox.module.scss";
-
-interface CheckboxProps {
-    checked?: boolean;
-    disabled?: boolean;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, data: {
-        name: string;
-        value?: string,
-        checked?: boolean
-    }) => void;
-    name: string;
-    label?: string;
-    error?: string;
-    value?: string;
-    required?: boolean;
-    tooltipPosition?: TBaseTooltipPosition;
-    infoTooltipText?: string;
-    onMouseEnter?: (event: React.MouseEvent<HTMLDivElement>) => void;
-    classNameRoot?: string;
-    classNameError?: string;
-}
+import {CheckboxProps} from "./types";
 
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
     const {

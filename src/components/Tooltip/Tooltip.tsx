@@ -2,17 +2,10 @@ import cx from "clsx";
 import React, {useState} from "react";
 
 import {useClickOutside} from "../../hooks/useClickOutside.ts";
-import {BaseTooltip, BaseTooltipProps} from "../BaseTooltip";
+import {BaseTooltip} from "../BaseTooltip";
 import {Icon, IconName} from "../Icons";
 import styles from "./Tooltip.module.scss"
-
-export interface TooltipProps extends BaseTooltipProps {
-    hover?: boolean,
-    trigger?: React.ReactNode,
-    triggerAction?: () => void,
-    classNameTriggerTooltip?: string,
-    classNameRootBaseTooltip?: string,
-}
+import {TooltipProps} from "./types";
 
 export const Tooltip: React.FC<TooltipProps> = props => {
     const {

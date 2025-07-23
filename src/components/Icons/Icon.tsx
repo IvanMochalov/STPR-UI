@@ -10,15 +10,7 @@ import PlusSquareIcon from "../../images/plus-square.svg?react";
 import SelectChevronDownIcon from "../../images/select-chevron-down.svg?react";
 import TrashIcon from "../../images/trash.svg?react";
 import UploadIcon from "../../images/upload.svg?react";
-import {IconName} from "./constants";
-
-export type TIconName = keyof typeof IconName;
-type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
-
-export interface IconProps extends React.SVGProps<SVGSVGElement> {
-    name: TIconName,
-    rotate?: number,
-}
+import {IconProps, SVGComponent, TIconName} from "./types";
 
 export const Icon: React.FC<IconProps> = (props) => {
     const {

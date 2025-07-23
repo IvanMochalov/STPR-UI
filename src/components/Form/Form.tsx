@@ -2,19 +2,7 @@ import cx from "clsx"
 import React from "react";
 
 import styles from "./Form.module.scss"
-
-interface FormProps {
-    withSeparator?: boolean,
-    children: React.ReactNode,
-    classNameRoot?: string,
-    addMargin?: boolean,
-    fullWidth?: boolean,
-    onSubmit?: () => void,
-    id?: string,
-    name?: string,
-    noValidate?: boolean,
-    autoComplete?: React.AutoFillBase,
-}
+import {FormProps} from "./types";
 
 export const Form: React.FC<FormProps> = (props) => {
     const {

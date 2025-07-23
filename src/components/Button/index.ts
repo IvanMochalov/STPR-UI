@@ -1,2 +1,2 @@
-export type {TSPButtonColor, TSPButtonType, TSPButtonVariant} from "./Button"
 export {Button} from "./Button"
+export type {ButtonProps,TSPButtonColor, TSPButtonType, TSPButtonVariant} from "./types"

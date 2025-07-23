@@ -1,2 +1,3 @@
-export type {BaseTooltipProps, TBaseTooltipPosition} from "./BaseTooltip.tsx";
-export {BaseTooltip} from "./BaseTooltip.tsx";
+export {BaseTooltip} from "./BaseTooltip";
+export type {BaseTooltipProps} from "./types"
+export {ETooltipPosition} from "./types"

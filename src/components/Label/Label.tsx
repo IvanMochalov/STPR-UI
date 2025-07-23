@@ -1,20 +1,9 @@
 import cx from "clsx";
 import React from "react";
 
-import {TBaseTooltipPosition} from "../BaseTooltip";
-import {Icon} from "../Icons";
-import {IconName} from "../Icons";
-import {Tooltip} from "../Tooltip";
-import {InfoTooltip} from "../Tooltip/Tooltip.tsx";
+import {InfoTooltip} from "../Tooltip";
 import styles from "./Label.module.scss";
-
-export interface LabelProps {
-    required?: boolean
-    label?: string
-    infoTooltipText?: string,
-    tooltipPosition?: TBaseTooltipPosition,
-    classNameRoot?: string
-}
+import {LabelProps} from "./types";
 
 export const Label: React.FC<LabelProps> = (props) => {
     const {
