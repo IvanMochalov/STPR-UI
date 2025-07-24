@@ -1,4 +1,4 @@
-import React, {CSSProperties, ReactNode} from "react";
+import React, {CSSProperties} from "react";
 
 import {TIconName} from "../../Icons";
 
@@ -8,7 +8,7 @@ export type TSPButtonType = "submit" | "reset" | "button";
 
 export type TSPButtonVariant = "primary" | "secondary" | "link";
 
-export interface ButtonProps {
+export interface ButtonProps extends React.PropsWithChildren {
     color?: TSPButtonColor,
     variant?: TSPButtonVariant,
     style?: CSSProperties,
@@ -16,7 +16,6 @@ export interface ButtonProps {
     disabled?: boolean,
     type?: TSPButtonType,
     form?: string,
-    children?: ReactNode | string | null,
     isFullWidth?: boolean,
     isOnlyIcon?: boolean,
     iconName?: TIconName;

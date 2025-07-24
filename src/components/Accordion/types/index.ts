@@ -1,8 +1,7 @@
-import {ReactNode} from "react";
+import React from "react";
 
-export interface AccordionProps {
+export interface AccordionProps extends React.PropsWithChildren {
     name?: string,
-    children: ReactNode,
     onOpen?: (open: boolean) => void,
     defaultOpen?: boolean,
     isHiddenExpandIcon?: boolean,

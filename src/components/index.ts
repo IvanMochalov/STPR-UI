@@ -7,5 +7,6 @@ export * from "./Form";
 export * from "./Icons";
 export * from "./Input";
 export * from "./Label";
+export * from "./MediaContext";
 export * from "./Select";
 export * from "./Tooltip";

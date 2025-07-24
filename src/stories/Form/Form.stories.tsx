@@ -1,8 +1,8 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {useState} from "react";
 
-import {Checkbox, Form, Input, Select} from "../components";
-import {OKRUG_OPTIONS} from "./constants";
+import {Checkbox, Form, Input, Select} from "../../components";
+import {OKRUG_OPTIONS} from "../constants";
 
 const meta: Meta<typeof Form> = {
     component: Form,
@@ -34,9 +34,6 @@ const meta: Meta<typeof Form> = {
         noValidate: {
             table: {
                 defaultValue: {summary: "false"},
-            },
-            table: {
-                defaultValue: {summary: "true"},
             },
             control: {type: "boolean"},
             description: "Этот логический атрибут указывает, что форма не должна проверяться при отправке. Если этот атрибут не задан (и, следовательно, форма проверена ), его можно переопределить атрибутом formnovalidate элемента button, input type submit, или input type image, принадлежащего форме",

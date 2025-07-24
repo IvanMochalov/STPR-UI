@@ -1,32 +1,13 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {useState} from "react";
 
-import {Select} from "../components";
-import {OKRUG_OPTIONS} from "./constants";
+import {Input} from "../../components";
 
-const meta: Meta<typeof Select> = {
-    component: Select,
+const meta: Meta<typeof Input> = {
+    component: Input,
     tags: ["autodocs"],
-    args: {
-        options: OKRUG_OPTIONS,
-    },
     argTypes: {
-        placeholder: {
-            table: {
-                defaultValue: {summary: "Выберите из списка..."},
-            },
-        },
         disabled: {
-            table: {
-                defaultValue: {summary: "false"},
-            },
-        },
-        maxHeightList: {
-            table: {
-                defaultValue: {summary: "160"},
-            },
-        },
-        required: {
             table: {
                 defaultValue: {summary: "false"},
             },
@@ -36,10 +17,19 @@ const meta: Meta<typeof Select> = {
                 defaultValue: {summary: "false"},
             },
         },
-
+        isClearable: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
         tooltipPosition: {
             table: {
                 defaultValue: {summary: "bottom-left"},
+            },
+        },
+        required: {
+            table: {
+                defaultValue: {summary: "false"},
             },
         },
         classNameRoot: {
@@ -51,14 +41,15 @@ const meta: Meta<typeof Select> = {
         classNameError: {
             control: false,
         },
-        options: {
-            control: false,
-        },
+        pattern: {
+            description: "RegExp.\n" +
+                "\ninput will be ignored if the value does not match the regular expression (pattern)"
+        }
     },
     decorators: [
         (Story) => (
-            <div style={{minHeight: "40vh", display: "flex", alignItems: "start"}}>
-                <div style={{width: "400px", marginTop: "80px"}}>
+            <div style={{minHeight: "20vh", display: "flex", alignItems: "center"}}>
+                <div style={{width: "400px"}}>
                     <Story/>
                 </div>
             </div>
@@ -68,13 +59,13 @@ const meta: Meta<typeof Select> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Select>;
+type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
-    name: "Default select",
+    name: "Default input",
     render: (args) => {
         const [formData, setFormData] = useState({
-            okrug: ""
+            description: ""
         });
 
         const onChange = (_event, {name, checked, value}) => {
@@ -84,33 +75,37 @@ export const Default: Story = {
             }));
         };
         return (
-            <Select
+            <Input
                 {...args}
-                error={!formData.okrug ? args.error : undefined}
-                name={"okrug"}
-                value={formData.okrug}
+                error={!formData.description ? args.error : undefined}
+                name={"description"}
+                value={formData.description}
                 onChange={onChange}
             />
         )
     },
+    args: {
+        placeholder: "Введите описание...",
+    }
 };
 export const WithLabel: Story = {
-    name: "Select with label",
+    name: "Input with label",
     render: Default.render,
     args: {
-        label: "Округ",
+        label: "Описание строения",
+        isClearable: true,
     },
 };
 export const WithLabelAndTooltip: Story = {
-    name: "Select with label and tooltip",
+    name: "Input with label and tooltip",
     render: Default.render,
     args: {
-        label: "Округ",
-        infoTooltipText: "Подсказка для поля 'Округ'"
+        label: "Описание строения",
+        infoTooltipText: "Подсказка для поля 'Описание строения'"
     },
 };
 export const WithLabelAndTooltipAndError: Story = {
-    name: "Select with label, tooltip and error",
+    name: "Input with label, tooltip and error",
     render: Default.render,
     args: {
         label: "Описание строения",

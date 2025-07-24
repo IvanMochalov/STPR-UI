@@ -1,8 +1,7 @@
 import React from "react";
 
-export interface FormProps {
+export interface FormProps extends React.PropsWithChildren {
     withSeparator?: boolean,
-    children: React.ReactNode,
     classNameRoot?: string,
     addMargin?: boolean,
     fullWidth?: boolean,

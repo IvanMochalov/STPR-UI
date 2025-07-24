@@ -1,27 +1,12 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {ETooltipPosition,InfoTooltip} from "../components";
+import {BaseTooltip, ETooltipPosition} from "../../components";
 
-const meta: Meta<typeof InfoTooltip> = {
-    component: InfoTooltip,
+const meta: Meta<typeof BaseTooltip> = {
+    component: BaseTooltip,
     tags: ["autodocs"],
     argTypes: {
-        hover: {
-            control: false,
-            table: {
-                defaultValue: {summary: "true"},
-            },
-        },
-        trigger: {
-            control: false,
-        },
         classNameRoot: {
-            control: false,
-        },
-        classNameTriggerTooltip: {
-            control: false,
-        },
-        classNameRootBaseTooltip: {
             control: false,
         },
         noPadding: {
@@ -53,7 +38,9 @@ const meta: Meta<typeof InfoTooltip> = {
     decorators: [
         (Story) => (
             <div style={{minHeight: "20vh", display: "flex", alignItems: "center"}}>
-                <Story/>
+                <div style={{position: "relative", border: "1px dashed black", padding: "20px 40px"}}>
+                    <Story/>
+                </div>
             </div>
         )
     ],
@@ -64,12 +51,11 @@ const meta: Meta<typeof InfoTooltip> = {
 
 export default meta;
 
-type Story = StoryObj<typeof InfoTooltip>;
+type Story = StoryObj<typeof BaseTooltip>;
 
 export const Default: Story = {
-    name: "Default info tooltip",
+    name: "Default tooltip",
     args: {
-        text: "Дефолтный инфо-тултип",
+        text: "Дефолтный тултип",
     },
 };
-

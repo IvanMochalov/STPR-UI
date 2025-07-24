@@ -1,8 +1,8 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {useState} from "react";
 
-import {Accordion, Checkbox, Form, Input, Select} from "../components";
-import {OKRUG_OPTIONS} from "./constants";
+import {Accordion, Checkbox, Form, Input, Select} from "../../components";
+import {OKRUG_OPTIONS} from "../constants";
 
 const meta: Meta<typeof Accordion> = {
     component: Accordion,

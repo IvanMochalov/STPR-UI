@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {Dropdown, ETooltipPosition} from "../components";
+import {Dropdown, ETooltipPosition} from "../../components";
 
 const meta: Meta<typeof Dropdown> = {
     component: Dropdown,

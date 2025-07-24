@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {ETooltipPosition, Tooltip} from "../components";
+import {ETooltipPosition, Tooltip} from "../../components";
 
 const meta: Meta<typeof Tooltip> = {
     component: Tooltip,
