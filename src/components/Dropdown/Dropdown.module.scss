@@ -37,6 +37,7 @@
   }
 
   &__tooltipContainer {
+    display: flex;
     padding: 10.5px 16px 10.5px 14px;
     color: styles.$color-accent-blue;
   }
