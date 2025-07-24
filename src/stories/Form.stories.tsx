@@ -28,9 +28,6 @@ const meta: Meta<typeof Form> = {
             table: {
                 defaultValue: {summary: "false"},
             },
-            table: {
-                defaultValue: {summary: "true"},
-            },
             control: {type: "boolean"},
             description: "Указывает, могут ли элементы ввода по умолчанию автоматически дополнять свои значения браузером. autocompleteАтрибуты элементов формы переопределяют это значение form. Возможные значения:\n" + "\noff | on"
         },
