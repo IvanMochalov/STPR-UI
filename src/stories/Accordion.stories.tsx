@@ -1,6 +1,8 @@
 import type {Meta, StoryObj} from "@storybook/react";
+import {useState} from "react";
 
-import {Accordion} from "../components";
+import {Accordion, Checkbox, Form, Input, Select} from "../components";
+import {OKRUG_OPTIONS} from "./constants";
 
 const meta: Meta<typeof Accordion> = {
     component: Accordion,
@@ -41,6 +43,9 @@ const meta: Meta<typeof Accordion> = {
         classNameIcon: {
             control: false,
         },
+        classNameChildrenWrapper: {
+            control: false,
+        },
     },
     decorators: [
         (Story) => (
@@ -49,12 +54,20 @@ const meta: Meta<typeof Accordion> = {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "500px"
+                width: "600px"
             }}>
                 <Story/>
             </div>
         )
     ],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Accordion>;
+
+export const Default: Story = {
+    name: "Default accordion",
     args: {
         name: "Основное задание",
         children: <div style={{textAlign: "justify"}}>
@@ -69,10 +82,54 @@ const meta: Meta<typeof Accordion> = {
     }
 };
 
-export default meta;
+export const AccordionWithForm: Story = {
+    name: "Accordion with form",
+    args: {
+        name: "Аккордеон с вложенными компонентами"
+    },
+    render: (args) => {
+        const [formData, setFormData] = useState({
+            addressName: "",
+            okrug: "",
+            is: false,
+        });
 
-type Story = StoryObj<typeof Accordion>;
-
-export const Default: Story = {
-    name: "Default accordion",
+        const onChange = (_event, {name, checked, value}) => {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: typeof checked === "boolean" ? checked : value,
+            }));
+        };
+        return (
+            <Accordion
+                name={args.name}
+            >
+                <Form
+                    addMargin={true}
+                    fullWidth={true}
+                    withSeparator={true}
+                >
+                    <Checkbox
+                        label={"Включить проверку"}
+                        name={"is"}
+                        checked={formData.is}
+                        onChange={onChange}
+                    />
+                    <Input
+                        label={"Наименование адреса"}
+                        name={"addressName"}
+                        value={formData.addressName}
+                        onChange={onChange}
+                    />
+                    <Select
+                        label={"Округ"}
+                        options={OKRUG_OPTIONS}
+                        name={"okrug"}
+                        value={formData.okrug}
+                        onChange={onChange}
+                    />
+                </Form>
+            </Accordion>
+        )
+    },
 };

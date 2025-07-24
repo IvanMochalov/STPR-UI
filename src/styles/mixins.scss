@@ -21,6 +21,20 @@
   width: calc((100% - (#{$gutter} * ($countElement - 1))) / $countElement) !important;
 }
 
+@mixin transition-all-ease-in-out($duration) {
+  & {
+    transition: all #{$duration}ms ease-in-out;
+  }
+}
+
+@mixin transition-prop-ease-in-out($props, $duration) {
+  & {
+    transition-property: $props;
+    transition-duration: #{$duration}ms;
+    transition-timing-function: ease-in-out;
+  }
+}
+
 @mixin option-default() {
   font-family: $main-font;
   font-weight: 400;

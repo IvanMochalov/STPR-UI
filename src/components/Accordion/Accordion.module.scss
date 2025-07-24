@@ -4,6 +4,7 @@
   // Общие стили блока
   $block: &;
 
+  overflow: hidden;
   border: 1px solid styles.$color-secondary-blue-light-dark;
   width: 100%;
   padding: 16px;
@@ -35,6 +36,8 @@
   }
 
   &_open {
+    overflow: visible;
+
     & #{$block}__header {
       margin-bottom: 24px;
 
@@ -50,22 +53,23 @@
     }
 
     &#{$block}_noBorder {
+      border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
+
       &#{$block}_noPadding {
         padding-bottom: 16px;
 
         @include styles.respond-to(sm) {
           padding-bottom: 32px;
         }
-
       }
-
-      border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
     }
   }
 
   // Элементы
   &__header {
     position: relative;
+
+    @include styles.transition-all-ease-in-out(300);
   }
 
   &__name {
@@ -90,10 +94,23 @@
     right: 0;
     top: 0;
     width: 16px;
-    height: 16px;
+    height: 24px;
 
     &_hidden {
       visibility: hidden;
+    }
+
+    @include styles.transition-all-ease-in-out(300);
+  }
+
+  &__childrenWrapper {
+    visibility: hidden;
+    opacity: 0;
+    @include styles.transition-all-ease-in-out(300);
+
+    &_open {
+      visibility: visible;
+      opacity: 1;
     }
   }
 }

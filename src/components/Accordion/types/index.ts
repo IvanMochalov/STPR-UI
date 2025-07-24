@@ -12,4 +12,5 @@ export interface AccordionProps {
     classNameHeader?: string,
     classNameTitle?: string,
     classNameIcon?: string,
+    classNameChildrenWrapper?: string,
 }
