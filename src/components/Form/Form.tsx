@@ -11,6 +11,7 @@ export const Form: React.FC<FormProps> = (props) => {
         addMargin = false,
         withSeparator = false,
         fullWidth = true,
+        classNameRoot: propsClassNameRoot,
         ...otherProps
     } = props;
 
@@ -19,7 +20,7 @@ export const Form: React.FC<FormProps> = (props) => {
         [styles.spForm_fullWidth]: fullWidth,
         [styles.spForm_addMargin]: addMargin,
         [styles.spForm_withSeparator]: withSeparator,
-        [props.classNameRoot]: props.classNameRoot,
+        [propsClassNameRoot]: propsClassNameRoot,
     } as never);
 
     const _onSubmit = (event: React.FormEvent<HTMLFormElement>) => {

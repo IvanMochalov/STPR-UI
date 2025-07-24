@@ -32,6 +32,7 @@ export const Default: Story = {
             <div
                 key={args.name}
                 style={{
+                    fontFamily: "ALSHauss",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -81,6 +82,7 @@ export const Gallery: Story = {
                 <div
                     key={name}
                     style={{
+                        fontFamily: "ALSHauss",
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
@@ -92,7 +94,6 @@ export const Gallery: Story = {
                     <Icon {...args} name={name}/>
                     <span
                         style={{
-                            fontFamily: "ALSHauss",
                             fontSize: "12px",
                             color: "#666",
                             textAlign: "center",

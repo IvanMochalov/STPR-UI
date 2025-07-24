@@ -11,6 +11,7 @@ export const Tooltip: React.FC<TooltipProps> = props => {
     const {
         trigger,
         hover = true,
+        toggleClick = false,
         triggerAction,
         classNameTriggerTooltip,
         classNameRootBaseTooltip,
@@ -29,7 +30,7 @@ export const Tooltip: React.FC<TooltipProps> = props => {
             return;
         }
 
-        setOpen(true);
+        setOpen(prevState => toggleClick ? !prevState : true);
         triggerAction && triggerAction();
     };
 

@@ -12,12 +12,13 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
         labelText = "Выпадающий список",
         listName,
         dropdownList = [],
-        dropdownPosition = ETooltipPosition.BottomRight
+        dropdownPosition = ETooltipPosition.BottomRight,
+        classNameRoot: propsClassNameRoot
     } = props;
 
     const classNameRoot = cx({
         [styles.spDropdown]: true,
-        [props.classNameRoot]: props.classNameRoot,
+        [propsClassNameRoot]: propsClassNameRoot,
     });
 
     const classNameLabelText = cx({

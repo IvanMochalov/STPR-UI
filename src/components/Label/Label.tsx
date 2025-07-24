@@ -11,11 +11,12 @@ export const Label: React.FC<LabelProps> = (props) => {
         label,
         infoTooltipText,
         tooltipPosition,
+        classNameRoot: propsClassNameRoot,
     } = props;
 
     const classNameRoot = cx({
         [styles.spLabel]: true,
-        [props.classNameRoot]: props.classNameRoot,
+        [propsClassNameRoot]: propsClassNameRoot,
     });
 
     const classNameLabelText = cx({

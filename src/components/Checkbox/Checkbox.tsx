@@ -18,11 +18,12 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
         tooltipPosition,
         infoTooltipText,
         onMouseEnter,
+        classNameRoot: propsClassNameRoot,
     } = props;
 
     const classNameRoot = cx({
         [styles.spCheckbox]: true,
-        [props.classNameRoot]: props.classNameRoot,
+        [propsClassNameRoot]: propsClassNameRoot,
     });
 
     const classNameBox = cx({

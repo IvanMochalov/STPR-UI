@@ -9,13 +9,14 @@ export const BaseTooltip: React.FC<BaseTooltipProps> = (props) => {
         position = ETooltipPosition.BottomLeft,
         text,
         noPadding = false,
+        classNameRoot: propsClassNameRoot,
     } = props;
 
     const classNameRoot = cx({
         [styles.spBaseTooltip]: true,
         [styles.spBaseTooltip_noPadding]: noPadding,
         [styles[`spBaseTooltip_position-${position}`]]: position,
-        [props.classNameRoot]: props.classNameRoot,
+        [propsClassNameRoot]: propsClassNameRoot,
     });
 
     const classNameContent = cx({

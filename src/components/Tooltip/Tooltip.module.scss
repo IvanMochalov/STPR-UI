@@ -16,8 +16,7 @@
   &__spTooltip {
     visibility: hidden;
     opacity: 0;
-
-    transition: opacity 0.2s ease-in-out;
+    @include styles.transition-prop-ease-in-out(opacity, 200);
 
     &_isOpen {
       visibility: visible;

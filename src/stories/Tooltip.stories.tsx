@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {ETooltipPosition,Tooltip} from "../components";
+import {ETooltipPosition, Tooltip} from "../components";
 
 const meta: Meta<typeof Tooltip> = {
     component: Tooltip,
@@ -12,6 +12,11 @@ const meta: Meta<typeof Tooltip> = {
             },
         },
         noPadding: {
+            table: {
+                defaultValue: {summary: "false"},
+            },
+        },
+        toggleClick: {
             table: {
                 defaultValue: {summary: "false"},
             },
@@ -98,6 +103,25 @@ export const Clickable: Story = {
                 }}
             >
                 Click me
+            </div>
+    },
+};
+export const ToggleClickable: Story = {
+    name: "Clickable toggle tooltip",
+    args: {
+        toggleClick: true,
+        hover: false,
+        text: "Появляющийся по клику тултип",
+        trigger:
+            <div
+                style={{
+                    position: "relative",
+                    border: "1px dashed black",
+                    padding: "10px 15px",
+                    cursor: "pointer",
+                }}
+            >
+                Click me again
             </div>
     },
 };

@@ -15,6 +15,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
         onOpen,
         noBorder = false,
         noPadding = false,
+        classNameRoot: propsClassNameRoot,
     } = props;
     const [open, setOpen] = useState(defaultOpen);
     const {contentRef, height} = useContentHeight(open);
@@ -35,7 +36,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
         [styles.spAccordion_noOpen]: !open,
         [styles.spAccordion_noBorder]: noBorder,
         [styles.spAccordion_noPadding]: noPadding,
-        [props.classNameRoot]: props.classNameRoot,
+        [propsClassNameRoot]: propsClassNameRoot,
     });
 
     const classNameHeader = cx({
