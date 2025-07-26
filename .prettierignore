@@ -1,0 +1,15 @@
+# Игнорируемые файлы для Prettier
+/node_modules
+/build
+/dist
+/.next
+/out
+*.log
+*.md
+*.html
+/public
+/.cache
+package-lock.json
+yarn.lock
+*.svg
+*.sh

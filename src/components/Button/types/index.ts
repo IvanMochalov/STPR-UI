@@ -1,23 +1,23 @@
-import React, {CSSProperties} from "react";
+import React, { CSSProperties } from "react";
 
-import {TIconName} from "../../Icons";
+import { EIconName } from "../../Icons";
 
-export type TSPButtonColor = "blue" | "white";
+export type TButtonColor = "blue" | "white";
 
-export type TSPButtonType = "submit" | "reset" | "button";
+export type TButtonType = "submit" | "reset" | "button";
 
-export type TSPButtonVariant = "primary" | "secondary" | "link";
+export type TButtonVariant = "primary" | "secondary" | "link";
 
 export interface ButtonProps extends React.PropsWithChildren {
-    color?: TSPButtonColor,
-    variant?: TSPButtonVariant,
-    style?: CSSProperties,
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    disabled?: boolean,
-    type?: TSPButtonType,
-    form?: string,
-    isFullWidth?: boolean,
-    isOnlyIcon?: boolean,
-    iconName?: TIconName;
-    classNameRoot?: string,
+  color?: TButtonColor;
+  variant?: TButtonVariant;
+  style?: CSSProperties;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
+  type?: TButtonType;
+  form?: string;
+  isFullWidth?: boolean;
+  isOnlyIcon?: boolean;
+  iconName?: EIconName;
+  classNameRoot?: string;
 }

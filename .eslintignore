@@ -1,0 +1,12 @@
+# Игнорируемые файлы и папки для ESLint
+/node_modules
+/build
+/dist
+/.next
+/out
+*.log
+*.md
+*.html
+/public
+/.cache
+/.vscode

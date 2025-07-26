@@ -1,69 +1,69 @@
-import type {Meta, StoryObj} from "@storybook/react";
-import {useState} from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
-import {Select} from "../../components";
-import {OKRUG_OPTIONS} from "../constants";
+import { Select } from "../../components";
+import { OKRUG_OPTIONS } from "../constants";
 
 const meta: Meta<typeof Select> = {
-    component: Select,
-    tags: ["autodocs"],
-    args: {
-        options: OKRUG_OPTIONS,
+  component: Select,
+  tags: ["autodocs"],
+  args: {
+    options: OKRUG_OPTIONS,
+  },
+  argTypes: {
+    placeholder: {
+      table: {
+        defaultValue: { summary: "Выберите из списка..." },
+      },
     },
-    argTypes: {
-        placeholder: {
-            table: {
-                defaultValue: {summary: "Выберите из списка..."},
-            },
-        },
-        disabled: {
-            table: {
-                defaultValue: {summary: "false"},
-            },
-        },
-        maxHeightList: {
-            table: {
-                defaultValue: {summary: "160"},
-            },
-        },
-        required: {
-            table: {
-                defaultValue: {summary: "false"},
-            },
-        },
-        isVisibleDefaultTitle: {
-            table: {
-                defaultValue: {summary: "false"},
-            },
-        },
+    disabled: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    maxHeightList: {
+      table: {
+        defaultValue: { summary: "160" },
+      },
+    },
+    required: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    isVisibleDefaultTitle: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
 
-        tooltipPosition: {
-            table: {
-                defaultValue: {summary: "bottom-left"},
-            },
-        },
-        classNameRoot: {
-            control: false,
-        },
-        classNameLabel: {
-            control: false,
-        },
-        classNameError: {
-            control: false,
-        },
-        options: {
-            control: false,
-        },
+    tooltipPosition: {
+      table: {
+        defaultValue: { summary: "bottom-left" },
+      },
     },
-    decorators: [
-        (Story) => (
-            <div style={{minHeight: "40vh", display: "flex", alignItems: "start"}}>
-                <div style={{width: "400px", marginTop: "80px"}}>
-                    <Story/>
-                </div>
-            </div>
-        )
-    ],
+    classNameRoot: {
+      control: false,
+    },
+    classNameLabel: {
+      control: false,
+    },
+    classNameError: {
+      control: false,
+    },
+    options: {
+      control: false,
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: "40vh", display: "flex", alignItems: "start" }}>
+        <div style={{ width: "400px", marginTop: "80px" }}>
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -71,51 +71,51 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
-    name: "Default select",
-    render: (args) => {
-        const [formData, setFormData] = useState({
-            okrug: ""
-        });
+  name: "Default select",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      okrug: "",
+    });
 
-        const onChange = (_event, {name, checked, value}) => {
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: typeof checked === "boolean" ? checked : value,
-            }));
-        };
-        return (
-            <Select
-                {...args}
-                error={!formData.okrug ? args.error : undefined}
-                name={"okrug"}
-                value={formData.okrug}
-                onChange={onChange}
-            />
-        )
-    },
+    const onChange = (_event: any, { name, checked, value }: any) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: typeof checked === "boolean" ? checked : value,
+      }));
+    };
+    return (
+      <Select
+        {...args}
+        error={!formData.okrug ? args.error : undefined}
+        name={"okrug"}
+        value={formData.okrug}
+        onChange={onChange}
+      />
+    );
+  },
 };
 export const WithLabel: Story = {
-    name: "Select with label",
-    render: Default.render,
-    args: {
-        label: "Округ",
-    },
+  name: "Select with label",
+  render: Default.render,
+  args: {
+    label: "Округ",
+  },
 };
 export const WithLabelAndTooltip: Story = {
-    name: "Select with label and tooltip",
-    render: Default.render,
-    args: {
-        label: "Округ",
-        infoTooltipText: "Подсказка для поля 'Округ'"
-    },
+  name: "Select with label and tooltip",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    infoTooltipText: "Подсказка для поля 'Округ'",
+  },
 };
 export const WithLabelAndTooltipAndError: Story = {
-    name: "Select with label, tooltip and error",
-    render: Default.render,
-    args: {
-        label: "Описание строения",
-        infoTooltipText: "Подсказка для поля 'Описание строения'",
-        required: true,
-        error: "Обязательное поле"
-    },
+  name: "Select with label, tooltip and error",
+  render: Default.render,
+  args: {
+    label: "Описание строения",
+    infoTooltipText: "Подсказка для поля 'Описание строения'",
+    required: true,
+    error: "Обязательное поле",
+  },
 };

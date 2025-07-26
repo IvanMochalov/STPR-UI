@@ -1,17 +1,44 @@
 module.exports = {
-    root: true,
-    env: {browser: true, es2020: true},
-    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
-    ignorePatterns: ['dist', '.eslintrc.cjs'],
-    parser: '@typescript-eslint/parser',
-    plugins: ['react-refresh', "simple-import-sort"],
-    rules: {
-        "simple-import-sort/imports": "warn",
-        "simple-import-sort/exports": "warn",
-        'quotes': ['warn', 'double'],
-        'react-refresh/only-export-components': [
-            'warn',
-            {allowConstantExport: true},
-        ],
+  root: true,
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
     },
-}
+    project: "./tsconfig.json",
+  },
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:storybook/recommended",
+    "plugin:prettier/recommended",
+  ],
+  plugins: [
+    "@typescript-eslint",
+    "react",
+    "react-refresh",
+    "react-hooks",
+    "simple-import-sort",
+    "prettier",
+  ],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  rules: {
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+};

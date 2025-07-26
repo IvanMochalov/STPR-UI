@@ -1,15 +1,15 @@
-import type {Meta, StoryObj} from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import {MediaContextProvider} from "../../components";
-import {MediaContent} from "./components";
+import { MediaContextProvider } from "../../components";
+import { MediaContent } from "./components";
 
 const meta: Meta<typeof MediaContextProvider> = {
-    component: MediaContextProvider,
-    tags: ["autodocs"],
-    parameters: {
-        docs: {
-            description: {
-                component: `
+  component: MediaContextProvider,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
 \`MediaContextProvider\` - это провайдер контекста для отслеживания текущего разрешения экрана.
 ### Особенности:
 - Автоматически определяет тип устройства (desktop/tablet/mobile) на основе переданных breakpoints
@@ -39,51 +39,53 @@ const { device:
     }
 } = useContext(MediaContext);
 \`\`\`
-`
-            }
-        }
+`,
+      },
     },
-    argTypes: {
-        children: {
-            control: false,
-            description: "Дочерние компоненты, которые будут иметь доступ к медиа-контексту"
-        },
-        breakpoints: {
-            description: "Объект с настройками breakpoints для разных устройств",
-            table: {
-                type: {
-                    summary: "object",
-                    detail: `{
+  },
+  argTypes: {
+    children: {
+      control: false,
+      description: "Дочерние компоненты, которые будут иметь доступ к медиа-контексту",
+    },
+    breakpoints: {
+      description: "Объект с настройками breakpoints для разных устройств",
+      table: {
+        type: {
+          summary: "object",
+          detail: `{
   desktop: { minWidth: number },
   tablet: { minWidth: number, maxWidth: number },
   mobile: { maxWidth: number }
 }`,
-                },
-                defaultValue: {
-                    summary: `{
+        },
+        defaultValue: {
+          summary: `{
   desktop: { minWidth: 1440 },
   tablet: { minWidth: 768, maxWidth: 1439 },
   mobile: { maxWidth: 767 }
 }`,
-                },
-            },
         },
+      },
     },
-    decorators: [
-        (Story) => (
-            <div style={{
-                minHeight: "20vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "1px dashed #eee",
-                borderRadius: "8px",
-                padding: "20px"
-            }}>
-                <Story/>
-            </div>
-        )
-    ],
+  },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          minHeight: "20vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: "1px dashed #eee",
+          borderRadius: "8px",
+          padding: "20px",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -91,13 +93,13 @@ export default meta;
 type Story = StoryObj<typeof MediaContextProvider>;
 
 export const Default: Story = {
-    name: "Default presentation",
-    args: {
-        breakpoints: {
-            desktop: {minWidth: 1440},
-            tablet: {minWidth: 768, maxWidth: 1439},
-            mobile: {maxWidth: 767},
-        },
-        children: <MediaContent/>
+  name: "Default presentation",
+  args: {
+    breakpoints: {
+      desktop: { minWidth: 1440 },
+      tablet: { minWidth: 768, maxWidth: 1439 },
+      mobile: { maxWidth: 767 },
     },
+    children: <MediaContent />,
+  },
 };

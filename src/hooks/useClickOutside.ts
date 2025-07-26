@@ -13,26 +13,32 @@ import React, {useCallback, useEffect, useRef} from "react";
  * @return {Object} ref объект со свойством содержащим ссылку на DOM-эллемент
  */
 
-export function useClickOutside<T extends Element>(callback: (e) => void, isOpen?: boolean): React.RefObject<T | null> {
-    const ref = useRef<T | null>(null);
+export function useClickOutside<T extends Element>(
+  callback: (e: unknown) => void,
+  isOpen?: boolean,
+): React.LegacyRef<T> {
+  const ref = useRef<T | null>(null);
 
-    const handleClick = useCallback((e: DocumentEventMap["click"]): void => {
-        if (ref.current && !ref.current?.contains(e.target as Node)) {
-            callback(e);
-        }
-    }, [callback]);
+  const handleClick = useCallback(
+    (e: DocumentEventMap["click"]): void => {
+      if (ref.current && !ref.current?.contains(e.target as Node)) {
+        callback(e);
+      }
+    },
+    [callback],
+  );
 
-    useEffect(() => {
-        if (isOpen) {
-            document.addEventListener("click", handleClick);
-        }
-    }, [handleClick, isOpen]);
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("click", handleClick);
+    }
+  }, [handleClick, isOpen]);
 
-    useEffect(() => {
-        return () => {
-            document.removeEventListener("click", handleClick);
-        };
-    }, [handleClick]);
+  useEffect(() => {
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [handleClick]);
 
-    return ref;
+  return ref;
 }
