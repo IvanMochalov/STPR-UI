@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { Checkbox } from "../../components";
 
@@ -51,12 +51,20 @@ export const Default: Story = {
       is: false,
     });
 
-    const onChange = (_event: any, { name, checked, value }: any) => {
+    const onChange = (
+      _event: React.ChangeEvent<HTMLInputElement>,
+      data: {
+        name: string;
+        value?: string;
+        checked?: boolean;
+      },
+    ) => {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: typeof checked === "boolean" ? checked : value,
+        [data.name]: data.checked !== undefined ? data.checked : data.value,
       }));
     };
+
     return (
       <Checkbox
         {...args}

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 
 /**
  * Хук для реакции на клик за пределами DOM-эллемента

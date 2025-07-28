@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useMemo, useState } from "react";
 
 import { Tabs } from "../../components";
-import { useMemo, useState } from "react";
 
 const meta: Meta<typeof Tabs> = {
   component: Tabs,
@@ -28,7 +28,7 @@ export default meta;
 type Story = StoryObj<typeof Tabs>;
 
 export const Default: Story = {
-  name: "Default",
+  name: "Default tabs",
   render: (args) => {
     const [isAddress, setIsAddress] = useState(true);
     const tabs = useMemo(() => {

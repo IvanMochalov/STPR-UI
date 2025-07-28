@@ -56,7 +56,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
   });
 
-  const onClear = (event: any) => {
+  const onClear = (event: never) => {
     onChange(event, { name, value: "" });
   };
 
@@ -108,3 +108,5 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     </div>
   );
 });
+
+Input.displayName = "Input";

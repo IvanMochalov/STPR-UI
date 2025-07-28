@@ -11,5 +11,5 @@ export {
   TrashIcon,
   UploadIcon,
 } from "./Icon.tsx";
-export { EIconName } from "./types";
 export type { IconProps, SVGComponent } from "./types";
+export { EIconName } from "./types";

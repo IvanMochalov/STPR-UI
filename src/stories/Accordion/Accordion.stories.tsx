@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { Accordion, Checkbox, Form, Input, Select } from "../../components";
 import { OKRUG_OPTIONS } from "../constants";
@@ -99,10 +99,28 @@ export const AccordionWithForm: Story = {
       is: false,
     });
 
-    const onChange = (_event: any, { name, checked, value }: any) => {
+    const handleInputChange = (
+      _event: React.ChangeEvent<HTMLInputElement>,
+      data: {
+        name: string;
+        value?: string;
+        checked?: boolean;
+      },
+    ) => {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: typeof checked === "boolean" ? checked : value,
+        [data.name]: data.checked !== undefined ? data.checked : data.value,
+      }));
+    };
+
+    // Обработчик для Select
+    const handleSelectChange = (
+      _event: React.ChangeEvent<HTMLSelectElement> | React.MouseEvent<HTMLDivElement>,
+      data: { value: string | null; name: string },
+    ) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value || "",
       }));
     };
     return (
@@ -112,20 +130,20 @@ export const AccordionWithForm: Story = {
             label={"Включить проверку"}
             name={"is"}
             checked={formData.is}
-            onChange={onChange}
+            onChange={handleInputChange}
           />
           <Input
             label={"Наименование адреса"}
             name={"addressName"}
             value={formData.addressName}
-            onChange={onChange}
+            onChange={handleInputChange}
           />
           <Select
             label={"Округ"}
             options={OKRUG_OPTIONS}
             name={"okrug"}
             value={formData.okrug}
-            onChange={onChange}
+            onChange={handleSelectChange}
           />
         </Form>
       </Accordion>

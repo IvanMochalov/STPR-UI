@@ -32,6 +32,7 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   rules: {
+    "react/react-in-jsx-scope": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],

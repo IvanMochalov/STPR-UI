@@ -1,9 +1,10 @@
-import React from "react";
-import { TabsProps } from "./types";
 import cx from "clsx";
-import styles from "./Tabs.module.scss";
-import { InfoTooltip } from "../Tooltip";
+import React from "react";
+
 import { Text } from "../Text";
+import { InfoTooltip } from "../Tooltip";
+import styles from "./Tabs.module.scss";
+import { TabsProps } from "./types";
 
 export const Tabs: React.FC<TabsProps> = (props) => {
   const { panes, isSeparated = false, classNameRoot: propsClassNameRoot } = props;

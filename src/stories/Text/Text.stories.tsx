@@ -31,16 +31,19 @@ const meta: Meta<typeof Text> = {
       <div
         style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "20px" }}
       >
-        <Text {...args} type={"h1"} children={`${args.children} with type="h1"`} />
-        <Text {...args} type={"p1"} children={`${args.children} with type="p1"`} />
-        <Text {...args} type={"p2"} children={`${args.children} with type="p2"`} />
-        <Text {...args} children={`${args.children} without parameter type`} />
-        <Text
-          {...args}
-          isLink={true}
-          isCursorPointer={true}
-          children={`${args.children} with isLink={true}`}
-        />
+        <Text {...args} type={"h1"}>
+          {`${args.children} with type="h1"`}
+        </Text>
+        <Text {...args} type={"p1"}>
+          {`${args.children} with type="p1"`}
+        </Text>
+        <Text {...args} type={"p2"}>
+          {`${args.children} with type="p2"`}
+        </Text>
+        <Text {...args}>{`${args.children} without parameter type`}</Text>
+        <Text {...args} isLink={true} isCursorPointer={true}>
+          {`${args.children} with isLink={true}`}
+        </Text>
       </div>
     );
   },
@@ -51,5 +54,5 @@ export default meta;
 type Story = StoryObj<typeof Text>;
 
 export const Default: Story = {
-  name: "Default",
+  name: "Default Text",
 };

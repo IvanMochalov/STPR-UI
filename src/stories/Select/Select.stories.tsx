@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { Select } from "../../components";
 import { OKRUG_OPTIONS } from "../constants";
@@ -77,10 +77,13 @@ export const Default: Story = {
       okrug: "",
     });
 
-    const onChange = (_event: any, { name, checked, value }: any) => {
+    const onChange = (
+      _event: React.ChangeEvent<HTMLSelectElement> | React.MouseEvent<HTMLDivElement>,
+      data: { value: string | null; name: string },
+    ) => {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: typeof checked === "boolean" ? checked : value,
+        [data.name]: data.value || "",
       }));
     };
     return (

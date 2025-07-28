@@ -10,3 +10,4 @@
 /public
 /.cache
 /.vscode
+vite.config.ts
