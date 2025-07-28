@@ -10,3 +10,5 @@ export * from "./Label";
 export * from "./MediaContextProvider";
 export * from "./Select";
 export * from "./Tooltip";
+export * from "./Tabs";
+export * from "./Text";

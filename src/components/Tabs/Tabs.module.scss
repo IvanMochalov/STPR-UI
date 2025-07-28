@@ -1,0 +1,71 @@
+@use "../../styles/main" as styles;
+
+.spTabs {
+  $block: &;
+
+  display: flex;
+  background-color: styles.$color-alice-blue;
+  padding: 6px;
+  width: fit-content;
+  flex-direction: row;
+
+  &_separated {
+    background-color: transparent;
+    padding: 0;
+
+    & #{$block}__tabElement:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+
+  &__tabElement {
+    $blockTabElement: &;
+    display: flex;
+    cursor: pointer;
+    padding: 8px 12px;
+    color: styles.$color-gray-1;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+
+    @include styles.respond-to(sm) {
+      padding: 11.5px 16px;
+    }
+
+    &:hover {
+      &:not(#{$blockTabElement}_active) {
+        background-color: styles.$color-secondary-blue-light;
+      }
+    }
+
+    &_active {
+      color: styles.$color-accent-blue;
+      background-color: styles.$color-white;
+
+      & #{$block}__triggerTooltip {
+        color: styles.$color-accent-blue;
+      }
+    }
+
+    &_separated {
+      background-color: styles.$color-gray-4;
+
+      &:hover {
+        outline: 1px solid styles.$color-accent-blue;
+      }
+
+      &#{$blockTabElement}_active {
+        color: styles.$color-white;
+        background-color: styles.$color-accent-blue;
+
+        & #{$block}__triggerTooltip {
+          color: styles.$color-white;
+        }
+      }
+    }
+  }
+
+  &__triggerTooltip {
+    margin-left: 8px;
+  }
+}

@@ -1,0 +1,52 @@
+@use "../../styles/main" as styles;
+
+.spText {
+  font-family: styles.$main-font;
+  font-weight: 400;
+  font-size: 16px;
+
+  @include styles.respond-to(sm) {
+    font-size: 20px;
+  }
+
+  &_h1 {
+    font-family: styles.$title-font;
+    font-weight: 700;
+    font-size: 28px;
+
+    @include styles.respond-to(sm) {
+      font-size: 48px;
+    }
+  }
+
+  &_p1 {
+    @include styles.respond-to(sm) {
+      font-size: 18px;
+    }
+  }
+
+  &_p2 {
+    @include styles.respond-to(sm) {
+      font-size: 16px;
+    }
+  }
+
+  &_cursorPointer {
+    cursor: pointer;
+  }
+
+  &_link {
+    font-weight: 500;
+    font-size: 16px;
+    color: styles.$color-accent-blue;
+    display: inline-block;
+
+    @include styles.respond-to(sm) {
+      font-size: 18px;
+    }
+
+    &:hover {
+      color: styles.$color-accent-blue;
+    }
+  }
+}
