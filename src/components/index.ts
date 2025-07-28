@@ -9,6 +9,7 @@ export * from "./Input";
 export * from "./Label";
 export * from "./MediaContextProvider";
 export * from "./Select";
-export * from "./Tooltip";
+export * from "./Table";
 export * from "./Tabs";
 export * from "./Text";
+export * from "./Tooltip";
