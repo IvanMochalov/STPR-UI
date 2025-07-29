@@ -7,7 +7,10 @@ import copy from "rollup-plugin-copy";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/",
   build: {
+    outDir: "dist",
+    assetsDir: "assets",
     lib: {
       entry: resolve(__dirname, "src/components/index.ts"),
       name: "test-stpr-ui-kit",
@@ -26,7 +29,7 @@ export default defineConfig({
         copy({
           targets: [
             {
-              src: "src/assets/fonts/*",
+              src: "src/fonts/*",
               dest: "dist/assets/fonts",
             },
           ],
