@@ -10,6 +10,7 @@ import PlusSquareIcon from "../../images/plus-square.svg?react";
 import SelectChevronDownIcon from "../../images/select-chevron-down.svg?react";
 import TrashIcon from "../../images/trash.svg?react";
 import UploadIcon from "../../images/upload.svg?react";
+import WarningColorIcon from "../../images/warning-color.svg?react";
 import { EIconName, IconProps, SVGComponent } from "./types";
 
 export const Icon: React.FC<IconProps> = (props) => {
@@ -17,6 +18,7 @@ export const Icon: React.FC<IconProps> = (props) => {
 
   const style = {
     ...svgProps.style,
+    flexShrink: 0,
     transform: rotate ? `rotate(${rotate}deg)` : "",
   } as CSSProperties;
 
@@ -31,6 +33,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     copy: CopyIcon,
     close: CloseIcon,
     plusSquare: PlusSquareIcon,
+    warningColor: WarningColorIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -50,4 +53,5 @@ export {
   SelectChevronDownIcon,
   TrashIcon,
   UploadIcon,
+  WarningColorIcon,
 };

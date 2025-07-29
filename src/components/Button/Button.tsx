@@ -18,7 +18,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
     children,
     isFullWidth = false,
     isOnlyIcon = false,
-    classNameRoot,
+    classNameRoot: propsClassNameRoot,
+    classNameIconContainerRoot: propsClassNameIconContainerRoot,
   } = props;
 
   const _onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,6 +37,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
     const classNameIconContainer = cx({
       [styles.spButton__iconContainer]: true,
+      ...(propsClassNameIconContainerRoot && { [propsClassNameIconContainerRoot]: true }),
     });
 
     return (
@@ -50,20 +52,20 @@ export const Button: React.FC<ButtonProps> = (props) => {
     );
   };
 
-  const _classNameRoot = cx({
+  const classNameRoot = cx({
     [styles.spButton]: true,
     [styles.spButton_onlyIcon]: isOnlyIcon,
     [styles[`spButton_${variant}`]]: variant,
     [styles[`spButton_${color}`]]: color,
     [styles.spButton_fullWidth]: isFullWidth,
     [styles.spButton_disabled]: disabled,
-    classNameRoot: classNameRoot,
+    ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
   return (
     <button
       style={style}
-      className={_classNameRoot}
+      className={classNameRoot}
       onClick={_onClick}
       disabled={disabled}
       type={type}

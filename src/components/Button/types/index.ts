@@ -20,4 +20,5 @@ export interface ButtonProps extends React.PropsWithChildren {
   isOnlyIcon?: boolean;
   iconName?: EIconName;
   classNameRoot?: string;
+  classNameIconContainerRoot?: string;
 }

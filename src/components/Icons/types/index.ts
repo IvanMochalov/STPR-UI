@@ -11,6 +11,7 @@ export enum EIconName {
   Copy = "copy",
   Close = "close",
   PlusSquare = "plusSquare",
+  WarningColor = "warningColor",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;

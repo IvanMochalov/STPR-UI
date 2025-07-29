@@ -10,5 +10,5 @@ export interface TextProps {
   isLink?: boolean;
   isCursorPointer?: boolean;
   isCursorPointerByOnClick?: boolean;
-  type?: "h1" | "p1" | "p2";
+  type?: "h1" | "h3" | "p1" | "p2";
 }

@@ -19,6 +19,16 @@
     }
   }
 
+  &_h3 {
+    font-family: styles.$title-font;
+    font-weight: 700;
+    font-size: 24px;
+
+    @include styles.respond-to(sm) {
+      font-size: 36px;
+    }
+  }
+
   &_p1 {
     @include styles.respond-to(sm) {
       font-size: 18px;
