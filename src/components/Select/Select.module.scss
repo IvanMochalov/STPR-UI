@@ -106,7 +106,10 @@
     z-index: 5;
     box-shadow: 1px 1px 26px 0 styles.$color-rgba-19-15;
     background-color: styles.$color-white;
-    overflow-y: auto;
+
+    &_scrollable {
+      overflow-y: auto;
+    }
   }
 
   &__option {

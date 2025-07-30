@@ -25,6 +25,7 @@ export interface SelectProps {
   required?: boolean;
   maxHeightList?: number;
   isVisibleDefaultTitle?: boolean;
+  isScrollableList?: boolean;
   classNameRoot?: string;
   classNameError?: string;
   classNameLabel?: string;

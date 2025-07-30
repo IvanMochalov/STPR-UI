@@ -24,6 +24,7 @@ export const Select: React.FC<SelectProps> = (props) => {
     required,
     maxHeightList = MAX_HEIGHT_SELECT_LIST,
     isVisibleDefaultTitle = true,
+    isScrollableList = false,
     classNameRoot: propsClassNameRoot,
     classNameError: propsClassNameError,
     classNameLabel: propsClassNameLabel,
@@ -77,6 +78,7 @@ export const Select: React.FC<SelectProps> = (props) => {
 
   const classNameSelectList = cx({
     [styles.spSelect__list]: true,
+    [styles.spSelect__list_scrollable]: isScrollableList,
   });
 
   const classNameLabel = cx({
@@ -121,7 +123,10 @@ export const Select: React.FC<SelectProps> = (props) => {
       <div className={classNameContainer} onMouseEnter={onMouseEnter}>
         {getSelect()}
         {isOpen && (
-          <div className={classNameSelectList} style={{ maxHeight: `${maxHeightList}px` }}>
+          <div
+            className={classNameSelectList}
+            style={isScrollableList ? { maxHeight: `${maxHeightList}px` } : {}}
+          >
             {options.map((option) => {
               const isSelectedOption = option.value === value;
 
