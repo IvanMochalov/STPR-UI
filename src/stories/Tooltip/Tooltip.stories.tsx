@@ -30,7 +30,10 @@ const meta: Meta<typeof Tooltip> = {
     classNameTriggerTooltip: {
       control: false,
     },
-    classNameRootBaseTooltip: {
+    classNameContentRoot: {
+      control: false,
+    },
+    classNameTooltip: {
       control: false,
     },
     position: {

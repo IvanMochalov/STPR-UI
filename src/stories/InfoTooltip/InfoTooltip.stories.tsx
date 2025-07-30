@@ -21,7 +21,10 @@ const meta: Meta<typeof InfoTooltip> = {
     classNameTriggerTooltip: {
       control: false,
     },
-    classNameRootBaseTooltip: {
+    classNameContentRoot: {
+      control: false,
+    },
+    classNameTooltip: {
       control: false,
     },
     noPadding: {
