@@ -73,6 +73,7 @@
 
       & #{$block}__icon {
         color: styles.$color-gray-1;
+        cursor: default;
       }
     }
 
