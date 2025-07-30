@@ -3,12 +3,9 @@
 .spTooltip {
   $block: &;
 
-  display: flex;
   position: relative;
-  width: max-content;
-  color: styles.$color-gray-1;
 
-  &_hover:hover > #{$block}__spTooltip {
+  &_hover:hover > #{$block}__spTooltip_visible {
     visibility: visible;
     opacity: 1;
   }
@@ -19,8 +16,10 @@
     @include styles.transition-prop-ease-in-out(opacity, 200);
 
     &_isOpen {
-      visibility: visible;
-      opacity: 1;
+      &#{block}_visible {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 }
