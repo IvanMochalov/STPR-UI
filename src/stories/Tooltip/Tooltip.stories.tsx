@@ -16,9 +16,14 @@ const meta: Meta<typeof Tooltip> = {
         defaultValue: { summary: "false" },
       },
     },
-    toggleClick: {
+    isToggleClick: {
       table: {
         defaultValue: { summary: "false" },
+      },
+    },
+    isVisibleTooltip: {
+      table: {
+        defaultValue: { summary: "true" },
       },
     },
     trigger: {
@@ -66,6 +71,7 @@ const meta: Meta<typeof Tooltip> = {
   ],
   args: {
     position: ETooltipPosition.BottomLeft,
+    isVisibleTooltip: true,
   },
 };
 
@@ -97,6 +103,7 @@ export const Clickable: Story = {
   args: {
     hover: false,
     text: "Появляющийся по клику тултип",
+    isVisibleTooltip: true,
     trigger: (
       <div
         style={{
@@ -114,9 +121,10 @@ export const Clickable: Story = {
 export const ToggleClickable: Story = {
   name: "Clickable toggle tooltip",
   args: {
-    toggleClick: true,
+    isToggleClick: true,
     hover: false,
     text: "Появляющийся по клику тултип",
+    isVisibleTooltip: true,
     trigger: (
       <div
         style={{

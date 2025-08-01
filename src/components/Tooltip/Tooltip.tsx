@@ -10,10 +10,11 @@ import { TooltipProps } from "./types";
 export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
     hover = true,
-    toggleClick = false,
+    isToggleClick = false,
     isVisibleTooltip = true,
     trigger,
     triggerAction,
+    actionOnClose,
     classNameTooltip,
     classNameTriggerTooltip,
     position: defaultTooltipPosition = ETooltipPosition.BottomLeft,
@@ -25,18 +26,25 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
   const [isOpen, setOpen] = useState<boolean>(false);
   const ref = useClickOutside<HTMLDivElement>(() => {
+    actionOnClose && actionOnClose();
     setOpen(false);
   }, isOpen);
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
+  const handleClick = (_event: React.MouseEvent<HTMLDivElement>) => {
+    // Закоментил stopPropagation для того, чтобы при открытии закрывались другие открытые тултипы
+    // event.stopPropagation();
 
     if (hover) {
       return;
     }
 
-    setOpen((prevState) => (toggleClick ? !prevState : true));
-    triggerAction && triggerAction();
+    if (isOpen) {
+      actionOnClose && actionOnClose();
+    } else {
+      triggerAction && triggerAction();
+    }
+
+    setOpen((prevState) => (isToggleClick ? !prevState : true));
   };
 
   const textRef = useRef<HTMLDivElement>(null);

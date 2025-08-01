@@ -11,12 +11,13 @@
   }
 
   &__spTooltip {
+    $tooltip: &;
     visibility: hidden;
     opacity: 0;
-    @include styles.transition-prop-ease-in-out(opacity, 200);
+    @include styles.transition-prop-ease-in-out(opacity, styles.$basic-transition-duration);
 
     &_isOpen {
-      &#{block}_visible {
+      &#{$tooltip}_visible {
         visibility: visible;
         opacity: 1;
       }
