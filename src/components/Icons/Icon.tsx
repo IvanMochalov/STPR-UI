@@ -4,6 +4,8 @@ import CheckIcon from "../../images/check.svg?react";
 import ChevronDownIcon from "../../images/chevron-down.svg?react";
 import CloseIcon from "../../images/close.svg?react";
 import CopyIcon from "../../images/copy.svg?react";
+import DotsIcon from "../../images/dots.svg?react";
+import HistoryClockIcon from "../../images/history-clock.svg?react";
 import InfoIcon from "../../images/info.svg?react";
 import PlusIcon from "../../images/plus.svg?react";
 import PlusSquareIcon from "../../images/plus-square.svg?react";
@@ -34,6 +36,8 @@ export const Icon: React.FC<IconProps> = (props) => {
     close: CloseIcon,
     plusSquare: PlusSquareIcon,
     warningColor: WarningColorIcon,
+    dots: DotsIcon,
+    historyClock: HistoryClockIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -47,6 +51,8 @@ export {
   ChevronDownIcon,
   CloseIcon,
   CopyIcon,
+  DotsIcon,
+  HistoryClockIcon,
   InfoIcon,
   PlusIcon,
   PlusSquareIcon,
