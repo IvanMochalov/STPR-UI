@@ -23,14 +23,14 @@
 
 @mixin transition-all-ease-in-out($duration) {
   & {
-    transition: all #{$duration}ms ease-in-out;
+    transition: all #{$duration} ease-in-out;
   }
 }
 
 @mixin transition-prop-ease-in-out($props, $duration) {
   & {
     transition-property: $props;
-    transition-duration: #{$duration}ms;
+    transition-duration: #{$duration};
     transition-timing-function: ease-in-out;
   }
 }

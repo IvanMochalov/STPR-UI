@@ -69,7 +69,7 @@
   &__header {
     position: relative;
 
-    @include styles.transition-all-ease-in-out(300);
+    @include styles.transition-all-ease-in-out(styles.$accordion-transition-duration);
   }
 
   &__name {
@@ -100,13 +100,13 @@
       visibility: hidden;
     }
 
-    @include styles.transition-all-ease-in-out(300);
+    @include styles.transition-all-ease-in-out(styles.$accordion-transition-duration);
   }
 
   &__childrenWrapper {
     visibility: hidden;
     opacity: 0;
-    @include styles.transition-all-ease-in-out(300);
+    @include styles.transition-all-ease-in-out(styles.$accordion-transition-duration);
 
     &_open {
       visibility: visible;
