@@ -85,6 +85,11 @@
   }
 
   &__value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+
     &_empty {
       color: styles.$color-gray-1;
     }

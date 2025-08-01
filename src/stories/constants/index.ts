@@ -6,6 +6,10 @@ export const OKRUG_OPTIONS: SelectOption[] = [
     label: "ЦАО",
   },
   {
+    value: "40",
+    label: "ВН ПН 40 | Промышленно производственные объекты",
+  },
+  {
     value: "0200",
     label: "САО",
   },

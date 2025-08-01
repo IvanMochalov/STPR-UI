@@ -9,6 +9,13 @@
     font-size: 20px;
   }
 
+  &_ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
   &_h1 {
     font-family: styles.$title-font;
     font-weight: 700;

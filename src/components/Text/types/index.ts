@@ -7,6 +7,7 @@ export interface TextProps {
   classNameRoot?: string;
   style?: React.CSSProperties;
   onClick?: MouseEventHandler<HTMLElement>;
+  isEllipsis?: boolean;
   isLink?: boolean;
   isCursorPointer?: boolean;
   isCursorPointerByOnClick?: boolean;

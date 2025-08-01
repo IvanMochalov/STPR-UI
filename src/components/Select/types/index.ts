@@ -5,6 +5,7 @@ import { ETooltipPosition } from "../../BaseTooltip";
 export type SelectOption = {
   value: string | null;
   label: string;
+  key?: string;
 };
 
 export interface SelectProps {
