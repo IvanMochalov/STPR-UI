@@ -13,7 +13,6 @@ export const Text: React.FC<TextProps> = (props) => {
     style,
     onClick,
     isEllipsis = false,
-    isLink,
     isCursorPointer = false,
     isCursorPointerByOnClick = true,
     classNameRoot: propsClassNameRoot,
@@ -29,16 +28,15 @@ export const Text: React.FC<TextProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.spText]: true,
-    [styles.spText_link]: isLink,
     [styles.spText_ellipsis]: isEllipsis,
     [styles.spText_cursorPointer]: getCursorPointer(),
-    [styles[`spText_${type}`]]: type,
+    [styles[`spText_type-${type}`]]: type,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
   return (
     <div style={{ ...style, color }} title={title} onClick={onClick} className={classNameRoot}>
-      {children}
+      <span>{children}</span>
     </div>
   );
 };

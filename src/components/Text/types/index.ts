@@ -8,8 +8,7 @@ export interface TextProps {
   style?: React.CSSProperties;
   onClick?: MouseEventHandler<HTMLElement>;
   isEllipsis?: boolean;
-  isLink?: boolean;
   isCursorPointer?: boolean;
   isCursorPointerByOnClick?: boolean;
-  type?: "h1" | "h3" | "p1" | "p2";
+  type?: "h1" | "h3" | "p1" | "p2" | "description" | "link";
 }

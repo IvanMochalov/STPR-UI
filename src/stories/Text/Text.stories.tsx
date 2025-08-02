@@ -22,7 +22,6 @@ const meta: Meta<typeof Text> = {
   ],
   args: {
     children: "Text",
-    isLink: false,
     isCursorPointer: false,
     isCursorPointerByOnClick: true,
   },
@@ -40,10 +39,13 @@ const meta: Meta<typeof Text> = {
         <Text {...args} type={"p2"}>
           {`${args.children} with type="p2"`}
         </Text>
-        <Text {...args}>{`${args.children} without parameter type`}</Text>
-        <Text {...args} isLink={true} isCursorPointer={true}>
-          {`${args.children} with isLink={true}`}
+        <Text {...args} type={"description"}>
+          {`${args.children} with type="description"`}
         </Text>
+        <Text {...args} type={"link"}>
+          {`${args.children} with type="link"`}
+        </Text>
+        <Text {...args}>{`${args.children} without parameter type`}</Text>
       </div>
     );
   },

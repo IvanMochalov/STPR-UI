@@ -16,7 +16,7 @@
     width: 100%;
   }
 
-  &_h1 {
+  &_type-h1 {
     font-family: styles.$title-font;
     font-weight: 700;
     font-size: 28px;
@@ -26,7 +26,7 @@
     }
   }
 
-  &_h3 {
+  &_type-h3 {
     font-family: styles.$title-font;
     font-weight: 700;
     font-size: 24px;
@@ -36,23 +36,26 @@
     }
   }
 
-  &_p1 {
+  &_type-p1 {
     @include styles.respond-to(sm) {
       font-size: 18px;
     }
   }
 
-  &_p2 {
+  &_type-p2 {
     @include styles.respond-to(sm) {
       font-size: 16px;
     }
   }
 
-  &_cursorPointer {
-    cursor: pointer;
+  &_type-description {
+    font-size: 14px;
+    @include styles.respond-to(sm) {
+      font-size: 16px;
+    }
   }
 
-  &_link {
+  &_type-link {
     font-weight: 500;
     font-size: 16px;
     color: styles.$color-accent-blue;
@@ -65,5 +68,9 @@
     &:hover {
       color: styles.$color-accent-blue;
     }
+  }
+
+  &_cursorPointer {
+    cursor: pointer;
   }
 }
