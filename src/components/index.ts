@@ -12,4 +12,5 @@ export * from "./Select";
 export * from "./Table";
 export * from "./Tabs";
 export * from "./Text";
+export * from "./TextWithLabel";
 export * from "./Tooltip";
