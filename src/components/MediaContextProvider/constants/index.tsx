@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
 import { IMediaContext } from "../types";
 
-export const MediaContext = createContext<IMediaContext>({
+export const MediaContext: React.Context<IMediaContext> = createContext<IMediaContext>({
   device: {
     isDesktop: false,
     isMobile: false,
