@@ -101,6 +101,7 @@ export const Default: Story = {
         [data.name]: data.value || "",
       }));
     };
+
     return (
       <Form
         addMargin={args.addMargin}
