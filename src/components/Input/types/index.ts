@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ForwardedRef } from "react";
 
 import { ETooltipPosition } from "../../BaseTooltip";
 
@@ -27,4 +27,5 @@ export interface InputProps {
   classNameError?: string;
   classNameLabel?: string;
   classNameRoot?: string;
+  ref?: ForwardedRef<HTMLInputElement>;
 }

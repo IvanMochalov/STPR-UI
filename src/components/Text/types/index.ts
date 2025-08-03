@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactNode } from "react";
+import React, { ForwardedRef, MouseEventHandler, ReactNode } from "react";
 
 export interface TextProps {
   children?: string | ReactNode;
@@ -11,4 +11,5 @@ export interface TextProps {
   isCursorPointer?: boolean;
   isCursorPointerByOnClick?: boolean;
   type?: "h1" | "h3" | "p1" | "p2" | "description" | "link";
+  ref?: ForwardedRef<HTMLDivElement>;
 }

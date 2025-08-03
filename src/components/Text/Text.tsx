@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./Text.module.scss";
 import { TextProps } from "./types";
 
-export const Text: React.FC<TextProps> = (props) => {
+export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
   const {
     type,
     children,
@@ -35,8 +35,16 @@ export const Text: React.FC<TextProps> = (props) => {
   });
 
   return (
-    <div style={{ ...style, color }} title={title} onClick={onClick} className={classNameRoot}>
+    <div
+      style={{ ...style, color }}
+      title={title}
+      onClick={onClick}
+      className={classNameRoot}
+      ref={ref}
+    >
       <span>{children}</span>
     </div>
   );
-};
+});
+
+Text.displayName = "Text";
