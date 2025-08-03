@@ -40,6 +40,12 @@ const meta: Meta<typeof TextWithLabel> = {
         <TextWithLabel {...args} type={"p2"}>
           {`${args.children} with type="p2"`}
         </TextWithLabel>
+        <TextWithLabel {...args} type={"description"}>
+          {`${args.children} with type="description"`}
+        </TextWithLabel>
+        <TextWithLabel {...args} type={"link"}>
+          {`${args.children} with type="link"`}
+        </TextWithLabel>
         <TextWithLabel {...args}>{`${args.children} without parameter type`}</TextWithLabel>
       </div>
     );
