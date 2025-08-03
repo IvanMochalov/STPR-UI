@@ -5,6 +5,7 @@ export * from "./Checkbox";
 export * from "./ContextMenu";
 export * from "./DefaultDropzone";
 export * from "./Dropdown";
+export * from "./EllipsisTextWithTooltip";
 export * from "./Form";
 export * from "./Icons";
 export * from "./Input";
