@@ -34,7 +34,9 @@
   }
 
   &:hover:not(#{$block}_fileUploaded, #{$block}_disabled) {
-    border-color: styles.$color-secondary-blue-light-2
+    & #{$block}__control {
+      border-color: styles.$color-secondary-blue-light-2
+    }
   }
 
   &_disabled {

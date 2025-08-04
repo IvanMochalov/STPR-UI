@@ -6,4 +6,5 @@ export interface InputFilesProps extends Omit<DefaultDropzoneProps, "children"> 
   tooltipPosition?: ETooltipPosition;
   infoTooltipText?: string;
   error?: string;
+  placeholder?: string;
 }

@@ -11,6 +11,7 @@ import { InputFilesProps } from "./types";
 
 export const InputFiles: React.FC<InputFilesProps> = (props) => {
   const {
+    placeholder = "Загрузите файл",
     name,
     onDropFiles,
     maxSize,
@@ -84,7 +85,7 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
   const getSingle = () => {
     return (
       <>
-        {isFileUploaded ? renderFileNames() : <Text type={"p1"}>Загрузите файл</Text>}
+        {isFileUploaded ? renderFileNames() : <Text type={"p1"}>{placeholder}</Text>}
         {isFileUploaded ? (
           <div className={styles.spInputFiles__delete} onClick={onAllDelete}>
             <Icon name={EIconName.Close} />
