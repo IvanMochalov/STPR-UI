@@ -12,12 +12,14 @@ export const Button: React.FC<ButtonProps> = (props) => {
     style,
     onClick,
     iconName,
+    iconRotate = 0,
     disabled = false,
     type = "button",
     form,
     children,
     isFullWidth = false,
     isOnlyIcon = false,
+    noPadding = false,
     classNameRoot: propsClassNameRoot,
     classNameIconContainerRoot: propsClassNameIconContainerRoot,
   } = props;
@@ -44,7 +46,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       <>
         {iconName && (
           <div className={classNameIconContainer}>
-            <Icon name={iconName} />
+            <Icon name={iconName} rotate={iconRotate} />
           </div>
         )}
         {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
@@ -54,6 +56,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.spButton]: true,
+    [styles.spButton__noPadding]: noPadding,
     [styles.spButton_onlyIcon]: isOnlyIcon,
     [styles[`spButton_${variant}`]]: variant,
     [styles[`spButton_${color}`]]: color,

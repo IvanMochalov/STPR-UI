@@ -24,6 +24,16 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: "false" },
       },
     },
+    noPadding: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    iconRotate: {
+      table: {
+        defaultValue: { summary: "0" },
+      },
+    },
     variant: {
       table: {
         defaultValue: { summary: "primary" },
@@ -60,6 +70,8 @@ const meta: Meta<typeof Button> = {
     variant: "primary",
     color: "blue",
     type: "button",
+    noPadding: false,
+    iconRotate: 0,
   },
 };
 

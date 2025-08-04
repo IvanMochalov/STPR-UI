@@ -17,8 +17,10 @@ export interface ButtonProps extends React.PropsWithChildren {
   type?: TButtonType;
   form?: string;
   isFullWidth?: boolean;
+  noPadding?: boolean;
   isOnlyIcon?: boolean;
   iconName?: EIconName;
   classNameRoot?: string;
   classNameIconContainerRoot?: string;
+  iconRotate?: number;
 }

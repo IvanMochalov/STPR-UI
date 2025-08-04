@@ -18,6 +18,10 @@
   }
 
   // Вариации кнопок
+  &__noPadding {
+    padding: 0;
+  }
+
   &_onlyIcon {
     padding: 10px;
 
@@ -31,6 +35,10 @@
   }
 
   &_link {
+    & #{$block}__iconContainer {
+      margin-right: 8px;
+    }
+
     background-color: transparent;
     color: styles.$color-accent-blue;
 
