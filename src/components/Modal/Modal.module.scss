@@ -4,13 +4,14 @@
   $block: &;
 
   display: flex;
-  height: 100%;
+  height: fit-content;
   justify-content: center;
 
   &_align {
     &-top {
       align-items: flex-start;
     }
+
     &-center {
       align-items: center;
     }
@@ -59,7 +60,7 @@
 
     @include styles.respond-to(sm) {
       top: 37px;
-      right:37px;
+      right: 37px;
     }
 
     & #{$block}__closeButtonIconContainer {

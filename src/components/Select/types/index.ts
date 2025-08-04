@@ -2,19 +2,19 @@ import React from "react";
 
 import { ETooltipPosition } from "../../BaseTooltip";
 
-export type SelectOption = {
+export type TSelectOption = {
   value: string | null;
   label: string;
   key?: string;
 };
 
 export interface SelectProps {
-  options: SelectOption[];
+  options: TSelectOption[];
   placeholder?: string;
   value?: string;
   name: string;
   onChange: (
-    event: React.ChangeEvent<HTMLSelectElement> | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     data: { value: string | null; name: string },
   ) => void;
   onMouseEnter?: () => void;

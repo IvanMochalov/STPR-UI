@@ -1,6 +1,6 @@
-import { SelectOption } from "../../components";
+import { TSelectOption } from "../../components";
 
-export const OKRUG_OPTIONS: SelectOption[] = [
+export const OKRUG_OPTIONS: TSelectOption[] = [
   {
     value: "0100",
     label: "ЦАО",

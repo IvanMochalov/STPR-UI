@@ -93,7 +93,7 @@ export const Default: Story = {
 
     // Обработчик для Select
     const handleSelectChange = (
-      _event: React.ChangeEvent<HTMLSelectElement> | React.MouseEvent<HTMLDivElement>,
+      _event: React.MouseEvent<HTMLDivElement>,
       data: { value: string | null; name: string },
     ) => {
       setFormData((prevState) => ({

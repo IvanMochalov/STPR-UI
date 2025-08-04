@@ -22,6 +22,7 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
     infoTooltipText,
     tooltipPosition = ETooltipPosition.TopRight,
     classNameRoot: propsClassNameRoot,
+    error,
   } = props;
 
   const fileNames = files.map((file) => file.name);
@@ -29,6 +30,7 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.spInputFiles]: true,
+    [styles.spInputFiles_error]: Boolean(error),
     [styles.spInputFiles_disabled]: disabled,
     [styles.spInputFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
@@ -113,8 +115,11 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
       disabled={disabled || isFileUploaded}
     >
       <div className={classNameRoot}>
-        <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />
-        {getSingle()}
+        <div className={styles.spInputFiles__control}>
+          <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />
+          {getSingle()}
+        </div>
+        {error && <div className={styles.spInputFiles__error}>{error}</div>}
       </div>
     </DefaultDropzone>
   );

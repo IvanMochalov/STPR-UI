@@ -39,7 +39,7 @@ export const Select: React.FC<SelectProps> = (props) => {
   const selectedOption = options.find((option) => option.value === value);
 
   const handleSelect = (
-    event: React.ChangeEvent<HTMLSelectElement> | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     optionValue: string | null,
   ) => {
     onChange(event, { value: optionValue, name });

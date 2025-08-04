@@ -78,7 +78,7 @@ export const Default: Story = {
     });
 
     const onChange = (
-      _event: React.ChangeEvent<HTMLSelectElement> | React.MouseEvent<HTMLDivElement>,
+      _event: React.MouseEvent<HTMLDivElement>,
       data: { value: string | null; name: string },
     ) => {
       setFormData((prevState) => ({
