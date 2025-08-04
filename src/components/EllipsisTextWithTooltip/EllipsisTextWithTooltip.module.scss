@@ -3,4 +3,8 @@
 .ellipsisTextWithTooltip {
   $block: &;
   width: 100%;
+
+  &__tooltip {
+    width: 100%;
+  }
 }
