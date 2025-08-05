@@ -6,7 +6,7 @@
   font-size: 16px;
 
   @include styles.respond-to(sm) {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   &_ellipsis {
@@ -38,7 +38,7 @@
 
   &_type-p1 {
     @include styles.respond-to(sm) {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 

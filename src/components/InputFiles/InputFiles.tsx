@@ -65,9 +65,7 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
                 deleteFile(fileName);
               }}
             >
-              <Text type={"p1"} isEllipsis={true}>
-                {fileName}
-              </Text>
+              <Text isEllipsis={true}>{fileName}</Text>
               <div className={styles.spInputFiles__fileNamesListItemDelete}>
                 <Icon name={EIconName.Trash} />
               </div>
@@ -76,16 +74,14 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
         })}
       </ul>
     ) : (
-      <Text type={"p1"} isEllipsis={true}>
-        {fileNames[0]}
-      </Text>
+      <Text isEllipsis={true}>{fileNames[0]}</Text>
     );
   };
 
   const getSingle = () => {
     return (
       <>
-        {isFileUploaded ? renderFileNames() : <Text type={"p1"}>{placeholder}</Text>}
+        {isFileUploaded ? renderFileNames() : <Text>{placeholder}</Text>}
         {isFileUploaded ? (
           <div className={styles.spInputFiles__delete} onClick={onAllDelete}>
             <Icon name={EIconName.Close} />
