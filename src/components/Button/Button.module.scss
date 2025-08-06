@@ -22,13 +22,15 @@
     padding: 0;
   }
 
-  &_onlyIcon {
+  &_onlyIcon:not(#{$block}__noPadding) {
     padding: 10px;
 
     @include styles.respond-to(sm) {
       padding: 12px;
     }
+  }
 
+  &_onlyIcon {
     & #{$block}__iconContainer {
       margin: 0;
     }

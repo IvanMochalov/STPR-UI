@@ -14,10 +14,10 @@
 
   // Элементы
   &__text {
-    font-size: 16px;
+    font-size: 12px;
 
     @include styles.respond-to(sm) {
-      font-size: 18px;
+      font-size: 14px;
     }
   }
 

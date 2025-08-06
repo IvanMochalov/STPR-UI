@@ -5,19 +5,27 @@
   font-weight: 400;
   margin: 0;
   display: flex;
-  padding: 16px 24px;
+  padding: 8px 0;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
   border: 1px solid styles.$color-accent-blue;
+  background-color: styles.$color-white;
 
   &__item {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    width: 100%;
+    align-items: flex-start;
+    padding: 8px 24px;
     font-size: 16px;
     line-height: 120%;
     gap: 12px;
+    background-color: inherit;
+
+    &:hover {
+      background-color: styles.$color-secondary-blue-light;
+    }
+
     & :global {
       & .stpr-icon {
         color: styles.$color-accent-blue;
@@ -25,6 +33,7 @@
         height: 16px;
       }
     }
+
     &_deleteItem {
       & :global {
         & .stpr-icon {
