@@ -7,6 +7,7 @@ import CopyIcon from "../../images/copy.svg?react";
 import DotsIcon from "../../images/dots.svg?react";
 import HistoryClockIcon from "../../images/history-clock.svg?react";
 import InfoIcon from "../../images/info.svg?react";
+import MinusIcon from "../../images/minus.svg?react";
 import PlusIcon from "../../images/plus.svg?react";
 import PlusSquareIcon from "../../images/plus-square.svg?react";
 import SelectChevronDownIcon from "../../images/select-chevron-down.svg?react";
@@ -28,6 +29,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     chevronDown: ChevronDownIcon,
     info: InfoIcon,
     plus: PlusIcon,
+    minus: MinusIcon,
     selectChevronDown: SelectChevronDownIcon,
     upload: UploadIcon,
     trash: TrashIcon,
@@ -54,6 +56,7 @@ export {
   DotsIcon,
   HistoryClockIcon,
   InfoIcon,
+  MinusIcon,
   PlusIcon,
   PlusSquareIcon,
   SelectChevronDownIcon,

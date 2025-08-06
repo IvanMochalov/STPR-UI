@@ -14,6 +14,7 @@ export enum EIconName {
   WarningColor = "warningColor",
   Dots = "dots",
   HistoryClock = "historyClock",
+  Minus = "minus",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
