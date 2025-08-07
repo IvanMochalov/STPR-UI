@@ -11,6 +11,7 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
     text,
     classNameRoot: propsClassNameRoot,
     classNameTooltipRoot: propsClassNameTooltipRoot,
+    classNameBaseTooltipContentRoot,
     ...otherTextProps
   } = props;
 
@@ -29,14 +30,15 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
-  const classNameTooltipRoot = cx({
+  const classNameTooltip = cx({
     [styles.ellipsisTextWithTooltip__tooltip]: true,
     ...(propsClassNameTooltipRoot && { [propsClassNameTooltipRoot]: true }),
   });
 
   return (
     <Tooltip
-      classNameTooltip={classNameTooltipRoot}
+      classNameTooltip={classNameTooltip}
+      classNameBaseTooltipContentRoot={classNameBaseTooltipContentRoot}
       isVisibleTooltip={isOverflowed}
       text={text}
       trigger={

@@ -7,4 +7,5 @@ export interface EllipsisTextWithTooltipProps
   classNameRoot?: string;
   classNameTooltipRoot?: string;
   defaultTooltipPosition?: ETooltipPosition;
+  classNameBaseTooltipContentRoot?: string;
 }

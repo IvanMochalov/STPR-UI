@@ -29,13 +29,13 @@ const meta: Meta<typeof Tooltip> = {
     trigger: {
       control: false,
     },
-    classNameRoot: {
+    classNameBaseTooltipRoot: {
       control: false,
     },
     classNameTriggerTooltip: {
       control: false,
     },
-    classNameContentRoot: {
+    classNameBaseTooltipContentRoot: {
       control: false,
     },
     classNameTooltip: {

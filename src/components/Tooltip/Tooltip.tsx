@@ -15,13 +15,13 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     trigger,
     triggerAction,
     actionOnClose,
-    classNameTooltip,
     classNameTriggerTooltip,
     position: defaultTooltipPosition = ETooltipPosition.BottomLeft,
     text,
     noPadding,
-    classNameRoot,
-    classNameContentRoot,
+    classNameTooltip: propsClassNameTooltip,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
+    classNameBaseTooltipContentRoot: propsClassNameBaseTooltipContentRoot,
   } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -98,21 +98,21 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     };
   }, [handleResizeAndScroll]);
 
-  const _classNameTooltip = cx({
+  const classNameTooltip = cx({
     [styles.spTooltip]: true,
     [styles.spTooltip_hover]: hover,
-    ...(classNameTooltip && { [classNameTooltip]: true }),
+    ...(propsClassNameTooltip && { [propsClassNameTooltip]: true }),
   });
 
-  const _classNameRoot = cx({
+  const classNameBaseTooltipRoot = cx({
     [styles.spTooltip__spTooltip]: true,
     [styles.spTooltip__spTooltip_isOpen]: isOpen,
     [styles.spTooltip__spTooltip_visible]: isVisibleTooltip,
-    ...(classNameRoot && { [classNameRoot]: true }),
+    ...(propsClassNameBaseTooltipRoot && { [propsClassNameBaseTooltipRoot]: true }),
   });
 
   return (
-    <div className={_classNameTooltip} ref={ref} onClick={handleClick}>
+    <div className={classNameTooltip} ref={ref} onClick={handleClick}>
       <div ref={textRef} className={classNameTriggerTooltip}>
         {trigger}
       </div>
@@ -121,8 +121,8 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
         noPadding={noPadding}
         position={calculatedPosition}
         text={text}
-        classNameRoot={_classNameRoot}
-        classNameContentRoot={classNameContentRoot}
+        classNameRoot={classNameBaseTooltipRoot}
+        classNameContentRoot={propsClassNameBaseTooltipContentRoot}
       />
     </div>
   );
