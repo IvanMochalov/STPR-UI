@@ -6,7 +6,12 @@ import styles from "./Layer.module.scss";
 import { LayerProps } from "./types";
 
 export const Layer: React.FC<LayerProps> = (props) => {
-  const { children, zIndex, isHiddenModal = false, classNameRoot: propsClassNameRoot } = props;
+  const {
+    children,
+    zIndex = "9999",
+    isHiddenModal = false,
+    classNameRoot: propsClassNameRoot,
+  } = props;
   const parent = document.body;
   const classNameLayer = cx({
     [styles.layer]: true,

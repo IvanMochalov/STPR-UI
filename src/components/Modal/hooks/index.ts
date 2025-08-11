@@ -9,7 +9,7 @@ export const useModal = (params: UseModalParams = {}) => {
 
   const [modalData, setModalData] = useState<null | { [name: string]: any }>(initialValue);
 
-  const onOpenModal = (modalData: { [name: string]: boolean | Object }) => {
+  const onOpenModal = (modalData: { [name: string]: boolean | NonNullable<unknown> }) => {
     setModalData(modalData);
   };
 

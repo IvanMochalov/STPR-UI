@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Modal } from "../../components";
+import { Button, Modal, useModal } from "../../components";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
@@ -27,8 +27,23 @@ export const Default: Story = {
   name: "Default Modal",
   args: {
     children: "Default Modal children",
-    modalName: "Default Modal Name",
+    header: "Default Modal Name",
     isHiddenModal: false,
     isVisibleCloseButton: true,
+  },
+  render: (args) => {
+    const { isOpen, onOpenModal, onCloseModal } = useModal();
+
+    const renderModal = () => {
+      if (!isOpen) return null;
+
+      return <Modal {...args} onClose={onCloseModal} />;
+    };
+    return (
+      <>
+        <Button onClick={() => onOpenModal({ isOpenModal: true })}>Open Modal</Button>
+        {renderModal()}
+      </>
+    );
   },
 };

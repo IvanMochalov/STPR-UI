@@ -12,15 +12,16 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const {
     zIndex,
     isHiddenModal = false,
-    isVisibleCloseButton = false,
+    isVisibleCloseButton = true,
     children,
     classNameLayerRoot,
     classNameRoot: propsClassNameRoot,
     style,
     align = "top",
     onClose,
-    modalName,
+    header,
     subHeader,
+    footer,
   } = props;
 
   const classNameModalWrapper = cx({
@@ -53,15 +54,26 @@ export const Modal: React.FC<ModalProps> = (props) => {
     [styles.modalWrapper__subHeader]: true,
   });
 
+  const classNameModalFooter = cx({
+    [styles.modalWrapper__footer]: true,
+  });
+
   return (
     <Layer zIndex={zIndex} isHiddenModal={isHiddenModal} classNameRoot={classNameLayerRoot}>
       <div className={classNameModalWrapper}>
         <div className={classNameRoot} style={style}>
-          <div className={classNameModalHeader}>
-            <Text type={"h3"}>{modalName}</Text>
-            {subHeader && <div className={classNameModalSubHeader}>{subHeader}</div>}
-          </div>
-          <div className={classNameContent}>{children}</div>
+          {(header || subHeader) && (
+            <div className={classNameModalHeader}>
+              {typeof header === "string" ? <Text type={"h3"}>{header}</Text> : header}
+              {subHeader && (
+                <div className={classNameModalSubHeader}>
+                  {typeof subHeader === "string" ? <Text>{subHeader}</Text> : subHeader}
+                </div>
+              )}
+            </div>
+          )}
+          {children && <div className={classNameContent}>{children}</div>}
+          {footer && <div className={classNameModalFooter}>{footer}</div>}
           {isVisibleCloseButton && (
             <Button
               classNameRoot={classNameCloseButton}
