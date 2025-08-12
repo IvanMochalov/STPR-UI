@@ -14,6 +14,11 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: "false" },
       },
     },
+    loading: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     isFullWidth: {
       table: {
         defaultValue: { summary: "false" },
@@ -49,6 +54,10 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: "button" },
       },
     },
+    iconName: {
+      control: "select",
+      options: Object.values(EIconName),
+    },
   },
   decorators: [
     (Story) => (
@@ -71,6 +80,7 @@ const meta: Meta<typeof Button> = {
     color: "blue",
     type: "button",
     noPadding: false,
+    loading: false,
     iconRotate: 0,
   },
 };

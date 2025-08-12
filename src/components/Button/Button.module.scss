@@ -18,11 +18,11 @@
   }
 
   // Вариации кнопок
-  &__noPadding {
+  &_noPadding {
     padding: 0;
   }
 
-  &_onlyIcon:not(#{$block}__noPadding) {
+  &_onlyIcon:not(#{$block}_noPadding) {
     padding: 10px;
 
     @include styles.respond-to(sm) {
@@ -126,6 +126,10 @@
   }
 
   // Элементы
+  &__spinner {
+    color: currentColor !important;
+  }
+
   &__text {
     color: currentColor;
     font-family: styles.$main-font;

@@ -2,6 +2,7 @@ import cx from "clsx";
 import React from "react";
 
 import { Icon } from "../Icons";
+import { Spinner } from "../Spinner";
 import styles from "./Button.module.scss";
 import { ButtonProps } from "./types";
 
@@ -17,6 +18,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     type = "button",
     form,
     children,
+    loading = false,
     isFullWidth = false,
     isOnlyIcon = false,
     noPadding = false,
@@ -44,24 +46,34 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
     return (
       <>
-        {iconName && (
+        {(iconName || loading) && (
           <div className={classNameIconContainer}>
-            <Icon name={iconName} rotate={iconRotate} />
+            {loading ? (
+              <Spinner classNameRoot={styles.spButton__spinner} />
+            ) : (
+              iconName && <Icon name={iconName} rotate={iconRotate} />
+            )}
           </div>
         )}
-        {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
+        {!isOnlyIcon && children && (
+          <div className={classNameText}>
+            {/*{loading && !iconName && <Spinner classNameRoot={styles.spButton__spinner} />}*/}
+            {children}
+          </div>
+        )}
       </>
     );
   };
 
   const classNameRoot = cx({
     [styles.spButton]: true,
-    [styles.spButton__noPadding]: noPadding,
+    [styles.spButton_noPadding]: noPadding,
     [styles.spButton_onlyIcon]: isOnlyIcon,
     [styles[`spButton_${variant}`]]: variant,
     [styles[`spButton_${color}`]]: color,
     [styles.spButton_fullWidth]: isFullWidth,
     [styles.spButton_disabled]: disabled,
+    [styles.spButton_loading]: loading,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
