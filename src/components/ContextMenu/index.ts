@@ -1,2 +1,2 @@
 export { ContextMenu } from "./ContextMenu";
-export type { ContextMenuProps, TContextMenuItem } from "./types";
+export type { ContextMenuProps, TContextMenuOption } from "./types";

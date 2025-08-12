@@ -26,7 +26,7 @@ type Story = StoryObj<typeof ContextMenu>;
 export const Default: Story = {
   name: "Default Context Menu",
   args: {
-    list: [
+    options: [
       {
         key: "history",
         label: "История проверок",

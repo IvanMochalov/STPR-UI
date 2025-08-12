@@ -6,7 +6,7 @@ import styles from "./ContextMenu.module.scss";
 import { ContextMenuProps } from "./types";
 
 export const ContextMenu: React.FC<ContextMenuProps> = (props) => {
-  const { parentId, list, classNameRoot: propsClassNameRoot } = props;
+  const { onClickItem, options, classNameRoot: propsClassNameRoot } = props;
 
   const classNameRoot = cx({
     [styles.spContextMenu]: true,
@@ -15,19 +15,23 @@ export const ContextMenu: React.FC<ContextMenuProps> = (props) => {
 
   return (
     <ul className={classNameRoot}>
-      {list?.map(({ label, iconName, key, onClick }) => {
-        const isDeleteControl = key === "delete";
+      {options?.map((option) => {
+        const isDeleteControl = option.key === "delete";
         return (
           <li
-            key={key}
+            key={option.key}
             className={cx({
               [styles.spContextMenu__item]: true,
               [styles.spContextMenu__item_deleteItem]: isDeleteControl,
             })}
-            onClick={onClick ? () => onClick(parentId && parentId) : undefined}
+            onClick={() => {
+              if (onClickItem) {
+                onClickItem(option);
+              }
+            }}
           >
-            {iconName && <Icon name={iconName} />}
-            {label}
+            {option?.iconName && <Icon name={option.iconName} />}
+            {option.label}
           </li>
         );
       })}

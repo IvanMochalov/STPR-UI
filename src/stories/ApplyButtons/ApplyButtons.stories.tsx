@@ -5,11 +5,6 @@ import { ApplyButtons } from "../../components";
 const meta: Meta<typeof ApplyButtons> = {
   component: ApplyButtons,
   tags: ["autodocs"],
-  argTypes: {
-    classNameMainButtonsRoot: {
-      control: false,
-    },
-  },
   decorators: [
     (Story) => (
       <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>

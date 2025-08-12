@@ -1,14 +1,14 @@
 import { EIconName } from "../../Icons";
 
 export interface ContextMenuProps {
-  list: TContextMenuItem[];
   classNameRoot?: string;
-  parentId?: string;
+  options: Array<TContextMenuOption> | [];
+  onClickItem?: (option: TContextMenuOption) => void;
 }
 
-export type TContextMenuItem = {
+export type TContextMenuOption = {
   key?: string;
+  value?: string;
   label?: string;
   iconName?: EIconName;
-  onClick?: (id?: string) => void;
 };
