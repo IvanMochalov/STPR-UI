@@ -18,6 +18,7 @@ export * from "./MediaContextProvider";
 export * from "./Modal";
 export * from "./Portal";
 export * from "./Select";
+export * from "./Spinner";
 export * from "./Table";
 export * from "./Tabs";
 export * from "./Text";
