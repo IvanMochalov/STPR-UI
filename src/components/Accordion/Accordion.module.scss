@@ -6,6 +6,7 @@
 
   overflow: hidden;
   border: 1px solid styles.$color-secondary-blue-light-dark;
+  background-color: styles.$color-white;
   width: 100%;
   padding: 16px;
   font-family: styles.$main-font;
@@ -69,7 +70,7 @@
   &__header {
     position: relative;
 
-    @include styles.transition-all-ease-in-out(styles.$accordion-transition-duration);
+    @include styles.transition-all-ease-in-out(300ms);
   }
 
   &__name {
@@ -100,17 +101,32 @@
       visibility: hidden;
     }
 
-    @include styles.transition-all-ease-in-out(styles.$accordion-transition-duration);
+    @include styles.transition-all-ease-in-out(300ms);
   }
 
   &__childrenWrapper {
-    visibility: hidden;
-    opacity: 0;
-    @include styles.transition-all-ease-in-out(styles.$accordion-transition-duration);
+    display: grid;
+    grid-template-rows: 0fr;
+
+    @include styles.transition-prop-ease-in-out("grid-template-rows", 300ms);
+
+    & > * {
+      min-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
+      visibility 0s linear 0.35s; // Ждем завершения opacity
+    }
 
     &_open {
-      visibility: visible;
-      opacity: 1;
+      grid-template-rows: 1fr;
+
+      & > * {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
+        visibility 0s linear; // Без задержки при открытии
+      }
     }
   }
 }

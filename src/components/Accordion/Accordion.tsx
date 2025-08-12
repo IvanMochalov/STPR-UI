@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 import { EIconName, Icon } from "../Icons";
 import styles from "./Accordion.module.scss";
-import { useContentHeight } from "./hooks";
 import { AccordionProps } from "./types";
 
 export const Accordion: React.FC<AccordionProps> = (props) => {
@@ -22,7 +21,6 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     classNameChildrenWrapper: propsClassNameChildrenWrapper,
   } = props;
   const [open, setOpen] = useState(defaultOpen);
-  const { contentRef, height } = useContentHeight(open);
 
   const onClick = () => {
     if (isHiddenExpandIcon) {
@@ -79,14 +77,8 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
           name={EIconName.ChevronDown}
         />
       </div>
-      <div
-        className={classNameChildrenWrapper}
-        ref={contentRef}
-        style={{
-          maxHeight: open ? height : "0px",
-        }}
-      >
-        {children}
+      <div className={classNameChildrenWrapper}>
+        <div>{children}</div>
       </div>
     </div>
   );
