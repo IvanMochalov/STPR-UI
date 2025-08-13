@@ -1,11 +1,10 @@
 import cx from "clsx";
 import React from "react";
 
-import { ETooltipPosition } from "../BaseTooltip";
 import { DefaultDropzone } from "../DefaultDropzone";
 import { EIconName, Icon } from "../Icons";
 import { Text } from "../Text";
-import { InfoTooltip } from "../Tooltip";
+import { ETooltipPosition, InfoTooltip } from "../Tooltip";
 import styles from "./InputFiles.module.scss";
 import { InputFilesProps } from "./types";
 

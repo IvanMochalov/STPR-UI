@@ -1,5 +1,5 @@
-import { ETooltipPosition } from "../../BaseTooltip";
 import { DefaultDropzoneProps } from "../../DefaultDropzone";
+import { ETooltipPosition } from "../../Tooltip";
 
 export interface InputFilesProps extends Omit<DefaultDropzoneProps, "children"> {
   classNameRoot?: string;

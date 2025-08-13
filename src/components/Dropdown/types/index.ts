@@ -1,4 +1,4 @@
-import { ETooltipPosition } from "../../BaseTooltip";
+import { ETooltipPosition } from "../../Tooltip";
 
 export type TDropdownListItem = {
   name: string;

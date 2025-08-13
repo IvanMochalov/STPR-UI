@@ -14,17 +14,6 @@
     background-color: styles.$color-secondary-blue-light-2;
   }
 
-  &__spTooltip {
-    visibility: hidden;
-    opacity: 0;
-    @include styles.transition-prop-ease-in-out(opacity, styles.$basic-transition-duration);
-
-    &_isOpen {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
   &__labelText {
     padding: 12px 14px 12px 16px;
     font-family: styles.$main-font;

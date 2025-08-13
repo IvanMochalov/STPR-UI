@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ETooltipPosition } from "../../BaseTooltip";
+import { ETooltipPosition } from "../../Tooltip";
 
 export interface CheckboxProps {
   checked?: boolean;

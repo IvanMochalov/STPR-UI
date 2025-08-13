@@ -1,6 +1,6 @@
 import React, { ForwardedRef } from "react";
 
-import { ETooltipPosition } from "../../BaseTooltip";
+import { ETooltipPosition } from "../../Tooltip";
 
 export interface InputProps {
   name: string;

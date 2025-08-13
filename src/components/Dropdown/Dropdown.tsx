@@ -1,9 +1,8 @@
 import cx from "clsx";
 import React, { useState } from "react";
 
-import { useClickOutside } from "../../hooks/useClickOutside.ts";
-import { BaseTooltip, ETooltipPosition } from "../BaseTooltip";
 import { EIconName, Icon } from "../Icons";
+import { ETooltipPosition, Tooltip } from "../Tooltip";
 import styles from "./Dropdown.module.scss";
 import { DropdownProps } from "./types";
 
@@ -41,6 +40,8 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
     [styles.spDropdown__downloadListItemDescription]: true,
   });
 
+  const [isOpen, setOpen] = useState<boolean>(false);
+
   const renderTooltipContent = () => {
     return (
       <div className={classNameDropdownList}>
@@ -66,32 +67,23 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
     );
   };
 
-  const [isOpen, setOpen] = useState<boolean>(false);
-  const ref = useClickOutside<HTMLDivElement>(() => {
-    setOpen(false);
-  }, isOpen);
-
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-
-    setOpen((prevState) => !prevState);
-  };
-
   return (
-    <div className={classNameRoot} ref={ref} onClick={handleClick}>
-      <div className={classNameLabelText}>{labelText}</div>
-      <div className={classNameTooltipContainer}>
-        <Icon name={EIconName.SelectChevronDown} rotate={isOpen ? 180 : undefined} />
-      </div>
-      <BaseTooltip
-        classNameRoot={cx({
-          [styles.spDropdown__spTooltip]: true,
-          [styles.spDropdown__spTooltip_isOpen]: isOpen,
-        })}
-        noPadding={true}
-        position={dropdownPosition}
-        text={renderTooltipContent()}
-      />
-    </div>
+    <Tooltip
+      hover={false}
+      triggerAction={() => setOpen(true)}
+      actionOnClose={() => setOpen(false)}
+      text={renderTooltipContent()}
+      position={dropdownPosition}
+      noPadding={true}
+      isToggleClick={true}
+      trigger={
+        <div className={classNameRoot}>
+          <div className={classNameLabelText}>{labelText}</div>
+          <div className={classNameTooltipContainer}>
+            <Icon name={EIconName.SelectChevronDown} rotate={isOpen ? 180 : undefined} />
+          </div>
+        </div>
+      }
+    />
   );
 };

@@ -1,4 +1,4 @@
-import { ETooltipPosition } from "../../BaseTooltip";
+import { ETooltipPosition } from "../../Tooltip";
 
 export interface LabelProps {
   required?: boolean;

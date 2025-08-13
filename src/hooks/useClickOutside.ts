@@ -1,44 +1,37 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import { RefObject, useEffect } from "react";
 
 /**
- * Хук для реакции на клик за пределами DOM-эллемента
+ * Хук для реакции на клик за пределами DOM-элементов
  *
  * @example
- * const ref = useClickOutside(useCallback(() => doSomething(a, b)), [a, b]);
- * <div ref={ref}>DOM-эллемент, клик за пределами которого вызовет обработчик</div>
+ * const triggerRef = useRef<HTMLDivElement>(null);
+ * const tooltipRef = useRef<HTMLDivElement>(null);
+ * useClickOutside([triggerRef, tooltipRef], () => doSomething(), isOpen);
  *
- * @param {(e) => void} callback мемоизированный обработчик вызываемый при клике за пределами DOM-эллемента
- *
- * @param {boolean} isOpen состояние списка опшионов
- * @return {Object} ref объект со свойством содержащим ссылку на DOM-эллемент
+ * @param {Array<RefObject<T>>} refs - массив ref объектов элементов, клик вне которых вызовет обработчик
+ * @param {(e) => void} callback - обработчик, вызываемый при клике за пределами элементов
+ * @param {boolean} isActive - флаг активности хука
  */
+export function useClickOutside<T extends HTMLElement>(
+  refs: Array<RefObject<T>>,
+  callback: (e: MouseEvent) => void,
+  isActive: boolean = true,
+) {
+  useEffect(() => {
+    if (!isActive) return;
 
-export function useClickOutside<T extends Element>(
-  callback: (e: unknown) => void,
-  isOpen?: boolean,
-): React.LegacyRef<T> {
-  const ref = useRef<T | null>(null);
+    const handleClick = (e: MouseEvent) => {
+      const isOutside = refs.every((ref) => ref.current && !ref.current.contains(e.target as Node));
 
-  const handleClick = useCallback(
-    (e: DocumentEventMap["click"]): void => {
-      if (ref.current && !ref.current?.contains(e.target as Node)) {
+      if (isOutside) {
         callback(e);
       }
-    },
-    [callback],
-  );
-
-  useEffect(() => {
-    if (isOpen) {
-      document.addEventListener("click", handleClick);
-    }
-  }, [handleClick, isOpen]);
-
-  useEffect(() => {
-    return () => {
-      document.removeEventListener("click", handleClick);
     };
-  }, [handleClick]);
 
-  return ref;
+    document.addEventListener("click", handleClick, true);
+
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, [refs, callback, isActive]);
 }

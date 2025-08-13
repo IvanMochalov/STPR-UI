@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ETooltipPosition } from "../../BaseTooltip";
+import { ETooltipPosition } from "../../Tooltip";
 
 export type TSelectOption = {
   value: string | null;

@@ -1,5 +1,5 @@
-import { ETooltipPosition } from "../../BaseTooltip";
 import { TextProps } from "../../Text";
+import { ETooltipPosition } from "../../Tooltip";
 
 export interface EllipsisTextWithTooltipProps
   extends Omit<TextProps, "children" | "isEllipsis" | "ref"> {
