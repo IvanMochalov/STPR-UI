@@ -55,9 +55,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({
     visibility: "hidden",
     opacity: 0,
-    position: "absolute",
     left: "-9999px",
-    zIndex: 199,
   });
 
   const [isHovered, setIsHovered] = useState(false);
@@ -197,15 +195,14 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       </div>
       {isVisibleTooltip && (
         <Portal node={parent}>
-          <div style={tooltipStyle}>
-            <BaseTooltip
-              ref={tooltipRef}
-              noPadding={noPadding}
-              text={text}
-              classNameRoot={classNameBaseTooltipRoot}
-              classNameContentRoot={classNameBaseTooltipContentRoot}
-            />
-          </div>
+          <BaseTooltip
+            style={tooltipStyle}
+            ref={tooltipRef}
+            noPadding={noPadding}
+            text={text}
+            classNameRoot={classNameBaseTooltipRoot}
+            classNameContentRoot={classNameBaseTooltipContentRoot}
+          />
         </Portal>
       )}
     </div>

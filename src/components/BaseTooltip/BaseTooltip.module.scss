@@ -6,8 +6,10 @@
   box-shadow: 0 10px 45px 0 styles.$color-rgba-19-15;
   width: max-content;
   max-width: 70vw;
+  position: absolute;
   min-width: 160px;
   z-index: 199;
+  @include styles.transition-all-ease-in-out(200ms);
 
   &_noPadding {
     padding: 0;

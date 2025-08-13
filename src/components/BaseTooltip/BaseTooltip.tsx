@@ -8,6 +8,7 @@ export const BaseTooltip = React.forwardRef<HTMLDivElement, BaseTooltipProps>((p
   const {
     text,
     noPadding = false,
+    style,
     classNameRoot: propsClassNameRoot,
     classNameContentRoot: propsClassNameContentRoot,
   } = props;
@@ -15,7 +16,6 @@ export const BaseTooltip = React.forwardRef<HTMLDivElement, BaseTooltipProps>((p
   const classNameRoot = cx({
     [styles.spBaseTooltip]: true,
     [styles.spBaseTooltip_noPadding]: noPadding,
-    // [styles[`spBaseTooltip_position-${position}`]]: position,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
@@ -25,7 +25,7 @@ export const BaseTooltip = React.forwardRef<HTMLDivElement, BaseTooltipProps>((p
   });
 
   return (
-    <div className={classNameRoot} ref={ref}>
+    <div className={classNameRoot} ref={ref} style={style}>
       <div className={classNameContent}>{text}</div>
     </div>
   );
