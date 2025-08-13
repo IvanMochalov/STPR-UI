@@ -2,10 +2,11 @@ import cx from "clsx";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { useClickOutside } from "../../hooks/useClickOutside.ts";
-import { BaseTooltip, ETooltipPosition } from "../BaseTooltip";
+import { BaseTooltip } from "../BaseTooltip";
 import { EIconName, Icon } from "../Icons";
+import { Portal } from "../Portal";
 import styles from "./Tooltip.module.scss";
-import { TooltipProps } from "./types";
+import { ETooltipPosition, TooltipProps } from "./types";
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
@@ -25,18 +26,22 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
-  const ref = useClickOutside<HTMLDivElement>(() => {
-    actionOnClose && actionOnClose();
-    setOpen(false);
-  }, isOpen);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Обработчик клика вне области
+  useClickOutside(
+    [triggerRef, tooltipRef],
+    () => {
+      actionOnClose && actionOnClose();
+      setOpen(false);
+    },
+    isOpen,
+  );
 
   const handleClick = (_event: React.MouseEvent<HTMLDivElement>) => {
-    // Закоментил stopPropagation для того, чтобы при открытии закрывались другие открытые тултипы
-    // event.stopPropagation();
-
-    if (hover) {
-      return;
-    }
+    if (hover) return;
 
     if (isOpen) {
       actionOnClose && actionOnClose();
@@ -47,83 +52,131 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     setOpen((prevState) => (isToggleClick ? !prevState : true));
   };
 
-  const textRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
-  const [calculatedPosition, setCalculatedPosition] =
-    useState<ETooltipPosition>(defaultTooltipPosition);
+  const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({
+    visibility: "hidden",
+    opacity: 0,
+    position: "absolute",
+    left: "-9999px", // Прячем за пределами экрана до расчета позиции
+    // transition: `opacity ${styles.$basic-transition-duration} ease-in-out`,
+    zIndex: 199,
+  });
 
-  const [tooltipHeight, setTooltipHeight] = useState(200);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Эффект для измерения высоты тултипа
-  useEffect(() => {
-    if (tooltipRef.current) {
-      const height = tooltipRef.current.clientHeight;
-      setTooltipHeight(height);
-    }
-  }, [tooltipRef]);
-
-  // Расчет оптимальной позиции тултипа с учетом его реальной высоты
+  // Расчет позиции для портала
   const calculateTooltipPosition = useCallback(() => {
-    if (!textRef.current) return defaultTooltipPosition;
+    if (!triggerRef.current || !tooltipRef.current) return;
 
-    const rect = textRef.current.getBoundingClientRect();
-    const spaceDown = window.innerHeight - rect.bottom;
-    const spaceUp = rect.top;
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
-    // Используем реальную высоту тултипа + 10px для отступа
-    const requiredSpace = tooltipHeight + 10;
+    let top = 0;
+    let left = 0;
 
-    let pos = defaultTooltipPosition;
-
-    if (spaceDown < requiredSpace && spaceUp > requiredSpace) {
-      pos = pos.includes("bottom") ? (pos.replace("bottom", "top") as ETooltipPosition) : pos;
+    // Базовая позиция
+    switch (defaultTooltipPosition) {
+      case ETooltipPosition.BottomLeft:
+        top = triggerRect.bottom + window.scrollY;
+        left = triggerRect.left + window.scrollX;
+        break;
+      case ETooltipPosition.BottomRight:
+        top = triggerRect.bottom + window.scrollY;
+        left = triggerRect.right + window.scrollX - tooltipRect.width;
+        break;
+      case ETooltipPosition.TopLeft:
+        top = triggerRect.top + window.scrollY - tooltipRect.height;
+        left = triggerRect.left + window.scrollX;
+        break;
+      case ETooltipPosition.TopRight:
+        top = triggerRect.top + window.scrollY - tooltipRect.height;
+        left = triggerRect.right + window.scrollX - tooltipRect.width;
+        break;
+      default:
+        top = triggerRect.bottom + window.scrollY;
+        left = triggerRect.left + window.scrollX;
     }
 
-    return pos;
-  }, [defaultTooltipPosition, tooltipHeight]);
+    // Проверка на выход за границы viewport
+    if (
+      top + tooltipRect.height > window.innerHeight + window.scrollY &&
+      defaultTooltipPosition.includes("bottom")
+    ) {
+      top = triggerRect.top + window.scrollY - tooltipRect.height;
+    } else if (top < window.scrollY && defaultTooltipPosition.includes("top")) {
+      top = triggerRect.bottom + window.scrollY;
+    }
 
-  const handleResizeAndScroll = useCallback(() => {
-    setCalculatedPosition(calculateTooltipPosition());
-  }, [calculateTooltipPosition]);
+    setTooltipStyle((prev) => ({
+      ...prev,
+      top: `${top}px`,
+      left: `${left}px`,
+      visibility: isOpen || isHovered ? "visible" : "hidden",
+      opacity: isOpen || isHovered ? 1 : 0,
+    }));
+  }, [defaultTooltipPosition, isOpen, isHovered]);
 
-  // Обновляем позицию при изменении
+  // Эффекты для обновления позиции
   useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      calculateTooltipPosition();
+    }
+  }, [isMounted, calculateTooltipPosition]);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const handleResizeAndScroll = () => calculateTooltipPosition();
     window.addEventListener("resize", handleResizeAndScroll);
     window.addEventListener("scroll", handleResizeAndScroll, true);
-    handleResizeAndScroll(); // Первоначальный расчет
-
     return () => {
       window.removeEventListener("resize", handleResizeAndScroll);
       window.removeEventListener("scroll", handleResizeAndScroll, true);
     };
-  }, [handleResizeAndScroll]);
+  }, [isMounted, calculateTooltipPosition]);
 
   const classNameTooltip = cx({
     [styles.spTooltip]: true,
-    [styles.spTooltip_hover]: hover,
     ...(propsClassNameTooltip && { [propsClassNameTooltip]: true }),
   });
 
   const classNameBaseTooltipRoot = cx({
-    [styles.spTooltip__spTooltip]: true,
-    [styles.spTooltip__spTooltip_isOpen]: isOpen,
-    [styles.spTooltip__spTooltip_visible]: isVisibleTooltip,
     ...(propsClassNameBaseTooltipRoot && { [propsClassNameBaseTooltipRoot]: true }),
   });
 
+  const classNameBaseTooltipContentRoot = cx({
+    ...(propsClassNameBaseTooltipContentRoot && { [propsClassNameBaseTooltipContentRoot]: true }),
+  });
+
+  const parent = document.body;
+
   return (
-    <div className={classNameTooltip} ref={ref} onClick={handleClick}>
-      <div ref={textRef} className={classNameTriggerTooltip}>
+    <div
+      className={classNameTooltip}
+      onClick={handleClick}
+      onMouseEnter={() => hover && setIsHovered(true)}
+      onMouseLeave={() => hover && setIsHovered(false)}
+    >
+      <div ref={triggerRef} className={classNameTriggerTooltip}>
         {trigger}
       </div>
-      <BaseTooltip
-        ref={tooltipRef}
-        noPadding={noPadding}
-        position={calculatedPosition}
-        text={text}
-        classNameRoot={classNameBaseTooltipRoot}
-        classNameContentRoot={propsClassNameBaseTooltipContentRoot}
-      />
+      {isVisibleTooltip && (
+        <Portal node={parent}>
+          <div style={tooltipStyle}>
+            <BaseTooltip
+              ref={tooltipRef}
+              noPadding={noPadding}
+              text={text}
+              classNameRoot={classNameBaseTooltipRoot}
+              classNameContentRoot={classNameBaseTooltipContentRoot}
+            />
+          </div>
+        </Portal>
+      )}
     </div>
   );
 };

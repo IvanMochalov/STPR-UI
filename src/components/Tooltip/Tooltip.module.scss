@@ -4,23 +4,4 @@
   $block: &;
 
   position: relative;
-
-  &_hover:hover > #{$block}__spTooltip_visible {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  &__spTooltip {
-    $tooltip: &;
-    visibility: hidden;
-    opacity: 0;
-    @include styles.transition-prop-ease-in-out(opacity, styles.$basic-transition-duration);
-
-    &_isOpen {
-      &#{$tooltip}_visible {
-        visibility: visible;
-        opacity: 1;
-      }
-    }
-  }
 }

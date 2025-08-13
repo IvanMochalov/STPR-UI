@@ -2,11 +2,10 @@ import cx from "clsx";
 import React from "react";
 
 import styles from "./BaseTooltip.module.scss";
-import { BaseTooltipProps, ETooltipPosition } from "./types";
+import { BaseTooltipProps } from "./types";
 
 export const BaseTooltip = React.forwardRef<HTMLDivElement, BaseTooltipProps>((props, ref) => {
   const {
-    position = ETooltipPosition.BottomLeft,
     text,
     noPadding = false,
     classNameRoot: propsClassNameRoot,
@@ -16,7 +15,7 @@ export const BaseTooltip = React.forwardRef<HTMLDivElement, BaseTooltipProps>((p
   const classNameRoot = cx({
     [styles.spBaseTooltip]: true,
     [styles.spBaseTooltip_noPadding]: noPadding,
-    [styles[`spBaseTooltip_position-${position}`]]: position,
+    // [styles[`spBaseTooltip_position-${position}`]]: position,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
