@@ -56,8 +56,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     visibility: "hidden",
     opacity: 0,
     position: "absolute",
-    left: "-9999px", // Прячем за пределами экрана до расчета позиции
-    // transition: `opacity ${styles.$basic-transition-duration} ease-in-out`,
+    left: "-9999px",
     zIndex: 199,
   });
 
@@ -75,6 +74,34 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
     // Базовая позиция
     switch (defaultTooltipPosition) {
+      case ETooltipPosition.Right:
+        top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
+        left = triggerRect.right + window.scrollX;
+        break;
+      case ETooltipPosition.RightTop:
+        top = triggerRect.top + window.scrollY;
+        left = triggerRect.right + window.scrollX;
+        break;
+      case ETooltipPosition.RightBottom:
+        top = triggerRect.bottom + window.scrollY - tooltipRect.height;
+        left = triggerRect.right + window.scrollX;
+        break;
+      case ETooltipPosition.Left:
+        top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
+        left = triggerRect.left + window.scrollX - tooltipRect.width;
+        break;
+      case ETooltipPosition.LeftTop:
+        top = triggerRect.top + window.scrollY;
+        left = triggerRect.left + window.scrollX - tooltipRect.width;
+        break;
+      case ETooltipPosition.LeftBottom:
+        top = triggerRect.bottom + window.scrollY - tooltipRect.height;
+        left = triggerRect.left + window.scrollX - tooltipRect.width;
+        break;
+      case ETooltipPosition.Bottom:
+        top = triggerRect.bottom + window.scrollY;
+        left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
+        break;
       case ETooltipPosition.BottomLeft:
         top = triggerRect.bottom + window.scrollY;
         left = triggerRect.left + window.scrollX;
@@ -82,6 +109,10 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       case ETooltipPosition.BottomRight:
         top = triggerRect.bottom + window.scrollY;
         left = triggerRect.right + window.scrollX - tooltipRect.width;
+        break;
+      case ETooltipPosition.Top:
+        top = triggerRect.top + window.scrollY - tooltipRect.height;
+        left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
         break;
       case ETooltipPosition.TopLeft:
         top = triggerRect.top + window.scrollY - tooltipRect.height;
