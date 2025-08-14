@@ -1,1 +1,1 @@
-export const MAX_HEIGHT_SELECT_LIST = 160;
+export const MAX_HEIGHT_SELECT_LIST = 180;
