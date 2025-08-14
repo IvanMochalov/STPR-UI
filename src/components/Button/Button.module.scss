@@ -37,6 +37,10 @@
   }
 
   &_link {
+    & #{$block}__text {
+      font-weight: 500;
+    }
+
     & #{$block}__iconContainer {
       margin-right: 8px;
     }

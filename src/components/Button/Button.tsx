@@ -55,12 +55,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
             )}
           </div>
         )}
-        {!isOnlyIcon && children && (
-          <div className={classNameText}>
-            {/*{loading && !iconName && <Spinner classNameRoot={styles.spButton__spinner} />}*/}
-            {children}
-          </div>
-        )}
+        {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
       </>
     );
   };
