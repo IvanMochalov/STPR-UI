@@ -29,11 +29,25 @@
     align-items: center;
     cursor: pointer;
 
+    &--size-lg {
+      &:before {
+        width: 30px;
+        height: 30px;
+        background-size: 16px 16px;
+      }
+    }
+
+    &--size-md {
+      &:before {
+        width: 20px;
+        height: 20px;
+        background-size: 10px 10px;
+      }
+    }
+
     &:before {
       content: '';
       display: block;
-      width: 30px;
-      height: 30px;
       min-width: 18px;
       border: 2px solid styles.$color-accent-blue;
       cursor: pointer;
@@ -46,13 +60,15 @@
 
     &_checked {
       &:before {
-        background: linear-gradient(styles.$color-accent-blue, styles.$color-accent-blue) no-repeat center;
-        background-size: 16px 16px;
+        background-image: linear-gradient(styles.$color-accent-blue, styles.$color-accent-blue);
+        background-repeat: no-repeat;
+        background-position: center;
       }
 
       &:hover:before {
-        background: linear-gradient(styles.$color-accent-blue-light, styles.$color-accent-blue-light) no-repeat center;
-        background-size: 16px 16px;
+        background-image: linear-gradient(styles.$color-accent-blue-light, styles.$color-accent-blue-light);
+        background-repeat: no-repeat;
+        background-position: center;
       }
     }
 

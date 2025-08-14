@@ -36,6 +36,7 @@ const meta: Meta<typeof Checkbox> = {
     ),
   ],
   args: {
+    size: "lg",
     label: "Включить проверку",
   },
 };

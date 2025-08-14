@@ -7,6 +7,7 @@ import { CheckboxProps } from "./types";
 
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
   const {
+    size = "lg",
     checked,
     disabled,
     onChange,
@@ -31,6 +32,7 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
     [styles.spCheckbox__box]: true,
     [styles.spCheckbox__box_checked]: checked,
     [styles.spCheckbox__box_disabled]: disabled,
+    [styles[`spCheckbox__box--size-${size}`]]: size,
     [styles.spCheckbox__box_error]: error,
   });
 

@@ -3,6 +3,7 @@ import React from "react";
 import { ETooltipPosition } from "../../Tooltip";
 
 export interface CheckboxProps {
+  size?: "md" | "lg";
   checked?: boolean;
   disabled?: boolean;
   onChange: (
