@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BaseTooltip, ETooltipPosition } from "../../components";
+import { BaseTooltip } from "../../components";
 
 const meta: Meta<typeof BaseTooltip> = {
   component: BaseTooltip,
@@ -14,26 +14,6 @@ const meta: Meta<typeof BaseTooltip> = {
         defaultValue: { summary: "false" },
       },
     },
-    position: {
-      options: [
-        "top",
-        "top-left",
-        "top-right",
-        "bottom",
-        "bottom-left",
-        "bottom-right",
-        "left",
-        "left-top",
-        "left-bottom",
-        "right",
-        "right-top",
-        "right-bottom",
-      ],
-      control: { type: "select" },
-      table: {
-        defaultValue: { summary: "bottom-left" },
-      },
-    },
   },
   decorators: [
     (Story) => (
@@ -44,9 +24,6 @@ const meta: Meta<typeof BaseTooltip> = {
       </div>
     ),
   ],
-  args: {
-    position: ETooltipPosition.BottomLeft,
-  },
 };
 
 export default meta;

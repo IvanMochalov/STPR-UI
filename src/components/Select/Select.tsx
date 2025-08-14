@@ -103,7 +103,6 @@ export const Select: React.FC<SelectProps> = (props) => {
         title={isVisibleDefaultTitle ? value : undefined}
         className={classNameControl}
         onClick={handleToggle}
-        ref={refSelect}
       >
         <div className={classNameSelectedValue}>{selectedOption?.label || placeholder}</div>
         <Icon
@@ -116,7 +115,7 @@ export const Select: React.FC<SelectProps> = (props) => {
   };
 
   return (
-    <div className={classNameRoot}>
+    <div className={classNameRoot} ref={refSelect}>
       {label && (
         <Label
           classNameRoot={classNameLabel}
