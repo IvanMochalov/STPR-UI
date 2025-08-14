@@ -6,6 +6,7 @@ import { FormProps } from "./types";
 
 export const Form: React.FC<FormProps> = (props) => {
   const {
+    size = "lg",
     children,
     onSubmit,
     addMargin = false,
@@ -19,6 +20,7 @@ export const Form: React.FC<FormProps> = (props) => {
     [styles.spForm]: true,
     [styles.spForm_fullWidth]: fullWidth,
     [styles.spForm_addMargin]: addMargin,
+    [styles[`spForm_addMargin--size-${size}`]]: size,
     [styles.spForm_withSeparator]: withSeparator,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });

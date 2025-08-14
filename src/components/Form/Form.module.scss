@@ -29,11 +29,23 @@
   }
 
   &_addMargin {
-    & > div:not(:last-child) {
-      margin-bottom: 24px;
+    &--size-lg {
+      & > div:not(:last-child) {
+        margin-bottom: 32px;
 
-      @include styles.respond-to(sm) {
-        margin-bottom: 32px
+        @include styles.respond-to(sm) {
+          margin-bottom: 48px
+        }
+      }
+    }
+
+    &--size-md {
+      & > div:not(:last-child) {
+        margin-bottom: 24px;
+
+        @include styles.respond-to(sm) {
+          margin-bottom: 32px
+        }
       }
     }
   }

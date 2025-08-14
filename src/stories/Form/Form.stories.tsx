@@ -55,6 +55,7 @@ const meta: Meta<typeof Form> = {
     ),
   ],
   args: {
+    size: "md",
     addMargin: true,
     fullWidth: true,
     withSeparator: false,
@@ -113,6 +114,7 @@ export const Default: Story = {
         noValidate={args.noValidate}
         autoComplete={args.autoComplete}
         classNameRoot={args.classNameRoot}
+        size={args.size}
       >
         <Checkbox
           label={"Включить проверку"}
