@@ -1,5 +1,5 @@
 import cx from "clsx";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { useClickOutside } from "../../hooks/useClickOutside.ts";
 import { EIconName, Icon } from "../Icons";
@@ -31,10 +31,16 @@ export const Select: React.FC<SelectProps> = (props) => {
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
+  const refSelect = useRef<HTMLDivElement>(null);
 
-  const refSelect = useClickOutside<HTMLDivElement>(() => {
-    setIsOpen(false);
-  }, isOpen);
+  // Обработчик клика вне области
+  useClickOutside(
+    [refSelect],
+    () => {
+      setIsOpen(false);
+    },
+    isOpen,
+  );
 
   const selectedOption = options.find((option) => option.value === value);
 
