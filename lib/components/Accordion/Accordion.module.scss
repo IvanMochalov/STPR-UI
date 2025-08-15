@@ -1,0 +1,137 @@
+@use "src/styles/global" as styles;
+
+.spAccordion {
+  // Общие стили блока
+  $block: &;
+
+  overflow: hidden;
+  border: 1px solid styles.$color-secondary-blue-light-dark;
+  background-color: styles.$color-white;
+  width: 100%;
+  padding: 16px;
+  font-family: styles.$main-font;
+
+  @include styles.respond-to(sm) {
+    padding: 32px;
+  }
+
+  // Модификаторы
+  &_noBorder {
+    border: none
+  }
+
+  &_noPadding {
+    padding: 0
+  }
+
+  &_level2 {
+    & #{$block}__name {
+      font-family: styles.$title-font;
+      font-weight: 500;
+      font-size: 16px;
+
+      @include styles.respond-to(sm) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &_open {
+    overflow: visible;
+
+    & #{$block}__header {
+      margin-bottom: 24px;
+
+      @include styles.respond-to(sm) {
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  &_noOpen {
+    & #{$block}__header {
+      margin-bottom: 0;
+    }
+
+    &#{$block}_noBorder {
+      border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
+
+      &#{$block}_noPadding {
+        padding-bottom: 16px;
+
+        @include styles.respond-to(sm) {
+          padding-bottom: 32px;
+        }
+      }
+    }
+  }
+
+  // Элементы
+  &__header {
+    position: relative;
+
+    @include styles.transition-all-ease-in-out(300ms);
+  }
+
+  &__name {
+    width: calc(100% - 20px);
+    font-family: styles.$title-font;
+    font-weight: 500;
+    font-size: 24px;
+    display: inline-block;
+    color: styles.$color-black;
+
+    & span {
+      cursor: pointer;
+    }
+
+    &_hiddenExpand {
+      & span {
+        cursor: default;
+      }
+    }
+  }
+
+  &__icon {
+    z-index: 10;
+    cursor: pointer;
+    color: styles.$color-accent-blue;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 16px;
+    height: 24px;
+
+    &_hidden {
+      visibility: hidden;
+    }
+
+    @include styles.transition-all-ease-in-out(300ms);
+  }
+
+  &__childrenWrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    @include styles.transition-prop-ease-in-out("grid-template-rows", 300ms);
+
+    & > * {
+      min-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
+      visibility 0s linear 0.35s; // Ждем завершения opacity
+    }
+
+    &_open {
+      grid-template-rows: 1fr;
+
+      & > * {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
+        visibility 0s linear; // Без задержки при открытии
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@use "src/styles/global" as styles;
+
+.spTooltip {
+  $block: &;
+
+  position: relative;
+}

@@ -30,12 +30,10 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.stories.tsx",
+    "src",
+    "lib",
     ".storybook/**/*.ts",
     ".storybook",
-    "vite.config.ts"
   ],
   "references": [
     {

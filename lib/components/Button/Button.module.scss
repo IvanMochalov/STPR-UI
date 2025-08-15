@@ -1,0 +1,152 @@
+@use "src/styles/global" as styles;
+
+.spButton {
+  // Общие стили блока
+  $block: &;
+
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  padding: 11.5px 23px;
+
+  @include styles.respond-to(sm) {
+    padding: 16.5px 33px;
+  }
+
+  // Вариации кнопок
+  &_noPadding {
+    padding: 0;
+  }
+
+  &_onlyIcon:not(#{$block}_noPadding) {
+    padding: 10px;
+
+    @include styles.respond-to(sm) {
+      padding: 12px;
+    }
+  }
+
+  &_onlyIcon {
+    & #{$block}__iconContainer {
+      margin: 0;
+    }
+  }
+
+  &_link {
+    & #{$block}__text {
+      font-weight: 500;
+    }
+
+    & #{$block}__iconContainer {
+      margin-right: 8px;
+    }
+
+    background-color: transparent;
+    color: styles.$color-accent-blue;
+
+    &:focus-visible,
+    &:hover {
+      color: styles.$color-aqua-blue;
+    }
+
+    &:active {
+      color: styles.$color-green-blue;
+    }
+  }
+
+  &_primary#{$block}_blue {
+    background-color: styles.$color-accent-blue;
+    color: styles.$color-white;
+
+    &:focus-visible,
+    &:hover {
+      background-color: styles.$color-aqua-blue;
+    }
+
+    &:active {
+      background-color: styles.$color-green-blue;
+    }
+  }
+
+  &_primary#{$block}_white {
+    background-color: styles.$color-white;
+    color: styles.$color-accent-blue;
+
+    &:focus-visible,
+    &:hover {
+      background-color: styles.$color-secondary-blue-light-2;
+    }
+
+    &:active {
+      background-color: styles.$color-steel-gray;
+    }
+  }
+
+  &_secondary#{$block}_white {
+    background-color: styles.$color-white-20;
+    color: styles.$color-white;
+
+    &:focus-visible,
+    &:hover {
+      background-color: styles.$color-white-30;
+    }
+
+    &:active {
+      background-color: styles.$color-rgba-187-20;
+    }
+  }
+
+  &_secondary#{$block}_blue {
+    background-color: styles.$color-secondary-blue-light-2;
+    color: styles.$color-accent-blue;
+
+    &:focus-visible,
+    &:hover {
+      background-color: styles.$color-frost-blue;
+    }
+
+    &:active {
+      background-color: styles.$color-steel-gray;
+    }
+  }
+
+  // Модификаторы блока
+  &_fullWidth {
+    width: 100%;
+  }
+
+  &_disabled {
+    &#{$block}_link {
+      background-color: transparent !important;
+    }
+
+    background-color: styles.$color-gray-4 !important;
+    color: styles.$color-gray-1 !important;
+    cursor: default;
+  }
+
+  // Элементы
+  &__spinner {
+    color: currentColor !important;
+  }
+
+  &__text {
+    color: currentColor;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 16px;
+
+    @include styles.respond-to(sm) {
+      font-size: 18px;
+    }
+  }
+
+  &__iconContainer {
+    display: flex;
+    margin-right: 12px;
+  }
+}

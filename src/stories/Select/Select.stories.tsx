@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
-import { Select } from "../../components";
+import { Select } from "../../../lib/components/Select";
 import { OKRUG_OPTIONS } from "../constants";
 
 const meta: Meta<typeof Select> = {

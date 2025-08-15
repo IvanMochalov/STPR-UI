@@ -1,0 +1,38 @@
+@use "src/styles/global" as styles;
+
+.spApplyButtons {
+  $block: &;
+
+  display: flex;
+  width: 100%;
+  gap: 12px;
+
+  &_align {
+    &-right {
+      justify-content: flex-end;
+    }
+
+    &-left {
+      justify-content: flex-start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+  }
+
+  &_mobile-column {
+    flex-direction: column-reverse;
+    @include styles.respond-to(sm) {
+      flex-direction: row
+    }
+  }
+
+  &__cancel {
+    width: auto;
+  }
+
+  &__submit {
+    width: auto;
+  }
+}

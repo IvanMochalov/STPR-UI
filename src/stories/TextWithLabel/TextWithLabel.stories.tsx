@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TextWithLabel } from "../../components";
+import { TextWithLabel } from "../../../lib/components/TextWithLabel";
 
 const meta: Meta<typeof TextWithLabel> = {
   component: TextWithLabel,

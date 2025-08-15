@@ -1,0 +1,25 @@
+@use "src/styles/global" as styles;
+
+.spBaseTooltip {
+  background-color: styles.$color-white;
+  padding: 20px;
+  box-shadow: 0 10px 45px 0 styles.$color-rgba-19-15;
+  width: max-content;
+  max-width: 70vw;
+  position: absolute;
+  min-width: 160px;
+  z-index: 199;
+  @include styles.transition-all-ease-in-out(200ms);
+
+  &_noPadding {
+    padding: 0;
+  }
+
+  &__content {
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 14px;
+    white-space: pre-line;
+    color: styles.$color-black;
+  }
+}

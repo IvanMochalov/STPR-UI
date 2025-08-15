@@ -1,0 +1,118 @@
+@use "src/styles/global" as styles;
+
+.spCheckbox {
+  $block: &;
+
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__control {
+    display: none
+  }
+
+  &__label {
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 16px;
+    color: styles.$color-black;
+
+    @include styles.respond-to(sm) {
+      font-size: 20px;
+    }
+  }
+
+  &__box {
+    $block: &;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &--size-lg {
+      &:before {
+        width: 30px;
+        height: 30px;
+        background-size: 16px 16px;
+      }
+    }
+
+    &--size-md {
+      &:before {
+        width: 20px;
+        height: 20px;
+        background-size: 10px 10px;
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      min-width: 18px;
+      border: 2px solid styles.$color-accent-blue;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    &:hover:before {
+      border-color: styles.$color-accent-blue-light
+    }
+
+    &_checked {
+      &:before {
+        background-image: linear-gradient(styles.$color-accent-blue, styles.$color-accent-blue);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      &:hover:before {
+        background-image: linear-gradient(styles.$color-accent-blue-light, styles.$color-accent-blue-light);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    &_disabled {
+      cursor: default;
+
+      &:before {
+        cursor: default;
+      }
+
+      &:hover:before {
+        border-color: styles.$color-accent-blue
+      }
+    }
+
+    &_error {
+      &:before {
+        border-color: styles.$color-red;
+      }
+    }
+  }
+
+  &__tooltip {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  &__required {
+    display: inline-block;
+    line-height: 18px;
+    margin-left: 4px;
+    color: styles.$color-gray-1;
+  }
+
+  &__error {
+    padding-top: 8px;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 12px;
+    color: styles.$color-red;
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}

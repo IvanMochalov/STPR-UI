@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Confirm, useModal } from "../../components";
+import { Button, Confirm, useModal } from "../../../lib/vite-storybook-library.ts";
 
 const meta: Meta<typeof Confirm> = {
   component: Confirm,

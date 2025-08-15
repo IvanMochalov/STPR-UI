@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
 import copy from "rollup-plugin-copy";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets",
     lib: {
-      entry: resolve(__dirname, "src/components/index.ts"),
+      entry: resolve(__dirname, "lib/vite-storybook-library.ts"),
       name: "test-stpr-ui-kit",
       fileName: (format) => `test-stpr-ui-kit.${format}.js`,
     },
@@ -44,9 +45,10 @@ export default defineConfig({
     svgr(),
     dts({
       insertTypesEntry: true,
-      exclude: ["**/*.stories.ts"],
+      include: ["lib"],
       rollupTypes: true,
     }),
+    libInjectCss(),
     copy(),
   ],
 });

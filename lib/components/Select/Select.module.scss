@@ -1,0 +1,142 @@
+@use "src/styles/global" as styles;
+
+.spSelect {
+  // Общие стили блока
+  $block: &;
+
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+
+  // Модификаторы
+  &_error {
+    & #{$block}__control {
+      border-color: styles.$color-red;
+      color: styles.$color-red;
+
+      &:hover {
+        & #{$block}__value_empty {
+          color: styles.$color-gray-1;
+        }
+
+        & #{$block}__icon {
+          color: styles.$color-gray-1;
+        }
+      }
+    }
+  }
+
+  // Элементы
+  &__container {
+    position: relative;
+  }
+
+  &__control {
+    $control: &;
+
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    border: 2px solid styles.$color-alice-blue;
+    background-color: styles.$color-alice-blue;
+    @include styles.option-default;
+
+    &::placeholder {
+      color: styles.$color-gray-1;
+    }
+
+    &:hover {
+      & #{$block}__value_empty {
+        color: styles.$color-black;
+      }
+
+      & #{$block}__icon {
+        color: styles.$color-black;
+      }
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border: 2px solid styles.$color-accent-blue;
+      background-color: transparent;
+    }
+
+    &_disabled {
+      cursor: default;
+    }
+
+    &_disabled:hover {
+      & #{$block}__value_empty {
+        color: styles.$color-gray-1;
+      }
+
+      & #{$block}__icon {
+        color: styles.$color-gray-1;
+        cursor: default;
+      }
+    }
+
+    &_disabled:focus,
+    &_disabled:focus-visible {
+      border: 2px solid styles.$color-alice-blue;
+      background-color: styles.$color-alice-blue;
+    }
+  }
+
+  &__value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+
+    &_empty {
+      color: styles.$color-gray-1;
+    }
+  }
+
+  &__icon {
+    z-index: 10;
+    color: styles.$color-gray-1;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &__list {
+    position: absolute;
+    width: 100%;
+    z-index: 15;
+    box-shadow: 1px 1px 26px 0 styles.$color-rgba-19-15;
+    background-color: styles.$color-white;
+
+    &_scrollable {
+      overflow-y: auto;
+    }
+  }
+
+  &__option {
+    cursor: pointer;
+    position: relative;
+    @include styles.option-default;
+
+    &:hover {
+      background-color: styles.$color-alice-blue;
+    }
+  }
+
+  &__error {
+    padding-top: 8px;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 12px;
+    color: styles.$color-red;
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}

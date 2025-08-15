@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Modal, useModal } from "../../components";
+import { Button, Modal, useModal } from "../../../lib/vite-storybook-library.ts";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,

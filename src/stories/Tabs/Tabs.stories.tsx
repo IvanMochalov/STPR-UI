@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 
-import { Tabs } from "../../components";
+import { Tabs } from "../../../lib/components/Tabs";
 
 const meta: Meta<typeof Tabs> = {
   component: Tabs,
