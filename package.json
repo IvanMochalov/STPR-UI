@@ -15,9 +15,9 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/test-stpr-ui-kit.es.d.ts",
-      "import": "./dist/test-stpr-ui-kit.es.js"
-    },
-    "./styles": "./dist/style.css"
+      "import": "./dist/test-stpr-ui-kit.es.js",
+      "require": "./dist/test-stpr-ui-kit.umd.cjs"
+    }
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
-import { Accordion, Checkbox, Form, Input, Select } from "../../../lib/vite-storybook-library.ts";
+import { Accordion, Checkbox, Form, Input, Select } from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
 
 const meta: Meta<typeof Accordion> = {

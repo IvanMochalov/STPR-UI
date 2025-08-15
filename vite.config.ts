@@ -13,9 +13,10 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets",
     lib: {
-      entry: resolve(__dirname, "lib/vite-storybook-library.ts"),
+      entry: resolve(__dirname, "lib/test-stpr-ui-kit.ts"),
       name: "test-stpr-ui-kit",
-      fileName: (format) => `test-stpr-ui-kit.${format}.js`,
+      fileName: (format) =>
+        format === "umd" ? "test-stpr-ui-kit.umd.cjs" : "test-stpr-ui-kit.es.js",
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
@@ -30,8 +31,8 @@ export default defineConfig({
         copy({
           targets: [
             {
-              src: "src/fonts/*",
-              dest: "dist/assets/fonts",
+              src: "public/fonts/*",
+              dest: "dist/fonts",
             },
           ],
           hook: "writeBundle",
@@ -49,6 +50,5 @@ export default defineConfig({
       rollupTypes: true,
     }),
     libInjectCss(),
-    copy(),
   ],
 });

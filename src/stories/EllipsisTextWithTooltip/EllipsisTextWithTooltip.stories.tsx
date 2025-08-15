@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { EllipsisTextWithTooltip } from "../../../lib/vite-storybook-library.ts";
+import { EllipsisTextWithTooltip } from "../../../lib/test-stpr-ui-kit.ts";
 
 const meta: Meta<typeof EllipsisTextWithTooltip> = {
   component: EllipsisTextWithTooltip,
