@@ -42,7 +42,7 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
       className={classNameRoot}
       ref={ref}
     >
-      <span>{children}</span>
+      {children}
     </div>
   );
 });

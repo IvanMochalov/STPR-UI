@@ -67,8 +67,8 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
   return (
     <div className={classNameRoot}>
       <div className={classNameHeader}>
-        <div className={classNameTitle} onClick={onClick}>
-          {name}
+        <div className={classNameTitle}>
+          <span onClick={onClick}>{name}</span>
         </div>
         <Icon
           rotate={open ? 180 : undefined}

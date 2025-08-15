@@ -1,6 +1,7 @@
 @use "../../styles/main" as styles;
 
 .spText {
+  display: inline-block;
   font-family: styles.$main-font;
   font-weight: 400;
   font-size: 16px;
@@ -59,7 +60,6 @@
     font-weight: 500;
     font-size: 16px;
     color: styles.$color-accent-blue;
-    display: inline-block;
 
     @include styles.respond-to(sm) {
       font-size: 18px;
