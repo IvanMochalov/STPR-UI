@@ -9,6 +9,7 @@ import HistoryClockIcon from "../../../src/images/history-clock.svg?react";
 import InfoIcon from "../../../src/images/info.svg?react";
 import MinusIcon from "../../../src/images/minus.svg?react";
 import PlusIcon from "../../../src/images/plus.svg?react";
+import PlusCircleIcon from "../../../src/images/plus-circle.svg?react";
 import PlusSquareIcon from "../../../src/images/plus-square.svg?react";
 import SelectChevronDownIcon from "../../../src/images/select-chevron-down.svg?react";
 import TrashIcon from "../../../src/images/trash.svg?react";
@@ -40,6 +41,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     warningColor: WarningColorIcon,
     dots: DotsIcon,
     historyClock: HistoryClockIcon,
+    plusCircle: PlusCircleIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -57,6 +59,7 @@ export {
   HistoryClockIcon,
   InfoIcon,
   MinusIcon,
+  PlusCircleIcon,
   PlusIcon,
   PlusSquareIcon,
   SelectChevronDownIcon,

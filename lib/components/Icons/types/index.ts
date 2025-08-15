@@ -11,6 +11,7 @@ export enum EIconName {
   Copy = "copy",
   Close = "close",
   PlusSquare = "plusSquare",
+  PlusCircle = "plusCircle",
   WarningColor = "warningColor",
   Dots = "dots",
   HistoryClock = "historyClock",
