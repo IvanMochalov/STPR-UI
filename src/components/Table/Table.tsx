@@ -1,5 +1,4 @@
 import cx from "clsx";
-import { isEmpty } from "lodash";
 import React, { useContext, useState } from "react";
 
 import { isNullOrWhitespace } from "../../utils";
@@ -99,59 +98,135 @@ export const Table: React.FC<TableProps> = (props) => {
   };
 
   const renderTable = () => {
-    if (isEmpty(data)) {
-      return renderEmptyPage();
+    if (data && Array.isArray(data) && data.length > 0) {
+      return (
+        <table className={classNameRoot}>
+          <colgroup>
+            {_columns.map((_, index, arr) => {
+              return (
+                <col
+                  key={index}
+                  style={{
+                    width: `calc(100%/${arr.length})`,
+                  }}
+                />
+              );
+            })}
+          </colgroup>
+          <thead>
+            <tr>
+              {_columns.map((col, index) => {
+                return <th key={index}>{col.title}</th>;
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, rowIndex) => {
+              if (!row) {
+                return null;
+              }
+
+              return (
+                <tr key={rowIndex}>
+                  {_columns.map((col, colIndex) => {
+                    const isCellCopied =
+                      copiedCell?.rowIndex === rowIndex && copiedCell?.colIndex === colIndex;
+
+                    return (
+                      <td
+                        key={`${rowIndex}:${colIndex}`}
+                        onMouseLeave={isCellCopied ? handleMouseLeave : undefined}
+                      >
+                        <div className={classNameTdContent}>
+                          <span>
+                            {col.isColorContentsCurlyBrackets
+                              ? getColorContent({ row, col })
+                              : row[col.key]}
+                          </span>
+                          {!isNullOrWhitespace(row[col.key]) && col.isBeCopiedValue && (
+                            <Icon
+                              className={cx({
+                                [styles.spTable__tdContentCopyIcon]: true,
+                                [styles.spTable__tdContentCopyIcon_copied]: isCellCopied,
+                              })}
+                              name={isCellCopied ? EIconName.Check : EIconName.Copy}
+                              onClick={() => {
+                                const text = row[col.key];
+                                if (!text) return null;
+
+                                handleCopyToClipboard({
+                                  text,
+                                  rowIndex,
+                                  colIndex,
+                                });
+                              }}
+                            />
+                          )}
+                        </div>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      );
     }
 
-    return (
-      <table className={classNameRoot}>
-        <colgroup>
-          {_columns.map((_, index, arr) => {
-            return (
-              <col
-                key={index}
-                style={{
-                  width: `calc(100%/${arr.length})`,
-                }}
-              />
-            );
+    return renderEmptyPage();
+  };
+
+  const renderStringsGroup = () => {
+    if (data && Array.isArray(data) && data.length > 0) {
+      return (
+        <div
+          className={cx({
+            [styles.spStringsGroup]: true,
           })}
-        </colgroup>
-        <thead>
-          <tr>
-            {_columns.map((col, index) => {
-              return <th key={index}>{col.title}</th>;
-            })}
-          </tr>
-        </thead>
-        <tbody>
+        >
           {data.map((row, rowIndex) => {
-            if (isEmpty(row)) {
+            if (!row) {
               return null;
             }
 
             return (
-              <tr key={rowIndex}>
+              <div key={rowIndex}>
                 {_columns.map((col, colIndex) => {
+                  if (isNullOrWhitespace(row[col.key])) {
+                    return null;
+                  }
+
                   const isCellCopied =
                     copiedCell?.rowIndex === rowIndex && copiedCell?.colIndex === colIndex;
 
                   return (
-                    <td
-                      key={`${rowIndex}:${colIndex}`}
+                    <div
+                      key={colIndex}
+                      className={cx({
+                        [styles.spStringsGroup__groupItem]: true,
+                      })}
                       onMouseLeave={isCellCopied ? handleMouseLeave : undefined}
                     >
-                      <div className={classNameTdContent}>
-                        <span>
-                          {col.isColorContentsCurlyBrackets
-                            ? getColorContent({ row, col })
-                            : row[col.key]}
-                        </span>
-                        {!isNullOrWhitespace(row[col.key]) && col.isBeCopiedValue && (
+                      <div
+                        className={cx({
+                          [styles.spStringsGroup__groupItemHeader]: true,
+                        })}
+                      >
+                        {col.title}
+                      </div>
+                      <div
+                        className={cx({
+                          [styles.spStringsGroup__groupItemContent]: true,
+                        })}
+                      >
+                        <span>{row[col.key]}</span>
+                        {col.isBeCopiedValue && (
                           <Icon
                             className={cx({
-                              [styles.spTable__tdContentCopyIcon]: true,
-                              [styles.spTable__tdContentCopyIcon_copied]: isCellCopied,
+                              [styles.spStringsGroup__groupItemContentCopyIcon]: true,
+                              [styles.spStringsGroup__groupItemContentCopyIcon_copied]:
+                                isCellCopied,
                             })}
                             name={isCellCopied ? EIconName.Check : EIconName.Copy}
                             onClick={() => {
@@ -167,92 +242,17 @@ export const Table: React.FC<TableProps> = (props) => {
                           />
                         )}
                       </div>
-                    </td>
+                    </div>
                   );
                 })}
-              </tr>
+              </div>
             );
           })}
-        </tbody>
-      </table>
-    );
-  };
-
-  const renderStringsGroup = () => {
-    if (isEmpty(data)) {
-      return renderEmptyPage();
+        </div>
+      );
     }
 
-    return (
-      <div
-        className={cx({
-          [styles.spStringsGroup]: true,
-        })}
-      >
-        {data.map((row, rowIndex) => {
-          if (isEmpty(row)) {
-            return null;
-          }
-
-          return (
-            <div key={rowIndex}>
-              {_columns.map((col, colIndex) => {
-                if (isNullOrWhitespace(row[col.key])) {
-                  return null;
-                }
-
-                const isCellCopied =
-                  copiedCell?.rowIndex === rowIndex && copiedCell?.colIndex === colIndex;
-
-                return (
-                  <div
-                    key={colIndex}
-                    className={cx({
-                      [styles.spStringsGroup__groupItem]: true,
-                    })}
-                    onMouseLeave={isCellCopied ? handleMouseLeave : undefined}
-                  >
-                    <div
-                      className={cx({
-                        [styles.spStringsGroup__groupItemHeader]: true,
-                      })}
-                    >
-                      {col.title}
-                    </div>
-                    <div
-                      className={cx({
-                        [styles.spStringsGroup__groupItemContent]: true,
-                      })}
-                    >
-                      <span>{row[col.key]}</span>
-                      {col.isBeCopiedValue && (
-                        <Icon
-                          className={cx({
-                            [styles.spStringsGroup__groupItemContentCopyIcon]: true,
-                            [styles.spStringsGroup__groupItemContentCopyIcon_copied]: isCellCopied,
-                          })}
-                          name={isCellCopied ? EIconName.Check : EIconName.Copy}
-                          onClick={() => {
-                            const text = row[col.key];
-                            if (!text) return null;
-
-                            handleCopyToClipboard({
-                              text,
-                              rowIndex,
-                              colIndex,
-                            });
-                          }}
-                        />
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-    );
+    return renderEmptyPage();
   };
 
   const renderAdaptiveContent = () => {
