@@ -4,6 +4,7 @@ import { BaseTooltip } from "./components/BaseTooltip";
 import { Button } from "./components/Button";
 import { Checkbox } from "./components/Checkbox";
 import { Confirm } from "./components/Confirm";
+import type { TContextMenuOption } from "./components/ContextMenu";
 import { ContextMenu } from "./components/ContextMenu";
 import { DefaultDropzone } from "./components/DefaultDropzone";
 import { Dropdown } from "./components/Dropdown";
@@ -55,6 +56,7 @@ export {
   Spinner,
   Table,
   Tabs,
+  TContextMenuOption,
   Text,
   TextWithLabel,
   Tooltip,
