@@ -81,6 +81,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
               onClick={onClose}
               iconName={EIconName.Close}
               variant={"link"}
+              noPadding={true}
               isOnlyIcon={true}
             />
           )}
