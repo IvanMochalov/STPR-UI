@@ -109,29 +109,41 @@
     @include styles.transition-all-ease-in-out(300ms);
   }
 
+  // TODO https://caniuse.com/?search=interpolate-size
+  //&__childrenWrapper {
+  //  height: 0;
+  //  overflow: hidden;
+  //  transition: height .5s;
+  //  interpolate-size: allow-keywords;
+  //
+  //  &_open {
+  //    height: auto;
+  //  }
+  //}
+
   &__childrenWrapper {
     display: grid;
     grid-template-rows: 0fr;
 
     @include styles.transition-prop-ease-in-out("grid-template-rows", 300ms);
 
-    & > * {
-      min-height: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
-      visibility 0s linear 0.35s; // Ждем завершения opacity
-    }
-
     &_open {
       grid-template-rows: 1fr;
 
-      & > * {
+      & #{$block}__content {
         opacity: 1;
         visibility: visible;
         transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
         visibility 0s linear; // Без задержки при открытии
       }
     }
+  }
+
+  &__content {
+    min-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
+    visibility 0s linear 0.35s; // Ждем завершения opacity
   }
 }

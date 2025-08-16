@@ -78,7 +78,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
         />
       </div>
       <div className={classNameChildrenWrapper}>
-        <div>{children}</div>
+        <div className={styles.spAccordion__content}>{children}</div>
       </div>
     </div>
   );
