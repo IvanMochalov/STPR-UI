@@ -41,7 +41,7 @@
       font-weight: 500;
     }
 
-    & #{$block}__iconContainer {
+    &:not(#{$block}_onlyIcon) #{$block}__iconContainer {
       margin-right: 8px;
     }
 
