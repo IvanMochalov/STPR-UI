@@ -13,10 +13,7 @@ export interface SelectProps {
   placeholder?: string;
   value?: string;
   name: string;
-  onChange: (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    data: { value: string | null; name: string },
-  ) => void;
+  onChange: TOnChangeSelect;
   onMouseEnter?: () => void;
   error?: string;
   label?: string;
@@ -31,3 +28,8 @@ export interface SelectProps {
   classNameError?: string;
   classNameLabel?: string;
 }
+
+export type TOnChangeSelect = (
+  event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  data: { value: string | null; name: string },
+) => void;

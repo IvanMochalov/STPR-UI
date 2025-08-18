@@ -6,14 +6,7 @@ export interface CheckboxProps {
   size?: "md" | "lg";
   checked?: boolean;
   disabled?: boolean;
-  onChange: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    data: {
-      name: string;
-      value?: string;
-      checked?: boolean;
-    },
-  ) => void;
+  onChange: TOnChangeCheckbox;
   name: string;
   label?: string;
   error?: string;
@@ -25,3 +18,12 @@ export interface CheckboxProps {
   classNameRoot?: string;
   classNameError?: string;
 }
+
+export type TOnChangeCheckbox = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  data: {
+    name: string;
+    value?: string;
+    checked?: boolean;
+  },
+) => void;

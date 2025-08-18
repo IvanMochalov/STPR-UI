@@ -2,6 +2,7 @@ import { Accordion } from "./components/Accordion";
 import { ApplyButtons } from "./components/ApplyButtons";
 import { BaseTooltip } from "./components/BaseTooltip";
 import { Button } from "./components/Button";
+import type { TOnChangeCheckbox } from "./components/Checkbox";
 import { Checkbox } from "./components/Checkbox";
 import { Confirm } from "./components/Confirm";
 import type { TContextMenuOption } from "./components/ContextMenu";
@@ -11,6 +12,7 @@ import { Dropdown } from "./components/Dropdown";
 import { EllipsisTextWithTooltip } from "./components/EllipsisTextWithTooltip";
 import { Form } from "./components/Form";
 import { EIconName, Icon } from "./components/Icons";
+import type { TOnChangeInput } from "./components/Input";
 import { Input } from "./components/Input";
 import { InputFiles } from "./components/InputFiles";
 import { Label } from "./components/Label";
@@ -18,7 +20,7 @@ import { Layer } from "./components/Layer";
 import { MediaContext, MediaContextProvider } from "./components/MediaContextProvider";
 import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
-import type { TSelectOption } from "./components/Select";
+import type { TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
 import { Spinner } from "./components/Spinner";
 import { Table } from "./components/Table";
@@ -59,6 +61,9 @@ export {
   TContextMenuOption,
   Text,
   TextWithLabel,
+  TOnChangeCheckbox,
+  TOnChangeInput,
+  TOnChangeSelect,
   Tooltip,
   TPaneItem,
   TSelectOption,

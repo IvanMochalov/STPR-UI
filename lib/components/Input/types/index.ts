@@ -4,14 +4,7 @@ import { ETooltipPosition } from "../../Tooltip";
 
 export interface InputProps {
   name: string;
-  onChange: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    data: {
-      name: string;
-      value?: string;
-      checked?: boolean;
-    },
-  ) => void;
+  onChange: TOnChangeInput;
   value?: string;
   error?: string;
   isClearable?: boolean;
@@ -29,3 +22,12 @@ export interface InputProps {
   classNameRoot?: string;
   ref?: ForwardedRef<HTMLInputElement>;
 }
+
+export type TOnChangeInput = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  data: {
+    name: string;
+    value?: string;
+    checked?: boolean;
+  },
+) => void;

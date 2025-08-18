@@ -1,12 +1,12 @@
 import cx from "clsx";
 import React, { useRef, useState } from "react";
 
+import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
 import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { MAX_HEIGHT_SELECT_LIST } from "./constants";
 import styles from "./Select.module.scss";
 import { SelectProps } from "./types";
-import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
 
 export const Select: React.FC<SelectProps> = (props) => {
   const {
