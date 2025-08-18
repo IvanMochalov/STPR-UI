@@ -49,24 +49,25 @@
       content: '';
       display: block;
       min-width: 18px;
-      border: 2px solid styles.$color-accent-blue;
+      color: styles.$color-accent-blue;
+      border: 2px solid currentColor;
       cursor: pointer;
       margin-right: 10px;
     }
 
     &:hover:before {
-      border-color: styles.$color-accent-blue-light
+      color: styles.$color-accent-blue-light;
     }
 
     &_checked {
       &:before {
-        background-image: linear-gradient(styles.$color-accent-blue, styles.$color-accent-blue);
+        background-image: linear-gradient(currentColor, currentColor);
         background-repeat: no-repeat;
         background-position: center;
       }
 
       &:hover:before {
-        background-image: linear-gradient(styles.$color-accent-blue-light, styles.$color-accent-blue-light);
+        background-image: linear-gradient(currentColor, currentColor);
         background-repeat: no-repeat;
         background-position: center;
       }
@@ -77,10 +78,11 @@
 
       &:before {
         cursor: default;
+        color: styles.$color-gray-2;
       }
 
       &:hover:before {
-        border-color: styles.$color-accent-blue
+        color: styles.$color-gray-2;
       }
     }
 

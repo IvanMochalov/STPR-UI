@@ -40,6 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
 
   const classNameControl = cx({
     [styles.spInput__control]: true,
+    [styles.spInput__control_disabled]: disabled,
     [styles.spInput__control_clearable]: isClearable,
   });
 

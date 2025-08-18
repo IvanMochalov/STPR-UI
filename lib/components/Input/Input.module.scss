@@ -43,6 +43,10 @@
       padding: 16.5px 16px;
     }
 
+    &_disabled {
+      color: styles.$color-gray-1;
+    }
+
     &_clearable {
       padding-right: 50px;
     }
@@ -57,7 +61,7 @@
       }
     }
 
-    &[disabled]:hover::placeholder {
+    &_disabled:hover::placeholder {
       color: styles.$color-gray-1;
     }
 
