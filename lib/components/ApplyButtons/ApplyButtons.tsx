@@ -17,6 +17,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
     disabled,
     onClose,
     submit,
+    loading,
   } = props;
   const classNameRoot = cx({
     [styles.spApplyButtons]: true,
@@ -52,6 +53,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
           form={formId ? formId : undefined}
           disabled={disabled}
           onClick={submit}
+          loading={loading}
         >
           {submitBtnContent}
         </Button>

@@ -8,4 +8,5 @@ export interface ConfirmProps extends ApplyButtonsProps {
   title?: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
   modalAlign?: TModalAlign;
+  loading?: boolean;
 }

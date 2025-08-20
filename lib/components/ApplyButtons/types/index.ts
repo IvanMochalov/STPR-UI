@@ -14,6 +14,7 @@ export interface ApplyButtonsProps {
   cancelBtnDisabled?: boolean;
   formId?: string;
   disabled?: boolean;
+  loading?: boolean;
   onClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
   submit?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }

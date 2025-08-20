@@ -20,6 +20,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     mobile = "column",
     align = "right",
     modalAlign = "top",
+    loading,
   } = props;
 
   return (
@@ -41,6 +42,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
           disabled={disabled}
           onClose={onClose}
           submit={submit}
+          loading={loading}
         />
       }
     ></Modal>
