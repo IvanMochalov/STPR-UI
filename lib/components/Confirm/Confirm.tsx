@@ -23,6 +23,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     loading,
   } = props;
 
+  const isVisibleFooter = cancelBtnContent || submitBtnContent;
+
   return (
     <Modal
       zIndex={zIndex}
@@ -31,19 +33,21 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       align={modalAlign}
       subHeader={subtitle}
       footer={
-        <ApplyButtons
-          mobile={mobile}
-          align={align}
-          cancelBtnContent={cancelBtnContent}
-          cancelBtnIconName={cancelBtnIconName}
-          cancelBtnDisabled={cancelBtnDisabled}
-          submitBtnContent={submitBtnContent}
-          formId={formId}
-          disabled={disabled}
-          onClose={onClose}
-          submit={submit}
-          loading={loading}
-        />
+        isVisibleFooter ? (
+          <ApplyButtons
+            mobile={mobile}
+            align={align}
+            cancelBtnContent={cancelBtnContent}
+            cancelBtnIconName={cancelBtnIconName}
+            cancelBtnDisabled={cancelBtnDisabled}
+            submitBtnContent={submitBtnContent}
+            formId={formId}
+            disabled={disabled}
+            onClose={onClose}
+            submit={submit}
+            loading={loading}
+          />
+        ) : null
       }
     ></Modal>
   );
