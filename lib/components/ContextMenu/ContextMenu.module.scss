@@ -1,26 +1,26 @@
 @use "src/styles/global" as styles;
 
 .spContextMenu {
+  box-sizing: border-box;
   font-family: styles.$main-font;
   font-weight: 400;
   margin: 0;
   display: flex;
   padding: 8px 0;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   border: 1px solid styles.$color-accent-blue;
   background-color: styles.$color-white;
 
   &__item {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    width: 100%;
     align-items: flex-start;
     padding: 8px 24px;
     font-size: 16px;
     line-height: 120%;
     gap: 12px;
-    background-color: inherit;
 
     &:hover {
       background-color: styles.$color-secondary-blue-light;
