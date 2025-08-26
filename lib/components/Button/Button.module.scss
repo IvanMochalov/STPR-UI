@@ -1,5 +1,9 @@
 @use "src/styles/global" as styles;
 
+.spButton * {
+  box-sizing: border-box;
+}
+
 .spButton {
   // Общие стили блока
   $block: &;

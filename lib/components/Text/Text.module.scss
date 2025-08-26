@@ -1,5 +1,9 @@
 @use "src/styles/global" as styles;
 
+.spText * {
+  box-sizing: border-box;
+}
+
 .spText {
   display: inline-block;
   font-family: styles.$main-font;

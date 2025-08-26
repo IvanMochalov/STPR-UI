@@ -1,5 +1,9 @@
 @use "src/styles/global" as styles;
 
+.spBaseTooltip * {
+  box-sizing: border-box;
+}
+
 .spBaseTooltip {
   background-color: styles.$color-white;
   padding: 20px;

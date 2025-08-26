@@ -2,6 +2,7 @@ import cx from "clsx";
 import React from "react";
 
 import { DefaultDropzone } from "../DefaultDropzone";
+import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Text } from "../Text";
 import { ETooltipPosition, InfoTooltip } from "../Tooltip";
@@ -64,7 +65,11 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
                 deleteFile(fileName);
               }}
             >
-              <Text isEllipsis={true}>{fileName}</Text>
+              <EllipsisTextWithTooltip
+                type={"p2"}
+                text={fileName}
+                classNameTriggerTooltipRoot={styles.spInputFiles__fileNamesListItem__triggerTooltip}
+              />
               <div className={styles.spInputFiles__fileNamesListItemDelete}>
                 <Icon name={EIconName.Trash} />
               </div>

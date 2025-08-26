@@ -1,5 +1,9 @@
 @use "src/styles/global" as styles;
 
+.modalWrapper * {
+  box-sizing: border-box;
+}
+
 .modalWrapper {
   $block: &;
 

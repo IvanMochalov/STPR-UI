@@ -22,6 +22,7 @@ export const Icon: React.FC<IconProps> = (props) => {
 
   const style = {
     ...svgProps.style,
+    boxSizing: "border-box",
     flexShrink: 0,
     transform: rotate ? `rotate(${rotate}deg)` : "",
   } as CSSProperties;

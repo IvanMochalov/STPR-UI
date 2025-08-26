@@ -1,5 +1,9 @@
 @use "src/styles/global" as styles;
 
+.spInputFiles * {
+  box-sizing: border-box;
+}
+
 .spInputFiles {
   $block: &;
 
@@ -74,6 +78,10 @@
     }
     @include styles.respond-to(xl) {
       max-width: 340px;
+    }
+
+    &__triggerTooltip {
+      display: flex;
     }
   }
 

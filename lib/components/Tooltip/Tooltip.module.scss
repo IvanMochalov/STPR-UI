@@ -1,5 +1,9 @@
 @use "src/styles/global" as styles;
 
+.spTooltip * {
+  box-sizing: border-box;
+}
+
 .spTooltip {
   $block: &;
 
