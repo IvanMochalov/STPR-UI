@@ -33,18 +33,27 @@
   }
 
   &__control {
+    $control: &;
     min-width: 100%;
     font-family: styles.$main-font;
     font-weight: 400;
     font-size: 16px;
     color: styles.$color-black;
-    border: 2px solid styles.$color-alice-blue;
-    background-color: styles.$color-alice-blue;
     padding: 11.5px 16px;
 
     @include styles.respond-to(sm) {
       font-size: 18px;
       padding: 16.5px 16px;
+    }
+
+    &_filled {
+      border: 2px solid styles.$color-alice-blue;
+      background-color: styles.$color-alice-blue;
+    }
+
+    &_outlined {
+      background-color: transparent;
+      border: 1px solid styles.$color-secondary-blue-light-dark;
     }
 
     &_disabled {
@@ -72,8 +81,17 @@
     &:focus,
     &:focus-visible {
       outline: none;
-      border: 2px solid styles.$color-accent-blue;
+      border-style: solid;
+      border-color: styles.$color-accent-blue;
       background-color: transparent;
+
+      &#{$control}_filled {
+        border-width: 2px;
+      }
+
+      &#{$control}_outlined {
+        border-width: 1px;
+      }
 
       &:hover {
         &::placeholder {

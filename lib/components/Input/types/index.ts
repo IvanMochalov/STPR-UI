@@ -2,8 +2,11 @@ import React, { ForwardedRef } from "react";
 
 import { ETooltipPosition } from "../../Tooltip";
 
+export type TInputVariant = "outlined" | "filled";
+
 export interface InputProps {
   name: string;
+  variant?: TInputVariant;
   onChange: TOnChangeInput;
   value?: string;
   error?: string;

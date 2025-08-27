@@ -9,6 +9,11 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ["autodocs"],
   argTypes: {
+    variant: {
+      table: {
+        defaultValue: { summary: "outlined" },
+      },
+    },
     disabled: {
       table: {
         defaultValue: { summary: "false" },
@@ -58,6 +63,9 @@ const meta: Meta<typeof Input> = {
       </div>
     ),
   ],
+  args: {
+    variant: "outlined",
+  },
 };
 
 export default meta;
