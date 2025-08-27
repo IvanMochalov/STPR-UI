@@ -61,6 +61,7 @@
     padding: 0;
     list-style: none;
     display: flex;
+    width: 100%;
     gap: 8px;
     flex-wrap: wrap;
   }
@@ -112,8 +113,8 @@
   }
 
   &__delete {
+    display: flex;
     cursor: pointer;
-    margin-left: auto;
 
     & :global {
       & .stpr-icon {
