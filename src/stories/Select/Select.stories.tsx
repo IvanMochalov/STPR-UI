@@ -9,8 +9,14 @@ const meta: Meta<typeof Select> = {
   tags: ["autodocs"],
   args: {
     options: OKRUG_OPTIONS,
+    variant: "outlined",
   },
   argTypes: {
+    variant: {
+      table: {
+        defaultValue: { summary: "outlined" },
+      },
+    },
     placeholder: {
       table: {
         defaultValue: { summary: "Выберите из списка..." },

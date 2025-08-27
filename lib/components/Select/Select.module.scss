@@ -41,9 +41,17 @@
     position: relative;
     cursor: pointer;
     width: 100%;
-    border: 2px solid styles.$color-alice-blue;
-    background-color: styles.$color-alice-blue;
     @include styles.option-default;
+
+    &_filled {
+      border: 2px solid styles.$color-alice-blue;
+      background-color: styles.$color-alice-blue;
+    }
+
+    &_outlined {
+      background-color: transparent;
+      border: 1px solid styles.$color-secondary-blue-light-dark;
+    }
 
     &::placeholder {
       color: styles.$color-gray-1;
@@ -62,8 +70,17 @@
     &:focus,
     &:focus-visible {
       outline: none;
-      border: 2px solid styles.$color-accent-blue;
+      border-style: solid;
+      border-color: styles.$color-accent-blue;
       background-color: transparent;
+
+      &#{$control}_filled {
+        border-width: 2px;
+      }
+
+      &#{$control}_outlined {
+        border-width: 1px;
+      }
     }
 
     &_disabled {

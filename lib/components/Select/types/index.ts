@@ -8,9 +8,12 @@ export type TSelectOption = {
   key?: string;
 };
 
+export type TSelectVariant = "outlined" | "filled";
+
 export interface SelectProps {
   options: TSelectOption[];
   placeholder?: string;
+  variant?: TSelectVariant;
   value?: string;
   name: string;
   onChange: TOnChangeSelect;

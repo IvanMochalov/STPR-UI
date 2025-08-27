@@ -14,6 +14,7 @@ export const Select: React.FC<SelectProps> = (props) => {
     placeholder = "Выберите из списка...",
     value,
     name,
+    variant = "outlined",
     onChange,
     onMouseEnter,
     error,
@@ -70,6 +71,7 @@ export const Select: React.FC<SelectProps> = (props) => {
 
   const classNameControl = cx({
     [styles.spSelect__control]: true,
+    [styles[`spSelect__control_${variant}`]]: variant,
     [styles.spSelect__control_disabled]: disabled,
   });
 
