@@ -54,6 +54,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
 
   const classNameIcon = cx({
     [styles.spAccordion__icon]: true,
+    [styles.spAccordion__icon_open]: open,
     [styles.spAccordion__icon_hidden]: isHiddenExpandIcon,
     ...(propsClassNameIcon && { [propsClassNameIcon]: true }),
   });
@@ -71,7 +72,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
           <span onClick={onClick}>{name}</span>
         </div>
         <Icon
-          rotate={open ? 180 : undefined}
+          // rotate={open ? 180 : undefined}
           onClick={onClick}
           className={classNameIcon}
           name={EIconName.ChevronDown}

@@ -110,6 +110,11 @@
       visibility: hidden;
     }
 
+    &_open {
+      -webkit-transform: rotateX(.5turn);
+      transform: rotateX(.5turn);
+    }
+
     @include styles.transition-all-ease-in-out(300ms);
   }
 
