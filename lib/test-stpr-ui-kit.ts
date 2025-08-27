@@ -22,6 +22,7 @@ import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
 import type { TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
+import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
 import { Table } from "./components/Table";
 import type { TPaneItem } from "./components/Tabs";
@@ -55,6 +56,7 @@ export {
   Modal,
   Portal,
   Select,
+  Skeleton,
   Spinner,
   Table,
   Tabs,
