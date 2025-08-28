@@ -1,12 +1,12 @@
 import cx from "clsx";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
+import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
 import { BaseTooltip } from "../BaseTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Portal } from "../Portal";
 import styles from "./Tooltip.module.scss";
 import { ETooltipPosition, TooltipProps } from "./types";
-import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
@@ -16,7 +16,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     trigger,
     triggerAction,
     actionOnClose,
-    classNameTriggerTooltip,
+    classNameTriggerTooltip: propsClassNameTriggerTooltip,
     position: defaultTooltipPosition = ETooltipPosition.BottomLeft,
     text,
     noPadding,
@@ -179,6 +179,11 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
   const classNameBaseTooltipContentRoot = cx({
     ...(propsClassNameBaseTooltipContentRoot && { [propsClassNameBaseTooltipContentRoot]: true }),
+  });
+
+  const classNameTriggerTooltip = cx({
+    [styles.spTooltip__trigger]: true,
+    ...(propsClassNameTriggerTooltip && { [propsClassNameTriggerTooltip]: true }),
   });
 
   const parent = document.body;

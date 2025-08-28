@@ -72,6 +72,9 @@ type Story = StoryObj<typeof InfoTooltip>;
 export const Default: Story = {
   name: "Default info tooltip",
   args: {
-    text: "Дефолтный инфо-тултип",
+    text:
+      "Если в проектируемом доме нужно заложить\n" +
+      "квартиры-студии, внесите их параметры в\n" +
+      "загружаемый файл по шаблону",
   },
 };

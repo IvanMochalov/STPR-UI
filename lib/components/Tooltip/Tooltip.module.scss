@@ -8,4 +8,8 @@
   $block: &;
 
   position: relative;
+
+  &__trigger {
+    display: flex;
+  }
 }
