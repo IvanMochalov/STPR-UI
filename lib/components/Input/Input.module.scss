@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spInput * {
-  box-sizing: border-box;
+.spInput {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spInput {

@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spForm * {
-  box-sizing: border-box;
+.spForm {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spForm {

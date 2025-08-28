@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spButton * {
-  box-sizing: border-box;
+.spButton {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spButton {

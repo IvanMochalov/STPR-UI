@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spBaseTooltip * {
-  box-sizing: border-box;
+.spBaseTooltip {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spBaseTooltip {

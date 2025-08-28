@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spDropdown * {
-  box-sizing: border-box;
+.spDropdown {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spDropdown {

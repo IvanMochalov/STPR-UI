@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.layer * {
-  box-sizing: border-box;
+.layer {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .layer {

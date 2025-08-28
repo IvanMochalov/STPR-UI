@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spLabel * {
-  box-sizing: border-box;
+.spLabel {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spLabel {

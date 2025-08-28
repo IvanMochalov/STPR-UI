@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spInputFiles * {
-  box-sizing: border-box;
+.spInputFiles {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spInputFiles {

@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spTable * {
-  box-sizing: border-box;
+.spTable {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spTable {

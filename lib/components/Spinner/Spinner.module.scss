@@ -1,7 +1,9 @@
 @use "src/styles/global" as styles;
 
-.spinner * {
-  box-sizing: border-box;
+.spinner {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spinner {

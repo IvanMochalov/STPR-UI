@@ -1,5 +1,7 @@
-.spTextWithLabel * {
-  box-sizing: border-box;
+.spTextWithLabel {
+  &, & * {
+    box-sizing: border-box;
+  }
 }
 
 .spTextWithLabel {
