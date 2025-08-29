@@ -5,6 +5,8 @@ import { EIconName, Icon } from "../Icons";
 import styles from "./Accordion.module.scss";
 import { AccordionProps } from "./types";
 
+// TODO
+//  В дальнейшем реализовать через HTML тег details
 export const Accordion: React.FC<AccordionProps> = (props) => {
   const {
     name,

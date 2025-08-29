@@ -5,6 +5,10 @@ import { Portal } from "../Portal";
 import styles from "./Layer.module.scss";
 import { LayerProps } from "./types";
 
+// TODO
+//  Реализовать в дальнейшем все всплывающие компоненты
+//  через использование HTML атрибута popover
+
 export const Layer: React.FC<LayerProps> = (props) => {
   const {
     children,
