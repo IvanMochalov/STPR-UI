@@ -3,3 +3,22 @@
 @forward "fonts";
 @forward "mixins";
 @forward "constants";
+
+@use './constants' as *;
+
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+  height: $scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+  background: $scrollbar-track-background;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-thumb-background;
+
+  &:hover {
+    background: $scrollbar-thumb-background-hover;
+  }
+}
