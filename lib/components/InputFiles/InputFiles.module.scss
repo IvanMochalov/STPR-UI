@@ -15,6 +15,9 @@
   }
 
   &__control {
+    $block: &;
+
+    box-sizing: border-box;
     width: 100%;
     min-height: 44px;
     padding: 12px 16px;

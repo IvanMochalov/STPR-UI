@@ -30,6 +30,8 @@
 
   &__control {
     $control: &;
+
+    box-sizing: border-box;
     min-width: 100%;
     font-family: styles.$main-font;
     font-weight: 400;
