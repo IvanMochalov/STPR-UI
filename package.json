@@ -15,7 +15,7 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/test-stpr-ui-kit.es.d.ts",
-      "import": "./dist/test-stpr-ui-kit.es.js",
+      "import": "./dist/test-stpr-ui-kit.js",
       "require": "./dist/test-stpr-ui-kit.umd.cjs"
     }
   },
