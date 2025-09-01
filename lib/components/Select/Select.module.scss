@@ -83,6 +83,7 @@
     &_disabled {
       cursor: default;
       color: styles.$color-gray-1;
+      pointer-events: none;
     }
 
     &_disabled:hover {
@@ -94,12 +95,6 @@
         color: styles.$color-gray-1;
         cursor: default;
       }
-    }
-
-    &_disabled:focus,
-    &_disabled:focus-visible {
-      border: 2px solid styles.$color-alice-blue;
-      background-color: styles.$color-alice-blue;
     }
   }
 

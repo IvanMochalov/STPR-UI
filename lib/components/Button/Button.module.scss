@@ -121,6 +121,8 @@
   }
 
   &_disabled {
+    pointer-events: none;
+
     &#{$block}_link {
       background-color: transparent !important;
     }

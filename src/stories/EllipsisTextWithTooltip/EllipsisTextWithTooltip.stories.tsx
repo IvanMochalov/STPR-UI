@@ -33,7 +33,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
           flexDirection: "column",
           alignItems: "flex-start",
           gap: "20px",
-          maxWidth: "300px",
+          maxWidth: "250px",
         }}
       >
         <EllipsisTextWithTooltip {...args} type={"h1"} text={`${args.text} with type="h1"`} />

@@ -45,6 +45,7 @@
   &_disabled {
     & #{$block}__control {
       cursor: default;
+      pointer-events: none;
     }
   }
 

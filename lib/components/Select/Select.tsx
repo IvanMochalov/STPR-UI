@@ -54,9 +54,9 @@ export const Select: React.FC<SelectProps> = (props) => {
   };
 
   const handleToggle = () => {
-    if (!disabled) {
-      setIsOpen(!isOpen);
-    }
+    if (disabled) return;
+
+    setIsOpen(!isOpen);
   };
 
   const classNameRoot = cx({
@@ -101,7 +101,7 @@ export const Select: React.FC<SelectProps> = (props) => {
   const getSelect = () => {
     return (
       <div
-        tabIndex={0}
+        tabIndex={disabled ? -1 : 0}
         title={isVisibleDefaultTitle ? value : undefined}
         className={classNameControl}
         onClick={handleToggle}

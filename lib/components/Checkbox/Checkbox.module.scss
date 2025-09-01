@@ -75,6 +75,7 @@
 
     &_disabled {
       cursor: default;
+      pointer-events: none;
 
       &:before {
         cursor: default;
