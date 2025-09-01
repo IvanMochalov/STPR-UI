@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .layer {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.layer {
   position: fixed;
   top: 0;
   bottom: 0;

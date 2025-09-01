@@ -7,17 +7,34 @@ import styles from "./Tabs.module.scss";
 import { TabsProps } from "./types";
 
 export const Tabs: React.FC<TabsProps> = (props) => {
-  const { panes, isSeparated = false, classNameRoot: propsClassNameRoot } = props;
+  const {
+    panes,
+    isSeparated = false,
+    classNameRoot: propsClassNameRoot,
+    variant = "contained",
+    size = "md",
+  } = props;
 
   const classNameRoot = cx({
     [styles.spTabs]: true,
     [styles.spTabs_separated]: isSeparated,
+    [styles[`spTabs--variant-${variant}`]]: variant,
+    [styles[`spTabs--size-${size}`]]: size,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
   const classNameTriggerTooltip = cx({
     [styles.spTabs__triggerTooltip]: true,
   });
+
+  const getTypeForText = () => {
+    switch (size) {
+      case "md":
+        return "p2";
+      case "lg":
+        return "p1";
+    }
+  };
 
   return (
     <div className={classNameRoot}>
@@ -30,11 +47,10 @@ export const Tabs: React.FC<TabsProps> = (props) => {
             className={cx({
               [styles.spTabs__tabElement]: true,
               [styles.spTabs__tabElement_active]: active,
-              [styles.spTabs__tabElement_separated]: isSeparated,
             })}
             onClick={onClick}
           >
-            <Text type="p2">{name}</Text>
+            <Text type={getTypeForText()}>{name}</Text>
             {Boolean(infoTooltipText) && (
               <InfoTooltip
                 classNameTriggerTooltip={classNameTriggerTooltip}

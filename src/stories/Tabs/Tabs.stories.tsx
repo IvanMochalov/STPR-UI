@@ -7,6 +7,16 @@ const meta: Meta<typeof Tabs> = {
   component: Tabs,
   tags: ["autodocs"],
   argTypes: {
+    variant: {
+      table: {
+        defaultValue: { summary: "contained" },
+      },
+    },
+    size: {
+      table: {
+        defaultValue: { summary: "md" },
+      },
+    },
     classNameRoot: {
       control: false,
     },
@@ -20,6 +30,8 @@ const meta: Meta<typeof Tabs> = {
   ],
   args: {
     isSeparated: false,
+    variant: "contained",
+    size: "md",
   },
 };
 
