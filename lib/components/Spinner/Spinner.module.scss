@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spinner {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.spinner {
   --spinner-size: 24px;
   --spinner-thickness: 3px;
 

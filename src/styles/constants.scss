@@ -1,5 +1,9 @@
 @use "./colors" as *;
 
+// Переменные для текста
+$title-font: "ALSGorizont", Verdana, Arial, Sans-serif;
+$main-font: "ALSHauss", Verdana, Arial, Sans-serif;
+
 // Переменные для компонента <SPLabel />
 $spLabel-mb: 8px;
 $spLabel-offset: 5px;

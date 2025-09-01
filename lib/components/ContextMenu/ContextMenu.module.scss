@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spContextMenu {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.spContextMenu {
   box-sizing: border-box;
   font-family: styles.$main-font;
   font-weight: 400;

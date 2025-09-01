@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spInputFiles {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.spInputFiles {
   $block: &;
 
   display: inline-flex;

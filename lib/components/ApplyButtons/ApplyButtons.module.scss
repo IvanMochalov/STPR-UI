@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spApplyButtons {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.spApplyButtons {
   $block: &;
 
   display: flex;

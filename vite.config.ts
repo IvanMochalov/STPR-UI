@@ -15,8 +15,6 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "lib/test-stpr-ui-kit.ts"),
       name: "test-stpr-ui-kit",
-      fileName: (format) =>
-        format === "umd" ? "test-stpr-ui-kit.umd.cjs" : "test-stpr-ui-kit.es.js",
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],

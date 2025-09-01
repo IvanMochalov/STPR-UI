@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spForm {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.spForm {
   width: fit-content;
   // Модификаторы блока
   &_fullWidth {

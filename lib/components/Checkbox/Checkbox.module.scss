@@ -1,12 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spCheckbox {
-  &, & * {
-    box-sizing: border-box;
-  }
-}
-
-.spCheckbox {
   $block: &;
 
   position: relative;

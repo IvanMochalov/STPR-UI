@@ -1,4 +1,4 @@
-@use "./fonts" as *;
+@use "./constants" as *;
 @use "./colors" as *;
 
 @mixin respond-to($breakpoint) {
@@ -45,5 +45,25 @@
   @include respond-to(sm) {
     font-size: 18px;
     padding: 16.5px 50px 16.5px 16px;
+  }
+}
+
+// Стили scrollbar для использования в компонентах
+@mixin custom-scrollbar() {
+  &::-webkit-scrollbar {
+    width: $scrollbar-width;
+    height: $scrollbar-width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $scrollbar-track-background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $scrollbar-thumb-background;
+
+    &:hover {
+      background: $scrollbar-thumb-background-hover;
+    }
   }
 }
