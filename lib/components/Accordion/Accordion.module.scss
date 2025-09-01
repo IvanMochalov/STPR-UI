@@ -4,6 +4,7 @@
   // Общие стили блока
   $block: &;
 
+  box-sizing: border-box;
   overflow: hidden;
   border: 1px solid styles.$color-secondary-blue-light-dark;
   background-color: styles.$color-white;
@@ -88,6 +89,7 @@
     &_hiddenExpand {
       & span {
         cursor: default;
+        pointer-events: none;
       }
     }
   }
@@ -134,13 +136,6 @@
 
     &_open {
       grid-template-rows: 1fr;
-
-      & #{$block}__content {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
-        visibility 0s linear; // Без задержки при открытии
-      }
     }
   }
 
@@ -150,5 +145,12 @@
     visibility: hidden;
     transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
     visibility 0s linear 0.35s; // Ждем завершения opacity
+
+    &_open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.2s ease 0.15s, // Задержка 0.15s
+      visibility 0s linear; // Без задержки при открытии
+    }
   }
 }

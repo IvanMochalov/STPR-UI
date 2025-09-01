@@ -22,15 +22,12 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     classNameIcon: propsClassNameIcon,
     classNameChildrenWrapper: propsClassNameChildrenWrapper,
   } = props;
+
   const [open, setOpen] = useState(defaultOpen);
 
   const onClick = () => {
-    if (isHiddenExpandIcon) {
-      return;
-    }
-
+    if (isHiddenExpandIcon) return;
     setOpen(!open);
-
     onOpen?.(!open);
   };
 
@@ -67,21 +64,21 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     ...(propsClassNameChildrenWrapper && { [propsClassNameChildrenWrapper]: true }),
   });
 
+  const classNameChildrenContent = cx({
+    [styles.spAccordion__content]: true,
+    [styles.spAccordion__content_open]: open,
+  });
+
   return (
     <div className={classNameRoot}>
       <div className={classNameHeader}>
         <div className={classNameTitle}>
           <span onClick={onClick}>{name}</span>
         </div>
-        <Icon
-          // rotate={open ? 180 : undefined}
-          onClick={onClick}
-          className={classNameIcon}
-          name={EIconName.ChevronDown}
-        />
+        <Icon onClick={onClick} className={classNameIcon} name={EIconName.ChevronDown} />
       </div>
       <div className={classNameChildrenWrapper}>
-        <div className={styles.spAccordion__content}>{children}</div>
+        <div className={classNameChildrenContent}>{children}</div>
       </div>
     </div>
   );
