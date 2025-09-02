@@ -76,6 +76,7 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
       position={dropdownPosition}
       noPadding={true}
       isToggleClick={true}
+      isStopPropagationClickOnTrigger={true}
       trigger={
         <div className={classNameRoot}>
           <div className={classNameLabelText}>{labelText}</div>

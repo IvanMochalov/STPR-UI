@@ -30,4 +30,5 @@ export interface TooltipProps
   classNameTriggerTooltip?: string;
   classNameBaseTooltipRoot?: string;
   classNameBaseTooltipContentRoot?: string;
+  isStopPropagationClickOnTrigger?: boolean;
 }

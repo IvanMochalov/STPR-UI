@@ -12,6 +12,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
     hover = true,
     isToggleClick = false,
+    isStopPropagationClickOnTrigger = false,
     isVisibleTooltip = true,
     trigger,
     triggerAction,
@@ -41,7 +42,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   );
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
+    isStopPropagationClickOnTrigger && event.stopPropagation();
 
     if (hover) return;
 
