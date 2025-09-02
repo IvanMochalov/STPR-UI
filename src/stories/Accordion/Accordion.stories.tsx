@@ -154,6 +154,8 @@ export const AccordionWithForm: Story = {
 export const NestedAccordion: Story = {
   args: {
     name: "Аккордеон с вложенным аккордеон",
+    noBorder: true,
+    isHiddenExpandIcon: true,
   },
   render: (args) => {
     const [formData, setFormData] = useState({

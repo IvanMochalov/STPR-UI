@@ -69,7 +69,9 @@
 
   // Элементы
   &__header {
-    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 
     @include styles.transition-all-ease-in-out(300ms);
   }
@@ -77,6 +79,7 @@
   &__name {
     width: calc(100% - 20px);
     font-family: styles.$title-font;
+    line-height: 120%;
     font-weight: 500;
     font-size: 24px;
     display: inline-block;
@@ -95,12 +98,8 @@
   }
 
   &__icon {
-    z-index: 10;
     cursor: pointer;
     color: styles.$color-accent-blue;
-    position: absolute;
-    right: 0;
-    top: 0;
     width: 16px;
     height: 24px;
 
