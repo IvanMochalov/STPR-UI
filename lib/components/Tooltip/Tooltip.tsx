@@ -40,7 +40,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     isOpen,
   );
 
-  const handleClick = (_event: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+
     if (hover) return;
 
     if (isOpen) {
