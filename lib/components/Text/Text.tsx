@@ -35,7 +35,7 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
   });
 
   return (
-    <div
+    <span
       style={{ ...style, color }}
       title={title}
       onClick={onClick}
@@ -43,7 +43,7 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
       ref={ref}
     >
       {children}
-    </div>
+    </span>
   );
 });
 
