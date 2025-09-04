@@ -3,6 +3,7 @@ export interface TableProps {
   data: TTableRowsData;
   columns: TTableColumnsData;
   classNameRoot?: string;
+  isDesktop?: boolean;
 }
 
 export type TTableRowsData = TTableRowsDataItem[];

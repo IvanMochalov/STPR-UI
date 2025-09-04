@@ -1,9 +1,8 @@
 import cx from "clsx";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import { isNullOrWhitespace } from "../../../src/utils";
 import { EIconName, Icon } from "../Icons";
-import { MediaContext } from "../MediaContextProvider";
 import styles from "./Table.module.scss";
 import {
   HandleCopyToClipboardProps,
@@ -17,6 +16,7 @@ export const Table: React.FC<TableProps> = (props) => {
     columns,
     data,
     isNotTableOnNotDesktop = false,
+    isDesktop = true,
     classNameRoot: propsClassNameRoot,
   } = props;
 
@@ -49,10 +49,6 @@ export const Table: React.FC<TableProps> = (props) => {
   const classNameEmptyPage = cx({
     [styles.spTable__emptyPage]: true,
   });
-
-  const {
-    device: { isDesktop },
-  } = useContext(MediaContext);
 
   const [copiedCell, setCopiedCell] = useState<{ rowIndex: number; colIndex: number } | null>(null);
 
