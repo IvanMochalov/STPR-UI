@@ -138,6 +138,16 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       top = triggerRect.bottom + window.scrollY;
     }
 
+    // Проверка на выход за границы viewport по горизонтали
+    if (
+      left + tooltipRect.width > window.innerWidth + window.scrollX &&
+      defaultTooltipPosition.includes("left")
+    ) {
+      left = triggerRect.left + window.scrollX - tooltipRect.width + triggerRect.width;
+    } else if (left < window.scrollX && defaultTooltipPosition.includes("right")) {
+      left = triggerRect.right + window.scrollX - triggerRect.width;
+    }
+
     setTooltipStyle((prev) => ({
       ...prev,
       top: `${top}px`,
