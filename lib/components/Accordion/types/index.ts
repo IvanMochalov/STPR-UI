@@ -12,4 +12,5 @@ export interface AccordionProps extends React.PropsWithChildren {
   classNameTitle?: string;
   classNameIcon?: string;
   classNameChildrenWrapper?: string;
+  level?: 1 | 2;
 }

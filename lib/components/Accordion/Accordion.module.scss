@@ -25,18 +25,6 @@
     padding: 0
   }
 
-  &_level2 {
-    & #{$block}__name {
-      font-family: styles.$title-font;
-      font-weight: 500;
-      font-size: 16px;
-
-      @include styles.respond-to(sm) {
-        font-size: 24px;
-      }
-    }
-  }
-
   &_open {
     overflow: visible;
 
@@ -81,7 +69,6 @@
     font-family: styles.$title-font;
     line-height: 120%;
     font-weight: 500;
-    font-size: 24px;
     display: inline-block;
     color: styles.$color-black;
 
@@ -93,6 +80,18 @@
       & span {
         cursor: default;
         pointer-events: none;
+      }
+    }
+
+    &--level-1 {
+      font-size: 24px;
+    }
+
+    &--level-2 {
+      font-size: 16px;
+
+      @include styles.respond-to(sm) {
+        font-size: 24px;
       }
     }
   }

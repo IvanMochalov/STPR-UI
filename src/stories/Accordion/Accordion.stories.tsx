@@ -210,7 +210,7 @@ export const NestedAccordion: Story = {
             value={formData.okrug}
             onChange={handleSelectChange}
           />
-          <Accordion name={"Основное задание"}>
+          <Accordion name={"Основное задание"} level={2}>
             <div style={{ textAlign: "justify" }}>
               Разработать комплексную стратегию устойчивого развития, направленную на баланс между
               ростом населения и ограниченными ресурсами Земли. Внедрить глобальные программы по

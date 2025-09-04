@@ -16,6 +16,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     onOpen,
     noBorder = false,
     noPadding = false,
+    level = 1,
     classNameRoot: propsClassNameRoot,
     classNameHeader: propsClassNameHeader,
     classNameTitle: propsClassNameTitle,
@@ -47,6 +48,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
 
   const classNameTitle = cx({
     [styles.spAccordion__name]: true,
+    [styles[`spAccordion__name--level-${level}`]]: level,
     [styles.spAccordion__name_hiddenExpand]: isHiddenExpandIcon,
     ...(propsClassNameTitle && { [propsClassNameTitle]: true }),
   });
