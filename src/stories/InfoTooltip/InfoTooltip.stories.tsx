@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
+import styles from "./InfoTooltip.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
   component: InfoTooltip,
@@ -72,9 +73,23 @@ type Story = StoryObj<typeof InfoTooltip>;
 export const Default: Story = {
   name: "Default info tooltip",
   args: {
+    classNameBaseTooltipRoot: styles.infoTooltip__tooltip,
     text:
       "Если в проектируемом доме нужно заложить\n" +
       "квартиры-студии, внесите их параметры в\n" +
-      "загружаемый файл по шаблону",
+      "загружаемый файл по шаблону,\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n" +
+      "пожалуйста\n",
   },
 };
