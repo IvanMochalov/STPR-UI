@@ -30,6 +30,7 @@ export interface SelectProps {
   classNameRoot?: string;
   classNameError?: string;
   classNameLabel?: string;
+  classNameBaseTooltipRoot?: string;
 }
 
 export type TOnChangeSelect = (

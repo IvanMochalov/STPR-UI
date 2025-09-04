@@ -26,6 +26,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     classNameRoot: propsClassNameRoot,
     classNameError: propsClassNameError,
     classNameLabel: propsClassNameLabel,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     ...otherProps
   } = props;
 
@@ -99,6 +100,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
           required={required}
           label={label}
           infoTooltipText={infoTooltipText}
+          classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
         />
       )}
       <div className={classNameContainer} onMouseEnter={onMouseEnter}>

@@ -23,6 +23,7 @@ export interface InputProps {
   classNameError?: string;
   classNameLabel?: string;
   classNameRoot?: string;
+  classNameBaseTooltipRoot?: string;
   ref?: ForwardedRef<HTMLInputElement>;
 }
 

@@ -29,6 +29,7 @@ export const Select: React.FC<SelectProps> = (props) => {
     classNameRoot: propsClassNameRoot,
     classNameError: propsClassNameError,
     classNameLabel: propsClassNameLabel,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -125,6 +126,7 @@ export const Select: React.FC<SelectProps> = (props) => {
           required={required}
           label={label}
           infoTooltipText={infoTooltipText}
+          classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
         />
       )}
       <div className={classNameContainer} onMouseEnter={onMouseEnter}>

@@ -6,4 +6,5 @@ export interface LabelProps {
   infoTooltipText?: string;
   tooltipPosition?: ETooltipPosition;
   classNameRoot?: string;
+  classNameBaseTooltipRoot?: string;
 }

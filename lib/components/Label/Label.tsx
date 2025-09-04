@@ -12,6 +12,7 @@ export const Label: React.FC<LabelProps> = (props) => {
     infoTooltipText,
     tooltipPosition,
     classNameRoot: propsClassNameRoot,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
   } = props;
 
   const classNameRoot = cx({
@@ -37,7 +38,11 @@ export const Label: React.FC<LabelProps> = (props) => {
       {required && <div className={classNameLabelRequired}>*</div>}
       {infoTooltipText && (
         <div className={classNameLabelTooltip}>
-          <InfoTooltip position={tooltipPosition} text={infoTooltipText} />
+          <InfoTooltip
+            position={tooltipPosition}
+            text={infoTooltipText}
+            classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
+          />
         </div>
       )}
     </div>
