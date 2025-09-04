@@ -1,6 +1,7 @@
 import cx from "clsx";
 import React, { useContext, useState } from "react";
 
+import { isNullOrWhitespace } from "../../../src/utils";
 import { EIconName, Icon } from "../Icons";
 import { MediaContext } from "../MediaContextProvider";
 import styles from "./Table.module.scss";
@@ -10,7 +11,6 @@ import {
   TTableColumnsDataItem,
   TTableRowsDataItem,
 } from "./types";
-import { isNullOrWhitespace } from "../../../src/utils";
 
 export const Table: React.FC<TableProps> = (props) => {
   const {
@@ -22,10 +22,14 @@ export const Table: React.FC<TableProps> = (props) => {
 
   const _columns = columns
     .map((col) => {
-      return {
-        ...col,
-        isVisible: data.some((dataItem) => Boolean(dataItem[col.key])),
-      };
+      if (data) {
+        return {
+          ...col,
+          isVisible: data.some((dataItem) => Boolean(dataItem[col.key])),
+        };
+      }
+
+      return col;
     })
     .filter((col) => col.isVisible);
 
