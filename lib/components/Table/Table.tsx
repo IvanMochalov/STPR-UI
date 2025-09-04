@@ -220,7 +220,11 @@ export const Table: React.FC<TableProps> = (props) => {
                           [styles.spStringsGroup__groupItemContent]: true,
                         })}
                       >
-                        <span>{row[col.key]}</span>
+                        <span>
+                          {col.isColorContentsCurlyBrackets
+                            ? getColorContent({ row, col })
+                            : row[col.key]}
+                        </span>
                         {col.isBeCopiedValue && (
                           <Icon
                             className={cx({

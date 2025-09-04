@@ -25,7 +25,8 @@ const meta: Meta<typeof Table> = {
     ),
   ],
   args: {
-    isNotTableOnNotDesktop: false,
+    isDesktop: false,
+    isNotTableOnNotDesktop: true,
     data: defaultTableData,
   },
 };
