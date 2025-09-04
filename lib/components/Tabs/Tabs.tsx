@@ -11,6 +11,7 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     panes,
     isSeparated = false,
     classNameRoot: propsClassNameRoot,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     variant = "contained",
     size = "md",
   } = props;
@@ -55,6 +56,7 @@ export const Tabs: React.FC<TabsProps> = (props) => {
               <InfoTooltip
                 classNameTriggerTooltip={classNameTriggerTooltip}
                 text={infoTooltipText}
+                classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
               />
             )}
           </div>

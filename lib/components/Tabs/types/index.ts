@@ -16,4 +16,5 @@ export interface TabsProps {
   isSeparated?: boolean;
   variant?: TTabsVariant;
   classNameRoot?: string;
+  classNameBaseTooltipRoot?: string;
 }
