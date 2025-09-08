@@ -1,7 +1,7 @@
 import cx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
-import { Text } from "test-stpr-ui-kit";
 
+import { Text } from "../Text";
 import { useAnimatedValue } from "./hooks";
 import styles from "./ProgressWrapper.module.scss";
 import { ProgressWrapperProps } from "./types";
