@@ -12,6 +12,7 @@ import PlusIcon from "../../../src/images/plus.svg?react";
 import PlusCircleIcon from "../../../src/images/plus-circle.svg?react";
 import PlusSquareIcon from "../../../src/images/plus-square.svg?react";
 import SelectChevronDownIcon from "../../../src/images/select-chevron-down.svg?react";
+import TerminalSquareIcon from "../../../src/images/terminal-square.svg?react";
 import TrashIcon from "../../../src/images/trash.svg?react";
 import UploadIcon from "../../../src/images/upload.svg?react";
 import WarningColorIcon from "../../../src/images/warning-color.svg?react";
@@ -42,6 +43,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     dots: DotsIcon,
     historyClock: HistoryClockIcon,
     plusCircle: PlusCircleIcon,
+    terminalSquare: TerminalSquareIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -63,6 +65,7 @@ export {
   PlusIcon,
   PlusSquareIcon,
   SelectChevronDownIcon,
+  TerminalSquareIcon,
   TrashIcon,
   UploadIcon,
   WarningColorIcon,
