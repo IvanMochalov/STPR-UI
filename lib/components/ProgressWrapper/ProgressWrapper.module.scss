@@ -1,0 +1,70 @@
+@use "src/styles/global" as styles;
+
+.progressWrapper {
+  $block: &;
+  position: relative;
+
+  &_loading {
+    opacity: 0.7;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &__childrenWrapper {
+    $children: &;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s ease;
+
+    &_loading {
+      &#{$children}--animated-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      &#{$children}--animated-backgroundProgress {
+        background: linear-gradient(
+                        to right,
+                        styles.$color-very-light-blue-bg-3 var(--progress, 0%),
+                        styles.$color-white var(--progress, 0%)
+        );
+      }
+    }
+  }
+
+  &__progressBadge {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    z-index: 2;
+    font-weight: 500;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: styles.$color-gray-1;
+    transition: all 0.5s ease;
+
+    &_loading {
+      color: styles.$color-accent-blue;
+    }
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+      top: 16px;
+      right: 24px;
+    }
+  }
+}
+
+/* Анимация пульсации для элементов в процессе загрузки */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

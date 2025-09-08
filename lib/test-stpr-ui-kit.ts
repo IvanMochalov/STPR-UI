@@ -20,6 +20,8 @@ import { Layer } from "./components/Layer";
 import { MediaContext, MediaContextProvider } from "./components/MediaContextProvider";
 import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
+import type { ProgressWrapperProps } from "./components/ProgressWrapper";
+import { ProgressWrapper } from "./components/ProgressWrapper";
 import type { TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
@@ -55,6 +57,8 @@ export {
   MediaContextProvider,
   Modal,
   Portal,
+  ProgressWrapper,
+  ProgressWrapperProps,
   Select,
   Skeleton,
   Spinner,

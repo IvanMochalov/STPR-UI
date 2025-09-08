@@ -1,0 +1,8 @@
+@use "src/styles/global" as styles;
+
+.customProgressContent {
+  width: 250px;
+  height: 50px;
+  border: 1px solid styles.$color-secondary-blue-light-dark;
+  padding: 16px;
+}
