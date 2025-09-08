@@ -8,15 +8,15 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/test-stpr-ui-kit.umd.js",
-  "module": "./dist/test-stpr-ui-kit.es.js",
+  "main": "./dist/test-stpr-ui-kit.umd.сjs",
+  "module": "./dist/test-stpr-ui-kit.js",
   "types": "./dist/test-stpr-ui-kit.es.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/test-stpr-ui-kit.es.d.ts",
+      "require": "./dist/test-stpr-ui-kit.umd.cjs",
       "import": "./dist/test-stpr-ui-kit.js",
-      "require": "./dist/test-stpr-ui-kit.umd.cjs"
+      "types": "./dist/test-stpr-ui-kit.es.d.ts"
     }
   },
   "peerDependencies": {
