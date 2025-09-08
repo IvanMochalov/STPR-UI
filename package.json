@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/test-stpr-ui-kit.umd.сjs",
+  "main": "./dist/test-stpr-ui-kit.umd.cjs",
   "module": "./dist/test-stpr-ui-kit.js",
   "types": "./dist/test-stpr-ui-kit.es.d.ts",
   "exports": {
