@@ -33,7 +33,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
 
   return (
     <div className={classNameRoot}>
-      {cancelBtnContent && (
+      {cancelBtnContent && onClose && (
         <Button
           type={"button"}
           variant={"secondary"}

@@ -15,6 +15,6 @@ export interface ApplyButtonsProps {
   formId?: string;
   disabled?: boolean;
   loading?: boolean;
-  onClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   submit?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
