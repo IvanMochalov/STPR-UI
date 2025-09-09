@@ -11,4 +11,5 @@ export interface ConfirmProps extends ApplyButtonsProps {
   loading?: boolean;
   isHiddenModal?: boolean;
   isVisibleCloseButton?: boolean;
+  size?: "md" | "lg";
 }

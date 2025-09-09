@@ -23,6 +23,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     loading,
     isVisibleCloseButton,
     isHiddenModal,
+    size,
   } = props;
 
   const isVisibleFooter = cancelBtnContent || submitBtnContent;
@@ -36,6 +37,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       subHeader={subtitle}
       isVisibleCloseButton={isVisibleCloseButton}
       isHiddenModal={isHiddenModal}
+      size={size}
       footer={
         isVisibleFooter ? (
           <ApplyButtons

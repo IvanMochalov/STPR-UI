@@ -40,6 +40,7 @@ export const Default: Story = {
     subtitle: "Do you really want to confirm this meaningless action?",
     cancelBtnContent: "Cancel",
     submitBtnContent: "Confirm",
+    size: "lg",
   },
   render: (args) => {
     const { isOpen, onOpenModal, onCloseModal } = useModal();
