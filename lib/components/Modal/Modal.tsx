@@ -99,7 +99,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
           )}
           {children && <div className={classNameContent}>{children}</div>}
           {footer && <div className={classNameModalFooter}>{footer}</div>}
-          {isVisibleCloseButton && (
+          {isVisibleCloseButton && onClose && (
             <Button
               classNameRoot={classNameCloseButton}
               classNameIconContainerRoot={classNameButtonIconContainer}

@@ -9,4 +9,6 @@ export interface ConfirmProps extends ApplyButtonsProps {
   subtitle?: string | React.ReactNode;
   modalAlign?: TModalAlign;
   loading?: boolean;
+  isHiddenModal?: boolean;
+  isVisibleCloseButton?: boolean;
 }
