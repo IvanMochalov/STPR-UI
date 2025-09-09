@@ -52,6 +52,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameModalSubHeader = cx({
     [styles.modalWrapper__subHeader]: true,
+    [styles.modalWrapper__subHeader_onlySubHeader]: !header,
   });
 
   const classNameModalFooter = cx({
