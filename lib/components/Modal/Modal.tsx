@@ -17,7 +17,8 @@ export const Modal: React.FC<ModalProps> = (props) => {
     classNameLayerRoot,
     classNameRoot: propsClassNameRoot,
     style,
-    align = "top",
+    modalAlign = "top",
+    textAlign = "left",
     onClose,
     header,
     subHeader,
@@ -27,7 +28,8 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameModalWrapper = cx({
     [styles.modalWrapper]: true,
-    [styles[`modalWrapper_align-${align}`]]: align,
+    [styles[`modalWrapper--modalAlign-${modalAlign}`]]: modalAlign,
+    [styles[`modalWrapper--textAlign-${textAlign}`]]: textAlign,
   });
 
   const classNameRoot = cx({

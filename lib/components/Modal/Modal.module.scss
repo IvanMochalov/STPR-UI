@@ -7,13 +7,27 @@
   height: fit-content;
   justify-content: center;
 
-  &_align {
+  &--modalAlign {
     &-top {
       align-items: flex-start;
     }
 
     &-center {
       align-items: center;
+    }
+  }
+
+  &--textAlign {
+    &-left {
+      text-align: left;
+    }
+
+    &-center {
+      text-align: center;
+    }
+
+    &-right {
+      text-align: right;
     }
   }
 
@@ -32,19 +46,22 @@
       gap: 48px;
     }
 
-    &--size-lg {
-      @include styles.respond-to(sm) {
-        padding: 64px;
-        max-width: 920px;
+    &--size {
+      &-lg {
+        @include styles.respond-to(sm) {
+          padding: 64px;
+          max-width: 920px;
+        }
+      }
+
+      &-md {
+        @include styles.respond-to(sm) {
+          padding: 32px;
+          max-width: 600px;
+        }
       }
     }
 
-    &--size-md {
-      @include styles.respond-to(sm) {
-        padding: 32px;
-        max-width: 600px;
-      }
-    }
 
   }
 

@@ -20,6 +20,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     mobile = "column",
     align = "right",
     modalAlign = "top",
+    textAlign = "left",
     loading,
     isVisibleCloseButton,
     isHiddenModal,
@@ -33,7 +34,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       zIndex={zIndex}
       header={title}
       onClose={onClose}
-      align={modalAlign}
+      modalAlign={modalAlign}
+      textAlign={textAlign}
       subHeader={subtitle}
       isVisibleCloseButton={isVisibleCloseButton}
       isHiddenModal={isHiddenModal}

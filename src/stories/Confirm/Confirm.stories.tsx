@@ -40,6 +40,8 @@ export const Default: Story = {
     subtitle: "Do you really want to confirm this meaningless action?",
     cancelBtnContent: "Cancel",
     submitBtnContent: "Confirm",
+    align: "right",
+    textAlign: "left",
     size: "lg",
   },
   render: (args) => {

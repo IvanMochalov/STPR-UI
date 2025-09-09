@@ -30,6 +30,7 @@ export const Default: Story = {
     header: "Default Modal Name",
     isHiddenModal: false,
     isVisibleCloseButton: true,
+    textAlign: "left",
     size: "lg",
   },
   render: (args) => {
