@@ -22,6 +22,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     header,
     subHeader,
     footer,
+    size = "lg",
   } = props;
 
   const classNameModalWrapper = cx({
@@ -31,6 +32,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.modalWrapper__modal]: true,
+    [styles[`modalWrapper__modal--size-${size}`]]: size,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 

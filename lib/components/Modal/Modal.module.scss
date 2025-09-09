@@ -22,20 +22,30 @@
     font-weight: 400;
     position: relative;
     background-color: styles.$color-white;
-    width: 100%;
-    min-width: 335px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 32px;
+    width: 100%;
+    min-width: 335px;
     @include styles.respond-to(sm) {
       gap: 48px;
     }
 
-    @include styles.respond-to(sm) {
-      padding: 64px;
-      max-width: 920px;
+    &--size-lg {
+      @include styles.respond-to(sm) {
+        padding: 64px;
+        max-width: 920px;
+      }
     }
+
+    &--size-md {
+      @include styles.respond-to(sm) {
+        padding: 32px;
+        max-width: 600px;
+      }
+    }
+
   }
 
   &__content {

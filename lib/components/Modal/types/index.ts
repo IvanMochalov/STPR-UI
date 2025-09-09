@@ -4,6 +4,7 @@ export type TModalAlign = "center" | "top";
 
 export interface ModalProps extends React.PropsWithChildren {
   zIndex: number;
+  size?: "md" | "lg";
   align?: TModalAlign;
   isHiddenModal?: boolean;
   isVisibleCloseButton?: boolean;
