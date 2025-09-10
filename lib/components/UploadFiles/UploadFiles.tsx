@@ -6,12 +6,13 @@ import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Text } from "../Text";
 import { ETooltipPosition, InfoTooltip } from "../Tooltip";
-import styles from "./InputFiles.module.scss";
-import { InputFilesProps } from "./types";
+import { UploadFilesProps } from "./types";
+import styles from "./UploadFiles.module.scss";
 
-export const InputFiles: React.FC<InputFilesProps> = (props) => {
+export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const {
     placeholder = "Загрузите файл",
+    variant = "input",
     name,
     onDropFiles,
     maxSize,
@@ -28,12 +29,15 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
 
   const fileNames = files.map((file) => file.name);
   const isFileUploaded = fileNames?.length > 0;
+  const isInputVariant = variant === "input";
 
   const classNameRoot = cx({
-    [styles.spInputFiles]: true,
-    [styles.spInputFiles_error]: Boolean(error),
-    [styles.spInputFiles_disabled]: disabled,
-    [styles.spInputFiles_fileUploaded]: isFileUploaded,
+    [styles.spUploadFiles]: true,
+    [styles[`spUploadFiles--variant-${variant}`]]: variant,
+    [styles.spUploadFiles_error]: Boolean(error),
+    [styles.spUploadFiles_disabled]: disabled,
+    [styles.spUploadFiles_multiple]: multiple,
+    [styles.spUploadFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
@@ -54,12 +58,12 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
 
   const renderFileNames = () => {
     return multiple ? (
-      <ul className={styles.spInputFiles__fileNamesList}>
+      <ul className={styles.spUploadFiles__fileNamesList}>
         {fileNames.map((fileName, index) => {
           return (
             <li
               key={index}
-              className={styles.spInputFiles__fileNamesListItem}
+              className={styles.spUploadFiles__fileNamesListItem}
               onClick={(e) => {
                 e.stopPropagation();
                 deleteFile(fileName);
@@ -68,9 +72,11 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
               <EllipsisTextWithTooltip
                 type={"p2"}
                 text={fileName}
-                classNameTriggerTooltipRoot={styles.spInputFiles__fileNamesListItem__triggerTooltip}
+                classNameTriggerTooltipRoot={
+                  styles.spUploadFiles__fileNamesListItem__triggerTooltip
+                }
               />
-              <div className={styles.spInputFiles__fileNamesListItemDelete}>
+              <div className={styles.spUploadFiles__fileNamesListItemDelete}>
                 <Icon name={EIconName.Trash} />
               </div>
             </li>
@@ -78,25 +84,32 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
         })}
       </ul>
     ) : (
-      <Text isEllipsis={true}>{fileNames[0]}</Text>
+      <Text isEllipsis={true} classNameRoot={styles.spUploadFiles__fileName}>
+        {fileNames[0]}
+      </Text>
     );
   };
 
   const getSingle = () => {
     return (
       <>
-        {isFileUploaded ? renderFileNames() : <Text>{placeholder}</Text>}
         {isFileUploaded ? (
-          <div className={styles.spInputFiles__delete} onClick={onAllDelete}>
+          renderFileNames()
+        ) : (
+          <Text classNameRoot={styles.spUploadFiles__placeholder}>{placeholder}</Text>
+        )}
+        {isFileUploaded && (isInputVariant || !multiple) ? (
+          <div className={styles.spUploadFiles__delete} onClick={onAllDelete}>
             <Icon name={EIconName.Close} />
           </div>
         ) : (
+          isInputVariant &&
           infoTooltipText && (
             <InfoTooltip
-              classNameTooltip={styles.spInputFiles__tooltipWrapper}
+              classNameTooltip={styles.spUploadFiles__tooltipWrapper}
               position={tooltipPosition}
               text={infoTooltipText}
-              classNameTriggerTooltip={styles.spInputFiles__tooltip}
+              classNameTriggerTooltip={styles.spUploadFiles__tooltip}
             />
           )
         )}
@@ -116,11 +129,11 @@ export const InputFiles: React.FC<InputFilesProps> = (props) => {
       disabled={disabled || isFileUploaded}
     >
       <div className={classNameRoot}>
-        <div className={styles.spInputFiles__control}>
-          <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />
+        <div className={styles.spUploadFiles__control}>
+          {isInputVariant && <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />}
           {getSingle()}
         </div>
-        {error && <div className={styles.spInputFiles__error}>{error}</div>}
+        {error && <div className={styles.spUploadFiles__error}>{error}</div>}
       </div>
     </DefaultDropzone>
   );

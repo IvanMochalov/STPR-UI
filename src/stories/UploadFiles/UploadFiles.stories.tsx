@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import { InputFiles } from "../../../lib/components/InputFiles";
+import { UploadFiles } from "../../../lib/components/UploadFiles";
 
-const meta: Meta<typeof InputFiles> = {
-  component: InputFiles,
+const meta: Meta<typeof UploadFiles> = {
+  component: UploadFiles,
   tags: ["autodocs"],
   argTypes: {
     disabled: {
@@ -34,7 +34,7 @@ const meta: Meta<typeof InputFiles> = {
 
 export default meta;
 
-type Story = StoryObj<typeof InputFiles>;
+type Story = StoryObj<typeof UploadFiles>;
 
 export const Default: Story = {
   name: "Default Input Files",
@@ -49,9 +49,10 @@ export const Default: Story = {
         [name]: acceptedFiles,
       }));
     };
-    return <InputFiles {...args} onDropFiles={uploadFiles} name={"file"} files={formData.file} />;
+    return <UploadFiles {...args} onDropFiles={uploadFiles} name={"file"} files={formData.file} />;
   },
   args: {
+    variant: "input",
     placeholder: "Загрузите файл",
     multiple: false,
     accept: { "application/pdf": [".pdf"] },

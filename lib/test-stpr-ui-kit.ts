@@ -14,7 +14,6 @@ import { Form } from "./components/Form";
 import { EIconName, Icon } from "./components/Icons";
 import type { TOnChangeInput } from "./components/Input";
 import { Input } from "./components/Input";
-import { InputFiles } from "./components/InputFiles";
 import { Label } from "./components/Label";
 import { Layer } from "./components/Layer";
 import { MediaContext, MediaContextProvider } from "./components/MediaContextProvider";
@@ -32,6 +31,7 @@ import { Tabs } from "./components/Tabs";
 import { Text } from "./components/Text";
 import { TextWithLabel } from "./components/TextWithLabel";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "./components/Tooltip";
+import { UploadFiles } from "./components/UploadFiles";
 
 export {
   Accordion,
@@ -50,7 +50,6 @@ export {
   Icon,
   InfoTooltip,
   Input,
-  InputFiles,
   Label,
   Layer,
   MediaContext,
@@ -73,5 +72,6 @@ export {
   Tooltip,
   TPaneItem,
   TSelectOption,
+  UploadFiles,
   useModal,
 };
