@@ -41,7 +41,7 @@ export const DefaultDropzone: React.FC<DefaultDropzoneProps> = (props) => {
   return (
     <Dropzone multiple={multiple} onDrop={onDrop} maxSize={maxSize} accept={accept}>
       {({ getRootProps, getInputProps }) => (
-        <div {...getRootProps({})}>
+        <div {...getRootProps({})} style={{ height: "100%" }}>
           <input {...getInputProps({})} disabled={disabled} name={name} />
           {children}
         </div>
