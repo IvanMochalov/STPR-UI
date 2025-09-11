@@ -8,4 +8,5 @@ export interface UploadFilesProps extends Omit<DefaultDropzoneProps, "children">
   infoTooltipText?: string;
   error?: string;
   placeholder?: string;
+  loading?: boolean;
 }

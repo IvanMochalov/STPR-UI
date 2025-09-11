@@ -10,6 +10,7 @@
   width: var(--spinner-size, 24px);
   height: var(--spinner-size, 24px);
   position: relative;
+  flex-shrink: 0;
 
   &__inner {
     box-sizing: border-box;

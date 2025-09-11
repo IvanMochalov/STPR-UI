@@ -4,6 +4,7 @@ import React from "react";
 import { DefaultDropzone } from "../DefaultDropzone";
 import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
+import { Spinner } from "../Spinner";
 import { Text } from "../Text";
 import { ETooltipPosition, InfoTooltip } from "../Tooltip";
 import { UploadFilesProps } from "./types";
@@ -24,6 +25,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     infoTooltipText,
     tooltipPosition = ETooltipPosition.TopRight,
     classNameRoot: propsClassNameRoot,
+    loading,
     error,
   } = props;
 
@@ -40,8 +42,23 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     [styles.spUploadFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
+  const classNameControlRoot = cx({
+    [styles.spUploadFiles__control]: true,
+    [styles.spUploadFiles__control_loading]: loading,
+  });
+  const classNameFileListRoot = cx({
+    [styles.spUploadFiles__fileNamesList]: true,
+    [styles.spUploadFiles__fileNamesList_loading]: loading,
+  });
+  const classNameAllFilesDeleteRoot = cx({
+    [styles.spUploadFiles__delete]: true,
+    [styles.spUploadFiles__delete_loading]: loading,
+  });
 
   const deleteFile = (fileName: string) => {
+    if (loading) {
+      return;
+    }
     const _files = [...files];
 
     const index = _files.findIndex((file) => file.name === fileName);
@@ -58,7 +75,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
 
   const renderFileNames = () => {
     return multiple ? (
-      <ul className={styles.spUploadFiles__fileNamesList}>
+      <ul className={classNameFileListRoot}>
         {fileNames.map((fileName, index) => {
           return (
             <li
@@ -98,8 +115,8 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
         ) : (
           <Text classNameRoot={styles.spUploadFiles__placeholder}>{placeholder}</Text>
         )}
-        {isFileUploaded && (isInputVariant || !multiple) ? (
-          <div className={styles.spUploadFiles__delete} onClick={onAllDelete}>
+        {isFileUploaded ? (
+          <div className={classNameAllFilesDeleteRoot} onClick={onAllDelete}>
             <Icon name={EIconName.Close} />
           </div>
         ) : (
@@ -129,8 +146,13 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
       disabled={disabled || isFileUploaded}
     >
       <div className={classNameRoot}>
-        <div className={styles.spUploadFiles__control}>
-          {isInputVariant && <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />}
+        <div className={classNameControlRoot}>
+          {isInputVariant &&
+            (loading ? (
+              <Spinner />
+            ) : (
+              <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />
+            ))}
           {getSingle()}
         </div>
         {error && <div className={styles.spUploadFiles__error}>{error}</div>}

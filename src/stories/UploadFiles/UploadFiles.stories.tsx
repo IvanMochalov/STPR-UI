@@ -57,6 +57,7 @@ export const Default: Story = {
     multiple: false,
     accept: { "application/pdf": [".pdf"] },
     disabled: false,
+    loading: false,
     infoTooltipText: "Подсказка для поля загрузки  модель/-и формата IFC",
     error: undefined,
   },
