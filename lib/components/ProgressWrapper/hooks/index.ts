@@ -11,7 +11,6 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
   const startValueRef = useRef(0);
   const startTimeRef = useRef<number>();
   const targetValueRef = useRef(targetValue);
-  // Изначально % загрузки скрыты
   const [isLoading, setIsLoading] = useState(false);
   const timeoutRef = useRef<number>();
 
@@ -26,15 +25,23 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
       cancelAnimationFrame(animationRef.current);
     }
 
+    // Если targetValue равно doneValue, сразу устанавливаем конечное значение
+    if (targetValue === doneValue) {
+      setCurrentValue(doneValue);
+      startValueRef.current = doneValue;
+      return;
+    }
+
     // Устанавливаем начальные значения для анимации
     startValueRef.current = currentValue;
     startTimeRef.current = performance.now();
 
     const animate = (currentTime: number) => {
+      if (!startTimeRef.current) return;
+
       // Вычисляем прошедшее время
-      const resultDuration = targetValue === doneValue ? DEFAULT_DURATION : duration;
-      const elapsedTime = currentTime - (startTimeRef.current || currentTime);
-      const progress = Math.min(elapsedTime / resultDuration, 1);
+      const elapsedTime = currentTime - startTimeRef.current;
+      const progress = Math.min(elapsedTime / duration, 1);
 
       // Вычисляем текущее значение с easing-функцией
       const easedProgress =
@@ -45,7 +52,7 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
       const newValue =
         startValueRef.current + (targetValueRef.current - startValueRef.current) * easedProgress;
 
-      // Обеспечиваем, чтобы значение не было отрицательным
+      // Обеспечиваем, чтобы значение не было отрицательным и было целым числом
       const clampedValue = Math.max(0, Math.floor(newValue));
       setCurrentValue(clampedValue);
 
@@ -71,7 +78,7 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
     if (currentValue === doneValue) {
       timeoutRef.current = window.setTimeout(() => {
         setIsLoading(false);
-      }, 500); // 500 мс после достижения doneValue
+      }, 500);
     } else {
       // Если значение изменилось с doneValue, отменяем таймер и показываем компонент
       setIsLoading(true);
