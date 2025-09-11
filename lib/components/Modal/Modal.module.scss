@@ -61,8 +61,6 @@
         }
       }
     }
-
-
   }
 
   &__content {
@@ -100,16 +98,35 @@
     right: 20px;
 
     @include styles.respond-to(sm) {
-      top: 37px;
-      right: 37px;
+      &--size {
+        &-lg {
+          top: 37px;
+          right: 37px;
+        }
+
+        &-md {
+          top: 20px;
+          right: 20px;
+        }
+      }
     }
 
     & #{$block}__closeButtonIconContainer {
-      & svg {
-        width: 18px;
-        height: 18px;
+      &--size {
+        &-lg {
+          & svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        &-md {
+          & svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
       }
     }
   }
-
 }

@@ -40,10 +40,12 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameCloseButton = cx({
     [styles.modalWrapper__closeButton]: true,
+    [styles[`modalWrapper__closeButton--size-${size}`]]: size,
   });
 
   const classNameButtonIconContainer = cx({
     [styles.modalWrapper__closeButtonIconContainer]: true,
+    [styles[`modalWrapper__closeButtonIconContainer--size-${size}`]]: size,
   });
 
   const classNameContent = cx({
