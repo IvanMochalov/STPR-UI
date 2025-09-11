@@ -11,6 +11,9 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
   const startValueRef = useRef(0);
   const startTimeRef = useRef<number>();
   const targetValueRef = useRef(targetValue);
+  // Изначально % загрузки скрыты
+  const [isLoading, setIsLoading] = useState(false);
+  const timeoutRef = useRef<number>();
 
   useEffect(() => {
     targetValueRef.current = targetValue;
@@ -63,5 +66,30 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
     };
   }, [targetValue, duration, doneValue]);
 
-  return currentValue;
+  useEffect(() => {
+    // Если значение value достигло или изначально равно doneValue, устанавливаем таймер для скрытия
+    if (currentValue === doneValue) {
+      timeoutRef.current = window.setTimeout(() => {
+        setIsLoading(false);
+      }, 500); // 500 мс после достижения doneValue
+    } else {
+      // Если значение изменилось с doneValue, отменяем таймер и показываем компонент
+      setIsLoading(true);
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    }
+
+    // Очистка таймера при размонтировании компонента
+    return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [currentValue, doneValue]);
+
+  return {
+    animatedValue: currentValue,
+    isLoading,
+  };
 };
