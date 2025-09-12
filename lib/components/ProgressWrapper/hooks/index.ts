@@ -26,7 +26,7 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
     }
 
     // Если targetValue равно doneValue, сразу устанавливаем конечное значение
-    if (targetValue === doneValue) {
+    if (targetValue === doneValue && !isLoading) {
       setCurrentValue(doneValue);
       startValueRef.current = doneValue;
       return;
