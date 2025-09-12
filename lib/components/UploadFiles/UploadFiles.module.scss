@@ -148,6 +148,10 @@
       max-width: 340px;
     }
 
+    &__tooltip {
+      max-width: calc(100% - 24px);
+    }
+
     &__triggerTooltip {
       display: flex;
     }

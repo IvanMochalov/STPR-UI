@@ -53,9 +53,9 @@ export const Default: Story = {
   },
   args: {
     variant: "input",
-    placeholder: "Загрузите файл",
+    placeholder: "Загрузите файл .ifc",
     multiple: false,
-    accept: { "application/pdf": [".pdf"] },
+    accept: { "application/ifc": [".ifc"] },
     disabled: false,
     loading: false,
     infoTooltipText: "Подсказка для поля загрузки  модель/-и формата IFC",

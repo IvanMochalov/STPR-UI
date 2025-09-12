@@ -89,6 +89,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
               <EllipsisTextWithTooltip
                 type={"p2"}
                 text={fileName}
+                classNameTooltipRoot={styles.spUploadFiles__fileNamesListItem__tooltip}
                 classNameTriggerTooltipRoot={
                   styles.spUploadFiles__fileNamesListItem__triggerTooltip
                 }
