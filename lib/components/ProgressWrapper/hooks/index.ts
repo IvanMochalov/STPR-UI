@@ -5,7 +5,6 @@ import { TUseAnimatedValueProps } from "../types";
 
 export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
   const { targetValue, duration = DEFAULT_DURATION, doneValue } = props;
-
   const [currentValue, setCurrentValue] = useState(targetValue);
   const animationRef = useRef<number>();
   const startValueRef = useRef(0);
@@ -71,7 +70,7 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [targetValue, duration, doneValue]);
+  }, [targetValue, duration, doneValue, isLoading]);
 
   useEffect(() => {
     // Если значение value достигло или изначально равно doneValue, устанавливаем таймер для скрытия
@@ -94,6 +93,8 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
       }
     };
   }, [currentValue, doneValue]);
+
+  console.log("currentValue: -->", currentValue);
 
   return {
     animatedValue: currentValue,
