@@ -1,19 +1,12 @@
 import React from "react";
-import { Accept, DropEvent, FileRejection } from "react-dropzone";
+import { DropzoneOptions, DropzoneState } from "react-dropzone";
 
 export interface DefaultDropzoneProps {
-  onDropFiles: <T extends File>(
-    acceptedFiles: T[],
-    name: string,
-    fileRejections?: FileRejection[],
-    event?: DropEvent,
-  ) => void;
-  maxSize?: number;
-  accept?: Accept;
+  getRootProps: DropzoneState["getRootProps"];
+  getInputProps: DropzoneState["getInputProps"];
   disabled?: boolean;
-  multiple?: boolean;
-  maxFiles?: number;
-  files?: File[];
-  children?: React.ReactNode;
   name: string;
+  children?: React.ReactNode;
 }
+
+export type TUseDefaultDropzoneProps = DropzoneOptions;

@@ -1,7 +1,8 @@
 import cx from "clsx";
-import React from "react";
+import React, { useCallback } from "react";
 
 import { DefaultDropzone } from "../DefaultDropzone";
+import { useDefaultDropzone } from "../DefaultDropzone/hooks/useDefaultDropzone.ts";
 import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Spinner } from "../Spinner";
@@ -16,11 +17,9 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     variant = "input",
     name,
     onDropFiles,
-    maxSize,
     accept,
     disabled,
     multiple,
-    maxFiles,
     files = [],
     infoTooltipText,
     tooltipPosition = ETooltipPosition.TopRight,
@@ -28,6 +27,28 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     loading,
     error,
   } = props;
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (!multiple) {
+        onDropFiles(acceptedFiles, name);
+
+        return;
+      }
+
+      const _files = [...files, ...acceptedFiles];
+
+      onDropFiles(_files, name);
+    },
+    [files, multiple, name, onDropFiles],
+  );
+
+  const { getRootProps, getInputProps } = useDefaultDropzone({
+    accept,
+    onDrop,
+    multiple,
+    disabled,
+  });
 
   const fileNames = files.map((file) => file.name);
   const isFileUploaded = fileNames?.length > 0;
@@ -108,7 +129,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     );
   };
 
-  const getSingle = () => {
+  const getUploadFilesContent = () => {
     return (
       <>
         {isFileUploaded ? (
@@ -137,14 +158,10 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
 
   return (
     <DefaultDropzone
-      name={name}
-      files={files}
-      multiple={multiple}
-      maxSize={maxSize}
-      maxFiles={maxFiles}
-      accept={accept}
-      onDropFiles={onDropFiles}
+      getRootProps={getRootProps}
+      getInputProps={getInputProps}
       disabled={disabled || isFileUploaded}
+      name={name}
     >
       <div className={classNameRoot}>
         <div className={classNameControlRoot}>
@@ -154,7 +171,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
             ) : (
               <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />
             ))}
-          {getSingle()}
+          {getUploadFilesContent()}
         </div>
         {error && <div className={styles.spUploadFiles__error}>{error}</div>}
       </div>

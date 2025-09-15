@@ -52,13 +52,13 @@ export const Default: Story = {
     return <UploadFiles {...args} onDropFiles={uploadFiles} name={"file"} files={formData.file} />;
   },
   args: {
-    variant: "input",
     placeholder: "Загрузите файл .ifc",
-    multiple: false,
+    variant: "input",
     accept: { "application/ifc": [".ifc"] },
     disabled: false,
-    loading: false,
+    multiple: false,
     infoTooltipText: "Подсказка для поля загрузки  модель/-и формата IFC",
-    error: undefined,
+    loading: false,
+    error: "",
   },
 };

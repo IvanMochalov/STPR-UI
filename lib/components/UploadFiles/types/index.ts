@@ -1,12 +1,24 @@
-import { DefaultDropzoneProps } from "../../DefaultDropzone";
+import { Accept, DropEvent, FileRejection } from "react-dropzone";
+
 import { ETooltipPosition } from "../../Tooltip";
 
-export interface UploadFilesProps extends Omit<DefaultDropzoneProps, "children"> {
-  classNameRoot?: string;
-  variant?: "input" | "dropzone";
-  tooltipPosition?: ETooltipPosition;
-  infoTooltipText?: string;
-  error?: string;
+export interface UploadFilesProps {
   placeholder?: string;
+  variant?: "input" | "dropzone";
+  name: string;
+  onDropFiles: <T extends File>(
+    acceptedFiles: T[],
+    name: string,
+    fileRejections?: FileRejection[],
+    event?: DropEvent,
+  ) => void;
+  accept?: Accept;
+  disabled?: boolean;
+  multiple?: boolean;
+  files?: File[];
+  infoTooltipText?: string;
+  tooltipPosition?: ETooltipPosition;
+  classNameRoot?: string;
   loading?: boolean;
+  error?: string;
 }
