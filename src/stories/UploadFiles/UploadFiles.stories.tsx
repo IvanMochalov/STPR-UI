@@ -24,7 +24,7 @@ const meta: Meta<typeof UploadFiles> = {
   decorators: [
     (Story) => (
       <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
-        <div style={{ width: "400px" }}>
+        <div style={{ width: "900px" }}>
           <Story />
         </div>
       </div>
@@ -52,11 +52,11 @@ export const Default: Story = {
     return <UploadFiles {...args} onDropFiles={uploadFiles} name={"file"} files={formData.file} />;
   },
   args: {
-    placeholder: "Загрузите файл .ifc",
-    variant: "input",
+    placeholder: "Загрузите файл .ifc Загрузите файл .ifc Загрузите файл .ifc",
+    variant: "dropzone",
     accept: { "application/ifc": [".ifc"] },
     disabled: false,
-    multiple: false,
+    multiple: true,
     infoTooltipText: "Подсказка для поля загрузки  модель/-и формата IFC",
     loading: false,
     error: "",

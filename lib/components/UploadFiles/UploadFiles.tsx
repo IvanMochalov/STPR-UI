@@ -1,15 +1,15 @@
 import cx from "clsx";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { DefaultDropzone } from "../DefaultDropzone";
 import { useDefaultDropzone } from "../DefaultDropzone/hooks/useDefaultDropzone.ts";
 import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Spinner } from "../Spinner";
-import { Text } from "../Text";
 import { ETooltipPosition, InfoTooltip } from "../Tooltip";
-import { UploadFilesProps } from "./types";
+import { Accept, FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
 import styles from "./UploadFiles.module.scss";
+import { ErrorCode } from "react-dropzone";
 
 export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const {
@@ -29,7 +29,15 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   } = props;
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+    (acceptedFiles: File[], fileRejections: FileRejection[]) => {
+      const _fileRejections = fileRejections.map(({ file, errors }: FileRejection) => {
+        return {
+          fileName: file.name,
+          errors,
+        };
+      });
+      setErrors(_fileRejections);
+
       if (!multiple) {
         onDropFiles(acceptedFiles, name);
 
@@ -43,21 +51,29 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     [files, multiple, name, onDropFiles],
   );
 
-  const { getRootProps, getInputProps } = useDefaultDropzone({
+  const { getRootProps, getInputProps, isDragReject } = useDefaultDropzone({
     accept,
     onDrop,
     multiple,
     disabled,
   });
 
-  const fileNames = files.map((file) => file.name);
-  const isFileUploaded = fileNames?.length > 0;
+  const [errors, setErrors] = useState<Array<TLocalErrorFile>>([]);
+  const [isLocalDragReject, setIsLocalDragReject] = useState<boolean>(isDragReject);
+
+  useEffect(() => {
+    setIsLocalDragReject(isDragReject);
+  }, [isDragReject]);
+
+  const fileNames = [...files.map((file) => ({ fileName: file.name, errors: null })), ...errors];
+  const isFileUploaded = fileNames?.length > 0 || errors?.length > 0;
   const isInputVariant = variant === "input";
 
   const classNameRoot = cx({
     [styles.spUploadFiles]: true,
     [styles[`spUploadFiles--variant-${variant}`]]: variant,
     [styles.spUploadFiles_error]: Boolean(error),
+    [styles.spUploadFiles_error]: isLocalDragReject && !multiple,
     [styles.spUploadFiles_disabled]: disabled,
     [styles.spUploadFiles_multiple]: multiple,
     [styles.spUploadFiles_fileUploaded]: isFileUploaded,
@@ -76,10 +92,23 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     [styles.spUploadFiles__delete_loading]: loading,
   });
 
-  const deleteFile = (fileName: string) => {
+  const deleteFile = (fileName: string, isError?: boolean) => {
     if (loading) {
       return;
     }
+
+    if (isError) {
+      const _errors = [...errors];
+
+      const index = _errors.findIndex((errorFile) => errorFile.fileName === fileName);
+
+      _errors.splice(index, 1);
+
+      setErrors(_errors);
+
+      return;
+    }
+
     const _files = [...files];
 
     const index = _files.findIndex((file) => file.name === fileName);
@@ -92,51 +121,135 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const onAllDelete = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     onDropFiles([], name);
+    setErrors([]);
+    setIsLocalDragReject(false);
   };
 
-  const renderFileNames = () => {
-    return multiple ? (
+  const getMostFormat = (accept: Accept) => {
+    return Object.values(accept)
+      .flatMap((item) => item.map((ext) => ext.toUpperCase()))
+      .join(", ");
+  };
+
+  const getSingleFileName = () => {
+    if (isLocalDragReject) {
+      const formatsName = getMostFormat(accept);
+
+      return (
+        <EllipsisTextWithTooltip
+          text={`Неверный формат файла. Загрузите файл в формате ${formatsName}`}
+          classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
+          classNameRoot={cx(
+            styles.spUploadFiles__fileName,
+            isLocalDragReject && styles.spUploadFiles__fileName_dragError,
+          )}
+        />
+      );
+    }
+
+    return (
+      <EllipsisTextWithTooltip
+        text={fileNames[0].fileName}
+        classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
+        classNameRoot={cx(styles.spUploadFiles__fileName)}
+      />
+    );
+  };
+
+  const getMultipleFileNames = () => {
+    return (
       <ul className={classNameFileListRoot}>
-        {fileNames.map((fileName, index) => {
+        {fileNames.map(({ fileName, errors }, index) => {
+          const getInfoTooltipText = () => {
+            if (!errors) return "";
+
+            return errors?.map((error) => {
+              switch (error.code) {
+                case ErrorCode.FileInvalidType: {
+                  const validFormats = getMostFormat(accept);
+                  return (
+                    `Неверный формат файла.\n` +
+                    `Загрузите файл в формате ${validFormats}\n` +
+                    "\n Данный файл не будет загружен"
+                  );
+                }
+              }
+            });
+          };
+
           return (
             <li
               key={index}
-              className={styles.spUploadFiles__fileNamesListItem}
+              className={cx(
+                styles.spUploadFiles__fileNamesListItem,
+                Boolean(errors) && styles.spUploadFiles__fileNamesListItem_error,
+              )}
               onClick={(e) => {
                 e.stopPropagation();
-                deleteFile(fileName);
               }}
             >
+              {Boolean(errors) && (
+                <InfoTooltip
+                  text={getInfoTooltipText()}
+                  position={ETooltipPosition.TopLeft}
+                  classNameBaseTooltipRoot={styles.spUploadFiles__fileNamesListItem__tooltip}
+                  classNameTriggerTooltip={
+                    styles.spUploadFiles__fileNamesListItem__infoTriggerTooltip
+                  }
+                />
+              )}
               <EllipsisTextWithTooltip
                 type={"p2"}
                 text={fileName}
-                classNameTooltipRoot={styles.spUploadFiles__fileNamesListItem__tooltip}
+                classNameTooltipRoot={cx(
+                  styles.spUploadFiles__fileNamesListItemContainer,
+                  Boolean(errors) && styles.spUploadFiles__fileNamesListItemContainer_error,
+                )}
+                classNameBaseTooltipRoot={styles.spUploadFiles__fileNamesListItem__tooltip}
                 classNameTriggerTooltipRoot={
                   styles.spUploadFiles__fileNamesListItem__triggerTooltip
                 }
               />
-              <div className={styles.spUploadFiles__fileNamesListItemDelete}>
+              <div
+                className={cx(
+                  styles.spUploadFiles__fileNamesListItemDelete,
+                  Boolean(errors) && styles.spUploadFiles__fileNamesListItemDelete_error,
+                )}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteFile(fileName, Boolean(errors));
+                }}
+              >
                 <Icon name={EIconName.Trash} />
               </div>
             </li>
           );
         })}
       </ul>
-    ) : (
-      <Text isEllipsis={true} classNameRoot={styles.spUploadFiles__fileName}>
-        {fileNames[0]}
-      </Text>
+    );
+  };
+
+  const renderFileNames = () => {
+    return multiple ? getMultipleFileNames() : getSingleFileName();
+  };
+
+  const getPlaceholder = () => {
+    return (
+      <EllipsisTextWithTooltip
+        classNameRoot={styles.spUploadFiles__placeholder}
+        classNameTooltipRoot={cx(
+          styles.spUploadFiles__placeholderContainer,
+          Boolean(infoTooltipText) && styles.spUploadFiles__placeholderContainer_withUloadTooltip,
+        )}
+        text={placeholder}
+      />
     );
   };
 
   const getUploadFilesContent = () => {
     return (
       <>
-        {isFileUploaded ? (
-          renderFileNames()
-        ) : (
-          <Text classNameRoot={styles.spUploadFiles__placeholder}>{placeholder}</Text>
-        )}
+        {isFileUploaded ? renderFileNames() : getPlaceholder()}
         {isFileUploaded ? (
           <div className={classNameAllFilesDeleteRoot} onClick={onAllDelete}>
             <Icon name={EIconName.Close} />
@@ -160,7 +273,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     <DefaultDropzone
       getRootProps={getRootProps}
       getInputProps={getInputProps}
-      disabled={disabled || isFileUploaded}
+      disabled={disabled}
       name={name}
     >
       <div className={classNameRoot}>

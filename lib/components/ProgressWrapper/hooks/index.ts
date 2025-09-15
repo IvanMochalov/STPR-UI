@@ -94,8 +94,6 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
     };
   }, [currentValue, doneValue]);
 
-  console.log("currentValue: -->", currentValue);
-
   return {
     animatedValue: currentValue,
     isLoading,

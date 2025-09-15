@@ -15,9 +15,36 @@
     }
   }
 
+  &__fileNameContainer {
+    width: 100%;
+    text-align: start;
+  }
+
+  &__fileName {
+    &_dragError {
+      color: styles.$color-red;
+    }
+  }
+
+  &__placeholderContainer {
+    width: 100%;
+  }
 
   &--variant {
     &-input {
+      #{$block}__fileNameContainer {
+        max-width: calc(100% - 68px);
+      }
+
+      #{$block}__placeholderContainer {
+        text-align: start;
+        max-width: calc(100% - 36px);
+      }
+
+      #{$block}__placeholderContainer_withUloadTooltip {
+        max-width: calc(100% - 72px);
+      }
+
       #{$block}__control {
         padding: 12px 16px;
         height: fit-content;
@@ -33,6 +60,14 @@
     }
 
     &-dropzone {
+      #{$block}__fileNameContainer {
+        max-width: calc(100% - 32px);
+      }
+
+      #{$block}__placeholderContainer {
+        text-align: center;
+      }
+
       #{$block}__control {
         justify-content: center;
         padding: 12px 16px;
@@ -133,6 +168,14 @@
     }
   }
 
+  &__fileNamesListItemContainer {
+    max-width: calc(100% - 24px);
+
+    &_error {
+      max-width: calc(100% - 48px);
+    }
+  }
+
   &__fileNamesListItem {
     display: flex;
     align-items: center;
@@ -141,6 +184,12 @@
     border-radius: 15px;
     background-color: styles.$color-gray-3;
     max-width: 110px;
+
+    &_error {
+      background-color: styles.$color-red-bg;
+      color: styles.$color-red;
+    }
+
     @include styles.respond-to(sm) {
       max-width: 180px;
     }
@@ -149,7 +198,16 @@
     }
 
     &__tooltip {
-      max-width: calc(100% - 24px);
+      padding: 6px;
+    }
+
+    &__infoTriggerTooltip {
+      & :global {
+        & .stpr-icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
     }
 
     &__triggerTooltip {
@@ -162,6 +220,10 @@
     color: styles.$color-gray-1;
     display: flex;
     @include styles.transition-all-ease-in-out(200ms);
+
+    &_error {
+      color: styles.$color-red;
+    }
 
     & :global {
       & .stpr-icon {
