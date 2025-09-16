@@ -14,9 +14,9 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "require": "./dist/test-stpr-ui-kit.umd.cjs",
+      "types": "./dist/test-stpr-ui-kit.es.d.ts",
       "import": "./dist/test-stpr-ui-kit.js",
-      "types": "./dist/test-stpr-ui-kit.es.d.ts"
+      "require": "./dist/test-stpr-ui-kit.umd.cjs"
     }
   },
   "peerDependencies": {
