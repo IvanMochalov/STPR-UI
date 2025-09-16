@@ -74,10 +74,8 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const classNameRoot = cx({
     [styles.spUploadFiles]: true,
     [styles[`spUploadFiles--variant-${variant}`]]: variant,
-    [styles.spUploadFiles_error]: Boolean(error),
-    [styles.spUploadFiles_error]: isLocalDragReject && !multiple,
+    [styles.spUploadFiles_error]: isLocalDragReject && !multiple && error && error.length > 0,
     [styles.spUploadFiles_disabled]: disabled,
-    [styles.spUploadFiles_multiple]: multiple,
     [styles.spUploadFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });

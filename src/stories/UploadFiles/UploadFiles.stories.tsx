@@ -24,7 +24,7 @@ const meta: Meta<typeof UploadFiles> = {
   decorators: [
     (Story) => (
       <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
-        <div style={{ width: "900px" }}>
+        <div style={{ width: "900px", minHeight: "500px", height: "100%", display: "flex" }}>
           <Story />
         </div>
       </div>
