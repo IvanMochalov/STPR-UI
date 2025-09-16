@@ -176,14 +176,6 @@
     }
   }
 
-  //&__fileNamesListItemContainer {
-  //  max-width: calc(100% - 24px);
-  //
-  //  &_error {
-  //    max-width: calc(100% - 48px);
-  //  }
-  //}
-
   &__fileNamesListItem {
     position: relative;
     gap: 5px;
@@ -200,9 +192,11 @@
     &__iconContainer {
       display: flex;
       color: styles.$color-accent-blue;
+      width: 26px;
 
       &_error {
         color: styles.$color-red;
+        width: 32px;
       }
     }
 
@@ -231,40 +225,6 @@
         color: styles.$color-red;
       }
     }
-
-    //  padding: 4px 12px;
-    //  border-radius: 15px;
-    //  background-color: styles.$color-gray-3;
-    //  max-width: 110px;
-    //
-    //  &_error {
-    //    background-color: styles.$color-red-bg;
-    //    color: styles.$color-red;
-    //  }
-    //
-    //  @include styles.respond-to(sm) {
-    //    max-width: 180px;
-    //  }
-    //  @include styles.respond-to(xl) {
-    //    max-width: 340px;
-    //  }
-    //
-    //  &__tooltip {
-    //    padding: 6px;
-    //  }
-    //
-    //  &__infoTriggerTooltip {
-    //    & :global {
-    //      & .stpr-icon {
-    //        width: 16px;
-    //        height: 16px;
-    //      }
-    //    }
-    //  }
-    //
-    //  &__triggerTooltip {
-    //    display: flex;
-    //  }
   }
 
   &__fileNamesListItemDelete {
