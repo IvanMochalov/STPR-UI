@@ -1,5 +1,7 @@
 import React, { ForwardedRef, MouseEventHandler, ReactNode } from "react";
 
+export type TTextType = "h1" | "h3" | "p1" | "p2" | "description" | "link";
+
 export interface TextProps {
   children?: string | ReactNode;
   color?: string;
@@ -10,6 +12,6 @@ export interface TextProps {
   isEllipsis?: boolean;
   isCursorPointer?: boolean;
   isCursorPointerByOnClick?: boolean;
-  type?: "h1" | "h3" | "p1" | "p2" | "description" | "link";
+  type?: TTextType;
   ref?: ForwardedRef<HTMLDivElement>;
 }

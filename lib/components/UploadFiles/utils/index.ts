@@ -20,3 +20,21 @@ export const getFileExtension = (fileName: string) => {
 
   return fileName.split(".").pop()?.toLowerCase();
 };
+
+export const formatFileSize = (
+  bytes: number,
+  options: { decimals?: number; space?: boolean } = {},
+): string => {
+  const { decimals = 1, space = true } = options;
+
+  if (bytes === 0) return "0" + (space ? " " : "") + "B";
+
+  const k = 1024;
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  const decimalPlaces = i === 0 ? 0 : decimals;
+  const separator = space ? " " : "";
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(decimalPlaces)) + separator + units[i];
+};

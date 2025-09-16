@@ -17,6 +17,8 @@ export enum EIconName {
   HistoryClock = "historyClock",
   Minus = "minus",
   TerminalSquare = "terminalSquare",
+  File = "file",
+  InfoError = "infoError",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;

@@ -5,8 +5,10 @@ import ChevronDownIcon from "../../../src/images/chevron-down.svg?react";
 import CloseIcon from "../../../src/images/close.svg?react";
 import CopyIcon from "../../../src/images/copy.svg?react";
 import DotsIcon from "../../../src/images/dots.svg?react";
+import FileIcon from "../../../src/images/file.svg?react";
 import HistoryClockIcon from "../../../src/images/history-clock.svg?react";
 import InfoIcon from "../../../src/images/info.svg?react";
+import InfoErrorIcon from "../../../src/images/info-error.svg?react";
 import MinusIcon from "../../../src/images/minus.svg?react";
 import PlusIcon from "../../../src/images/plus.svg?react";
 import PlusCircleIcon from "../../../src/images/plus-circle.svg?react";
@@ -43,6 +45,8 @@ export const Icon: React.FC<IconProps> = (props) => {
     historyClock: HistoryClockIcon,
     plusCircle: PlusCircleIcon,
     terminalSquare: TerminalSquareIcon,
+    file: FileIcon,
+    infoError: InfoErrorIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -57,7 +61,9 @@ export {
   CloseIcon,
   CopyIcon,
   DotsIcon,
+  FileIcon,
   HistoryClockIcon,
+  InfoErrorIcon,
   InfoIcon,
   MinusIcon,
   PlusCircleIcon,

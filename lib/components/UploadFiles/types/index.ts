@@ -1,4 +1,4 @@
-import { Accept, DropEvent, FileError, FileRejection } from "react-dropzone";
+import { Accept, DropEvent, ErrorCode, FileError, FileRejection } from "react-dropzone";
 
 import { ETooltipPosition } from "../../Tooltip";
 
@@ -24,8 +24,9 @@ export interface UploadFilesProps {
 }
 
 export type TLocalErrorFile = {
-  fileName: string;
+  file: File;
   errors: readonly FileError[];
 };
 
-export type { Accept, FileRejection };
+export type { Accept, FileError, FileRejection };
+export { ErrorCode };

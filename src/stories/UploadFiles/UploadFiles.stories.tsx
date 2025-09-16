@@ -52,7 +52,7 @@ export const Default: Story = {
     return <UploadFiles {...args} onDropFiles={uploadFiles} name={"file"} files={formData.file} />;
   },
   args: {
-    placeholder: "Загрузите файл .ifc Загрузите файл .ifc Загрузите файл .ifc",
+    placeholder: "Загрузите файл .ifc",
     variant: "dropzone",
     accept: { "application/ifc": [".ifc"] },
     disabled: false,

@@ -1,13 +1,13 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 
 import { Text } from "../../../Text";
-import { Tooltip } from "../../../Tooltip";
+import { ETooltipPosition, Tooltip } from "../../../Tooltip";
 import { getFileExtension } from "../../utils";
 import styles from "./EllipsisFileName.module.scss";
 import { EllipsisFileNameProps } from "./types";
 
 export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
-  const { fileName, classNameRoot } = props;
+  const { fileName, classNameRoot, type = "p2", classNameEllipsisText } = props;
 
   const textRef = useRef<HTMLDivElement>(null);
   const extensionRef = useRef<HTMLDivElement>(null);
@@ -29,13 +29,14 @@ export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
   return (
     <div className={styles.ellipsisFileName}>
       <Tooltip
+        position={ETooltipPosition.TopLeft}
         classNameBaseTooltipRoot={styles.tooltipContent}
         styleTooltip={{ maxWidth: isOverflowed ? `calc(100% - ${extensionWidth}px)` : "100%" }}
         classNameTooltip={classNameRoot}
         isVisibleTooltip={isOverflowed}
         text={fileName}
         trigger={
-          <Text type={"p2"} isEllipsis={true} ref={textRef}>
+          <Text type={type} isEllipsis={true} ref={textRef} classNameRoot={classNameEllipsisText}>
             {fileName}
           </Text>
         }
@@ -50,9 +51,15 @@ export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
           whiteSpace: "nowrap",
         }}
       >
-        <Text type={"p2"}>{fileExtension}</Text>
+        <Text type={type} classNameRoot={classNameEllipsisText}>
+          {fileExtension}
+        </Text>
       </div>
-      {isOverflowed && <Text type={"p2"}>{fileExtension}</Text>}
+      {isOverflowed && (
+        <Text type={type} classNameRoot={classNameEllipsisText}>
+          {fileExtension}
+        </Text>
+      )}
     </div>
   );
 };
