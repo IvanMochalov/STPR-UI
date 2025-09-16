@@ -24,6 +24,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     classNameTooltip: propsClassNameTooltip,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     classNameBaseTooltipContentRoot: propsClassNameBaseTooltipContentRoot,
+    styleTooltip,
   } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -207,6 +208,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       onClick={handleClick}
       onMouseEnter={() => hover && setIsHovered(true)}
       onMouseLeave={() => hover && setIsHovered(false)}
+      style={styleTooltip}
     >
       <div ref={triggerRef} className={classNameTriggerTooltip}>
         {trigger}

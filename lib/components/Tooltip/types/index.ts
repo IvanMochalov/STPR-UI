@@ -31,4 +31,5 @@ export interface TooltipProps
   classNameBaseTooltipRoot?: string;
   classNameBaseTooltipContentRoot?: string;
   isStopPropagationClickOnTrigger?: boolean;
+  styleTooltip?: React.CSSProperties;
 }
