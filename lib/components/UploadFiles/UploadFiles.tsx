@@ -190,6 +190,9 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
               <div className={styles.spUploadFiles__fileNamesListItem__mainContent}>
                 <EllipsisFileName
                   fileName={file.name}
+                  classNameEllipsisFileNameRoot={
+                    styles.spUploadFiles__fileNamesListItem__fileNameWrapper
+                  }
                   classNameEllipsisText={styles.spUploadFiles__fileNamesListItem__fileName}
                 />
                 <EllipsisTextWithTooltip

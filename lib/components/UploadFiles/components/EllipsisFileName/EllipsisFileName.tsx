@@ -1,3 +1,4 @@
+import cx from "clsx";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
 import { Text } from "../../../Text";
@@ -7,7 +8,13 @@ import styles from "./EllipsisFileName.module.scss";
 import { EllipsisFileNameProps } from "./types";
 
 export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
-  const { fileName, classNameRoot, type = "p2", classNameEllipsisText } = props;
+  const {
+    fileName,
+    classNameRoot,
+    type = "p2",
+    classNameEllipsisText,
+    classNameEllipsisFileNameRoot: propsClassNameEllipsisFileNameRoot,
+  } = props;
 
   const textRef = useRef<HTMLDivElement>(null);
   const extensionRef = useRef<HTMLDivElement>(null);
@@ -40,7 +47,12 @@ export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
   const fileExtension = getFileExtension(fileName);
 
   return (
-    <div className={styles.ellipsisFileName}>
+    <div
+      className={cx(
+        styles.ellipsisFileName,
+        propsClassNameEllipsisFileNameRoot && propsClassNameEllipsisFileNameRoot,
+      )}
+    >
       <Tooltip
         position={ETooltipPosition.TopLeft}
         classNameBaseTooltipRoot={styles.tooltipContent}
