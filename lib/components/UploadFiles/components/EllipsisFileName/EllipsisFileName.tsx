@@ -14,7 +14,7 @@ export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
   const [isOverflowed, setIsOverflowed] = useState(false);
   const [extensionWidth, setExtensionWidth] = useState(0);
 
-  useLayoutEffect(() => {
+  const updateDimensions = () => {
     if (textRef.current) {
       setIsOverflowed(textRef.current.scrollWidth > textRef.current.clientWidth);
     }
@@ -22,7 +22,20 @@ export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
     if (extensionRef.current) {
       setExtensionWidth(extensionRef.current.offsetWidth);
     }
-  }, [fileName]);
+  };
+
+  useLayoutEffect(() => {
+    // Первоначальное вычисление
+    updateDimensions();
+
+    // Добавляем обработчик события resize
+    window.addEventListener("resize", updateDimensions);
+
+    // Очистка при размонтировании компонента
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, [fileName]); // Зависимость от fileName, чтобы пересчитывать при его изменении
 
   const fileExtension = getFileExtension(fileName);
 
