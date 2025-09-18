@@ -19,6 +19,11 @@ const meta: Meta<typeof Input> = {
         defaultValue: { summary: "false" },
       },
     },
+    isAbsolutePositionError: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     isVisibleDefaultTitle: {
       table: {
         defaultValue: { summary: "false" },
@@ -65,6 +70,7 @@ const meta: Meta<typeof Input> = {
   ],
   args: {
     variant: "outlined",
+    isAbsolutePositionError: false,
   },
 };
 

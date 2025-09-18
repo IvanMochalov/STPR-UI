@@ -10,6 +10,7 @@ export interface InputProps {
   onChange: TOnChangeInput;
   value?: string;
   error?: string;
+  isAbsolutePositionError?: boolean;
   isClearable?: boolean;
   pattern?: RegExp | string;
   onMouseEnter?: () => void;

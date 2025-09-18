@@ -26,6 +26,10 @@
     }
   }
 
+  &_absolutePositionError {
+    position: relative;
+  }
+
   // Элементы
   &__container {
     position: relative;
@@ -150,6 +154,11 @@
     font-weight: 400;
     font-size: 12px;
     color: styles.$color-red;
+
+    &_absolutePosition {
+      position: absolute;
+      bottom: -20px;
+    }
 
     @include styles.respond-to(sm) {
       font-size: 14px;

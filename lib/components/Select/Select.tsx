@@ -21,11 +21,12 @@ export const Select: React.FC<SelectProps> = (props) => {
     label,
     infoTooltipText,
     tooltipPosition,
-    disabled,
+    disabled = false,
     required,
     maxHeightList = MAX_HEIGHT_SELECT_LIST,
     isVisibleDefaultTitle = true,
     isScrollableList = false,
+    isAbsolutePositionError = false,
     classNameRoot: propsClassNameRoot,
     classNameError: propsClassNameError,
     classNameLabel: propsClassNameLabel,
@@ -63,6 +64,7 @@ export const Select: React.FC<SelectProps> = (props) => {
   const classNameRoot = cx({
     [styles.spSelect]: true,
     [styles.spSelect_error]: Boolean(error),
+    [styles.spSelect_absolutePositionError]: isAbsolutePositionError,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
@@ -96,6 +98,7 @@ export const Select: React.FC<SelectProps> = (props) => {
 
   const classNameError = cx({
     [styles.spSelect__error]: true,
+    [styles.spSelect__error_absolutePosition]: isAbsolutePositionError,
     ...(propsClassNameError && { [propsClassNameError]: true }),
   });
 

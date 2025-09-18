@@ -27,6 +27,11 @@ const meta: Meta<typeof Select> = {
         defaultValue: { summary: "false" },
       },
     },
+    isAbsolutePositionError: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     maxHeightList: {
       table: {
         defaultValue: { summary: "160" },
@@ -108,6 +113,7 @@ export const WithLabel: Story = {
   render: Default.render,
   args: {
     label: "Округ",
+    isAbsolutePositionError: false,
   },
 };
 export const WithLabelAndTooltip: Story = {
@@ -116,6 +122,7 @@ export const WithLabelAndTooltip: Story = {
   args: {
     label: "Округ",
     infoTooltipText: "Подсказка для поля 'Округ'",
+    isAbsolutePositionError: false,
   },
 };
 export const WithLabelAndTooltipAndError: Story = {
@@ -126,5 +133,6 @@ export const WithLabelAndTooltipAndError: Story = {
     infoTooltipText: "Подсказка для поля 'Описание строения'",
     required: true,
     error: "Обязательное поле",
+    isAbsolutePositionError: false,
   },
 };

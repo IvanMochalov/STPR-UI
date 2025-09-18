@@ -13,6 +13,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     label,
     variant = "outlined",
     disabled = false,
+    isAbsolutePositionError = false,
     error,
     required,
     name,
@@ -33,6 +34,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
   const classNameRoot = cx({
     [styles.spInput]: true,
     [styles.spInput_error]: Boolean(error),
+    [styles.spInput_absolutePositionError]: isAbsolutePositionError,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
@@ -53,6 +55,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
 
   const classNameError = cx({
     [styles.spInput__error]: true,
+    [styles.spInput__error_absolutePosition]: isAbsolutePositionError,
     ...(propsClassNameError && { [propsClassNameError]: true }),
   });
 
