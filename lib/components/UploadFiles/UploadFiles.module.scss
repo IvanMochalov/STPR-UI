@@ -163,16 +163,12 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 24px;
     width: 100%;
     min-width: 240px;
 
     // Проба верстки адаптива списка файлов на @container
     container: file-list-container / inline-size;
-
-    @include styles.respond-to(sm) {
-      gap: 24px;
-    }
 
     &_loading {
       opacity: 0.7;
