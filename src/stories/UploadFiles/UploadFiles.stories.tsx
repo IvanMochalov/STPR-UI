@@ -6,6 +6,9 @@ import { UploadFiles } from "../../../lib/components/UploadFiles";
 const meta: Meta<typeof UploadFiles> = {
   component: UploadFiles,
   tags: ["autodocs"],
+  parameters: {
+    layout: "padded",
+  },
   argTypes: {
     disabled: {
       table: {
