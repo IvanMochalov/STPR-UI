@@ -6,6 +6,7 @@
   display: inline-flex;
   flex-direction: column;
   width: 100%;
+  min-width: 280px;
   height: 100%;
 
   &_error {
@@ -72,7 +73,7 @@
         justify-content: center;
         height: 100%;
         padding: 24px 48px;
-        min-height: 100px;
+        min-height: 190px;
 
         @include styles.respond-to(sm) {
           padding: 32px 84px;
@@ -164,6 +165,10 @@
     flex-wrap: wrap;
     gap: 16px;
     width: 100%;
+    min-width: 240px;
+
+    // Проба верстки адаптива списка файлов на @container
+    container: file-list-container / inline-size;
 
     @include styles.respond-to(sm) {
       gap: 24px;
@@ -177,14 +182,17 @@
 
     #{$block}__fileNamesListItem {
       width: 100%;
-      min-width: 180px;
 
-      @include styles.respond-to(sm) {
-        width: calc((100% - 24px) / 2);
+      @container file-list-container (min-width: calc(170px * 2 + 24px)) {
+        width: calc((100cqw - 24px) / 2);
       }
 
-      @include styles.respond-to(xl) {
-        width: calc((100% - 24px * 3) / 4);
+      @container file-list-container (min-width: calc(170px * 3 + 24px * 2)) {
+        width: calc((100cqw - 24px * 2) / 3);
+      }
+
+      @container file-list-container (min-width: calc(170px * 4 + 24px * 3)) {
+        width: calc((100cqw - 24px * 3) / 4);
       }
     }
   }
