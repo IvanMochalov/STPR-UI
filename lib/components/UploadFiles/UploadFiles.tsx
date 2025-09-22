@@ -275,7 +275,10 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
             (loading ? (
               <Spinner />
             ) : (
-              <Icon name={isFileUploaded ? EIconName.Check : EIconName.Upload} />
+              <Icon
+                name={isFileUploaded ? EIconName.Check : EIconName.Upload}
+                style={{ flexShrink: 0 }}
+              />
             ))}
           {getUploadFilesContent()}
         </div>

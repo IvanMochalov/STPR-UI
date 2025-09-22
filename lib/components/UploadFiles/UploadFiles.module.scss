@@ -177,7 +177,7 @@
 
     #{$block}__fileNamesListItem {
       width: 100%;
-      min-width: 240px;
+      min-width: 180px;
 
       @include styles.respond-to(sm) {
         width: calc((100% - 24px) / 2);
