@@ -10,41 +10,72 @@ const meta: Meta<typeof Accordion> = {
   argTypes: {
     children: {
       control: false,
+      description: "Содержимое аккордеона, которое отображается при раскрытии\n",
+    },
+    name: {
+      description: "Заголовок аккордеона, отображаемый в свернутом состоянии\n",
     },
     defaultOpen: {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { type: "boolean" },
+      description: "Состояние раскрыт/свернут по умолчанию\n",
     },
     isHiddenExpandIcon: {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { type: "boolean" },
+      description:
+        "Скрыть иконку раскрытия/сворачивания. Если true, аккордеон нельзя будет раскрыть/свернуть\n",
     },
     noBorder: {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { type: "boolean" },
+      description: "Убрать обводку аккордеона\n",
     },
     noPadding: {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { type: "boolean" },
+      description: "Убрать внутренние отступы (padding) аккордеона\n",
+    },
+    level: {
+      description:
+        "Уровень вложенности аккордеона. Влияет на размер шрифта заголовка:\n- 1: 24px\n- 2: 16px (24px на sm)\n",
+      control: { type: "radio" },
+      table: {
+        defaultValue: { summary: "1" },
+      },
+    },
+    onOpen: {
+      description:
+        "Callback-функция, вызываемая при изменении состояния аккордеона (раскрытии/сворачивании)\n",
+      control: false,
     },
     classNameRoot: {
       control: false,
+      description: "Дополнительный CSS-класс для корневого элемента аккордеона\n",
     },
     classNameHeader: {
       control: false,
+      description: "Дополнительный CSS-класс для заголовка аккордеона\n",
     },
     classNameTitle: {
       control: false,
+      description: "Дополнительный CSS-класс для текста заголовка\n",
     },
     classNameIcon: {
       control: false,
+      description: "Дополнительный CSS-класс для иконки раскрытия/сворачивания\n",
     },
     classNameChildrenWrapper: {
       control: false,
+      description: "Дополнительный CSS-класс для обертки содержимого аккордеона\n",
     },
   },
   decorators: [
@@ -71,7 +102,12 @@ type Story = StoryObj<typeof Accordion>;
 export const Default: Story = {
   name: "Default accordion",
   args: {
+    defaultOpen: false,
+    isHiddenExpandIcon: false,
+    noBorder: false,
+    noPadding: false,
     name: "Основное задание",
+    level: 1,
     children: (
       <div style={{ textAlign: "justify" }}>
         Разработать комплексную стратегию устойчивого развития, направленную на баланс между ростом
