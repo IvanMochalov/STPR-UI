@@ -78,18 +78,19 @@
     padding: 0;
 
     & #{$block}__tabElement {
+      border: 1px solid styles.$color-gray-4;
       color: styles.$color-gray-1;
       background-color: styles.$color-gray-4;
 
       &:hover {
-        outline: 1px solid styles.$color-accent-blue;
-        outline-offset: -1px;
+        border-color: styles.$color-accent-blue;
       }
     }
 
     & #{$block}__tabElement_active {
       color: styles.$color-white;
       background-color: styles.$color-accent-blue;
+      border-color: styles.$color-accent-blue;
 
       & #{$block}__triggerTooltip {
         color: styles.$color-white;
