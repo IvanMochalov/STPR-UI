@@ -22,6 +22,13 @@
   }
 
   &_mobile-column {
+    flex-direction: column;
+    @include styles.respond-to(sm) {
+      flex-direction: row
+    }
+  }
+
+  &_mobile-column-reverse {
     flex-direction: column-reverse;
     @include styles.respond-to(sm) {
       flex-direction: row
