@@ -4,10 +4,9 @@
   $block: &;
   box-sizing: border-box;
   background-color: styles.$color-white;
-  padding: 20px;
   box-shadow: 0 10px 45px 0 styles.$color-rgba-19-15;
   width: max-content;
-  max-width: 70vw;
+  max-width: 300px;
   position: absolute;
   min-width: 160px;
   z-index: 199;
@@ -17,6 +16,20 @@
 
   &_noPadding {
     padding: 0;
+  }
+
+  &:not(#{$block}_noPadding) {
+    padding: 12px;
+
+    @include styles.respond-to(sm) {
+      padding: 20px;
+      max-width: 450px;
+    }
+
+    @include styles.respond-to(xl) {
+      padding: 12px;
+      max-width: 600px;
+    }
   }
 
   &__content {
