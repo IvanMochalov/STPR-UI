@@ -37,21 +37,21 @@
     }
   }
 
+  &#{$block}_noBorder {
+    border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
+
+    &#{$block}_noPadding {
+      padding-bottom: 16px;
+
+      @include styles.respond-to(sm) {
+        padding-bottom: 32px;
+      }
+    }
+  }
+
   &_noOpen {
     & #{$block}__header {
       margin-bottom: 0;
-    }
-
-    &#{$block}_noBorder {
-      border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
-
-      &#{$block}_noPadding {
-        padding-bottom: 16px;
-
-        @include styles.respond-to(sm) {
-          padding-bottom: 32px;
-        }
-      }
     }
   }
 

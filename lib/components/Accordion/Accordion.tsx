@@ -28,8 +28,8 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
 
   const onClick = () => {
     if (isHiddenExpandIcon) return;
-    setOpen(!open);
     onOpen?.(!open);
+    setOpen(!open);
   };
 
   const classNameRoot = cx({
