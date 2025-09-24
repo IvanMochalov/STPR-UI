@@ -18,17 +18,23 @@
     padding: 0;
   }
 
+  @include styles.respond-to(sm) {
+    max-width: 450px;
+  }
+
+  @include styles.respond-to(xl) {
+    max-width: 600px;
+  }
+
   &:not(#{$block}_noPadding) {
     padding: 12px;
 
     @include styles.respond-to(sm) {
       padding: 20px;
-      max-width: 450px;
     }
 
     @include styles.respond-to(xl) {
       padding: 12px;
-      max-width: 600px;
     }
   }
 
