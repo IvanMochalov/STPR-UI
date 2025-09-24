@@ -11,6 +11,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
     align = "center",
     cancelBtnContent,
     cancelBtnIconName,
+    submitBtnIconName,
     cancelBtnDisabled,
     submitBtnContent,
     formId,
@@ -49,6 +50,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
         <Button
           type={"submit"}
           variant={"primary"}
+          iconName={submitBtnIconName}
           classNameRoot={classNameSubmitButton}
           form={formId ? formId : undefined}
           disabled={disabled}

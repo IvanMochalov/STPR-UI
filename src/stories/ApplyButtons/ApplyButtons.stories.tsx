@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ApplyButtons } from "../../../lib/components/ApplyButtons";
+import { EIconName } from "../../../lib/components/Icons";
 
 const meta: Meta<typeof ApplyButtons> = {
   component: ApplyButtons,
@@ -60,7 +61,13 @@ const meta: Meta<typeof ApplyButtons> = {
     },
     cancelBtnIconName: {
       description: "Иконка для кнопки Cancel (опционально)\n",
-      control: { type: "text" },
+      control: "select",
+      options: Object.values(EIconName),
+    },
+    submitBtnIconName: {
+      description: "Иконка для кнопки Submit (опционально)\n",
+      control: "select",
+      options: Object.values(EIconName),
     },
     cancelBtnDisabled: {
       description: "Состояние disabled кнопки Cancel\n",
@@ -76,7 +83,7 @@ const meta: Meta<typeof ApplyButtons> = {
     formId: {
       description:
         "ID формы, к которой привязана кнопка отправки (атрибут form). Позволяет отправить форму извне\n",
-      control: { type: "text" },
+      control: false,
     },
     disabled: {
       description:

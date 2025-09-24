@@ -10,6 +10,7 @@ export interface ApplyButtonsProps {
   align?: TApplyButtonsAlign;
   cancelBtnContent?: string;
   cancelBtnIconName?: EIconName;
+  submitBtnIconName?: EIconName;
   submitBtnContent?: string;
   cancelBtnDisabled?: boolean;
   formId?: string;
