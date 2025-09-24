@@ -1,5 +1,7 @@
 import React from "react";
 
+type TAccordionLevel = 1 | 2;
+
 export interface AccordionProps extends React.PropsWithChildren {
   name?: string;
   onOpen?: (open: boolean) => void;
@@ -12,5 +14,5 @@ export interface AccordionProps extends React.PropsWithChildren {
   classNameTitle?: string;
   classNameIcon?: string;
   classNameChildrenWrapper?: string;
-  level?: 1 | 2;
+  level?: TAccordionLevel;
 }
