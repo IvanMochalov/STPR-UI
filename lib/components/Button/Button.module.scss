@@ -13,6 +13,7 @@
   border: none;
   cursor: pointer;
   padding: 11.5px 23px;
+  @include styles.transition-all-ease-in-out(200ms);
 
   @include styles.respond-to(sm) {
     padding: 16.5px 33px;
