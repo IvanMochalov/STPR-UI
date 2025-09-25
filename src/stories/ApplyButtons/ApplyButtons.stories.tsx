@@ -44,6 +44,7 @@ const meta: Meta<typeof ApplyButtons> = {
       options: ["column", "column-reverse", "row"],
       table: {
         defaultValue: { summary: "column" },
+        type: { summary: "string:| row | column | column-reverse" },
       },
     },
     align: {
@@ -52,7 +53,8 @@ const meta: Meta<typeof ApplyButtons> = {
       control: { type: "radio" },
       options: ["left", "center", "right"],
       table: {
-        defaultValue: { summary: "'center'" },
+        defaultValue: { summary: "center" },
+        type: { summary: "string:| left | center | right" },
       },
     },
     cancelBtnContent: {
@@ -218,27 +220,4 @@ export const DisabledButtons: Story = {
     cancelBtnDisabled: true,
     disabled: true,
   },
-};
-
-export const WithFormIntegration: Story = {
-  args: {
-    mobile: "column",
-    align: "right",
-    cancelBtnContent: "Сбросить",
-    submitBtnContent: "Отправить",
-    formId: "example-form",
-  },
-  render: (args) => (
-    <div>
-      <form
-        id="example-form"
-        style={{ marginBottom: "20px", padding: "10px", border: "1px dashed #ccc" }}
-      >
-        <p>Пример формы с полями</p>
-        <input type="text" placeholder="Имя" style={{ marginRight: "10px" }} />
-        <input type="email" placeholder="Email" />
-      </form>
-      <ApplyButtons {...args} />
-    </div>
-  ),
 };
