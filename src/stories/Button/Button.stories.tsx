@@ -34,6 +34,7 @@ const meta: Meta<typeof Button> = {
       options: ["primary", "secondary", "link"],
       table: {
         defaultValue: { summary: "primary" },
+        type: { summary: "string:| primary | secondary | link" },
       },
     },
     color: {
@@ -43,11 +44,15 @@ const meta: Meta<typeof Button> = {
       options: ["blue", "white"],
       table: {
         defaultValue: { summary: "blue" },
+        type: { summary: "string:| white | blue" },
       },
     },
     children: {
       description: "Текст кнопки. Отображается если isOnlyIcon=false",
       control: { type: "text" },
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
     disabled: {
       description: "Блокирует кнопку. Визуально затемняет и отключает взаимодействие",
@@ -91,6 +96,7 @@ const meta: Meta<typeof Button> = {
       options: ["button", "submit", "reset"],
       table: {
         defaultValue: { summary: "button" },
+        type: { summary: "string:| button | submit | reset" },
       },
     },
     form: {
