@@ -15,6 +15,9 @@ const meta: Meta<typeof Accordion> = {
     children: {
       description: "Содержимое аккордеона, которое отображается при раскрытии\n",
       control: false,
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
     defaultOpen: {
       description: "Состояние открыт/закрыт по умолчанию при первоначальной загрузке\n",
@@ -51,6 +54,7 @@ const meta: Meta<typeof Accordion> = {
       control: { type: "radio" },
       table: {
         defaultValue: { summary: "1" },
+        type: { summary: "number:| 1 or 2" },
       },
     },
     onOpen: {
