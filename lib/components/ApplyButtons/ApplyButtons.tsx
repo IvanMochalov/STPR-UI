@@ -7,8 +7,8 @@ import { ApplyButtonsProps } from "./types";
 
 export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
   const {
-    mobile = "column",
-    align = "center",
+    applyButtonsMobileDirection = "column",
+    applyButtonsAlign = "center",
     cancelBtnContent,
     cancelBtnIconName,
     submitBtnIconName,
@@ -22,8 +22,8 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
   } = props;
   const classNameRoot = cx({
     [styles.spApplyButtons]: true,
-    [styles[`spApplyButtons_mobile-${mobile}`]]: mobile,
-    [styles[`spApplyButtons_align-${align}`]]: align,
+    [styles[`spApplyButtons_mobile-${applyButtonsMobileDirection}`]]: applyButtonsMobileDirection,
+    [styles[`spApplyButtons_align-${applyButtonsAlign}`]]: applyButtonsAlign,
   });
   const classNameSubmitButton = cx({
     [styles.spApplyButtons__submit]: true,

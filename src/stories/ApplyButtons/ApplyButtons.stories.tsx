@@ -37,7 +37,7 @@ const meta: Meta<typeof ApplyButtons> = {
     },
   },
   argTypes: {
-    mobile: {
+    applyButtonsMobileDirection: {
       description:
         "Расположение кнопок на мобильных устройствах:\n- 'column': кнопки в колонку (cancel сверху)\n- 'column-reverse': кнопки в колонку (cancel снизу)\n- 'row': кнопки в строку\n- На desktop всегда в строку",
       control: { type: "radio" },
@@ -47,7 +47,7 @@ const meta: Meta<typeof ApplyButtons> = {
         type: { summary: "string:| row | column | column-reverse" },
       },
     },
-    align: {
+    applyButtonsAlign: {
       description:
         "Выравнивание кнопок по горизонтали внутри родительского контейнера:\n- 'left': по левому краю\n- 'center': по центру\n- 'right': по правому краю\n",
       control: { type: "radio" },
@@ -129,8 +129,8 @@ type Story = StoryObj<typeof ApplyButtons>;
 export const Default: Story = {
   name: "Default Apply Buttons",
   args: {
-    mobile: "column",
-    align: "center",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "center",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Применить",
     cancelBtnDisabled: false,
@@ -142,8 +142,8 @@ export const Default: Story = {
 export const WithoutCancel: Story = {
   name: "Only Submit Button",
   args: {
-    mobile: "column",
-    align: "center",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "center",
     submitBtnContent: "Сохранить",
     disabled: false,
     loading: false,
@@ -153,48 +153,48 @@ export const WithoutCancel: Story = {
 export const WithoutSubmit: Story = {
   name: "Only Cancel Button",
   args: {
-    mobile: "column",
-    align: "center",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "center",
     cancelBtnContent: "Закрыть",
     cancelBtnDisabled: false,
   },
 };
 
-export const RightAligned: Story = {
-  name: "Right Aligned Buttons",
+export const RightapplyButtonsAligned: Story = {
+  name: "Right applyButtonsAligned Buttons",
   args: {
-    mobile: "column",
-    align: "right",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "right",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Применить",
   },
 };
 
-export const LeftAligned: Story = {
-  name: "Left Aligned Buttons",
+export const LeftapplyButtonsAligned: Story = {
+  name: "Left applyButtonsAligned Buttons",
   args: {
-    mobile: "column",
-    align: "left",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "left",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Применить",
   },
 };
 
 export const ColumnReverse: Story = {
-  name: "Column Reverse Mobile",
+  name: "Column Reverse applyButtonsMobileDirection",
   args: {
-    mobile: "column-reverse",
-    align: "center",
+    applyButtonsMobileDirection: "column-reverse",
+    applyButtonsAlign: "center",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Сохранить",
   },
 };
 
 export const RowLayout: Story = {
-  name: "Row Layout Mobile",
+  name: "Row Layout applyButtonsMobileDirection",
   args: {
-    mobile: "row",
-    align: "center",
+    applyButtonsMobileDirection: "row",
+    applyButtonsAlign: "center",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Применить",
   },
@@ -203,8 +203,8 @@ export const RowLayout: Story = {
 export const WithLoading: Story = {
   name: "Submit Button Loading",
   args: {
-    mobile: "column",
-    align: "center",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "center",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Сохранить",
     loading: true,
@@ -213,8 +213,8 @@ export const WithLoading: Story = {
 
 export const DisabledButtons: Story = {
   args: {
-    mobile: "column",
-    align: "center",
+    applyButtonsMobileDirection: "column",
+    applyButtonsAlign: "center",
     cancelBtnContent: "Отмена",
     submitBtnContent: "Применить",
     cancelBtnDisabled: true,

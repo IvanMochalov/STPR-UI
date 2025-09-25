@@ -6,19 +6,16 @@ const meta: Meta<typeof Confirm> = {
   component: Confirm,
   tags: ["autodocs"],
   argTypes: {
-    align: {
+    applyButtonsAlign: {
       table: {
         defaultValue: { summary: "right" },
       },
     },
-    mobile: {
+    applyButtonsMobileDirection: {
       table: {
         defaultValue: { summary: "column" },
       },
     },
-    // classNameRoot: {
-    //   control: false,
-    // },
   },
   decorators: [
     (Story) => (
@@ -36,11 +33,11 @@ type Story = StoryObj<typeof Confirm>;
 export const Default: Story = {
   name: "Default Confirm Modal",
   args: {
-    title: "Do you confirm?",
-    subtitle: "Do you really want to confirm this meaningless action?",
+    header: "Do you confirm?",
+    subHeader: "Do you really want to confirm this meaningless action?",
     cancelBtnContent: "Cancel",
     submitBtnContent: "Confirm",
-    align: "right",
+    applyButtonsAlign: "right",
     textAlign: "left",
     size: "lg",
   },

@@ -4,8 +4,8 @@
   $block: &;
 
   display: flex;
-  height: fit-content;
   justify-content: center;
+  height: 100%;
 
   &--modalVerticalAlign {
     &-top {
@@ -41,7 +41,9 @@
     flex-direction: column;
     gap: 32px;
     width: 100%;
+    height: fit-content;
     min-width: 335px;
+    @include styles.custom-scrollbar();
     @include styles.respond-to(sm) {
       gap: 48px;
     }

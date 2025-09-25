@@ -1,0 +1,5 @@
+@use "src/styles/global" as styles;
+
+.scrollableContent {
+  @include styles.custom-scrollbar()
+}

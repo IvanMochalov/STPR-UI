@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import { ApplyButtons, Button, Modal, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
+import styles from "./ModalStories.module.scss";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
@@ -265,6 +266,7 @@ export const Default: Story = {
     isVisibleCloseButton: true,
     textAlign: "left",
     size: "lg",
+    modalVerticalAlign: "top",
     zIndex: 1000,
     subHeader: "",
   },
@@ -393,10 +395,11 @@ export const WithoutCloseButton: Story = {
         <Button onClick={() => onOpenModal({})}>Открыть окно</Button>
         {isOpen && (
           <div>
-            <Modal {...args} onClose={onCloseModal} />
-            <div style={{ marginTop: "20px", textAlign: "center" }}>
-              <Button onClick={onCloseModal}>Закрыть модальное окно</Button>
-            </div>
+            <Modal {...args} onClose={onCloseModal}>
+              <div style={{ marginTop: "20px", textAlign: "center" }}>
+                <Button onClick={onCloseModal}>Закрыть модальное окно</Button>
+              </div>
+            </Modal>
           </div>
         )}
       </>
@@ -489,7 +492,10 @@ export const ScrollableContent: Story = {
         <Button onClick={() => onOpenModal({})}>Открыть с прокруткой</Button>
         {isOpen && (
           <Modal {...args} onClose={onCloseModal}>
-            <div style={{ maxHeight: "400px", overflowY: "auto" }}>
+            <div
+              className={styles.scrollableContent}
+              style={{ maxHeight: "400px", overflowY: "auto" }}
+            >
               {Array.from({ length: 20 }).map((_, index) => (
                 <div key={index} style={{ padding: "10px", borderBottom: "1px solid #eee" }}>
                   <Text>Элемент списка #{index + 1}</Text>

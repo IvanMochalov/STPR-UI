@@ -2,12 +2,12 @@ import React from "react";
 
 import { EIconName } from "../../Icons";
 
-export type TApplyButtonsMobile = "row" | "column" | "column-reverse";
+export type TApplyButtonsMobileDirection = "row" | "column" | "column-reverse";
 export type TApplyButtonsAlign = "left" | "center" | "right";
 
 export interface ApplyButtonsProps {
-  mobile?: TApplyButtonsMobile;
-  align?: TApplyButtonsAlign;
+  applyButtonsMobileDirection?: TApplyButtonsMobileDirection;
+  applyButtonsAlign?: TApplyButtonsAlign;
   cancelBtnContent?: string;
   cancelBtnIconName?: EIconName;
   submitBtnIconName?: EIconName;

@@ -7,19 +7,20 @@ import { ConfirmProps } from "./types";
 export const Confirm: React.FC<ConfirmProps> = (props) => {
   const {
     zIndex,
-    title,
-    subtitle,
+    header,
+    subHeader,
     cancelBtnContent,
     cancelBtnDisabled,
     cancelBtnIconName,
     submitBtnContent,
+    submitBtnIconName,
     submit,
     disabled,
     formId,
     onClose,
-    mobile = "column",
-    align = "right",
-    modalAlign = "top",
+    applyButtonsMobileDirection = "column",
+    applyButtonsAlign = "right",
+    modalVerticalAlign = "top",
     textAlign = "left",
     loading,
     isVisibleCloseButton,
@@ -27,28 +28,30 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     size,
   } = props;
 
-  const isVisibleFooter = cancelBtnContent || submitBtnContent;
+  const isVisibleFooter =
+    cancelBtnContent || cancelBtnIconName || submitBtnContent || submitBtnIconName;
 
   return (
     <Modal
       zIndex={zIndex}
-      header={title}
+      header={header}
       onClose={onClose}
-      modalAlign={modalAlign}
+      modalVerticalAlign={modalVerticalAlign}
       textAlign={textAlign}
-      subHeader={subtitle}
+      subHeader={subHeader}
       isVisibleCloseButton={isVisibleCloseButton}
       isHiddenModal={isHiddenModal}
       size={size}
       footer={
         isVisibleFooter ? (
           <ApplyButtons
-            mobile={mobile}
-            align={align}
+            applyButtonsMobileDirection={applyButtonsMobileDirection}
+            applyButtonsAlign={applyButtonsAlign}
             cancelBtnContent={cancelBtnContent}
             cancelBtnIconName={cancelBtnIconName}
             cancelBtnDisabled={cancelBtnDisabled}
             submitBtnContent={submitBtnContent}
+            submitBtnIconName={submitBtnIconName}
             formId={formId}
             disabled={disabled}
             onClose={onClose}
