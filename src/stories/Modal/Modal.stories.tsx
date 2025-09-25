@@ -83,7 +83,7 @@ const { isOpen, onOpenModal, onCloseModal } = useModal();
 
 return (
   <>
-    <Button onClick={() => onOpenModal(someData || empty object)}>Открыть модальное окно</Button>
+    <Button onClick={() => onOpenModal({...})}>Открыть модальное окно</Button>
     {isOpen && (
       <Modal
         header="Заголовок модального окна"

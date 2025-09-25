@@ -26,6 +26,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     isVisibleCloseButton,
     isHiddenModal,
     size,
+    classNameRoot,
+    classNameLayerRoot,
   } = props;
 
   const isVisibleFooter =
@@ -42,6 +44,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       isVisibleCloseButton={isVisibleCloseButton}
       isHiddenModal={isHiddenModal}
       size={size}
+      classNameRoot={classNameRoot}
+      classNameLayerRoot={classNameLayerRoot}
       footer={
         isVisibleFooter ? (
           <ApplyButtons
