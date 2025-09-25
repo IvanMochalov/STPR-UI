@@ -1,12 +1,12 @@
 import React, { CSSProperties, ReactNode } from "react";
 
-export type TModalAlign = "center" | "top";
+export type TModalVerticalAlign = "center" | "top";
 export type TTextAlign = "center" | "left" | "right";
 
 export interface ModalProps extends React.PropsWithChildren {
   zIndex: number;
   size?: "md" | "lg";
-  modalAlign?: TModalAlign;
+  modalVerticalAlign?: TModalVerticalAlign;
   textAlign?: TTextAlign;
   isHiddenModal?: boolean;
   isVisibleCloseButton?: boolean;

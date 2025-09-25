@@ -10,14 +10,14 @@ import { ModalProps } from "./types";
 
 export const Modal: React.FC<ModalProps> = (props) => {
   const {
-    zIndex,
+    zIndex = 999,
     isHiddenModal = false,
     isVisibleCloseButton = true,
     children,
     classNameLayerRoot,
     classNameRoot: propsClassNameRoot,
     style,
-    modalAlign = "top",
+    modalVerticalAlign = "top",
     textAlign = "left",
     onClose,
     header,
@@ -28,7 +28,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameModalWrapper = cx({
     [styles.modalWrapper]: true,
-    [styles[`modalWrapper--modalAlign-${modalAlign}`]]: modalAlign,
+    [styles[`modalWrapper--modalVerticalAlign-${modalVerticalAlign}`]]: modalVerticalAlign,
     [styles[`modalWrapper--textAlign-${textAlign}`]]: textAlign,
   });
 
