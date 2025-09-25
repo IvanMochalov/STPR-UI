@@ -6,7 +6,7 @@
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  width: 100%;
+  width: fit-content;
 
   &__control {
     display: none
