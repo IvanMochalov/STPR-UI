@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { EIconName } from "../../../lib/components/Icons";
-import { Button, Confirm, Icon, useModal, Text } from "../../../lib/test-stpr-ui-kit.ts";
+import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
 
 const meta: Meta<typeof Confirm> = {
   component: Confirm,
@@ -85,6 +85,7 @@ return (
       options: ["md", "lg"],
       table: {
         defaultValue: { summary: "lg" },
+        type: { summary: "string:| md | lg" },
       },
     },
     modalVerticalAlign: {
@@ -94,6 +95,7 @@ return (
       options: ["top", "center"],
       table: {
         defaultValue: { summary: "top" },
+        type: { summary: "string:| top | center" },
       },
     },
     textAlign: {
@@ -102,6 +104,7 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "left" },
+        type: { summary: "string:| left | center | right" },
       },
     },
     isHiddenModal: {
@@ -109,6 +112,7 @@ return (
       control: { type: "boolean" },
       table: {
         defaultValue: { summary: "false" },
+        type: { summary: "boolean" },
       },
     },
     isVisibleCloseButton: {
@@ -116,6 +120,7 @@ return (
       control: { type: "boolean" },
       table: {
         defaultValue: { summary: "true" },
+        type: { summary: "boolean" },
       },
     },
     header: {
@@ -139,6 +144,7 @@ return (
       options: ["row", "column", "column-reverse"],
       table: {
         defaultValue: { summary: "column" },
+        type: { summary: "string:| row | column | column-reverse" },
       },
     },
     applyButtonsAlign: {
@@ -147,6 +153,7 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "right" },
+        type: { summary: "string:| left | center | right" },
       },
     },
     cancelBtnContent: {
@@ -190,21 +197,25 @@ return (
     },
     formId: {
       description: "ID формы для привязки кнопки подтверждения",
-      control: { type: "text" },
+      control: false,
     },
     submit: {
       description: "Callback-функция при подтверждении действия",
       control: false,
     },
-
-    // Common Props
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameLayerRoot: {
       description: "Дополнительный CSS-класс для слоя модального окна",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   decorators: [
@@ -237,6 +248,14 @@ export const Default: Story = {
     cancelBtnContent: "Отмена",
     submitBtnContent: "Подтвердить",
     applyButtonsAlign: "right",
+    isHiddenModal: false,
+    cancelBtnDisabled: false,
+    disabled: false,
+    loading: false,
+    applyButtonsMobileDirection: "column",
+    isVisibleCloseButton: true,
+    modalVerticalAlign: "top",
+    textAlign: "left",
     size: "md",
   },
   render: (args) => {
