@@ -11,6 +11,9 @@ const meta: Meta<typeof BaseTooltip> = {
       description:
         "Содержимое тултипа. Может быть строкой или React-компонентом\nПоддерживает переносы строк через `white-space: pre-line`\n",
       control: { type: "text" },
+      table: {
+        type: { summary: "string | ReactNode" },
+      },
     },
     noPadding: {
       description: "Убрать внутренние отступы (padding) тултипа\n",
