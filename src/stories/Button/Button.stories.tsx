@@ -22,6 +22,14 @@ const meta: Meta<typeof Button> = {
 - **Состояния**: disabled, loading, full width
 - **Типы кнопок**: button, submit, reset
 - **Адаптивный дизайн**: увеличенные отступы на планшетах и десктопе
+
+## Базовое использование
+
+\`\`\`jsx
+<Button onClick={() => console.log("click");}>
+  Кликни меня
+</Button>
+\`\`\`
         `,
       },
     },
