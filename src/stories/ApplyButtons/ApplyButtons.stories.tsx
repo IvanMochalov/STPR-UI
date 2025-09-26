@@ -32,6 +32,17 @@ const meta: Meta<typeof ApplyButtons> = {
 ### Планшеты и десктоп (≥ 768px)
 - Всегда горизонтальное расположение в строку
 - Сохранение выбранного выравнивания (left/center/right)
+
+## Базовое использование
+
+\`\`\`jsx
+<ApplyButtons
+  cancelBtnContent="Отмена"
+  submitBtnContent="Сохранить"
+  onClose={() => console.log("Закрыть")}
+  submit={() => console.log("Сохранить")}
+/>
+\`\`\`
         `,
       },
     },
