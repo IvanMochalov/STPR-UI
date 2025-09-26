@@ -104,6 +104,18 @@ const meta: Meta<typeof Accordion> = {
 - \`noBorder={true}\` - убирает все границы
 - \`noBorder={true} noPadding={true}\` - добавляется нижняя границу и отступ
 - \`noBorder={false} noPadding={true}\` - только граница без внутренних отступов
+
+## Базовое использование
+
+\`\`\`jsx
+return (
+  <Accordion name={"Название раскрывающего блока"}>
+    <div>
+      Какое то содержимое раскрывающегося блока
+    </div>
+  </Accordion>
+);
+\`\`\`
         `,
       },
     },
