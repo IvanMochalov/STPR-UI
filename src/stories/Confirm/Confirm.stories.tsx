@@ -85,7 +85,7 @@ return (
       options: ["md", "lg"],
       table: {
         defaultValue: { summary: "lg" },
-        type: { summary: "string:| md | lg" },
+        type: { summary: "union:| 'md' | 'lg'" },
       },
     },
     modalVerticalAlign: {
@@ -95,7 +95,7 @@ return (
       options: ["top", "center"],
       table: {
         defaultValue: { summary: "top" },
-        type: { summary: "string:| top | center" },
+        type: { summary: "union:| 'top' | 'center'" },
       },
     },
     textAlign: {
@@ -104,7 +104,7 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "left" },
-        type: { summary: "string:| left | center | right" },
+        type: { summary: "union:| 'left' | 'center' | 'right'" },
       },
     },
     isHiddenModal: {
@@ -144,7 +144,7 @@ return (
       options: ["row", "column", "column-reverse"],
       table: {
         defaultValue: { summary: "column" },
-        type: { summary: "string:| row | column | column-reverse" },
+        type: { summary: "union:| 'row' | 'column' | 'column-reverse'" },
       },
     },
     applyButtonsAlign: {
@@ -153,7 +153,7 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "right" },
-        type: { summary: "string:| left | center | right" },
+        type: { summary: "union:| 'left' | 'center' | 'right'" },
       },
     },
     cancelBtnContent: {

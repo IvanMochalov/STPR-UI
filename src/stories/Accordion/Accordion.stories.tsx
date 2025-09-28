@@ -54,7 +54,7 @@ const meta: Meta<typeof Accordion> = {
       control: { type: "radio" },
       table: {
         defaultValue: { summary: "1" },
-        type: { summary: "number:| 1 | 2" },
+        type: { summary: "union:| '1' | '2'" },
       },
     },
     onOpen: {

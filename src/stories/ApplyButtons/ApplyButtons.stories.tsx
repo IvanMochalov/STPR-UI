@@ -55,7 +55,7 @@ const meta: Meta<typeof ApplyButtons> = {
       options: ["column", "column-reverse", "row"],
       table: {
         defaultValue: { summary: "column" },
-        type: { summary: "string:| row | column | column-reverse" },
+        type: { summary: "union:| 'row' | 'column' | 'column-reverse'" },
       },
     },
     applyButtonsAlign: {
@@ -65,7 +65,7 @@ const meta: Meta<typeof ApplyButtons> = {
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "center" },
-        type: { summary: "string:| left | center | right" },
+        type: { summary: "union:| 'left' | 'center' | 'right'" },
       },
     },
     cancelBtnContent: {

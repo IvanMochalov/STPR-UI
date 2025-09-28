@@ -60,7 +60,7 @@ return (
       options: ["md", "lg"],
       table: {
         defaultValue: { summary: "lg" },
-        type: { summary: "string:| md | lg" },
+        type: { summary: "union:| 'md' | 'lg'" },
       },
     },
     checked: {

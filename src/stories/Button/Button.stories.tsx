@@ -42,7 +42,7 @@ const meta: Meta<typeof Button> = {
       options: ["primary", "secondary", "link"],
       table: {
         defaultValue: { summary: "primary" },
-        type: { summary: "string:| primary | secondary | link" },
+        type: { summary: "union:| 'primary' | 'secondary' | 'link'" },
       },
     },
     color: {
@@ -52,7 +52,7 @@ const meta: Meta<typeof Button> = {
       options: ["blue", "white"],
       table: {
         defaultValue: { summary: "blue" },
-        type: { summary: "string:| white | blue" },
+        type: { summary: "union:| 'white' | 'blue'" },
       },
     },
     children: {
@@ -104,7 +104,7 @@ const meta: Meta<typeof Button> = {
       options: ["button", "submit", "reset"],
       table: {
         defaultValue: { summary: "button" },
-        type: { summary: "string:| button | submit | reset" },
+        type: { summary: "union:| 'button' | 'submit' | 'reset'" },
       },
     },
     form: {
