@@ -9,5 +9,5 @@ export interface ViewImageModalProps {
   showLoader?: boolean;
   onError?: (event: React.SyntheticEvent<HTMLImageElement, Event>) => void;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement, Event>) => void;
-  onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
