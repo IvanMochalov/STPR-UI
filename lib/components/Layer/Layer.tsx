@@ -12,7 +12,7 @@ import { LayerProps } from "./types";
 export const Layer: React.FC<LayerProps> = (props) => {
   const {
     children,
-    zIndex = "9999",
+    zIndex = 999,
     isHiddenModal = false,
     classNameRoot: propsClassNameRoot,
   } = props;

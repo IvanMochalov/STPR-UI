@@ -4,7 +4,7 @@ export type TModalVerticalAlign = "center" | "top";
 export type TTextAlign = "center" | "left" | "right";
 
 export interface ModalProps extends React.PropsWithChildren {
-  zIndex: number;
+  zIndex?: number;
   size?: "md" | "lg";
   modalVerticalAlign?: TModalVerticalAlign;
   textAlign?: TTextAlign;
