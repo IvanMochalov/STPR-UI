@@ -90,6 +90,7 @@ export const Default: Story = {
   args: {
     text: "Дефолтный тултип с базовыми стилями",
     noPadding: false,
+    isNeedAuthorized: true,
     children: "Контент доступный только авторизованному пользователю",
   },
 };

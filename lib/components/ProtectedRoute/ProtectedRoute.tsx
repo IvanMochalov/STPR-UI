@@ -21,7 +21,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
 
   const handleAuthRedirect = () => {
     setShowAuthModal(false);
-    onAuthRedirect();
+    onAuthRedirect && onAuthRedirect();
   };
 
   return (
