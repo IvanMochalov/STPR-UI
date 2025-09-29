@@ -1,5 +1,5 @@
 import cx from "clsx";
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Button } from "../Button";
 import { EIconName } from "../Icons";
@@ -64,31 +64,6 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const classNameModalFooter = cx({
     [styles.modalWrapper__footer]: true,
   });
-
-  useEffect(() => {
-    // Запоминаем текущую позицию скролла
-    const scrollY = window.scrollY;
-    const body = document.body;
-
-    // Блокируем скролл и фиксируем позицию
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.overflow = "hidden";
-
-    return () => {
-      // Восстанавливаем скролл
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      body.style.overflow = "";
-
-      // Восстанавливаем позицию скролла
-      window.scrollTo(0, scrollY);
-    };
-  }, []);
 
   return (
     <Layer zIndex={zIndex} isHiddenModal={isHiddenModal} classNameRoot={classNameLayerRoot}>
