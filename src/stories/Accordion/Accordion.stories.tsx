@@ -61,6 +61,11 @@ const meta: Meta<typeof Accordion> = {
       description:
         "Callback-функция, вызываемая при изменении состояния аккордеона (раскрытии/сворачивании). Передает текущее состояние (boolean)\n",
       control: false,
+      table: {
+        type: {
+          detail: "onOpen={(open) => {\n" + "  console.log(open ? 'открыт' : 'закрыт');\n" + "}}",
+        },
+      },
     },
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента аккордеона\n",

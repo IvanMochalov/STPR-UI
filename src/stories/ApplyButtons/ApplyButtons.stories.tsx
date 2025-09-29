@@ -109,11 +109,23 @@ const meta: Meta<typeof ApplyButtons> = {
     onClose: {
       description: "Callback-функция для кнопки Cancel. Вызывается при клике на кнопку отмены\n",
       control: false,
+      table: {
+        type: {
+          detail:
+            "onClose={(event) => {\n" + "  // логика обработки клика по кнопке Cancel;\n" + "}}",
+        },
+      },
     },
     submit: {
       description:
         "Callback-функция для кнопки Submit (вызывается при клике). Альтернатива отправке формы через formId\n",
       control: false,
+      table: {
+        type: {
+          detail:
+            "onClose={(event) => {\n" + "  // логика обработки клика по кнопке Submit;\n" + "}}",
+        },
+      },
     },
     loading: {
       description:

@@ -34,20 +34,17 @@ const meta: Meta<typeof ContextMenu> = {
       },
     },
     onClickItem: {
-      description: `Callback-функция, вызываемая при клике на опцию меню.
-Получает объект выбранной опции в качестве параметра.
-
-Пример использования:
-\`\`\`tsx
-onClickItem={(option) => {
-  console.log('Выбрана опция:', option.key, option.label);
-  // Ваша логика обработки
-}}
-\`\`\`
-`,
+      description:
+        "Callback-функция, вызываемая при клике на опцию меню. Получает объект выбранной опции в качестве параметра.",
       control: false,
       table: {
-        type: { summary: "(option: TContextMenuOption) => void" },
+        type: {
+          summary: "(option: TContextMenuOption) => void",
+          detail:
+            "onClickItem={(option) => {\n" +
+            "  console.log('Выбрана опция:', option.key, option.label);\n" +
+            "}}",
+        },
       },
     },
   },

@@ -126,6 +126,11 @@ const meta: Meta<typeof Button> = {
     onClick: {
       description: "Callback-функция при клике на кнопку. Не вызывается если disabled=true",
       control: false,
+      table: {
+        type: {
+          detail: "onClose={(event) => {\n" + "  // логика обработки клика по кнопке;\n" + "}}",
+        },
+      },
     },
     style: {
       description: "Инлайн-стили для кастомизации внешнего вида",
