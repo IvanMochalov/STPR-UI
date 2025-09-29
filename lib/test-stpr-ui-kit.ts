@@ -32,6 +32,7 @@ import { Text } from "./components/Text";
 import { TextWithLabel } from "./components/TextWithLabel";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "./components/Tooltip";
 import { UploadFiles } from "./components/UploadFiles";
+import { ViewImageModal } from "./components/ViewImageModal";
 
 export {
   Accordion,
@@ -75,4 +76,5 @@ export {
   UploadFiles,
   useAnimatedValue,
   useModal,
+  ViewImageModal,
 };
