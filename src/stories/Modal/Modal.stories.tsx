@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
 
 import { ApplyButtons, Button, Modal, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
 import styles from "./ModalStories.module.scss";
@@ -195,16 +194,6 @@ return (
 export default meta;
 
 type Story = StoryObj<typeof Modal>;
-
-// Базовый хук для управления модальным окном
-const useModalStory = (defaultOpen = false) => {
-  const [isOpen, setIsOpen] = React.useState(defaultOpen);
-
-  const onOpenModal = () => setIsOpen(true);
-  const onCloseModal = () => setIsOpen(false);
-
-  return { isOpen, onOpenModal, onCloseModal };
-};
 
 export const Default: Story = {
   name: "Default Modal",
@@ -403,22 +392,21 @@ export const CustomHeader: Story = {
 export const SizesComparison: Story = {
   name: "Modal Sizes Comparison",
   render: () => {
-    const { isOpen: isOpenLg, onOpenModal: onOpenLg, onCloseModal: onCloseLg } = useModalStory();
-    const { isOpen: isOpenMd, onOpenModal: onOpenMd, onCloseModal: onCloseMd } = useModalStory();
+    const { modalData, onOpenModal, onCloseModal } = useModal();
 
     return (
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-        <Button onClick={onOpenMd}>Открыть Medium (600px)</Button>
-        <Button onClick={onOpenLg}>Открыть Large (920px)</Button>
+        <Button onClick={() => onOpenModal({ isOpenMd: true })}>Открыть Medium (600px)</Button>
+        <Button onClick={() => onOpenModal({ isOpenLg: true })}>Открыть Large (920px)</Button>
 
-        {isOpenMd && (
-          <Modal header="Medium Modal" size="md" onClose={onCloseMd} zIndex={1000}>
+        {modalData?.isOpenMd && (
+          <Modal header="Medium Modal" size="md" onClose={onCloseModal} zIndex={1000}>
             <Text>Это модальное окно среднего размера (max-width: 600px на desktop).</Text>
           </Modal>
         )}
 
-        {isOpenLg && (
-          <Modal header="Large Modal" size="lg" onClose={onCloseLg} zIndex={1001}>
+        {modalData?.isOpenLg && (
+          <Modal header="Large Modal" size="lg" onClose={onCloseModal} zIndex={1001}>
             <Text>Это модальное окно большого размера (max-width: 920px на desktop).</Text>
           </Modal>
         )}
