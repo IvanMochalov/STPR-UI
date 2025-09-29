@@ -58,6 +58,10 @@
     &:active {
       color: styles.$color-green-blue;
     }
+
+    &#{$block}_white {
+      color: styles.$color-white;
+    }
   }
 
   &_primary#{$block}_blue {
