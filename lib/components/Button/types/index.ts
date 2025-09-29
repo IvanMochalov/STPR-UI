@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 
 import { EIconName } from "../../Icons";
 
@@ -21,6 +21,7 @@ export interface ButtonProps extends React.PropsWithChildren {
   isOnlyIcon?: boolean;
   loading?: boolean;
   iconName?: EIconName;
+  icon?: ReactNode;
   classNameRoot?: string;
   classNameIconContainerRoot?: string;
   iconRotate?: number;

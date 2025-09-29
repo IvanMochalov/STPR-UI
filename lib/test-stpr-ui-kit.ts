@@ -21,6 +21,7 @@ import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
 import type { ProgressWrapperProps } from "./components/ProgressWrapper";
 import { ProgressWrapper, useAnimatedValue } from "./components/ProgressWrapper";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import type { TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
@@ -59,6 +60,7 @@ export {
   Portal,
   ProgressWrapper,
   ProgressWrapperProps,
+  ProtectedRoute,
   Select,
   Skeleton,
   Spinner,

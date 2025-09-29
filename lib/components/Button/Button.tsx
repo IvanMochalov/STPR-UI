@@ -13,6 +13,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     style,
     onClick,
     iconName,
+    icon,
     iconRotate = 0,
     disabled = false,
     type = "button",
@@ -44,16 +45,26 @@ export const Button: React.FC<ButtonProps> = (props) => {
       ...(propsClassNameIconContainerRoot && { [propsClassNameIconContainerRoot]: true }),
     });
 
+    const renderIcon = () => {
+      if (loading) {
+        return <Spinner classNameRoot={styles.spButton__spinner} />;
+      }
+
+      if (iconName) {
+        return <Icon name={iconName} rotate={iconRotate} />;
+      }
+
+      if (icon) {
+        return icon;
+      }
+
+      return null;
+    };
+
     return (
       <>
-        {(iconName || loading) && (
-          <div className={classNameIconContainer}>
-            {loading ? (
-              <Spinner classNameRoot={styles.spButton__spinner} />
-            ) : (
-              iconName && <Icon name={iconName} rotate={iconRotate} />
-            )}
-          </div>
+        {(icon || iconName || loading) && (
+          <div className={classNameIconContainer}>{renderIcon()}</div>
         )}
         {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
       </>

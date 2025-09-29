@@ -62,6 +62,13 @@ const meta: Meta<typeof Button> = {
         type: { summary: "ReactNode" },
       },
     },
+    icon: {
+      description: "Кастомная иконка (не входящая в EIconName)",
+      control: false,
+      table: {
+        type: { summary: "ReactNode" },
+      },
+    },
     disabled: {
       description: "Блокирует кнопку. Визуально затемняет и отключает взаимодействие",
       control: { type: "boolean" },
@@ -219,6 +226,32 @@ export const WithIcon: Story = {
     variant: "primary",
     color: "blue",
     iconName: EIconName.Plus,
+    children: "Add Item",
+  },
+};
+
+export const WithCustomIcon: Story = {
+  name: "Button with Custom Icon",
+  args: {
+    variant: "primary",
+    color: "blue",
+    icon: (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.25008 10L8.75008 12.5L13.7501 7.50002M18.3334 10C18.3334 14.6024 14.6025 18.3334 10.0001 18.3334C5.39771 18.3334 1.66675 14.6024 1.66675 10C1.66675 5.39765 5.39771 1.66669 10.0001 1.66669C14.6025 1.66669 18.3334 5.39765 18.3334 10Z"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
     children: "Add Item",
   },
 };
