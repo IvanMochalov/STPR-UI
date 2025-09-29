@@ -237,6 +237,7 @@ export const WithCustomIcon: Story = {
     color: "blue",
     icon: (
       <svg
+        className="stpr-icon"
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -245,7 +246,7 @@ export const WithCustomIcon: Story = {
       >
         <path
           d="M6.25008 10L8.75008 12.5L13.7501 7.50002M18.3334 10C18.3334 14.6024 14.6025 18.3334 10.0001 18.3334C5.39771 18.3334 1.66675 14.6024 1.66675 10C1.66675 5.39765 5.39771 1.66669 10.0001 1.66669C14.6025 1.66669 18.3334 5.39765 18.3334 10Z"
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
