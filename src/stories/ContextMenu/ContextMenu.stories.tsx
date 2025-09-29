@@ -5,6 +5,34 @@ import { ContextMenu, EIconName } from "../../../lib/test-stpr-ui-kit.ts";
 const meta: Meta<typeof ContextMenu> = {
   component: ContextMenu,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Контекстное меню для отображения списка действий с поддержкой иконок.
+
+## Особенности:
+- Автоматическое определение опции "Удалить" по ключу "delete"
+- Подсветка иконки удаления красным цветом
+- Гибкая система иконок через компонент Icon
+- Адаптивный дизайн с hover-эффектами
+- Семантическая HTML-разметка (ul/li)
+
+## Базовое использование
+
+\`\`\`jsx
+<ContextMenu
+  options={[
+    { key: "edit", label: "Редактировать", iconName: EIconName.Edit },
+    { key: "delete", label: "Удалить", iconName: EIconName.Trash },
+  ]}
+  onClickItem={(option) => console.log(option)}
+/>
+\`\`\`
+        `,
+      },
+    },
+  },
   argTypes: {
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента контекстного меню\n",
@@ -45,34 +73,6 @@ const meta: Meta<typeof ContextMenu> = {
             "  console.log('Выбрана опция:', option.key, option.label);\n" +
             "}}",
         },
-      },
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component: `
-Контекстное меню для отображения списка действий с поддержкой иконок.
-
-## Особенности:
-- Автоматическое определение опции "Удалить" по ключу "delete"
-- Подсветка иконки удаления красным цветом
-- Гибкая система иконок через компонент Icon
-- Адаптивный дизайн с hover-эффектами
-- Семантическая HTML-разметка (ul/li)
-
-## Базовое использование
-
-\`\`\`jsx
-<ContextMenu
-  options={[
-    { key: "edit", label: "Редактировать", iconName: EIconName.Edit },
-    { key: "delete", label: "Удалить", iconName: EIconName.Trash },
-  ]}
-  onClickItem={(option) => console.log(option)}
-/>
-\`\`\`
-        `,
       },
     },
   },

@@ -9,6 +9,7 @@
   width: fit-content;
   background-color: styles.$color-frost-blue;
   cursor: pointer;
+  color: styles.$color-accent-blue;
 
   &:hover {
     background-color: styles.$color-secondary-blue-light-2;
@@ -19,14 +20,14 @@
     font-family: styles.$main-font;
     font-size: 16px;
     font-weight: 500;
-    color: styles.$color-accent-blue;
-    border-right: 1px solid styles.$color-accent-blue;
+    color: currentColor;
+    border-right: 1px solid currentColor;
   }
 
   &__tooltipContainer {
     display: flex;
     padding: 10.5px 16px 10.5px 14px;
-    color: styles.$color-accent-blue;
+    color: currentColor;
   }
 
   &__dropdownList {
@@ -51,13 +52,15 @@
     font-size: 16px;
     padding: 16px;
     cursor: pointer;
+    gap: 8px;
 
     &:hover {
       background-color: styles.$color-alice-blue;
     }
 
     &_textCenter {
-      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
   }
 
