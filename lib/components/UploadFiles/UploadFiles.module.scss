@@ -205,12 +205,21 @@
     &__iconContainer {
       display: flex;
       color: styles.$color-accent-blue;
-      width: 26px;
       flex-shrink: 0;
 
-      &_error {
-        color: styles.$color-red;
-        width: 32px;
+      & :global {
+        & .stpr-icon {
+          height: 32px;
+          width: 32px;
+        }
+      }
+
+      &_error :global {
+        & .stpr-icon {
+          color: styles.$color-red;
+          height: 28px;
+          width: 28px;
+        }
       }
     }
 
