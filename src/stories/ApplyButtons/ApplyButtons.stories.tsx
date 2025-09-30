@@ -55,7 +55,10 @@ const meta: Meta<typeof ApplyButtons> = {
       options: ["column", "column-reverse", "row"],
       table: {
         defaultValue: { summary: "column" },
-        type: { summary: "union:| 'row' | 'column' | 'column-reverse'" },
+        type: {
+          summary: "TApplyButtonsMobileDirection",
+          detail: '"row" | "column" | "column-reverse"',
+        },
       },
     },
     applyButtonsAlign: {
@@ -65,7 +68,10 @@ const meta: Meta<typeof ApplyButtons> = {
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "center" },
-        type: { summary: "union:| 'left' | 'center' | 'right'" },
+        type: {
+          summary: "TApplyButtonsAlign",
+          detail: '"left" | "center" | "right"',
+        },
       },
     },
     cancelBtnContent: {

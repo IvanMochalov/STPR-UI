@@ -1,12 +1,14 @@
 import { PropsWithChildren } from "react";
 
+export type TProgressWrapperAnimationVariant = "pulse" | "backgroundProgress";
+
 export interface ProgressWrapperProps extends PropsWithChildren {
   value: number;
   classNameRoot?: string;
   classNameProgressBadgeRoot?: string;
   duration?: number;
   doneValue?: number;
-  animationVariant?: "pulse" | "backgroundProgress";
+  animationVariant?: TProgressWrapperAnimationVariant;
   onSuccessLoaded?: () => void;
 }
 

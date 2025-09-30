@@ -56,7 +56,10 @@ const meta: Meta<typeof ProgressWrapper> = {
       control: { type: "select" },
       options: ["pulse", "backgroundProgress"],
       table: {
-        type: { summary: '"pulse" | "backgroundProgress"' },
+        type: {
+          summary: "TProgressWrapperAnimationVariant",
+          detail: "'pulse' | 'backgroundProgress'",
+        },
         defaultValue: { summary: '"backgroundProgress"' },
       },
     },

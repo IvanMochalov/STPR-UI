@@ -2,8 +2,10 @@ import React from "react";
 
 import { ETooltipPosition } from "../../Tooltip";
 
+export type TCheckboxSize = "md" | "lg";
+
 export interface CheckboxProps {
-  size?: "md" | "lg";
+  size?: TCheckboxSize;
   checked?: boolean;
   disabled?: boolean;
   onChange: TOnChangeCheckbox;

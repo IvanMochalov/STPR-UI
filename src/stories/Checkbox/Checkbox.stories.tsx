@@ -60,7 +60,10 @@ return (
       options: ["md", "lg"],
       table: {
         defaultValue: { summary: "lg" },
-        type: { summary: "union:| 'md' | 'lg'" },
+        type: {
+          summary: "TCheckboxSize",
+          detail: "'md' | 'lg'",
+        },
       },
     },
     checked: {

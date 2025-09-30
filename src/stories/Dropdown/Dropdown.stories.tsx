@@ -65,12 +65,12 @@ const meta: Meta<typeof Dropdown> = {
         type: {
           summary: "Array<TDropdownListItem>",
           detail:
-            "TDropdownListItem = {\n" +
+            "TDropdownListItem[] = {\n" +
             "  name: string;\n" +
             "  onClick?: () => void;\n" +
             "  description?: string;\n" +
             "  textCenter?: boolean;\n" +
-            " }",
+            " }[]",
         },
       },
     },

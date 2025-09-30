@@ -95,7 +95,10 @@ return (
       options: ["md", "lg"],
       table: {
         defaultValue: { summary: "lg" },
-        type: { summary: "union:| 'md' | 'lg'" },
+        type: {
+          summary: "TModalSize",
+          detail: "'md' | 'lg'",
+        },
       },
     },
     modalVerticalAlign: {
@@ -105,7 +108,10 @@ return (
       options: ["top", "center"],
       table: {
         defaultValue: { summary: "top" },
-        type: { summary: "union:| 'top' | 'center'" },
+        type: {
+          summary: "TModalVerticalAlign",
+          detail: "'center' | 'top'",
+        },
       },
     },
     textAlign: {
@@ -114,7 +120,10 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "left" },
-        type: { summary: "union:| 'left' | 'center' | 'right'" },
+        type: {
+          summary: "TTextAlign",
+          detail: "'left' | 'center' | 'right'",
+        },
       },
     },
     isHiddenModal: {

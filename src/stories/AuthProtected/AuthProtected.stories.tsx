@@ -54,7 +54,10 @@ const meta: Meta<typeof AuthProtected> = {
       control: { type: "select" },
       options: ["md", "lg"],
       table: {
-        type: { summary: 'union:| "md" | "lg"' },
+        type: {
+          summary: "TModalSize",
+          detail: "'md' | 'lg'",
+        },
         defaultValue: { summary: '"md"' },
       },
     },
@@ -124,19 +127,7 @@ const meta: Meta<typeof AuthProtected> = {
           justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            position: "relative",
-            border: "1px dashed #ccc",
-            padding: "40px",
-            background: "#f9f9f9",
-            borderRadius: "8px",
-            width: "100%",
-            maxWidth: "600px",
-          }}
-        >
-          <Story />
-        </div>
+        <Story />
       </div>
     ),
   ],

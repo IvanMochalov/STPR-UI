@@ -57,7 +57,7 @@ const meta: Meta<typeof ContextMenu> = {
         type: {
           summary: "Array<TContextMenuOption>",
           detail:
-            "TContextMenuOption = { key?: string; value?: string; label?: string; iconName?: EIconName; }",
+            "TContextMenuOption[] = { key?: string; value?: string; label?: string; iconName?: EIconName; }[]",
         },
       },
     },

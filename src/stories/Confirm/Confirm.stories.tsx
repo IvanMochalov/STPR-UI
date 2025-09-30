@@ -77,6 +77,9 @@ return (
     zIndex: {
       description: "Z-index модального окна. Определяет порядок наложения поверх других элементов",
       control: { type: "number" },
+      table: {
+        defaultValue: { summary: "999" },
+      },
     },
     size: {
       description:
@@ -85,7 +88,10 @@ return (
       options: ["md", "lg"],
       table: {
         defaultValue: { summary: "lg" },
-        type: { summary: "union:| 'md' | 'lg'" },
+        type: {
+          summary: "TModalSize",
+          detail: "'md' | 'lg'",
+        },
       },
     },
     modalVerticalAlign: {
@@ -95,7 +101,10 @@ return (
       options: ["top", "center"],
       table: {
         defaultValue: { summary: "top" },
-        type: { summary: "union:| 'top' | 'center'" },
+        type: {
+          summary: "TModalVerticalAlign",
+          detail: "'center' | 'top'",
+        },
       },
     },
     textAlign: {
@@ -104,7 +113,10 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "left" },
-        type: { summary: "union:| 'left' | 'center' | 'right'" },
+        type: {
+          summary: "TTextAlign",
+          detail: "'left' | 'center' | 'right'",
+        },
       },
     },
     isHiddenModal: {
@@ -144,7 +156,10 @@ return (
       options: ["row", "column", "column-reverse"],
       table: {
         defaultValue: { summary: "column" },
-        type: { summary: "union:| 'row' | 'column' | 'column-reverse'" },
+        type: {
+          summary: "TApplyButtonsMobileDirection",
+          detail: '"row" | "column" | "column-reverse"',
+        },
       },
     },
     applyButtonsAlign: {
@@ -153,7 +168,10 @@ return (
       options: ["left", "center", "right"],
       table: {
         defaultValue: { summary: "right" },
-        type: { summary: "union:| 'left' | 'center' | 'right'" },
+        type: {
+          summary: "TApplyButtonsAlign",
+          detail: '"left" | "center" | "right"',
+        },
       },
     },
     cancelBtnContent: {

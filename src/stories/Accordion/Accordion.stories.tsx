@@ -54,7 +54,10 @@ const meta: Meta<typeof Accordion> = {
       control: { type: "radio" },
       table: {
         defaultValue: { summary: "1" },
-        type: { summary: "union:| '1' | '2'" },
+        type: {
+          summary: "TAccordionLevel",
+          detail: "1 | 2",
+        },
       },
     },
     onOpen: {
