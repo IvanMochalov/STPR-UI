@@ -38,7 +38,7 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
     <span
       style={{ ...style, color }}
       title={title}
-      onClick={onClick}
+      onClick={(e) => onClick && onClick(e)}
       className={classNameRoot}
       ref={ref}
     >
