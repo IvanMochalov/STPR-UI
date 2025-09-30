@@ -6,22 +6,174 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
   component: EllipsisTextWithTooltip,
   tags: ["autodocs"],
   argTypes: {
+    text: {
+      description: `Текст для отображения. При переполнении контейнера будет обрезан с многоточием и покажет тултип при наведении.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    type: {
+      description: `Типографический стиль текста. Определяет размер, шрифт и начертание:
+- "h1" - заголовок первого уровня (28px на мобильных, 48px на планшетах+)
+- "h3" - заголовок третьего уровня (24px на мобильных, 36px на планшетах+)
+- "p1" - основной параграф (16px на мобильных, 20px на планшетах+)
+- "p2" - вторичный параграф (16px на всех устройствах)
+- "description" - описание (14px на мобильных, 16px на планшетах+)
+- "link" - стиль ссылки (16px на мобильных, 18px на планшетах+)\n`,
+      control: { type: "select" },
+      options: ["h1", "h3", "p1", "p2", "description", "link"],
+      table: {
+        type: {
+          summary: "TTextType",
+          detail: '"h1" | "h3" | "p1" | "p2" | "description" | "link"',
+        },
+      },
+    },
+    color: {
+      description: `Кастомный цвет текста. Переопределяет стандартные цвета типографики.\n`,
+      control: { type: "color" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    title: {
+      description: `Текст всплывающей подсказки при наведении (HTML-атрибут title).\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
     classNameRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента компонента\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameTooltipRoot: {
+      description: "Дополнительный CSS-класс для элемента тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameTriggerTooltipRoot: {
+      description: "Дополнительный CSS-класс для триггера тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipContentRoot: {
+      description: "Дополнительный CSS-класс для контентной области базового тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента базового тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    style: {
+      description: "Инлайн-стили для кастомизации внешнего вида текста\n",
+      control: { type: "object" },
+      table: {
+        type: { summary: "React.CSSProperties" },
+      },
     },
     onClick: {
+      description: `Callback-функция, вызываемая при клике на текстовый элемент.
+Автоматически добавляет курсор-указатель если \`isCursorPointerByOnClick=true\`\n`,
       control: false,
+      table: {
+        type: { summary: "(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void" },
+      },
+    },
+    isCursorPointer: {
+      description: `Принудительно установить курсор-указатель при наведении.
+Игнорируется если \`onClick\` установлен и \`isCursorPointerByOnClick=true\`\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isCursorPointerByOnClick: {
+      description: `Автоматически добавлять курсор-указатель при наличии \`onClick\` обработчика.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+    },
+    defaultTooltipPosition: {
+      description: `Позиция тултипа относительно текста. Определяет где будет отображаться тултип при наведении.\n`,
+      control: { type: "select" },
+      options: ["top", "bottom", "left", "right"],
+      table: {
+        type: { summary: "ETooltipPosition" },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Компонент для отображения текста с автоматическим определением переполнения и показом тултипа с полным текстом при наведении.
+
+## Особенности:
+- **Автоматическое определение переполнения** - проверяет, обрезан ли текст через сравнение \`scrollWidth\` и \`clientWidth\`
+- **Умный тултип** - показывается только когда текст действительно обрезан
+- **Наследование всех свойств Text** - поддерживает все типографические стили и пропсы
+- **Автоматическая обрезка** - всегда включает \`isEllipsis=true\` для текста
+- **Производительность** - проверка переполнения происходит только при изменении текста
+
+## Поведение:
+- Компонент автоматически определяет, помещается ли текст в доступную ширину
+- Если текст обрезан (появляется многоточие), при наведении показывается тултип с полным текстом
+- Если текст полностью помещается, тултип не отображается даже при наведении
+- Поддерживает все типографические стили родительского Text компонента
+
+## Рекомендации по использованию:
+Идеально подходит для таблиц, карточек и любых контейнеров с ограниченной шириной, где текст может быть обрезан.
+
+### Базовое использование
+
+\`\`\`jsx
+<div style={{ width: "200px" }}>
+  <EllipsisTextWithTooltip 
+    text="Очень длинный текст который может не поместиться в контейнер"
+    type="h1"
+  />
+</div>
+\`\`\`
+        `,
+      },
     },
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div
+        style={{
+          minHeight: "50vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "20px",
+        }}
+      >
         <Story />
       </div>
     ),
   ],
   args: {
     text: "Ellipsis Text With Tooltip",
+    title: "Ellipsis Text With Tooltip",
     isCursorPointer: false,
     isCursorPointerByOnClick: true,
   },
@@ -33,7 +185,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
           flexDirection: "column",
           alignItems: "flex-start",
           gap: "20px",
-          maxWidth: "250px",
+          maxWidth: "380px",
         }}
       >
         <EllipsisTextWithTooltip {...args} type={"h1"} text={`${args.text} with type="h1"`} />
@@ -57,4 +209,110 @@ type Story = StoryObj<typeof EllipsisTextWithTooltip>;
 
 export const Default: Story = {
   name: "Default Ellipsis Text With Tooltip",
+};
+
+export const WithLongText: Story = {
+  name: "Long Text with Tooltip",
+  args: {
+    text: "Очень длинный текст который точно не поместится в ограниченный контейнер и будет обрезан с многоточием",
+  },
+  render: (args) => (
+    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+      <EllipsisTextWithTooltip {...args} />
+      <div style={{ marginTop: "10px", fontSize: "12px", color: "#666" }}>
+        (Наведите на текст чтобы увидеть тултип)
+      </div>
+    </div>
+  ),
+};
+
+export const WithShortText: Story = {
+  name: "Short Text without Tooltip",
+  args: {
+    text: "Короткий текст",
+  },
+  render: (args) => (
+    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+      <EllipsisTextWithTooltip {...args} />
+      <div style={{ marginTop: "10px", fontSize: "12px", color: "#666" }}>
+        (Тултип не покажется - текст помещается)
+      </div>
+    </div>
+  ),
+};
+
+export const ClickableWithTooltip: Story = {
+  name: "Clickable Text with Tooltip",
+  args: {
+    text: "Кликаемый текст с тултипом при обрезке",
+    onClick: () => alert("Текст был кликнут!"),
+  },
+  render: (args) => (
+    <div style={{ width: "150px", border: "1px solid #eee", padding: "10px" }}>
+      <EllipsisTextWithTooltip {...args} />
+    </div>
+  ),
+};
+
+export const CustomColor: Story = {
+  name: "Custom Color with Tooltip",
+  args: {
+    text: "Текст с кастомным цветом который будет обрезан",
+    color: "#ff6b6b",
+    type: "p1",
+  },
+  render: (args) => (
+    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+      <EllipsisTextWithTooltip {...args} />
+    </div>
+  ),
+};
+
+export const DifferentWidths: Story = {
+  name: "Different Container Widths",
+  args: {
+    text: "Адаптивный текст с тултипом при переполнении",
+  },
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "15px", maxWidth: "300px" }}>
+      <div style={{ width: "100px", border: "1px solid #eee", padding: "8px" }}>
+        <EllipsisTextWithTooltip {...args} />
+        <div style={{ fontSize: "12px", color: "#666" }}>100px - обрезан</div>
+      </div>
+      <div style={{ width: "150px", border: "1px solid #eee", padding: "8px" }}>
+        <EllipsisTextWithTooltip {...args} />
+        <div style={{ fontSize: "12px", color: "#666" }}>150px - обрезан</div>
+      </div>
+      <div style={{ width: "250px", border: "1px solid #eee", padding: "8px" }}>
+        <EllipsisTextWithTooltip {...args} />
+        <div style={{ fontSize: "12px", color: "#666" }}>250px - помещается</div>
+      </div>
+      <div style={{ width: "300px", border: "1px solid #eee", padding: "8px" }}>
+        <EllipsisTextWithTooltip {...args} />
+        <div style={{ fontSize: "12px", color: "#666" }}>300px - помещается</div>
+      </div>
+    </div>
+  ),
+};
+
+export const AllTypesInNarrowContainer: Story = {
+  name: "All Text Types in Narrow Container",
+  args: {
+    text: "Длинный текст демонстрирующий работу тултипа при обрезке",
+  },
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "180px" }}>
+      <EllipsisTextWithTooltip {...args} type="h1" text="Заголовок H1 с тултипом при обрезке" />
+      <EllipsisTextWithTooltip {...args} type="h3" text="Заголовок H3 с тултипом при обрезке" />
+      <EllipsisTextWithTooltip {...args} type="p1" text="Параграф P1 с тултипом при обрезке" />
+      <EllipsisTextWithTooltip {...args} type="p2" text="Параграф P2 с тултипом при обрезке" />
+      <EllipsisTextWithTooltip
+        {...args}
+        type="description"
+        text="Описание с тултипом при обрезке"
+      />
+      <EllipsisTextWithTooltip {...args} type="link" text="Ссылка с тултипом при обрезке" />
+      <EllipsisTextWithTooltip {...args} text="Стандартный текст с тултипом при обрезке" />
+    </div>
+  ),
 };
