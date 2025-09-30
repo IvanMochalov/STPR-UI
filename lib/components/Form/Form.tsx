@@ -21,7 +21,7 @@ export const Form: React.FC<FormProps> = (props) => {
     [styles.spForm_fullWidth]: fullWidth,
     [styles.spForm_addMargin]: addMargin,
     [styles[`spForm_addMargin--size-${size}`]]: addMargin && size,
-    [styles.spForm_withSeparator]: withSeparator,
+    [styles.spForm_withSeparator]: withSeparator && addMargin,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 

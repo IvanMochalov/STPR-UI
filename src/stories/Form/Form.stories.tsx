@@ -8,57 +8,154 @@ const meta: Meta<typeof Form> = {
   component: Form,
   tags: ["autodocs"],
   argTypes: {
-    classNameRoot: {
-      control: false,
-    },
-    children: {
-      control: false,
-    },
-    fullWidth: {
+    size: {
+      description: `Размер формы. Определяет величину отступов между элементами:
+- "md" - средний размер (24px на мобильных, 32px на планшетах+)
+- "lg" - большой размер (32px на мобильных, 48px на планшетах+)\n`,
+      control: { type: "select" },
+      options: ["md", "lg"],
       table: {
-        defaultValue: { summary: "true" },
+        type: { summary: "TFormSize", detail: "'md' | 'lg'" },
+        defaultValue: { summary: '"lg"' },
       },
     },
     withSeparator: {
-      table: {
-        defaultValue: { summary: "false" },
-      },
-    },
-    autoComplete: {
-      table: {
-        defaultValue: { summary: "false" },
-      },
+      description: `Добавить разделители между элементами формы.
+Каждый элемент кроме первого получает верхнюю границу-разделитель.\n
+Работает вместе с \`addMargin={true}\``,
       control: { type: "boolean" },
-      description:
-        "Указывает, могут ли элементы ввода по умолчанию автоматически дополнять свои значения браузером. autocompleteАтрибуты элементов формы переопределяют это значение form. Возможные значения:\n" +
-        "\noff | on",
-    },
-    noValidate: {
       table: {
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
-      control: { type: "boolean" },
-      description:
-        "Этот логический атрибут указывает, что форма не должна проверяться при отправке. Если этот атрибут не задан (и, следовательно, форма проверена ), его можно переопределить атрибутом formnovalidate элемента button, input type submit, или input type image, принадлежащего форме",
     },
     addMargin: {
+      description: `Добавить вертикальные отступы между элементами формы.
+Размер отступов зависит от параметра \`size\`.\n`,
+      control: { type: "boolean" },
       table: {
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
+      },
+    },
+    fullWidth: {
+      description: `Занимать всю доступную ширину родительского контейнера.
+Если false - ширина формы определяется содержимым (width: fit-content).\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+    },
+    classNameRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента формы\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    onSubmit: {
+      description: `Callback-функция, вызываемая при отправке формы.
+Автоматически предотвращает стандартное поведение браузера (event.preventDefault()).\n`,
+      control: false,
+      table: {
+        type: { summary: "() => void" },
+      },
+    },
+    id: {
+      description: `HTML-атрибут id для формы. Полезен для связывания с элементами <label>.\n`,
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    name: {
+      description: `HTML-атрибут name для формы. Используется для идентификации формы.\n`,
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    noValidate: {
+      description: `Отключить встроенную валидацию браузера для формы.
+Позволяет реализовать кастомную логику валидации.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    children: {
+      description: `Дочерние элементы формы. Обычно содержат поля ввода, кнопки и другие компоненты.\n`,
+      control: false,
+      table: {
+        type: { summary: "ReactNode" },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Универсальный компонент формы с поддержкой различных стилей компоновки и адаптивным дизайном.
+
+## Особенности:
+- **Адаптивные отступы** - размеры меняются на разных \`breakpoints\` (мобильные/планшеты+)
+- **Гибкая ширина** - может занимать всю ширину или подстраиваться под содержимое
+- **Два варианта компоновки** - с разделителями или с отступами между элементами
+- **Автоматический \`preventDefault\`** - предотвращает перезагрузку страницы при отправке
+- **Семантическая HTML-разметка** - использует нативный \`<form>\` элемент
+
+## Варианты компоновки:
+- **С отступами \`(addMargin)\`** - вертикальные отступы между элементами
+- **С разделителями \`(withSeparator)\`** - горизонтальные линии между элементами (только при \`addMargin={true}\`)
+- **Комбинированный** - можно использовать оба варианта одновременно
+
+## Адаптивность:
+Все отступы и разделители адаптируются под разные разрешения устройств:
+- Мобильные: базовые размеры отступов
+- Планшеты и выше \`(sm breakpoint)\`: увеличенные размеры
+
+## Рекомендации по использованию:
+Используйте для создания структурированных форм с единообразным расположением элементов.
+
+### Базовое использование
+
+\`\`\`jsx
+<Form onSubmit={handleSubmit} addMargin={true} size="lg">
+  <Input label="Имя" name="name" />
+  <Input label="Email" name="email" />
+  <Button type="submit">Отправить</Button>
+</Form>
+\`\`\`
+        `,
       },
     },
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "50vh", display: "flex", alignItems: "center", width: "600px" }}>
-        <Story />
+      <div
+        style={{
+          minHeight: "50vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "20px",
+          width: "100%",
+        }}
+      >
+        <div style={{ width: "600px", maxWidth: "100%" }}>
+          <Story />
+        </div>
       </div>
     ),
   ],
   args: {
-    size: "md",
+    size: "lg",
     addMargin: true,
     fullWidth: true,
     withSeparator: false,
+    noValidate: false,
     onSubmit: () => {
       alert("Form is submitted");
     },
@@ -70,7 +167,7 @@ export default meta;
 type Story = StoryObj<typeof Form>;
 
 export const Default: Story = {
-  name: "Form with margin and full width",
+  name: "Form with Margin and Full Width",
   render: (args) => {
     const [formData, setFormData] = useState({
       addressName: "",
@@ -92,7 +189,6 @@ export const Default: Story = {
       }));
     };
 
-    // Обработчик для Select
     const handleSelectChange = (
       _event: React.MouseEvent<HTMLDivElement>,
       data: { value: string | null; name: string },
@@ -112,7 +208,6 @@ export const Default: Story = {
         id={args.id}
         name={args.name}
         noValidate={args.noValidate}
-        autoComplete={args.autoComplete}
         classNameRoot={args.classNameRoot}
         size={args.size}
       >
@@ -139,10 +234,144 @@ export const Default: Story = {
     );
   },
 };
-export const FormWithSeparator: Story = {
-  name: "Form with separator",
+
+export const WithSeparator: Story = {
+  name: "Form with Separator",
   render: Default.render,
   args: {
     withSeparator: true,
+    addMargin: true,
+  },
+};
+
+export const MediumSize: Story = {
+  name: "Medium Size Form",
+  render: Default.render,
+  args: {
+    size: "md",
+    addMargin: true,
+  },
+};
+export const LargeSize: Story = {
+  name: "Large Size Form",
+  render: Default.render,
+  args: {
+    size: "lg",
+    addMargin: true,
+  },
+};
+
+export const FitContentWidth: Story = {
+  name: "Form with Fit Content Width",
+  render: Default.render,
+  args: {
+    fullWidth: false,
+    addMargin: true,
+  },
+};
+
+export const WithoutMargin: Story = {
+  name: "Form without Margin",
+  render: Default.render,
+  args: {
+    addMargin: false,
+    withSeparator: false,
+  },
+};
+
+export const ComplexForm: Story = {
+  name: "Complex Form Example",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      district: "",
+      agreeTerms: false,
+      newsletter: true,
+    });
+
+    const handleInputChange = (
+      _event: React.ChangeEvent<HTMLInputElement>,
+      data: {
+        name: string;
+        value?: string;
+        checked?: boolean;
+      },
+    ) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.checked !== undefined ? data.checked : data.value,
+      }));
+    };
+
+    const handleSelectChange = (
+      _event: React.MouseEvent<HTMLDivElement>,
+      data: { value: string | null; name: string },
+    ) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value || "",
+      }));
+    };
+
+    return (
+      <Form {...args}>
+        <Input
+          label={"Имя"}
+          name={"firstName"}
+          value={formData.firstName}
+          onChange={handleInputChange}
+          placeholder="Введите ваше имя"
+        />
+        <Input
+          label={"Фамилия"}
+          name={"lastName"}
+          value={formData.lastName}
+          onChange={handleInputChange}
+          placeholder="Введите вашу фамилию"
+        />
+        <Input
+          label={"Email"}
+          name={"email"}
+          value={formData.email}
+          onChange={handleInputChange}
+          placeholder="example@mail.ru"
+        />
+        <Input
+          label={"Телефон"}
+          name={"phone"}
+          value={formData.phone}
+          onChange={handleInputChange}
+          placeholder="+7 (XXX) XXX-XX-XX"
+        />
+        <Select
+          label={"Округ"}
+          options={OKRUG_OPTIONS}
+          name={"district"}
+          value={formData.district}
+          onChange={handleSelectChange}
+          placeholder="Выберите округ"
+        />
+        <Checkbox
+          label={"Я согласен с условиями использования"}
+          name={"agreeTerms"}
+          checked={formData.agreeTerms}
+          onChange={handleInputChange}
+        />
+        <Checkbox
+          label={"Получать новостную рассылку"}
+          name={"newsletter"}
+          checked={formData.newsletter}
+          onChange={handleInputChange}
+        />
+      </Form>
+    );
+  },
+  args: {
+    addMargin: true,
+    withSeparator: true,
+    size: "lg",
   },
 };

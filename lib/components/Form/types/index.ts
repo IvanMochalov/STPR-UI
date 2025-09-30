@@ -1,7 +1,9 @@
 import React from "react";
 
+export type TFormSize = "md" | "lg";
+
 export interface FormProps extends React.PropsWithChildren {
-  size?: "md" | "lg";
+  size?: TFormSize;
   withSeparator?: boolean;
   classNameRoot?: string;
   addMargin?: boolean;
@@ -10,5 +12,4 @@ export interface FormProps extends React.PropsWithChildren {
   id?: string;
   name?: string;
   noValidate?: boolean;
-  autoComplete?: React.AutoFillBase;
 }
