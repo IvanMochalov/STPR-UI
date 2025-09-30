@@ -1,5 +1,6 @@
 import { Accordion } from "./components/Accordion";
 import { ApplyButtons } from "./components/ApplyButtons";
+import { AuthProtected } from "./components/AuthProtected";
 import { BaseTooltip } from "./components/BaseTooltip";
 import { Button } from "./components/Button";
 import type { TOnChangeCheckbox } from "./components/Checkbox";
@@ -21,7 +22,6 @@ import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
 import type { ProgressWrapperProps } from "./components/ProgressWrapper";
 import { ProgressWrapper, useAnimatedValue } from "./components/ProgressWrapper";
-import { ProtectedRoute } from "./components/ProtectedRoute";
 import type { TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
@@ -38,6 +38,7 @@ import { ViewImageModal } from "./components/ViewImageModal";
 export {
   Accordion,
   ApplyButtons,
+  AuthProtected,
   BaseTooltip,
   Button,
   Checkbox,
@@ -60,7 +61,6 @@ export {
   Portal,
   ProgressWrapper,
   ProgressWrapperProps,
-  ProtectedRoute,
   Select,
   Skeleton,
   Spinner,

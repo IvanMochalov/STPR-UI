@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { Confirm } from "../Confirm";
-import { ProtectedRouteProps } from "./types";
+import { AuthProtectedProps } from "./types";
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
+export const AuthProtected: React.FC<AuthProtectedProps> = (props) => {
   const {
     children,
     isNeedAuthorized,
-    onAuthRedirect,
+    onClickAuthorization,
     unauthorizedMessage = "Необходимо авторизоваться",
     authButtonText = "Авторизоваться",
     confirmSize = "md",
@@ -19,9 +19,9 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
     setShowAuthModal(isNeedAuthorized);
   }, [isNeedAuthorized]);
 
-  const handleAuthRedirect = () => {
+  const handleClickAuthorization = () => {
     setShowAuthModal(false);
-    onAuthRedirect && onAuthRedirect();
+    onClickAuthorization && onClickAuthorization();
   };
 
   return (
@@ -36,7 +36,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
           header={unauthorizedMessage}
           submitBtnContent={authButtonText}
           size={confirmSize}
-          submit={handleAuthRedirect}
+          submit={handleClickAuthorization}
         />
       )}
     </>
