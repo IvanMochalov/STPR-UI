@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Table } from "../../../lib/components/Table";
+import mainStyles from "../Stories.module.scss";
 import { defaultTableData } from "./constants";
 
 const meta: Meta<typeof Table> = {
@@ -13,13 +14,7 @@ const meta: Meta<typeof Table> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

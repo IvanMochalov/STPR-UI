@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Checkbox, Form, Input, Select } from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Form> = {
   component: Form,
@@ -134,16 +135,7 @@ const meta: Meta<typeof Form> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "50vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "20px",
-          width: "100%",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <div style={{ width: "600px", maxWidth: "100%" }}>
           <Story />
         </div>

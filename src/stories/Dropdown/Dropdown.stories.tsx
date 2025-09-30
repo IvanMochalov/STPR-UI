@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Dropdown, ETooltipPosition } from "../../../lib/test-stpr-ui-kit.ts";
+import mainStyles from "../Stories.module.scss";
 import styles from "./DropdownStories.module.scss";
 
 const meta: Meta<typeof Dropdown> = {
@@ -99,15 +100,7 @@ const meta: Meta<typeof Dropdown> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "30vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "20px",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

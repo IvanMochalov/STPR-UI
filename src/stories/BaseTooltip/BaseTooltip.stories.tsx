@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { BaseTooltip } from "../../../lib/components/BaseTooltip";
 import { Button } from "../../../lib/components/Button";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof BaseTooltip> = {
   component: BaseTooltip,
@@ -73,7 +74,7 @@ const meta: Meta<typeof BaseTooltip> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <div style={{ position: "relative", border: "1px dashed black", padding: "20px 40px" }}>
           <Story />
         </div>

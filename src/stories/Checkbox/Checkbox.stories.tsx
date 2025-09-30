@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Checkbox, CheckboxProps } from "../../../lib/components/Checkbox";
 import { ETooltipPosition } from "../../../lib/components/Tooltip";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
@@ -139,14 +140,7 @@ return (
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

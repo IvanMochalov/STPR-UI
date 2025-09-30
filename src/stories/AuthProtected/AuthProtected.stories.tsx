@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AuthProtected } from "../../../lib/components/AuthProtected";
 import { Button } from "../../../lib/components/Button";
 import { Text } from "../../../lib/components/Text";
+import mainStyles from "../Stories.module.scss";
 import styles from "./AuthProtectedStories.module.scss";
 
 const meta: Meta<typeof AuthProtected> = {
@@ -119,14 +120,7 @@ const meta: Meta<typeof AuthProtected> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "50vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

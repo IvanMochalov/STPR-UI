@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Skeleton } from "../../../lib/components/Skeleton";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Skeleton> = {
   component: Skeleton,
@@ -27,7 +28,7 @@ const meta: Meta<typeof Skeleton> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

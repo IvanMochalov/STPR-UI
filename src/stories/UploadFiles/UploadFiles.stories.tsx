@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import { UploadFiles } from "../../../lib/components/UploadFiles";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof UploadFiles> = {
   component: UploadFiles,
@@ -26,14 +27,7 @@ const meta: Meta<typeof UploadFiles> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

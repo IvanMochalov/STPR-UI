@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { ApplyButtons } from "../../../lib/components/ApplyButtons";
 import { EIconName } from "../../../lib/components/Icons";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof ApplyButtons> = {
   component: ApplyButtons,
@@ -144,7 +145,7 @@ const meta: Meta<typeof ApplyButtons> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

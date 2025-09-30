@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { MediaContextProvider } from "../../../lib/components/MediaContextProvider";
 import { MediaContent } from "./components";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof MediaContextProvider> = {
   component: MediaContextProvider,
@@ -71,17 +72,7 @@ const { device:
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          border: "1px dashed #eee",
-          borderRadius: "8px",
-          padding: "20px",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

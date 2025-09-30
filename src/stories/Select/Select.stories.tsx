@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Select } from "../../../lib/components/Select";
 import { OKRUG_OPTIONS } from "../constants";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -68,7 +69,7 @@ const meta: Meta<typeof Select> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "40vh", display: "flex", alignItems: "start" }}>
+      <div className={mainStyles.storyWrapper}>
         <div style={{ width: "400px", marginTop: "80px" }}>
           <Story />
         </div>

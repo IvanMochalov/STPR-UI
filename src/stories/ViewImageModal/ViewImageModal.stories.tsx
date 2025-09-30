@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../../../lib/components/Button";
 import { useModal } from "../../../lib/components/Modal";
 import { ViewImageModal } from "../../../lib/components/ViewImageModal";
+import mainStyles from "../Stories.module.scss";
 import styles from "./ViewImageModalStories.module.scss";
 
 const meta: Meta<typeof ViewImageModal> = {
@@ -125,14 +126,7 @@ return (
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

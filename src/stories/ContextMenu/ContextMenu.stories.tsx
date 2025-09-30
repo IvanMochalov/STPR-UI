@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ContextMenu, EIconName } from "../../../lib/test-stpr-ui-kit.ts";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof ContextMenu> = {
   component: ContextMenu,
@@ -78,15 +79,7 @@ const meta: Meta<typeof ContextMenu> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "20px",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

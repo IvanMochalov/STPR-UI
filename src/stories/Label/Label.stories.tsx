@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Label } from "../../../lib/components/Label";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Label> = {
   component: Label,
@@ -22,7 +23,7 @@ const meta: Meta<typeof Label> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Accordion, Checkbox, Form, Input, Select } from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
@@ -131,15 +132,7 @@ const meta: Meta<typeof Accordion> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "20vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "600px",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

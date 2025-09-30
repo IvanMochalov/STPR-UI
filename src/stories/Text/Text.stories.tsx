@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Text } from "../../../lib/components/Text";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Text> = {
   component: Text,
@@ -138,15 +139,7 @@ const meta: Meta<typeof Text> = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: "50vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "20px",
-        }}
-      >
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

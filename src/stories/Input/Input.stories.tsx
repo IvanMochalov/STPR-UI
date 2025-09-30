@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Input } from "../../../lib/components/Input";
 import { Text } from "../../../lib/components/Text";
+import mainStyles from "../Stories.module.scss";
 import styles from "./InputStories.module.scss";
 
 const meta: Meta<typeof Input> = {
@@ -61,7 +62,7 @@ const meta: Meta<typeof Input> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <div style={{ width: "400px" }}>
           <Story />
         </div>

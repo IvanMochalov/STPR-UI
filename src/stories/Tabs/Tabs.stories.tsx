@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 
 import { Tabs } from "../../../lib/components/Tabs";
+import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Tabs> = {
   component: Tabs,
@@ -23,7 +24,7 @@ const meta: Meta<typeof Tabs> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),

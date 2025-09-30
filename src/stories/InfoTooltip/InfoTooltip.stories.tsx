@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
+import mainStyles from "../Stories.module.scss";
 import styles from "./InfoTooltip.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
@@ -56,7 +57,7 @@ const meta: Meta<typeof InfoTooltip> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "20vh", display: "flex", alignItems: "center" }}>
+      <div className={mainStyles.storyWrapper}>
         <Story />
       </div>
     ),
