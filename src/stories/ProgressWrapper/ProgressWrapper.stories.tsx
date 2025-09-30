@@ -60,6 +60,16 @@ const meta: Meta<typeof ProgressWrapper> = {
         defaultValue: { summary: '"backgroundProgress"' },
       },
     },
+    onSuccessLoaded: {
+      description: "Callback-функция вызываемая после визуальной загрузки компонента\n",
+      control: false,
+      table: {
+        type: {
+          detail:
+            "onSuccessLoaded={() => {\n" + "  // логика обработки завершения загрузки;\n" + "}}",
+        },
+      },
+    },
     children: {
       description: `Контент, который оборачивается индикатором прогресса.
 Может быть любым React-компонентом или элементом.\n`,
@@ -240,7 +250,7 @@ export const MultiComponents: Story = {
       },
       {
         id: 2,
-        progress: value,
+        progress: 100,
         text: "ProgressWrapper при этом просто добавит абсолютно-позиционированный индикатор загрузки к вашему компоненту",
       },
     ]);
@@ -271,8 +281,9 @@ export const MultiComponents: Story = {
 
     return (
       <ul className={styles.progressList}>
-        {dataProgress.map(({ progress, id, text }) => {
-          const isDone = progress === doneValue;
+        {dataProgress.map(({ progress, id, text }, index) => {
+          const [isDone, setIsDone] = useState(progress === doneValue);
+
           return (
             <ProgressWrapper
               key={id}
@@ -280,9 +291,13 @@ export const MultiComponents: Story = {
               duration={duration}
               doneValue={doneValue}
               animationVariant={animationVariant}
+              onSuccessLoaded={() => {
+                setIsDone(true);
+                console.log(`подсказка номер ${++index} успешно загружена`);
+              }}
             >
               <Accordion
-                name={isDone ? "Компонент загружен" : "Загружаемый компонент"}
+                name={`${++index}. ` + (isDone ? "Компонент загружен" : "Загружаемый компонент")}
                 isHiddenExpandIcon={!isDone}
               >
                 <TextWithLabel label={"Описание ProgressWrapper"}>{text}</TextWithLabel>

@@ -4,7 +4,7 @@ import { DEFAULT_DURATION } from "../constants";
 import { TUseAnimatedValueProps } from "../types";
 
 export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
-  const { targetValue, duration = DEFAULT_DURATION, doneValue } = props;
+  const { targetValue, duration = DEFAULT_DURATION, doneValue, onSuccessLoaded } = props;
   const [currentValue, setCurrentValue] = useState(targetValue);
   const animationRef = useRef<number>();
   const startValueRef = useRef(0);
@@ -76,6 +76,9 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
     // Если значение value достигло или изначально равно doneValue, устанавливаем таймер для скрытия
     if (currentValue === doneValue) {
       timeoutRef.current = window.setTimeout(() => {
+        if (isLoading) {
+          onSuccessLoaded && onSuccessLoaded();
+        }
         setIsLoading(false);
       }, 500);
     } else {
@@ -92,7 +95,7 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
         window.clearTimeout(timeoutRef.current);
       }
     };
-  }, [currentValue, doneValue]);
+  }, [currentValue, doneValue, isLoading, onSuccessLoaded]);
 
   return {
     animatedValue: currentValue,

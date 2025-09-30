@@ -15,12 +15,14 @@ export const ProgressWrapper: React.FC<ProgressWrapperProps> = (props) => {
     children,
     doneValue = 100,
     animationVariant = "backgroundProgress",
+    onSuccessLoaded,
   } = props;
 
   const { animatedValue, isLoading } = useAnimatedValue({
     targetValue: value,
     duration,
     doneValue,
+    onSuccessLoaded,
   });
 
   const classNameRoot = cx({

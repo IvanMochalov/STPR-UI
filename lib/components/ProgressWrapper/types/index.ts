@@ -7,10 +7,12 @@ export interface ProgressWrapperProps extends PropsWithChildren {
   duration?: number;
   doneValue?: number;
   animationVariant?: "pulse" | "backgroundProgress";
+  onSuccessLoaded?: () => void;
 }
 
 export type TUseAnimatedValueProps = {
   targetValue: number;
   doneValue: number;
   duration?: number;
+  onSuccessLoaded?: () => void;
 };
