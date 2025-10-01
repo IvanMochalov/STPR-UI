@@ -14,7 +14,7 @@ export type TBreakpoints = {
 };
 
 export interface MediaContextProviderProps extends React.PropsWithChildren {
-  breakpoints: TBreakpoints;
+  breakpoints?: TBreakpoints;
 }
 
 export interface IMediaContext {

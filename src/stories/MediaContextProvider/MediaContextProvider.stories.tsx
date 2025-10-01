@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { MediaContextProvider } from "../../../lib/components/MediaContextProvider";
-import { MediaContent } from "./components";
 import mainStyles from "../Stories.module.scss";
+import { MediaContent } from "./components";
 
 const meta: Meta<typeof MediaContextProvider> = {
   component: MediaContextProvider,
@@ -18,9 +18,9 @@ const meta: Meta<typeof MediaContextProvider> = {
 - Должен оборачивать корневой компонент приложения (или ту часть, где нужен доступ к данным об устройстве)
 
 ### Рекомендации по использованию:
-1. Оберните корневой компонент приложения, передав в параметр breakpoints объект типа TBreakpoints с нужными значениями точек перехода:
+1. Оберните корневой компонент приложения, передав в параметр breakpoints объект типа \`TBreakpoints\` с нужными значениями точек перехода:
 
-\`\`\`
+\`\`\`jsx
 <MediaContextProvider breakpoints={{
   desktop: { minWidth: 1440 },
   tablet: { minWidth: 768, maxWidth: 1439 },
@@ -29,9 +29,9 @@ const meta: Meta<typeof MediaContextProvider> = {
     <App />
 </MediaContextProvider>
 \`\`\`
-2. Получайте данные об устройстве в компонентах:
+2. Получайте данные об устройстве в компонентах, импортировав \`MediaContext\` из "test-stpr-ui-kit"
 
-\`\`\`
+\`\`\`jsx
 const { device:
     {
         isDesktop,
@@ -48,12 +48,17 @@ const { device:
     children: {
       control: false,
       description: "Дочерние компоненты, которые будут иметь доступ к медиа-контексту",
+      table: {
+        type: {
+          summary: "ReactNode",
+        },
+      },
     },
     breakpoints: {
       description: "Объект с настройками breakpoints для разных устройств",
       table: {
         type: {
-          summary: "object",
+          summary: "TBreakpoints",
           detail: `{
   desktop: { minWidth: number },
   tablet: { minWidth: number, maxWidth: number },
