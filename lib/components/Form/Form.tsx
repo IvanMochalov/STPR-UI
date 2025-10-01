@@ -18,9 +18,9 @@ export const Form: React.FC<FormProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.spForm]: true,
+    [styles[`spForm--size-${size}`]]: size,
     [styles.spForm_fullWidth]: fullWidth,
     [styles.spForm_addMargin]: addMargin,
-    [styles[`spForm_addMargin--size-${size}`]]: addMargin && size,
     [styles.spForm_withSeparator]: withSeparator && addMargin,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
