@@ -33,3 +33,5 @@ export interface TooltipProps
   isStopPropagationClickOnTrigger?: boolean;
   styleTooltip?: React.CSSProperties;
 }
+
+export interface InfoTooltipProps extends Omit<TooltipProps, "trigger"> {}

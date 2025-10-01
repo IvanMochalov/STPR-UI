@@ -6,7 +6,7 @@ import { BaseTooltip } from "../BaseTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Portal } from "../Portal";
 import styles from "./Tooltip.module.scss";
-import { ETooltipPosition, TooltipProps } from "./types";
+import { ETooltipPosition, InfoTooltipProps, TooltipProps } from "./types";
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
@@ -229,6 +229,18 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   );
 };
 
-export const InfoTooltip: React.FC<TooltipProps> = (props) => {
-  return <Tooltip {...props} hover={true} trigger={<Icon name={EIconName.Info} />} />;
+export const InfoTooltip: React.FC<InfoTooltipProps> = (props) => {
+  const propsClassNameTriggerInfoTooltip = props.classNameTriggerTooltip;
+  const classNameTriggerInfoTooltip = cx({
+    [styles.spInfoTriggerTooltip]: true,
+    ...(propsClassNameTriggerInfoTooltip && { [propsClassNameTriggerInfoTooltip]: true }),
+  });
+
+  return (
+    <Tooltip
+      {...props}
+      classNameTriggerTooltip={classNameTriggerInfoTooltip}
+      trigger={<Icon name={EIconName.Info} />}
+    />
+  );
 };

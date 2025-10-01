@@ -1,5 +1,10 @@
-.infoTooltip {
-  &__tooltip {
-    max-height: 200px;
-  }
+@use "src/styles/global" as styles;
+
+.infoTooltipTextWrapper {
+  max-width: 200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+

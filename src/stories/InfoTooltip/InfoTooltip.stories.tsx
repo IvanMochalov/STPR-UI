@@ -1,57 +1,164 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
+import { Text } from "../../../lib/components/Text";
 import mainStyles from "../Stories.module.scss";
 import styles from "./InfoTooltip.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
   component: InfoTooltip,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Упрощенная версия компонента Tooltip с предустановленной иконкой информации \`EIconName.Info\` в качестве триггера.
+
+## Особенности
+
+- **Предопределенный триггер** - всегда использует иконку \`EIconName.Info\`
+- **Hover режим по умолчанию** - активация при наведении
+- **Наследует все свойства Tooltip** - поддерживает все позиции, кастомизацию и callback-и
+- **Идеален для подсказок** - семантически правильное использование иконки информации
+
+## Отличие от базового Tooltip
+
+В отличие от \`Tooltip\`, где нужно передавать \`trigger\`, 
+\`InfoTooltip\` уже настроен для самых распространенных сценариев использования подсказок.
+
+## Базовое использование
+
+\`\`\`jsx
+// Простая подсказка
+<InfoTooltip text="Поясняющая информация о поле" />
+
+// С кастомной позицией
+<InfoTooltip 
+  text="Дополнительная информация" 
+  position={ETooltipPosition.Right}
+/>
+
+// С расширенным контентом
+<InfoTooltip 
+  text={
+    <div>
+      <strong>Важная информация</strong>
+      <br />
+      <span>Подробное описание элемента</span>
+    </div>
+  } 
+/>
+\`\`\`
+        `,
+      },
+    },
+  },
   argTypes: {
     hover: {
-      control: false,
+      description: `Режим активации тултипа:\n- true: показывать при наведении (по умолчанию)\n- false: показывать по клику\n`,
+      control: { type: "boolean" },
       table: {
+        type: { summary: "boolean" },
         defaultValue: { summary: "true" },
       },
     },
-    trigger: {
-      control: false,
-    },
-    classNameBaseTooltipRoot: {
-      control: false,
-    },
-    classNameTriggerTooltip: {
-      control: false,
-    },
-    classNameBaseTooltipContentRoot: {
-      control: false,
-    },
-    classNameTooltip: {
-      control: false,
-    },
-    noPadding: {
+    isToggleClick: {
+      description: `Режим переключения для клика:\n- true: тултип переключается по клику (открывается/закрывается)\n- false: тултип открывается по клику, закрывается по клику вне области\n`,
+      control: { type: "boolean" },
       table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isVisibleTooltip: {
+      description: `Видимость тултипа. Если false, тултип не будет отображаться даже при активации.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+    },
+    isStopPropagationClickOnTrigger: {
+      description: `Останавливать всплытие события клика на триггере. Полезно когда тултип находится внутри другого кликабельного элемента.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
     position: {
-      options: [
-        "top",
-        "top-left",
-        "top-right",
-        "bottom",
-        "bottom-left",
-        "bottom-right",
-        "left",
-        "left-top",
-        "left-bottom",
-        "right",
-        "right-top",
-        "right-bottom",
-      ],
+      description: `Позиция тултипа относительно триггера. Автоматически корректируется при выходе за границы viewport.\n`,
       control: { type: "select" },
+      options: Object.values(ETooltipPosition),
       table: {
-        defaultValue: { summary: "bottom-left" },
+        type: {
+          summary: "ETooltipPosition",
+        },
+        defaultValue: { summary: '"bottom-left"' },
+      },
+    },
+    text: {
+      description: `Содержимое тултипа. Может быть строкой или React-компонентом. Поддерживает многострочный текст и HTML-разметку.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string | ReactNode" },
+      },
+    },
+    noPadding: {
+      description: `Убрать внутренние отступы у тултипа. Полезно для кастомного оформления контента.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    triggerAction: {
+      description: `Callback-функция, вызываемая при активации тултипа (открытии).\n`,
+      control: false,
+      table: {
+        type: { summary: "() => void" },
+      },
+    },
+    actionOnClose: {
+      description: `Callback-функция, вызываемая при закрытии тултипа.\n`,
+      control: false,
+      table: {
+        type: { summary: "() => void" },
+      },
+    },
+    classNameTooltip: {
+      description: "Дополнительный CSS-класс для корневого элемента тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameTriggerTooltip: {
+      description: "Дополнительный CSS-класс для элемента-триггера\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента базового тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipContentRoot: {
+      description: "Дополнительный CSS-класс для контентной области базового тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    styleTooltip: {
+      description: "Инлайн-стили для кастомизации внешнего вида контейнера тултипа\n",
+      control: { type: "object" },
+      table: {
+        type: { summary: "CSSProperties" },
       },
     },
   },
@@ -63,7 +170,12 @@ const meta: Meta<typeof InfoTooltip> = {
     ),
   ],
   args: {
-    position: ETooltipPosition.BottomLeft,
+    text: "Поясняющая информация о элементе интерфейса",
+    isVisibleTooltip: true,
+    hover: true,
+    isStopPropagationClickOnTrigger: false,
+    noPadding: false,
+    isToggleClick: false,
   },
 };
 
@@ -72,25 +184,22 @@ export default meta;
 type Story = StoryObj<typeof InfoTooltip>;
 
 export const Default: Story = {
-  name: "Default info tooltip",
+  name: "Default InfoTooltip",
   args: {
-    classNameBaseTooltipRoot: styles.infoTooltip__tooltip,
-    text:
-      "Если в проектируемом доме нужно заложить\n" +
-      "квартиры-студии, внесите их параметры в\n" +
-      "загружаемый файл по шаблону,\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n" +
-      "пожалуйста\n",
+    text: "Базовая подсказка с иконкой информации",
+  },
+};
+
+export const WithFormattedContent: Story = {
+  args: {
+    noPadding: true,
+    text: (
+      <div className={styles.infoTooltipTextWrapper}>
+        <Text type={"p1"}>Важная информация</Text>
+        <Text type={"description"}>
+          Это расширенная подсказка с форматированным содержимым и переносами строк
+        </Text>
+      </div>
+    ),
   },
 };
