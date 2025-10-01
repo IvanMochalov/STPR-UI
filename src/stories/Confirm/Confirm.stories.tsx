@@ -8,7 +8,6 @@ const meta: Meta<typeof Confirm> = {
   component: Confirm,
   tags: ["autodocs"],
   parameters: {
-    layout: "fullscreen",
     docs: {
       description: {
         component: `

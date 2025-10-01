@@ -10,7 +10,6 @@ const meta: Meta<typeof ViewImageModal> = {
   component: ViewImageModal,
   tags: ["autodocs"],
   parameters: {
-    layout: "fullscreen",
     docs: {
       description: {
         component: `

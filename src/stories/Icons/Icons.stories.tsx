@@ -10,7 +10,7 @@ const meta: Meta<typeof Icon> = {
   component: Icon,
   tags: ["autodocs"],
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     docs: {
       description: {
         component: `

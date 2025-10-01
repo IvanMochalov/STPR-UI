@@ -8,7 +8,6 @@ const meta: Meta<typeof Modal> = {
   component: Modal,
   tags: ["autodocs"],
   parameters: {
-    layout: "fullscreen",
     docs: {
       description: {
         component: `

@@ -8,7 +8,7 @@ const meta: Meta<typeof UploadFiles> = {
   component: UploadFiles,
   tags: ["autodocs"],
   parameters: {
-    layout: "padded",
+    layout: "fullscreen",
   },
   argTypes: {
     disabled: {

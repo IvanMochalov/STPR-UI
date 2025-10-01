@@ -8,7 +8,6 @@ const meta: Meta<typeof ApplyButtons> = {
   component: ApplyButtons,
   tags: ["autodocs"],
   parameters: {
-    layout: "padded",
     docs: {
       description: {
         component: `

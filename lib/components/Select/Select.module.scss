@@ -11,8 +11,8 @@
   // Модификаторы
   &_error {
     & #{$block}__control {
-      border-color: styles.$color-red;
-      color: styles.$color-red;
+      border-color: styles.$color-accent-red;
+      color: styles.$color-accent-red;
 
       &:hover {
         & #{$block}__value_empty {
@@ -153,7 +153,7 @@
     font-family: styles.$main-font;
     font-weight: 400;
     font-size: 12px;
-    color: styles.$color-red;
+    color: styles.$color-accent-red;
 
     &_absolutePosition {
       position: absolute;

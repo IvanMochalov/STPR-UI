@@ -8,7 +8,6 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
   parameters: {
-    layout: "padded",
     docs: {
       description: {
         component: `

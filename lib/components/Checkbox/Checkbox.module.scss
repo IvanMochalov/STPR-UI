@@ -89,7 +89,7 @@
 
     &_error {
       &:before {
-        border-color: styles.$color-red;
+        border-color: styles.$color-accent-red;
       }
     }
   }
@@ -112,7 +112,7 @@
     font-family: styles.$main-font;
     font-weight: 400;
     font-size: 12px;
-    color: styles.$color-red;
+    color: styles.$color-accent-red;
 
     @include styles.respond-to(sm) {
       font-size: 14px;

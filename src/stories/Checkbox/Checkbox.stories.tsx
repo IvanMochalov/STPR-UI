@@ -9,7 +9,6 @@ const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
   tags: ["autodocs"],
   parameters: {
-    layout: "padded",
     docs: {
       description: {
         component: `
