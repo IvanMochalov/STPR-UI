@@ -32,7 +32,6 @@ export type TOnChangeInput = (
   event: React.ChangeEvent<HTMLInputElement>,
   data: {
     name: string;
-    value?: string;
-    checked?: boolean;
+    value: string | null;
   },
 ) => void;

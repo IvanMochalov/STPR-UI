@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { Input } from "../../../lib/components/Input";
+import { Form } from "../../../lib/components/Form";
+import { Input, TOnChangeInput } from "../../../lib/components/Input";
 import { Text } from "../../../lib/components/Text";
 import mainStyles from "../Stories.module.scss";
 import styles from "./InputStories.module.scss";
-import { Form } from "../../../lib/components/Form";
 
 const meta: Meta<typeof Input> = {
   component: Input,
@@ -29,8 +29,7 @@ const meta: Meta<typeof Input> = {
             "(event: React.ChangeEvent<HTMLInputElement>,\n" +
             "data: {\n" +
             "  name: string;\n" +
-            "  value?: string;\n" +
-            "  checked?: boolean\n" +
+            "  value: string | null;\n" +
             "}) => void",
           summary: "TOnChangeInput",
         },
@@ -268,17 +267,10 @@ export const Default: Story = {
       description: "",
     });
 
-    const onChange = (
-      _event: React.ChangeEvent<HTMLInputElement>,
-      data: {
-        name: string;
-        value?: string;
-        checked?: boolean;
-      },
-    ) => {
+    const onChange: TOnChangeInput = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.checked !== undefined ? data.checked : data.value,
+        [name]: value,
       }));
     };
 
@@ -350,17 +342,10 @@ export const RequiredField: Story = {
       requiredField: "",
     });
 
-    const onChange = (
-      _event: React.ChangeEvent<HTMLInputElement>,
-      data: {
-        name: string;
-        value?: string;
-        checked?: boolean;
-      },
-    ) => {
+    const onChange: TOnChangeInput = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.checked !== undefined ? data.checked : data.value,
+        [name]: value,
       }));
     };
 
@@ -398,17 +383,10 @@ export const WithPatternValidation: Story = {
       numbersOnly: "",
     });
 
-    const onChange = (
-      _event: React.ChangeEvent<HTMLInputElement>,
-      data: {
-        name: string;
-        value?: string;
-        checked?: boolean;
-      },
-    ) => {
+    const onChange: TOnChangeInput = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.checked !== undefined ? data.checked : data.value,
+        [name]: value,
       }));
     };
 
@@ -435,17 +413,10 @@ export const AbsolutePositionError: Story = {
       fieldWithError: "",
     });
 
-    const onChange = (
-      _event: React.ChangeEvent<HTMLInputElement>,
-      data: {
-        name: string;
-        value?: string;
-        checked?: boolean;
-      },
-    ) => {
+    const onChange: TOnChangeInput = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.checked !== undefined ? data.checked : data.value,
+        [name]: value,
       }));
     };
 
@@ -479,17 +450,10 @@ export const AllVariants: Story = {
       withTooltip: "",
     });
 
-    const onChange = (
-      _event: React.ChangeEvent<HTMLInputElement>,
-      data: {
-        name: string;
-        value?: string;
-        checked?: boolean;
-      },
-    ) => {
+    const onChange: TOnChangeInput = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.checked !== undefined ? data.checked : data.value,
+        [name]: value,
       }));
     };
 
