@@ -1,0 +1,11 @@
+@use "src/styles/global" as styles;
+
+.localStoryWrapper {
+  padding: 30px;
+}
+
+.differentFileTypesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

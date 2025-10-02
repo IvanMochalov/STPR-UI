@@ -119,7 +119,6 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     e.stopPropagation();
     onDropFiles([], name);
     setErrors([]);
-    // setIsLocalDragReject(false);
   };
 
   const getMostFormat = (accept: Accept) => {
