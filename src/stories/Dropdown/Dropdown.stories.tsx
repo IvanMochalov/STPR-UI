@@ -63,7 +63,7 @@ const meta: Meta<typeof Dropdown> = {
       control: { type: "object" },
       table: {
         type: {
-          summary: "Array<TDropdownListItem>",
+          summary: "TDropdownListItem[]",
           detail:
             "TDropdownListItem[] = {\n" +
             "  name: string;\n" +

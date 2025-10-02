@@ -1,0 +1,25 @@
+@use "src/styles/global" as styles;
+
+.complexTabsExample {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__tabContentWrapper {
+    padding: 20px;
+    border: 1px solid styles.$color-secondary-blue-light-dark;
+    border-radius: 8px;
+  }
+}
+
+.differentTabsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__tabsGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

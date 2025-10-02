@@ -159,7 +159,7 @@ const meta: Meta<typeof Select> = {
       control: false,
       table: {
         type: {
-          summary: "Array<TSelectOption>",
+          summary: "TSelectOption[]",
           detail:
             "TSelectOption[] = {\n" +
             "  value: string | null;\n" +
