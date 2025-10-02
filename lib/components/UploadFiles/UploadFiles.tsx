@@ -250,6 +250,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           isInputVariant &&
           infoTooltipText && (
             <InfoTooltip
+              hover={true}
               position={tooltipPosition}
               text={infoTooltipText}
               classNameTooltip={styles.spUploadFiles__tooltip}

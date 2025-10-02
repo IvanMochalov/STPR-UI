@@ -47,6 +47,7 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
 
   return (
     <Tooltip
+      hover={true}
       classNameTooltip={classNameTooltip}
       classNameBaseTooltipContentRoot={classNameBaseTooltipContentRoot}
       classNameBaseTooltipRoot={classNameBaseTooltipRoot}

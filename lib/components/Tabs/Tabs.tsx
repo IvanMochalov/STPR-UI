@@ -54,6 +54,7 @@ export const Tabs: React.FC<TabsProps> = (props) => {
             <Text type={getTypeForText()}>{name}</Text>
             {Boolean(infoTooltipText) && (
               <InfoTooltip
+                hover={true}
                 classNameTooltip={classNameTooltip}
                 text={infoTooltipText}
                 classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}

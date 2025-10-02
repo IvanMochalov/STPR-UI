@@ -54,6 +54,7 @@ export const EllipsisFileName: React.FC<EllipsisFileNameProps> = (props) => {
       )}
     >
       <Tooltip
+        hover={true}
         position={ETooltipPosition.TopLeft}
         classNameBaseTooltipRoot={styles.tooltipContent}
         styleTooltip={{ maxWidth: isOverflowed ? `calc(100% - ${extensionWidth}px)` : "100%" }}
