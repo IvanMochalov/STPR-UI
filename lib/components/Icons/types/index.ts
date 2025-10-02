@@ -19,6 +19,13 @@ export enum EIconName {
   TerminalSquare = "terminalSquare",
   File = "file",
   InfoError = "infoError",
+  Save = "save",
+  Refresh = "refresh",
+  Logout = "logout",
+  Edit = "edit",
+  Download = "download",
+  AddUser = "addUser",
+  AddFile = "addFile",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
