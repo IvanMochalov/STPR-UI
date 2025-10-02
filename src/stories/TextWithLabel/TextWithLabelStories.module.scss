@@ -1,0 +1,18 @@
+@use "src/styles/global" as styles;
+
+.textList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  &_ellipsis {
+    max-width: 300px;
+  }
+}
+
+.withEllipsis {
+  width: 200px;
+  border: 1px solid styles.$color-secondary-blue-light-dark;
+  padding: 16px;
+}

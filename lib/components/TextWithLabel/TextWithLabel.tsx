@@ -1,3 +1,4 @@
+import cx from "clsx";
 import React from "react";
 
 import { Label } from "../Label";
@@ -6,11 +7,34 @@ import styles from "./TextWithLabel.module.scss";
 import { TextWithLabelProps } from "./types";
 
 export const TextWithLabel: React.FC<TextWithLabelProps> = (props) => {
-  const { children, label, style, ...otherProps } = props;
+  const {
+    label,
+    required,
+    infoTooltipText,
+    tooltipPosition,
+    classNameLabelRoot,
+    classNameBaseTooltipRoot,
+    classNameWrapperRoot: propsClassNameWrapperRoot,
+    children,
+    ...otherProps
+  } = props;
+
+  const classNameRoot = cx({
+    [styles.spTextWithLabel]: true,
+    [styles.spTextWithLabel_ellipsis]: otherProps.isEllipsis,
+    ...(propsClassNameWrapperRoot && { [propsClassNameWrapperRoot]: true }),
+  });
 
   return (
-    <div className={styles.spTextWithLabel} style={{ ...style }}>
-      <Label label={label} />
+    <div className={classNameRoot}>
+      <Label
+        label={label}
+        required={required}
+        infoTooltipText={infoTooltipText}
+        tooltipPosition={tooltipPosition}
+        classNameRoot={classNameLabelRoot}
+        classNameBaseTooltipRoot={classNameBaseTooltipRoot}
+      />
       <Text {...otherProps}>{children}</Text>
     </div>
   );

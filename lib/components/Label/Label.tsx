@@ -32,18 +32,22 @@ export const Label: React.FC<LabelProps> = (props) => {
     [styles.spLabel__tooltip]: true,
   });
 
+  const classNameLabelTriggerTooltip = cx({
+    [styles.spLabel__triggerTooltip]: true,
+  });
+
   return (
     <div className={classNameRoot}>
       <label className={classNameLabelText}>{label}</label>
       {required && <div className={classNameLabelRequired}>*</div>}
       {infoTooltipText && (
-        <div className={classNameLabelTooltip}>
-          <InfoTooltip
-            position={tooltipPosition}
-            text={infoTooltipText}
-            classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
-          />
-        </div>
+        <InfoTooltip
+          classNameTooltip={classNameLabelTooltip}
+          classNameTriggerTooltip={classNameLabelTriggerTooltip}
+          position={tooltipPosition}
+          text={infoTooltipText}
+          classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
+        />
       )}
     </div>
   );

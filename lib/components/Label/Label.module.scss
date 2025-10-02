@@ -23,9 +23,16 @@
     }
   }
 
+  &__triggerTooltip {
+    & :global {
+      & .stpr-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
   &__tooltip {
-    display: inline-block;
-    vertical-align: middle;
     margin-left: 5px;
   }
 
