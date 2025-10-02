@@ -2,31 +2,26 @@
 
 .spinner {
   --spinner-size: 24px;
-  --spinner-thickness: 3px;
+  --spinner-thickness: 2px;
 
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: var(--spinner-size, 24px);
-  height: var(--spinner-size, 24px);
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border-radius: 50%;
   position: relative;
+  animation: spinner-rotate 1s linear infinite;
   flex-shrink: 0;
 
-  &__inner {
+  &::before {
+    content: "";
     box-sizing: border-box;
-    display: block;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: var(--spinner-thickness);
-    border: var(--spinner-thickness) solid rgba(0, 0, 0, 0.1);
-    border-top-color: currentColor;
+    inset: 0;
     border-radius: 50%;
-    transform-origin: center;
-    animation: spinner-rotate 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border: var(--spinner-thickness) solid currentColor;
+    animation: spinner-clip 2s linear infinite;
   }
 
-  // Size variants
+  // Size variants - адаптируем под новые размеры
   &--sm {
     --spinner-size: 16px;
     --spinner-thickness: 2px;
@@ -34,6 +29,7 @@
 
   &--md {
     --spinner-size: 24px;
+    --spinner-thickness: 3px;
   }
 
   &--lg {
@@ -48,10 +44,25 @@
 }
 
 @keyframes spinner-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-clip {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }

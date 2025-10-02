@@ -13,8 +13,6 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
       aria-label="Loading"
       role="status"
       style={{ color }}
-    >
-      <div className={styles.spinner__inner} />
-    </div>
+    />
   );
 };

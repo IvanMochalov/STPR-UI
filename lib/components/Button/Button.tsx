@@ -47,7 +47,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
     const renderIcon = () => {
       if (loading) {
-        return <Spinner classNameRoot={styles.spButton__spinner} />;
+        return <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />;
       }
 
       if (iconName) {
