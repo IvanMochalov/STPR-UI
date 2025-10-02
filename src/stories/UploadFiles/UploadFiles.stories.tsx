@@ -379,7 +379,18 @@ export const ImageFiles: Story = {
     const uploadFiles = (acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     };
-    return <UploadFiles {...args} onDropFiles={uploadFiles} name={"images"} files={files} />;
+    return (
+      <div className={styles.differentFileTypesWrapper}>
+        <UploadFiles {...args} onDropFiles={uploadFiles} name={"images"} files={files} />
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
+          Поддерживаемые форматы:{" "}
+          {Object.values(args.accept || {})
+            .flat()
+            .join(", ")
+            .toUpperCase()}
+        </Text>
+      </div>
+    );
   },
   args: {
     placeholder: "Загрузите изображения",
@@ -398,7 +409,18 @@ export const DocumentFiles: Story = {
     const uploadFiles = (acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     };
-    return <UploadFiles {...args} onDropFiles={uploadFiles} name={"documents"} files={files} />;
+    return (
+      <div className={styles.differentFileTypesWrapper}>
+        <UploadFiles {...args} onDropFiles={uploadFiles} name={"documents"} files={files} />
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
+          Поддерживаемые форматы:{" "}
+          {Object.values(args.accept || {})
+            .flat()
+            .join(", ")
+            .toUpperCase()}
+        </Text>
+      </div>
+    );
   },
   args: {
     placeholder: "Загрузите документы",
@@ -419,7 +441,18 @@ export const SpreadsheetFiles: Story = {
     const uploadFiles = (acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     };
-    return <UploadFiles {...args} onDropFiles={uploadFiles} name={"spreadsheets"} files={files} />;
+    return (
+      <div className={styles.differentFileTypesWrapper}>
+        <UploadFiles {...args} onDropFiles={uploadFiles} name={"spreadsheets"} files={files} />
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
+          Поддерживаемые форматы:{" "}
+          {Object.values(args.accept || {})
+            .flat()
+            .join(", ")
+            .toUpperCase()}
+        </Text>
+      </div>
+    );
   },
   args: {
     placeholder: "Загрузите таблицы",
@@ -440,7 +473,18 @@ export const ArchiveFiles: Story = {
     const uploadFiles = (acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     };
-    return <UploadFiles {...args} onDropFiles={uploadFiles} name={"archives"} files={files} />;
+    return (
+      <div className={styles.differentFileTypesWrapper}>
+        <UploadFiles {...args} onDropFiles={uploadFiles} name={"archives"} files={files} />
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
+          Поддерживаемые форматы:{" "}
+          {Object.values(args.accept || {})
+            .flat()
+            .join(", ")
+            .toUpperCase()}
+        </Text>
+      </div>
+    );
   },
   args: {
     placeholder: "Загрузите архив",
@@ -461,7 +505,18 @@ export const SpecificFormat: Story = {
     const uploadFiles = (acceptedFiles: File[]) => {
       setFiles(acceptedFiles);
     };
-    return <UploadFiles {...args} onDropFiles={uploadFiles} name={"ifc"} files={files} />;
+    return (
+      <div className={styles.differentFileTypesWrapper}>
+        <UploadFiles {...args} onDropFiles={uploadFiles} name={"ifc"} files={files} />
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
+          Поддерживаемые форматы:{" "}
+          {Object.values(args.accept || {})
+            .flat()
+            .join(", ")
+            .toUpperCase()}
+        </Text>
+      </div>
+    );
   },
   args: {
     placeholder: "Загрузите файл .ifc",
@@ -486,7 +541,7 @@ export const DifferentFileTypes: Story = {
     return (
       <div className={styles.differentFileTypesWrapper}>
         <UploadFiles {...args} onDropFiles={uploadFiles} name={"files"} files={files} />
-        <Text type={"description"}>
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
           Поддерживаемые форматы:{" "}
           {Object.values(args.accept || {})
             .flat()

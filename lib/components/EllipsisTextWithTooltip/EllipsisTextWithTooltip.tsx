@@ -1,5 +1,5 @@
 import cx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 
 import { Text } from "../Text";
 import { Tooltip } from "../Tooltip";
@@ -20,11 +20,20 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
   const textRef = useRef<HTMLDivElement>(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
 
-  // Проверка обрезан ли текст
-  useEffect(() => {
+  const updateOverflowState = () => {
     if (textRef.current) {
       setIsOverflowed(textRef.current.scrollWidth > textRef.current.clientWidth);
     }
+  };
+
+  useLayoutEffect(() => {
+    updateOverflowState();
+
+    window.addEventListener("resize", updateOverflowState);
+
+    return () => {
+      window.removeEventListener("resize", updateOverflowState);
+    };
   }, [text]);
 
   const classNameRoot = cx({
