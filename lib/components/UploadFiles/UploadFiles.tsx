@@ -1,5 +1,5 @@
 import cx from "clsx";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { DefaultDropzone } from "../DefaultDropzone";
 import { useDefaultDropzone } from "../DefaultDropzone/hooks/useDefaultDropzone.ts";
@@ -39,9 +39,9 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           errors,
         };
       });
-      setErrors([..._fileRejections, ...errors]);
 
       if (!multiple) {
+        setErrors([..._fileRejections]);
         onDropFiles(acceptedFiles, name);
 
         return;
@@ -49,23 +49,20 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
 
       const _files = [...files, ...acceptedFiles];
 
+      setErrors([..._fileRejections, ...errors]);
       onDropFiles(_files, name);
     },
     [errors, files, multiple, name, onDropFiles],
   );
 
-  const { getRootProps, getInputProps, isDragReject } = useDefaultDropzone({
+  const { getRootProps, getInputProps } = useDefaultDropzone({
     accept,
     onDrop,
     multiple,
     disabled,
   });
 
-  const [isLocalDragReject, setIsLocalDragReject] = useState<boolean>(isDragReject);
-
-  useEffect(() => {
-    setIsLocalDragReject(isDragReject);
-  }, [isDragReject]);
+  const hasErrors = errors ? errors?.length > 0 : undefined;
 
   const fileNames = [...files.map((file) => ({ file, errors: null })), ...errors];
   const isFileUploaded = fileNames?.length > 0 || errors?.length > 0;
@@ -74,7 +71,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const classNameRoot = cx({
     [styles.spUploadFiles]: true,
     [styles[`spUploadFiles--variant-${variant}`]]: variant,
-    [styles.spUploadFiles_error]: isLocalDragReject && !multiple && error && error.length > 0,
+    [styles.spUploadFiles_error]: hasErrors && !multiple && error && error.length > 0,
     [styles.spUploadFiles_disabled]: disabled,
     [styles.spUploadFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
@@ -122,7 +119,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     e.stopPropagation();
     onDropFiles([], name);
     setErrors([]);
-    setIsLocalDragReject(false);
+    // setIsLocalDragReject(false);
   };
 
   const getMostFormat = (accept: Accept) => {
@@ -132,7 +129,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   };
 
   const getSingleFileName = () => {
-    if (isLocalDragReject) {
+    if (hasErrors) {
       const formatsName = getMostFormat(accept);
 
       return (
@@ -141,7 +138,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
           classNameRoot={cx(
             styles.spUploadFiles__fileName,
-            isLocalDragReject && styles.spUploadFiles__fileName_dragError,
+            hasErrors && styles.spUploadFiles__fileName_dragError,
           )}
         />
       );
@@ -160,7 +157,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     return (
       <ul className={classNameFileListRoot}>
         {fileNames.map(({ file, errors }, index) => {
-          const hasErrors = errors ? errors?.length > 0 : undefined;
+          const currentFileHasErrors = errors ? errors?.length > 0 : undefined;
 
           const getInfoTooltipText = () => {
             if (!errors) return "";
@@ -173,7 +170,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
               key={index}
               className={cx(
                 styles.spUploadFiles__fileNamesListItem,
-                hasErrors && styles.spUploadFiles__fileNamesListItem_error,
+                currentFileHasErrors && styles.spUploadFiles__fileNamesListItem_error,
               )}
               onClick={(e) => {
                 e.stopPropagation();
@@ -182,10 +179,11 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
               <div
                 className={cx(
                   styles.spUploadFiles__fileNamesListItem__iconContainer,
-                  hasErrors && styles.spUploadFiles__fileNamesListItem__iconContainer_error,
+                  currentFileHasErrors &&
+                    styles.spUploadFiles__fileNamesListItem__iconContainer_error,
                 )}
               >
-                <Icon name={hasErrors ? EIconName.InfoError : EIconName.File} />
+                <Icon name={currentFileHasErrors ? EIconName.InfoError : EIconName.File} />
               </div>
               <div className={styles.spUploadFiles__fileNamesListItem__mainContent}>
                 <EllipsisFileName
@@ -196,13 +194,14 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
                   classNameEllipsisText={styles.spUploadFiles__fileNamesListItem__fileName}
                 />
                 <EllipsisTextWithTooltip
-                  text={hasErrors ? getInfoTooltipText() : formatFileSize(file.size)}
+                  text={currentFileHasErrors ? getInfoTooltipText() : formatFileSize(file.size)}
                   classNameBaseTooltipRoot={
                     styles.spUploadFiles__fileNamesListItem__description__tooltipContent
                   }
                   classNameRoot={cx(
                     styles.spUploadFiles__fileNamesListItem__description,
-                    hasErrors && styles.spUploadFiles__fileNamesListItem__description_error,
+                    currentFileHasErrors &&
+                      styles.spUploadFiles__fileNamesListItem__description_error,
                   )}
                 />
               </div>
@@ -210,7 +209,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
                 className={cx(styles.spUploadFiles__fileNamesListItemDelete)}
                 onClick={(e) => {
                   e.stopPropagation();
-                  deleteFile(file.name, hasErrors);
+                  deleteFile(file.name, currentFileHasErrors);
                 }}
               >
                 <Icon name={EIconName.Close} />
