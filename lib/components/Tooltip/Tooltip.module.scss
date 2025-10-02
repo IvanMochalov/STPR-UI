@@ -2,14 +2,10 @@
 
 .spTooltip {
   $block: &;
-
   position: relative;
-
-  &__trigger {
-    display: flex;
-  }
+  display: flex;
 }
 
-.spInfoTriggerTooltip {
+.spInfoTooltip {
   color: styles.$color-gray-1;
 }

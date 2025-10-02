@@ -27,7 +27,6 @@ export interface TooltipProps
   triggerAction?: () => void;
   actionOnClose?: () => void;
   classNameTooltip?: string;
-  classNameTriggerTooltip?: string;
   classNameBaseTooltipRoot?: string;
   classNameBaseTooltipContentRoot?: string;
   isStopPropagationClickOnTrigger?: boolean;

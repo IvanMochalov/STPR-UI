@@ -17,11 +17,10 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     trigger,
     triggerAction,
     actionOnClose,
-    classNameTriggerTooltip: propsClassNameTriggerTooltip,
+    classNameTooltip: propsClassNameTooltip,
     position: defaultTooltipPosition = ETooltipPosition.BottomLeft,
     text,
     noPadding,
-    classNameTooltip: propsClassNameTooltip,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     classNameBaseTooltipContentRoot: propsClassNameBaseTooltipContentRoot,
     styleTooltip,
@@ -182,11 +181,6 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     };
   }, [isMounted, calculateTooltipPosition]);
 
-  const classNameTooltip = cx({
-    [styles.spTooltip]: true,
-    ...(propsClassNameTooltip && { [propsClassNameTooltip]: true }),
-  });
-
   const classNameBaseTooltipRoot = cx({
     ...(propsClassNameBaseTooltipRoot && { [propsClassNameBaseTooltipRoot]: true }),
   });
@@ -195,24 +189,23 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     ...(propsClassNameBaseTooltipContentRoot && { [propsClassNameBaseTooltipContentRoot]: true }),
   });
 
-  const classNameTriggerTooltip = cx({
-    [styles.spTooltip__trigger]: true,
-    ...(propsClassNameTriggerTooltip && { [propsClassNameTriggerTooltip]: true }),
+  const classNameTooltip = cx({
+    [styles.spTooltip]: true,
+    ...(propsClassNameTooltip && { [propsClassNameTooltip]: true }),
   });
 
   const parent = document.body;
 
   return (
     <div
+      ref={triggerRef}
       className={classNameTooltip}
       onClick={handleClick}
       onMouseEnter={() => hover && setIsHovered(true)}
       onMouseLeave={() => hover && setIsHovered(false)}
       style={styleTooltip}
     >
-      <div ref={triggerRef} className={classNameTriggerTooltip}>
-        {trigger}
-      </div>
+      {trigger}
       {isVisibleTooltip && (
         <Portal node={parent}>
           <BaseTooltip
@@ -230,16 +223,16 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 };
 
 export const InfoTooltip: React.FC<InfoTooltipProps> = (props) => {
-  const propsClassNameTriggerInfoTooltip = props.classNameTriggerTooltip;
-  const classNameTriggerInfoTooltip = cx({
-    [styles.spInfoTriggerTooltip]: true,
-    ...(propsClassNameTriggerInfoTooltip && { [propsClassNameTriggerInfoTooltip]: true }),
+  const propsClassNameInfoTooltip = props.classNameTooltip;
+  const classNameInfoTooltip = cx({
+    [styles.spInfoTooltip]: true,
+    ...(propsClassNameInfoTooltip && { [propsClassNameInfoTooltip]: true }),
   });
 
   return (
     <Tooltip
       {...props}
-      classNameTriggerTooltip={classNameTriggerInfoTooltip}
+      classNameTooltip={classNameInfoTooltip}
       trigger={<Icon name={EIconName.Info} />}
     />
   );

@@ -23,17 +23,15 @@
     }
   }
 
-  &__triggerTooltip {
+  &__tooltip {
+    margin-left: 5px;
+
     & :global {
       & .stpr-icon {
         width: 20px;
         height: 20px;
       }
     }
-  }
-
-  &__tooltip {
-    margin-left: 5px;
   }
 
   &__required {

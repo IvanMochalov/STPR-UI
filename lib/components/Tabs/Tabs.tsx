@@ -24,8 +24,8 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
-  const classNameTriggerTooltip = cx({
-    [styles.spTabs__triggerTooltip]: true,
+  const classNameTooltip = cx({
+    [styles.spTabs__tooltip]: true,
   });
 
   const getTypeForText = () => {
@@ -54,7 +54,7 @@ export const Tabs: React.FC<TabsProps> = (props) => {
             <Text type={getTypeForText()}>{name}</Text>
             {Boolean(infoTooltipText) && (
               <InfoTooltip
-                classNameTriggerTooltip={classNameTriggerTooltip}
+                classNameTooltip={classNameTooltip}
                 text={infoTooltipText}
                 classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
               />

@@ -53,14 +53,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
       },
     },
     classNameTooltipRoot: {
-      description: "Дополнительный CSS-класс для элемента тултипа\n",
-      control: false,
-      table: {
-        type: { summary: "string" },
-      },
-    },
-    classNameTriggerTooltipRoot: {
-      description: "Дополнительный CSS-класс для триггера тултипа\n",
+      description: "Дополнительный CSS-класс для корневого элемента тултипа (триггера)\n",
       control: false,
       table: {
         type: { summary: "string" },

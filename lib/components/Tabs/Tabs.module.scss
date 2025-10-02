@@ -67,7 +67,7 @@
       color: styles.$color-accent-blue;
       background-color: styles.$color-white;
 
-      & #{$block}__triggerTooltip {
+      & #{$block}__tooltip {
         color: styles.$color-accent-blue;
       }
     }
@@ -92,7 +92,7 @@
       background-color: styles.$color-accent-blue;
       border-color: styles.$color-accent-blue;
 
-      & #{$block}__triggerTooltip {
+      & #{$block}__tooltip {
         color: styles.$color-white;
       }
     }
@@ -106,7 +106,7 @@
     align-items: center;
   }
 
-  &__triggerTooltip {
+  &__tooltip {
     margin-left: 8px;
     display: flex;
     align-items: center;

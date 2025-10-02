@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
 import { Text } from "../../../lib/components/Text";
+import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
 import mainStyles from "../Stories.module.scss";
 import styles from "./InfoTooltip.module.scss";
 
@@ -127,14 +127,7 @@ const meta: Meta<typeof InfoTooltip> = {
       },
     },
     classNameTooltip: {
-      description: "Дополнительный CSS-класс для корневого элемента тултипа\n",
-      control: false,
-      table: {
-        type: { summary: "string" },
-      },
-    },
-    classNameTriggerTooltip: {
-      description: "Дополнительный CSS-класс для элемента-триггера\n",
+      description: "Дополнительный CSS-класс для корневого элемента тултипа (триггера)\n",
       control: false,
       table: {
         type: { summary: "string" },

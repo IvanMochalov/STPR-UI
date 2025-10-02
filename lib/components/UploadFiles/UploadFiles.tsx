@@ -6,7 +6,7 @@ import { useDefaultDropzone } from "../DefaultDropzone/hooks/useDefaultDropzone.
 import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Spinner } from "../Spinner";
-import { ETooltipPosition, InfoTooltip } from "../Tooltip";
+import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
 import { EllipsisFileName } from "./components/EllipsisFileName/EllipsisFileName.tsx";
 import { Accept, FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
 import styles from "./UploadFiles.module.scss";
@@ -67,6 +67,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const fileNames = [...files.map((file) => ({ file, errors: null })), ...errors];
   const isFileUploaded = fileNames?.length > 0 || errors?.length > 0;
   const isInputVariant = variant === "input";
+  const isDropzoneVariant = variant === "dropzone";
 
   const classNameRoot = cx({
     [styles.spUploadFiles]: true,
@@ -249,10 +250,9 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           isInputVariant &&
           infoTooltipText && (
             <InfoTooltip
-              classNameTooltip={styles.spUploadFiles__tooltipWrapper}
               position={tooltipPosition}
               text={infoTooltipText}
-              classNameTriggerTooltip={styles.spUploadFiles__tooltip}
+              classNameTooltip={styles.spUploadFiles__tooltip}
             />
           )
         )}
@@ -268,6 +268,15 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
       name={name}
     >
       <div className={classNameRoot}>
+        {isDropzoneVariant && (
+          <Tooltip
+            hover={true}
+            text={infoTooltipText}
+            position={tooltipPosition}
+            classNameTooltip={styles.spUploadFiles__tooltip}
+            trigger={undefined}
+          />
+        )}
         <div className={classNameControlRoot}>
           {isInputVariant &&
             (loading ? (

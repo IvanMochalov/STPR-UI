@@ -32,10 +32,6 @@ export const Label: React.FC<LabelProps> = (props) => {
     [styles.spLabel__tooltip]: true,
   });
 
-  const classNameLabelTriggerTooltip = cx({
-    [styles.spLabel__triggerTooltip]: true,
-  });
-
   return (
     <div className={classNameRoot}>
       <label className={classNameLabelText}>{label}</label>
@@ -43,7 +39,6 @@ export const Label: React.FC<LabelProps> = (props) => {
       {infoTooltipText && (
         <InfoTooltip
           classNameTooltip={classNameLabelTooltip}
-          classNameTriggerTooltip={classNameLabelTriggerTooltip}
           position={tooltipPosition}
           text={infoTooltipText}
           classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}

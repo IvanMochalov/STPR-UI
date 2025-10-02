@@ -5,9 +5,8 @@ export interface EllipsisTextWithTooltipProps
   extends Omit<TextProps, "children" | "isEllipsis" | "ref"> {
   text: string;
   classNameRoot?: string;
-  classNameTooltipRoot?: string;
   defaultTooltipPosition?: ETooltipPosition;
   classNameBaseTooltipContentRoot?: string;
-  classNameTriggerTooltipRoot?: string;
+  classNameTooltipRoot?: string;
   classNameBaseTooltipRoot?: string;
 }
