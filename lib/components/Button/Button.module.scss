@@ -13,6 +13,7 @@
   border: none;
   cursor: pointer;
   padding: 11.5px 23px;
+  gap: 12px;
   @include styles.transition-all-ease-in-out(200ms);
 
   @include styles.respond-to(sm) {
@@ -32,19 +33,13 @@
     }
   }
 
-  &_onlyIcon {
-    & #{$block}__iconContainer {
-      margin: 0;
-    }
-  }
-
   &_link {
     & #{$block}__text {
       font-weight: 500;
     }
 
-    &:not(#{$block}_onlyIcon) #{$block}__iconContainer {
-      margin-right: 8px;
+    &:not(#{$block}_onlyIcon) {
+      gap: 8px;
     }
 
     background-color: transparent;
@@ -155,6 +150,10 @@
 
   &__iconContainer {
     display: flex;
-    margin-right: 12px;
+
+    & :global .stpr-icon {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
