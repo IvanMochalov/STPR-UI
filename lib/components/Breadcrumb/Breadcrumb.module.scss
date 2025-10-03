@@ -20,7 +20,7 @@
     flex-direction: row;
     gap: 2px;
 
-    &:last-child {
+    &:first-child {
       #{$listItem}__separator {
         display: none;
       }
