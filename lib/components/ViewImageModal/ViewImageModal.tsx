@@ -26,25 +26,25 @@ export const ViewImageModal: React.FC<ViewImageModalProps> = (props) => {
   const [currentSrc, setCurrentSrc] = useState(src);
 
   const classNameViewImage = cx({
-    [styles.viewImage]: true,
+    [styles.viewImageModal]: true,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
   const classNameLayer = cx({
-    [styles.viewImage__layer]: true,
+    [styles.viewImageModal__layer]: true,
   });
 
   const classNameCloseButton = cx({
-    [styles.viewImage__closeButton]: true,
+    [styles.viewImageModal__closeButton]: true,
   });
 
   const classNameSpinner = cx({
-    [styles.viewImage__spinner]: true,
+    [styles.viewImageModal__spinner]: true,
   });
 
-  const classNameImageRoot = cx(styles.viewImage__img, {
-    [styles.viewImage__img_loading]: isLoading,
-    [styles.viewImage__img_error]: hasError,
+  const classNameImageRoot = cx(styles.viewImageModal__img, {
+    [styles.viewImageModal__img_loading]: isLoading,
+    [styles.viewImageModal__img_error]: hasError,
     ...(propsClassNameImageRoot && { [propsClassNameImageRoot]: true }),
   });
 

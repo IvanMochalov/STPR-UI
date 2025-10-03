@@ -43,6 +43,11 @@
     width: 100%;
     height: fit-content;
     min-width: 335px;
+    opacity: 1;
+    @include styles.transition-prop-ease-in-out("opacity", 300ms);
+    @starting-style {
+      opacity: 0;
+    }
     @include styles.custom-scrollbar();
     @include styles.respond-to(sm) {
       gap: 48px;

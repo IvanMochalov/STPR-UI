@@ -189,6 +189,11 @@
 
     #{$block}__fileNamesListItem {
       width: 100%;
+      opacity: 1;
+      @include styles.transition-prop-ease-in-out("opacity", 300ms);
+      @starting-style {
+        opacity: 0;
+      }
 
       @container file-list-container (min-width: calc(170px * 2 + 24px)) {
         width: calc((100cqw - 24px) / 2);
