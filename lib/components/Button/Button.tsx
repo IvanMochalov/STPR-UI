@@ -24,6 +24,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     isOnlyIcon = false,
     noPadding = false,
     classNameRoot: propsClassNameRoot,
+    classNameTextRoot: propsClassNameTextRoot,
     classNameIconContainerRoot: propsClassNameIconContainerRoot,
   } = props;
 
@@ -38,6 +39,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const getContent = () => {
     const classNameText = cx({
       [styles.spButton__text]: true,
+      ...(propsClassNameTextRoot && { [propsClassNameTextRoot]: true }),
     });
 
     const classNameIconContainer = cx({

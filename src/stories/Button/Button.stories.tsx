@@ -156,6 +156,10 @@ const meta: Meta<typeof Button> = {
       description: "Дополнительный CSS-класс для корневого элемента кнопки",
       control: false,
     },
+    classNameTextRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента содержимого кнопки",
+      control: false,
+    },
     classNameIconContainerRoot: {
       description: "Дополнительный CSS-класс для контейнера иконки",
       control: false,
