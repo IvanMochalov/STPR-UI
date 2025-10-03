@@ -2,6 +2,7 @@ import { Accordion } from "./components/Accordion";
 import { ApplyButtons } from "./components/ApplyButtons";
 import { AuthProtected } from "./components/AuthProtected";
 import { BaseTooltip } from "./components/BaseTooltip";
+import { Breadcrumb } from "./components/Breadcrumb";
 import { Button } from "./components/Button";
 import type { TOnChangeCheckbox } from "./components/Checkbox";
 import { Checkbox } from "./components/Checkbox";
@@ -40,6 +41,7 @@ export {
   ApplyButtons,
   AuthProtected,
   BaseTooltip,
+  Breadcrumb,
   Button,
   Checkbox,
   Confirm,

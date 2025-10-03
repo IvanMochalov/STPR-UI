@@ -31,7 +31,7 @@ export const Icon: React.FC<IconProps> = (props) => {
   const { name, rotate, ...svgProps } = props;
 
   const style = {
-    ...svgProps.style,
+    ...svgProps,
     transform: rotate ? `rotate(${rotate}deg)` : "",
   } as CSSProperties;
 
