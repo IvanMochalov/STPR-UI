@@ -3,6 +3,7 @@
 .ellipsisTextWithTooltip {
   $block: &;
   width: 100%;
+  position: relative;
 
   &__tooltip {
     width: 100%;

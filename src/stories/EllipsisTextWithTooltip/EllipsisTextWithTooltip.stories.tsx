@@ -105,6 +105,15 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
         defaultValue: { summary: "true" },
       },
     },
+    isWithFixedEnd: {
+      description: `Показывать окончание текста (например, расширение файла) при обрезке.
+Полезно для отображения имен файлов, где важно видеть расширение даже при обрезанном названии.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     defaultTooltipPosition: {
       description: `Позиция тултипа относительно текста. Определяет где будет отображаться тултип при наведении.\n`,
       control: { type: "select" },
@@ -126,11 +135,13 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
 - **Наследование всех свойств Text** - поддерживает все типографические стили и пропсы
 - **Автоматическая обрезка** - всегда включает \`isEllipsis=true\` для текста
 - **Производительность** - проверка переполнения происходит только при изменении текста
+- **Фиксированный конец текста** - опция \`isWithFixedEnd\` позволяет отображать окончание текста (например, расширение файла) при обрезке
 
 ## Поведение:
 - Компонент автоматически определяет, помещается ли текст в доступную ширину
 - Если текст обрезан (появляется многоточие), при наведении показывается тултип с полным текстом
 - Если текст полностью помещается, тултип не отображается даже при наведении
+- При \`isWithFixedEnd=true\` окончание текста (последнее слово или расширение файла) отображается после многоточия
 - Поддерживает все типографические стили родительского Text компонента
 
 ## Рекомендации по использованию:
@@ -143,6 +154,18 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
   <EllipsisTextWithTooltip 
     text="Очень длинный текст который может не поместиться в контейнер"
     type="h1"
+  />
+</div>
+\`\`\`
+
+### С фиксированным окончанием (для файлов)
+
+\`\`\`jsx
+<div style={{ width: "150px" }}>
+  <EllipsisTextWithTooltip 
+    text="очень-длинное-название-файла-с-расширением.pdf"
+    isWithFixedEnd={true}
+    type="p2"
   />
 </div>
 \`\`\`
@@ -162,6 +185,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
     title: "Ellipsis Text With Tooltip",
     isCursorPointer: false,
     isCursorPointerByOnClick: true,
+    isWithFixedEnd: false,
   },
   render: (args) => {
     return (
@@ -175,6 +199,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
         }}
       >
         <EllipsisTextWithTooltip {...args} type={"h1"} text={`${args.text} with type="h1"`} />
+        <EllipsisTextWithTooltip {...args} type={"h3"} text={`${args.text} with type="h1"`} />
         <EllipsisTextWithTooltip {...args} type={"p1"} text={`${args.text} with type="p1"`} />
         <EllipsisTextWithTooltip {...args} type={"p2"} text={`${args.text} with type="p2"`} />
         <EllipsisTextWithTooltip
@@ -184,6 +209,12 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
         />
         <EllipsisTextWithTooltip {...args} type={"link"} text={`${args.text} with type="link"`} />
         <EllipsisTextWithTooltip {...args} text={`${args.text} without parameter type`} />
+
+        <EllipsisTextWithTooltip
+          {...args}
+          isWithFixedEnd={true}
+          text={`${args.text}, with long text and fixed end!`}
+        />
       </div>
     );
   },
@@ -201,6 +232,22 @@ export const WithLongText: Story = {
   name: "Long Text with Tooltip",
   args: {
     text: "Очень длинный текст который точно не поместится в ограниченный контейнер и будет обрезан с многоточием",
+  },
+  render: (args) => (
+    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+      <EllipsisTextWithTooltip {...args} />
+      <div style={{ marginTop: "10px", fontSize: "12px", color: "#666" }}>
+        (Наведите на текст чтобы увидеть тултип)
+      </div>
+    </div>
+  ),
+};
+
+export const TextWithFixEnd: Story = {
+  name: "Text with fixed end",
+  args: {
+    isWithFixedEnd: true,
+    text: "SomeLongNameOfExampleFile.pdf",
   },
   render: (args) => (
     <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>

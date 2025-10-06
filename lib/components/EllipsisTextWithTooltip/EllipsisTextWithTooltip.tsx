@@ -5,35 +5,44 @@ import { Text } from "../Text";
 import { Tooltip } from "../Tooltip";
 import styles from "./EllipsisTextWithTooltip.module.scss";
 import { EllipsisTextWithTooltipProps } from "./types";
+import { getEndText } from "./utils";
 
 export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (props) => {
   const {
     text,
+    isWithFixedEnd = false,
     classNameRoot: propsClassNameRoot,
     classNameTooltipRoot: propsClassNameTooltipRoot,
     classNameBaseTooltipContentRoot,
     classNameBaseTooltipRoot,
+    defaultTooltipPosition,
     ...otherTextProps
   } = props;
 
   const textRef = useRef<HTMLDivElement>(null);
+  const extensionRef = useRef<HTMLDivElement>(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
+  const endText = getEndText(text);
+  const isVisibleFixedEnd = endText !== text;
 
-  const updateOverflowState = () => {
+  const updateDimensions = () => {
     if (textRef.current) {
       setIsOverflowed(textRef.current.scrollWidth > textRef.current.clientWidth);
     }
   };
 
   useLayoutEffect(() => {
-    updateOverflowState();
+    // Первоначальное вычисление
+    updateDimensions();
 
-    window.addEventListener("resize", updateOverflowState);
+    // Добавляем обработчик события resize
+    window.addEventListener("resize", updateDimensions);
 
+    // Очистка при размонтировании компонента
     return () => {
-      window.removeEventListener("resize", updateOverflowState);
+      window.removeEventListener("resize", updateDimensions);
     };
-  }, [text]);
+  }, [text, endText]);
 
   const classNameRoot = cx({
     [styles.ellipsisTextWithTooltip]: true,
@@ -45,19 +54,50 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
     ...(propsClassNameTooltipRoot && { [propsClassNameTooltipRoot]: true }),
   });
 
-  return (
-    <Tooltip
-      hover={true}
-      classNameTooltip={classNameTooltip}
-      classNameBaseTooltipContentRoot={classNameBaseTooltipContentRoot}
-      classNameBaseTooltipRoot={classNameBaseTooltipRoot}
-      isVisibleTooltip={isOverflowed}
-      text={text}
-      trigger={
+  const renderTriggerContent = () => {
+    return (
+      <>
         <Text {...otherTextProps} classNameRoot={classNameRoot} isEllipsis={true} ref={textRef}>
           {text}
         </Text>
-      }
+        {isWithFixedEnd && isOverflowed && isVisibleFixedEnd && (
+          <>
+            <div
+              ref={extensionRef}
+              style={{
+                position: "absolute",
+                opacity: 0,
+                pointerEvents: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <Text {...otherTextProps} classNameRoot={classNameRoot}>
+                {getEndText(text)}
+              </Text>
+            </div>
+            <Text
+              style={{ width: "fit-content" }}
+              {...otherTextProps}
+              classNameRoot={classNameRoot}
+            >
+              {getEndText(text)}
+            </Text>
+          </>
+        )}
+      </>
+    );
+  };
+
+  return (
+    <Tooltip
+      hover={true}
+      position={defaultTooltipPosition}
+      classNameBaseTooltipRoot={classNameBaseTooltipRoot}
+      classNameTooltip={classNameTooltip}
+      classNameBaseTooltipContentRoot={classNameBaseTooltipContentRoot}
+      isVisibleTooltip={isOverflowed}
+      text={text}
+      trigger={renderTriggerContent()}
     />
   );
 };

@@ -7,7 +7,6 @@ import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Spinner } from "../Spinner";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
-import { EllipsisFileName } from "./components/EllipsisFileName/EllipsisFileName.tsx";
 import { Accept, FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
 import styles from "./UploadFiles.module.scss";
 import { formatFileSize, getErrorTextFromError } from "./utils";
@@ -186,12 +185,15 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
                 <Icon name={currentFileHasErrors ? EIconName.InfoError : EIconName.File} />
               </div>
               <div className={styles.spUploadFiles__fileNamesListItem__mainContent}>
-                <EllipsisFileName
-                  fileName={file.name}
-                  classNameEllipsisFileNameRoot={
-                    styles.spUploadFiles__fileNamesListItem__fileNameWrapper
+                <EllipsisTextWithTooltip
+                  text={file.name}
+                  defaultTooltipPosition={ETooltipPosition.TopLeft}
+                  isWithFixedEnd={true}
+                  classNameRoot={styles.spUploadFiles__fileNamesListItem__fileName}
+                  classNameTooltipRoot={styles.spUploadFiles__fileNamesListItem__fileNameWrapper}
+                  classNameBaseTooltipRoot={
+                    styles.spUploadFiles__fileNamesListItem__fileNameTooltip
                   }
-                  classNameEllipsisText={styles.spUploadFiles__fileNamesListItem__fileName}
                 />
                 <EllipsisTextWithTooltip
                   text={currentFileHasErrors ? getInfoTooltipText() : formatFileSize(file.size)}

@@ -32,6 +32,9 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   rules: {
+    rules: {
+      "prettier/prettier": ["error", { endOfLine: "crlf" }],
+    },
     "react/react-in-jsx-scope": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",

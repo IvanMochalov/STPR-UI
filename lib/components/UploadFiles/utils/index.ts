@@ -1,4 +1,3 @@
-import { isNullOrWhitespace } from "../../../../src/utils";
 import { ErrorCode, FileError } from "../types";
 
 export const getErrorTextFromError = (error: FileError) => {
@@ -11,14 +10,6 @@ export const getErrorTextFromError = (error: FileError) => {
     default:
       return "";
   }
-};
-
-export const getFileExtension = (fileName: string) => {
-  if (isNullOrWhitespace(fileName)) {
-    return "";
-  }
-
-  return fileName.split(".").pop()?.toLowerCase();
 };
 
 export const formatFileSize = (

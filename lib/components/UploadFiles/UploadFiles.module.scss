@@ -248,12 +248,16 @@
     }
 
     &__fileNameWrapper {
-      max-width: 80%;
+      max-width: 90%;
+      overflow: hidden;
     }
 
     &__fileName {
       font-size: 14px;
-      line-height: 1;
+    }
+
+    &__fileNameTooltip {
+      padding: 8px !important;
     }
 
     &__description {
@@ -262,7 +266,7 @@
       color: styles.$color-gray-60;
 
       &__tooltipContent {
-        padding: 8px;
+        padding: 8px !important;
       }
 
       &_error {
