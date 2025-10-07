@@ -185,7 +185,7 @@ return (
         onClose={(e) => onCloseModal(e, { isOpenConfirm: false })}
         cancelBtnContent={"Нет"}
         submitBtnContent={"Да"}
-         submit={(e) => onCloseModal(e, { isOpenConfirm: false })}
+        submit={(e) => onCloseModal(e, { isOpenConfirm: false })}
       />
     )}
   </>
