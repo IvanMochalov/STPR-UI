@@ -381,7 +381,6 @@ export const FilledVariant: Story = {
 };
 
 export const DisabledSelect: Story = {
-  name: "Disabled Select",
   render: (args) => {
     return (
       <Select

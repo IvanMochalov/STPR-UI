@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import cx from "clsx";
 import React, { useState } from "react";
 
-import { UploadFiles } from "../../../lib/components/UploadFiles";
 import { Text } from "../../../lib/components/Text";
+import { UploadFiles } from "../../../lib/components/UploadFiles";
 import mainStyles from "../Stories.module.scss";
 import styles from "./UploadFilesStories.module.scss";
 

@@ -70,6 +70,7 @@ export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
         cancelAnimationFrame(animationRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetValue, duration, doneValue, isLoading]);
 
   useEffect(() => {

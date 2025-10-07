@@ -209,7 +209,7 @@ export const WithCallbacks: Story = {
 
     return (
       <>
-        <Button onClick={() => onOpenModal({})}>Показать с callback'ами</Button>
+        <Button onClick={() => onOpenModal({})}>Показать с callback&apos;ами</Button>
         {isOpen && <ViewImageModal {...args} onClose={onCloseModal} />}
       </>
     );

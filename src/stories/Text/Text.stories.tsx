@@ -203,7 +203,6 @@ export const WithEllipsis: Story = {
 };
 
 export const ClickableText: Story = {
-  name: "Clickable Text",
   args: {
     children: "Кликаемый текст (нажми меня)",
     onClick: () => alert("Текст был кликнут!"),

@@ -1,8 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ApplyButtons, Button, Modal, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
+import {
+  ApplyButtons,
+  Button,
+  Confirm,
+  Form,
+  Input,
+  Modal,
+  Text,
+  useModal,
+} from "../../../lib/test-stpr-ui-kit.ts";
 import mainStyles from "../Stories.module.scss";
-import styles from "./ModalStories.module.scss";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
@@ -24,7 +32,7 @@ const meta: Meta<typeof Modal> = {
 - **Адаптивный дизайн**: разные отступы и размеры на мобильных и desktop
 
 ## Базовое использование
-- Хук useModal разработан специально для управления МО (и подобных компонентов), экспортируется также из "test-stpr-ui-kit";
+Хук useModal разработан специально для управления МО (и подобных компонентов), экспортируется также из "test-stpr-ui-kit";
 
 \`\`\`jsx
 const { isOpen, onOpenModal, onCloseModal } = useModal();
@@ -46,7 +54,11 @@ return (
 \`\`\`
 
 ### Несколько модальных окон, управляемых одним хуком useModal:
-- Хук useModal также возвращает modalData, которая была передана аргументом в onOpenModal;
+Хук useModal также возвращает modalData, которая была передана аргументом в onOpenModal;
+
+Особенность данной реализации в том, что при открытии МО при наличии другого открытого МО,
+ отображается последнее открытое ([см. пример Modal With Modal Inside](#modal-with-modal-inside)).
+
 
 \`\`\`jsx
 const { modalData, onOpenModal, onCloseModal } = useModal();
@@ -72,6 +84,109 @@ return (
       >
         <div>Содержимое второго модального окна</div>
       </Modal>
+    )}
+  </>
+);
+\`\`\`
+
+Для того чтобы одним хуком \`useModal\` управлять несколькими МО, которые отображаются поверх друг друга,
+ передайте в \`onOpenModal\` второй аргумент в качестве \`true\` ==> \`onOpenModal({isOpenSecondModal: true}, true)\`.
+ Такое использование сохранит данные из предыдущего состояни \`modalData\` ([см. пример Modal With Modal Inside And Not Closing Others](#modal-with-modal-inside-and-not-closing-others-with-closing-control)).
+
+ \`\`\`jsx
+const { modalData, onOpenModal, onCloseModal } = useModal();
+
+return (
+  <>
+    <Button onClick={() => onOpenModal({ isOpenEditUserData: true })}>Открыть с футером</Button>
+    {modalData?.isOpenEditUserData && (
+      <Modal
+        zIndex={1000}
+        header={"Редактирование профиля"}
+        subHeader={"Внесите необходимые изменения в данные пользователя"}
+        onClose={onCloseModal}
+        footer={
+          <ApplyButtons
+            cancelBtnContent="Отмена"
+            applyButtonsAlign={"right"}
+            submitBtnContent="Сохранить"
+            onClose={() => console.log("Закрыть")}
+            submit={() => onOpenModal({ isOpenConfirm: true }, true)}
+          />
+        }
+      >
+        <Form addMargin={true} size={"md"}>
+          <Input placeholder="Имя" name={"name"} onChange={() => {}} />
+          <Input placeholder="Email" name={"email"} onChange={() => {}} />
+          <Text type={"p1"} color={"red"}>
+            Нажми сохранить для открытия второго МО
+          </Text>
+        </Form>
+      </Modal>
+    )}
+    {modalData?.isOpenConfirm && (
+      <Confirm
+        zIndex={1001}
+        modalVerticalAlign={"center"}
+        size={"md"}
+        header={"Вы уверены?"}
+        onClose={onCloseModal}
+        cancelBtnContent={"Нет"}
+        submitBtnContent={"Да"}
+        submit={onCloseModal}
+      />
+    )}
+  </>
+);
+\`\`\`
+
+В данном случае видно, что \`onCloseModal\` закрывает все МО. Для того чтобы закрывать МО по отдельности используйте \`onCloseModal\` следующим образом: 
+\`(e) => onCloseModal(e, { isOpenConfirm: false })\`. При таком использовании \`onCloseModal\` не будет сетить \`modalData\` в \`null\`,
+ а будет обновлять состояние на основе данных, переданных вторым аргументов в \`onCloseModal\` с сохранением предыдущего состояния
+ ([см. пример Modal With Modal Inside And Not Closing Others With Closing Control](#modal-with-modal-inside-and-not-closing-others)).
+
+ \`\`\`jsx
+const { modalData, onOpenModal, onCloseModal } = useModal();
+
+return (
+  <>
+    <Button onClick={() => onOpenModal({ isOpenEditUserData: true })}>Открыть с футером</Button>
+    {modalData?.isOpenEditUserData && (
+      <Modal
+        zIndex={1000}
+        header={"Редактирование профиля"}
+        subHeader={"Внесите необходимые изменения в данные пользователя"}
+        onClose={onCloseModal}
+        footer={
+          <ApplyButtons
+            cancelBtnContent="Отмена"
+            applyButtonsAlign={"right"}
+            submitBtnContent="Сохранить"
+            onClose={() => console.log("Закрыть")}
+            submit={() => onOpenModal({ isOpenConfirm: true }, true)}
+          />
+        }
+      >
+        <Form addMargin={true} size={"md"}>
+          <Input placeholder="Имя" name={"name"} onChange={() => {}} />
+          <Input placeholder="Email" name={"email"} onChange={() => {}} />
+          <Text type={"p1"} color={"red"}>
+            Нажми сохранить для открытия второго МО
+          </Text>
+        </Form>
+      </Modal>
+    )}
+    {modalData?.isOpenConfirm && (
+      <Confirm
+        zIndex={1001}
+        modalVerticalAlign={"center"}
+        size={"md"}
+        header={"Вы уверены?"}
+        onClose={(e) => onCloseModal(e, { isOpenConfirm: false })}
+        cancelBtnContent={"Нет"}
+        submitBtnContent={"Да"}
+         submit={(e) => onCloseModal(e, { isOpenConfirm: false })}
+      />
     )}
   </>
 );
@@ -267,23 +382,14 @@ export const WithFooter: Story = {
   args: {
     children: (
       <div>
-        <Text>Форма редактирования данных пользователя.</Text>
-        <div style={{ marginTop: "16px" }}>
-          <input placeholder="Имя" style={{ padding: "8px", width: "100%", marginBottom: "8px" }} />
-          <input placeholder="Email" style={{ padding: "8px", width: "100%" }} />
-        </div>
+        <Form addMargin={true} size={"md"}>
+          <Input placeholder="Имя" name={"name"} onChange={() => {}} />
+          <Input placeholder="Email" name={"email"} onChange={() => {}} />
+        </Form>
       </div>
     ),
     header: "Редактирование профиля",
     subHeader: "Внесите необходимые изменения в данные пользователя",
-    footer: (
-      <ApplyButtons
-        cancelBtnContent="Отмена"
-        submitBtnContent="Сохранить"
-        onClose={() => console.log("Закрыть")}
-        submit={() => console.log("Сохранить")}
-      />
-    ),
     zIndex: 1000,
   },
   render: (args) => {
@@ -292,7 +398,21 @@ export const WithFooter: Story = {
     return (
       <>
         <Button onClick={() => onOpenModal({})}>Открыть с футером</Button>
-        {isOpen && <Modal {...args} onClose={onCloseModal} />}
+        {isOpen && (
+          <Modal
+            {...args}
+            onClose={onCloseModal}
+            footer={
+              <ApplyButtons
+                applyButtonsAlign={"right"}
+                cancelBtnContent="Отмена"
+                submitBtnContent="Сохранить"
+                onClose={onCloseModal}
+                submit={onCloseModal}
+              />
+            }
+          />
+        )}
       </>
     );
   },
@@ -333,13 +453,11 @@ export const WithoutCloseButton: Story = {
       <>
         <Button onClick={() => onOpenModal({})}>Открыть окно</Button>
         {isOpen && (
-          <div>
-            <Modal {...args} onClose={onCloseModal}>
-              <div style={{ marginTop: "20px", textAlign: "center" }}>
-                <Button onClick={onCloseModal}>Закрыть модальное окно</Button>
-              </div>
-            </Modal>
-          </div>
+          <Modal {...args} onClose={onCloseModal}>
+            <div style={{ marginTop: "20px", textAlign: "center" }}>
+              <Button onClick={onCloseModal}>Закрыть модальное окно</Button>
+            </div>
+          </Modal>
         )}
       </>
     );
@@ -416,31 +534,160 @@ export const SizesComparison: Story = {
   },
 };
 
-export const ScrollableContent: Story = {
-  name: "Modal with Scrollable Content",
+export const WithModalInside: Story = {
+  name: "Modal With Modal Inside",
   args: {
-    header: "Прокручиваемое модальное окно",
+    children: (
+      <Form addMargin={true} size={"md"}>
+        <Input placeholder="Имя" name={"name"} onChange={() => {}} />
+        <Input placeholder="Email" name={"email"} onChange={() => {}} />
+        <Text type={"p1"} color={"red"}>
+          Нажми сохранить для открытия второго МО
+        </Text>
+      </Form>
+    ),
+    header: "Редактирование профиля",
+    subHeader: "Внесите необходимые изменения в данные пользователя",
     zIndex: 1000,
   },
   render: (args) => {
-    const { isOpen, onOpenModal, onCloseModal } = useModal();
+    const { modalData, onOpenModal, onCloseModal } = useModal();
 
     return (
       <>
-        <Button onClick={() => onOpenModal({})}>Открыть с прокруткой</Button>
-        {isOpen && (
-          <Modal {...args} onClose={onCloseModal}>
-            <div
-              className={styles.scrollableContent}
-              style={{ maxHeight: "400px", overflowY: "auto" }}
-            >
-              {Array.from({ length: 20 }).map((_, index) => (
-                <div key={index} style={{ padding: "10px", borderBottom: "1px solid #eee" }}>
-                  <Text>Элемент списка #{index + 1}</Text>
-                </div>
-              ))}
-            </div>
-          </Modal>
+        <Button onClick={() => onOpenModal({ isOpenEditUserData: true })}>Открыть с футером</Button>
+        {modalData?.isOpenEditUserData && (
+          <Modal
+            {...args}
+            onClose={onCloseModal}
+            footer={
+              <ApplyButtons
+                cancelBtnContent="Отмена"
+                applyButtonsAlign={"right"}
+                submitBtnContent="Сохранить"
+                onClose={() => console.log("Закрыть")}
+                submit={() => onOpenModal({ isOpenConfirm: true })}
+              />
+            }
+          />
+        )}
+        {modalData?.isOpenConfirm && (
+          <Confirm
+            size={"md"}
+            header={"Вы уверены?"}
+            onClose={onCloseModal}
+            cancelBtnContent={"Нет"}
+            submitBtnContent={"Да"}
+            submit={onCloseModal}
+          />
+        )}
+      </>
+    );
+  },
+};
+
+export const WithModalInsideAndNotClosingOthers: Story = {
+  name: "Modal With Modal Inside And Not Closing Others",
+  args: {
+    children: (
+      <Form addMargin={true} size={"md"}>
+        <Input placeholder="Имя" name={"name"} onChange={() => {}} />
+        <Input placeholder="Email" name={"email"} onChange={() => {}} />
+        <Text type={"p1"} color={"red"}>
+          Нажми сохранить для открытия второго МО
+        </Text>
+      </Form>
+    ),
+    header: "Редактирование профиля",
+    subHeader: "Внесите необходимые изменения в данные пользователя",
+    zIndex: 1000,
+  },
+  render: (args) => {
+    const { modalData, onOpenModal, onCloseModal } = useModal();
+
+    return (
+      <>
+        <Button onClick={() => onOpenModal({ isOpenEditUserData: true })}>Открыть с футером</Button>
+        {modalData?.isOpenEditUserData && (
+          <Modal
+            {...args}
+            onClose={onCloseModal}
+            footer={
+              <ApplyButtons
+                cancelBtnContent="Отмена"
+                applyButtonsAlign={"right"}
+                submitBtnContent="Сохранить"
+                onClose={() => console.log("Закрыть")}
+                submit={() => onOpenModal({ isOpenConfirm: true }, true)}
+              />
+            }
+          />
+        )}
+        {modalData?.isOpenConfirm && (
+          <Confirm
+            zIndex={1001}
+            modalVerticalAlign={"center"}
+            size={"md"}
+            header={"Вы уверены?"}
+            onClose={onCloseModal}
+            cancelBtnContent={"Нет"}
+            submitBtnContent={"Да"}
+            submit={onCloseModal}
+          />
+        )}
+      </>
+    );
+  },
+};
+
+export const WithModalInsideAndNotClosingOthersWithClosingControl: Story = {
+  name: "Modal With Modal Inside And Not Closing Others With Closing Control",
+  args: {
+    children: (
+      <Form addMargin={true} size={"md"}>
+        <Input placeholder="Имя" name={"name"} onChange={() => {}} />
+        <Input placeholder="Email" name={"email"} onChange={() => {}} />
+        <Text type={"p1"} color={"red"}>
+          Нажми сохранить для открытия второго МО
+        </Text>
+      </Form>
+    ),
+    header: "Редактирование профиля",
+    subHeader: "Внесите необходимые изменения в данные пользователя",
+    zIndex: 1000,
+  },
+  render: (args) => {
+    const { modalData, onOpenModal, onCloseModal } = useModal();
+
+    return (
+      <>
+        <Button onClick={() => onOpenModal({ isOpenEditUserData: true })}>Открыть с футером</Button>
+        {modalData?.isOpenEditUserData && (
+          <Modal
+            {...args}
+            onClose={onCloseModal}
+            footer={
+              <ApplyButtons
+                cancelBtnContent="Отмена"
+                applyButtonsAlign={"right"}
+                submitBtnContent="Сохранить"
+                onClose={() => console.log("Закрыть")}
+                submit={() => onOpenModal({ isOpenConfirm: true }, true)}
+              />
+            }
+          />
+        )}
+        {modalData?.isOpenConfirm && (
+          <Confirm
+            zIndex={1001}
+            modalVerticalAlign={"center"}
+            size={"md"}
+            header={"Вы уверены?"}
+            onClose={(e) => onCloseModal(e, { isOpenConfirm: false })}
+            cancelBtnContent={"Нет"}
+            submitBtnContent={"Да"}
+            submit={(e) => onCloseModal(e, { isOpenConfirm: false })}
+          />
         )}
       </>
     );
