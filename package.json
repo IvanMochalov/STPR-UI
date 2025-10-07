@@ -12,8 +12,8 @@
   "module": "./dist/test-stpr-ui-kit.js",
   "types": "./dist/test-stpr-ui-kit.es.d.ts",
   "exports": {
-    "./styles": "./package.json",
-    "./package.json": "./dist/test-stpr-ui-kit.css",
+    "./package.json": "./package.json",
+    "./styles": "./dist/test-stpr-ui-kit.css",
     ".": {
       "types": "./dist/test-stpr-ui-kit.es.d.ts",
       "import": "./dist/test-stpr-ui-kit.js",
