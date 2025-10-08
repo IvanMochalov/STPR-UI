@@ -29,12 +29,12 @@
     align-items: center;
     cursor: pointer;
     gap: 10px;
+    box-sizing: border-box;
 
     &--size-lg {
       &:before {
         width: 30px;
         height: 30px;
-        background-size: 20px 20px;
       }
     }
 
@@ -42,7 +42,6 @@
       &:before {
         width: 20px;
         height: 20px;
-        background-size: 12px 12px;
       }
     }
 
@@ -53,6 +52,10 @@
       color: styles.$color-accent-blue;
       border: 3px solid currentColor;
       cursor: pointer;
+      box-sizing: border-box;
+      padding: 4px;
+      background-clip: content-box;
+      background-color: transparent;
     }
 
     &:hover:before {
@@ -61,15 +64,11 @@
 
     &_checked {
       &:before {
-        background-image: linear-gradient(currentColor, currentColor);
-        background-repeat: no-repeat;
-        background-position: center;
+        background-color: currentColor;
       }
 
       &:hover:before {
-        background-image: linear-gradient(currentColor, currentColor);
-        background-repeat: no-repeat;
-        background-position: center;
+        background-color: currentColor;
       }
     }
 
