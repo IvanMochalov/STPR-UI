@@ -30,10 +30,19 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
 
   const classNameBox = cx({
     [styles.spCheckbox__box]: true,
-    [styles.spCheckbox__box_checked]: checked,
     [styles.spCheckbox__box_disabled]: disabled,
-    [styles[`spCheckbox__box--size-${size}`]]: size,
     [styles.spCheckbox__box_error]: error,
+  });
+
+  const classNameCheckmark = cx({
+    [styles.spCheckbox__box__checkmark]: true,
+    [styles[`spCheckbox__box__checkmark--size-${size}`]]: size,
+  });
+
+  const classNameInnerSquare = cx({
+    [styles.spCheckbox__box__innerSquare]: true,
+    [styles.spCheckbox__box__innerSquare_checked]: checked,
+    [styles[`spCheckbox__box__innerSquare--size-${size}`]]: size,
   });
 
   const classNameControl = cx({
@@ -70,6 +79,9 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
           checked={checked}
           onChange={handleChangeChecked}
         />
+        <span className={classNameCheckmark}>
+          <span className={classNameInnerSquare} />
+        </span>
         {label && <span className={classNameLabel}>{label}</span>}
         {required && <div className={classNameRequired}>*</div>}
         {infoTooltipText && (

@@ -29,74 +29,76 @@
     align-items: center;
     cursor: pointer;
     gap: 10px;
-    box-sizing: border-box;
+    user-select: none;
+    color: styles.$color-accent-blue;
 
-    &--size-lg {
-      &:before {
-        width: 30px;
-        height: 30px;
-      }
-    }
-
-    &--size-md {
-      &:before {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    &:before {
-      content: '';
-      display: block;
-      min-width: 18px;
-      color: styles.$color-accent-blue;
-      border: 3px solid currentColor;
-      cursor: pointer;
-      box-sizing: border-box;
-      padding: 4px;
-      background-clip: content-box;
-      background-color: transparent;
-    }
-
-    &:hover:before {
+    &:hover {
       color: styles.$color-accent-blue-light;
-    }
-
-    &_checked {
-      &:before {
-        background-color: currentColor;
-      }
-
-      &:hover:before {
-        background-color: currentColor;
-      }
     }
 
     &_disabled {
       cursor: default;
       pointer-events: none;
 
-      &:before {
-        cursor: default;
-        color: styles.$color-gray-2;
-      }
-
-      &:hover:before {
-        color: styles.$color-gray-2;
-      }
+      color: styles.$color-gray-2;
     }
 
     &_error {
-      &:before {
-        border-color: styles.$color-accent-red;
+      color: styles.$color-accent-red;
+
+      &:hover {
+        color: styles.$color-red-2;
+      }
+    }
+
+    &__checkmark {
+      box-sizing: border-box;
+      position: relative;
+      background-color: styles.$color-white;
+      border: 2px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include styles.transition-all-ease-in-out(200ms);
+
+      &--size-lg {
+        width: 30px;
+        height: 30px;
+      }
+
+      &--size-md {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__innerSquare {
+      box-sizing: border-box;
+      background: transparent;
+      transform: scale(0);
+      @include styles.transition-all-ease-in-out(200ms);
+
+      &--size-lg {
+        width: 16px;
+        height: 16px;
+      }
+
+      &--size-md {
+        width: 12px;
+        height: 12px;
+      }
+
+      &_checked {
+        background-color: currentColor;
+        transform: scale(1);
       }
     }
   }
 
+
   &__tooltip {
     display: inline-block;
     vertical-align: middle;
-    margin-left: 10px;
   }
 
   &__required {

@@ -55,7 +55,7 @@ return (
   argTypes: {
     size: {
       description:
-        "Размер чекбокса:\n- 'lg': большой (30x30px), галочка 17x17px\n- 'md': средний (20x20px), галочка 12x12px",
+        "Размер чекбокса:\n- 'lg': большой (30x30px), галочка 16x16px\n- 'md': средний (20x20px), галочка 12x12px",
       control: { type: "radio" },
       options: ["md", "lg"],
       table: {
