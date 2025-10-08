@@ -17,6 +17,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     iconRotate = 0,
     disabled = false,
     type = "button",
+    iconPosition = "start",
     form,
     children,
     loading = false,
@@ -49,15 +50,23 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
     const renderIcon = () => {
       if (loading) {
-        return <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />;
+        return (
+          <div className={classNameIconContainer}>
+            <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />
+          </div>
+        );
       }
 
       if (iconName) {
-        return <Icon name={iconName} rotate={iconRotate} />;
+        return (
+          <div className={classNameIconContainer}>
+            <Icon name={iconName} rotate={iconRotate} />
+          </div>
+        );
       }
 
       if (icon) {
-        return icon;
+        return <div className={classNameIconContainer}>{icon}</div>;
       }
 
       return null;
@@ -65,10 +74,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
     return (
       <>
-        {(icon || iconName || loading) && (
-          <div className={classNameIconContainer}>{renderIcon()}</div>
-        )}
+        {iconPosition === "start" && renderIcon()}
         {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
+        {iconPosition === "end" && renderIcon()}
       </>
     );
   };

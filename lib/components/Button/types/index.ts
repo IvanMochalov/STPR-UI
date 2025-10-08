@@ -8,6 +8,8 @@ export type TButtonType = "submit" | "reset" | "button";
 
 export type TButtonVariant = "primary" | "secondary" | "link";
 
+export type TButtonIconPosition = "start" | "end";
+
 export interface ButtonProps extends React.PropsWithChildren {
   color?: TButtonColor;
   variant?: TButtonVariant;
@@ -26,4 +28,5 @@ export interface ButtonProps extends React.PropsWithChildren {
   classNameTextRoot?: string;
   classNameIconContainerRoot?: string;
   iconRotate?: number;
+  iconPosition?: TButtonIconPosition;
 }

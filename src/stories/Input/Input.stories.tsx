@@ -222,10 +222,12 @@ const [formData, setFormData] = useState({
 <Input
   name="address"
   value={formData.address}
-  onChange={(event, {name, value}) => setFormData((prevState) => ({
-    ...prevState,
-    [name]: value,
-  }));
+  onChange={(_event, { name, value }) =>
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
   label="Имя пользователя"
   placeholder="Введите ваше имя"
 />

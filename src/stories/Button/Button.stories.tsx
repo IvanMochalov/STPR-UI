@@ -48,6 +48,18 @@ const meta: Meta<typeof Button> = {
         },
       },
     },
+    iconPosition: {
+      description: "Позиция иконки:\n- 'start': иконка перед текстом\n- 'end': иконка после текста",
+      control: { type: "radio" },
+      options: ["start", "end"],
+      table: {
+        defaultValue: { summary: "start" },
+        type: {
+          summary: "TButtonIconPosition",
+          detail: "'start' | 'end'",
+        },
+      },
+    },
     color: {
       description:
         "Цветовая схема кнопки:\n- 'blue': акцентный синий (брендовый)\n- 'white': белый для цветных фонов",
@@ -189,6 +201,7 @@ export const Default: Story = {
     noPadding: false,
     isOnlyIcon: false,
     loading: false,
+    iconPosition: "start",
   },
 };
 
