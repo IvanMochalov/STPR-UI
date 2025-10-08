@@ -28,12 +28,13 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    gap: 10px;
 
     &--size-lg {
       &:before {
         width: 30px;
         height: 30px;
-        background-size: 17px 17px;
+        background-size: 20px 20px;
       }
     }
 
@@ -50,9 +51,8 @@
       display: block;
       min-width: 18px;
       color: styles.$color-accent-blue;
-      border: 2px solid currentColor;
+      border: 3px solid currentColor;
       cursor: pointer;
-      margin-right: 10px;
     }
 
     &:hover:before {
