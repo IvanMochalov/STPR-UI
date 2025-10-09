@@ -140,7 +140,7 @@
   &__text {
     color: currentColor;
     font-family: styles.$main-font;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
 
     @include styles.respond-to(sm) {
