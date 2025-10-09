@@ -74,6 +74,32 @@ const meta: Meta<typeof ApplyButtons> = {
         },
       },
     },
+    submitBtnVariant: {
+      description:
+        "Стиль кнопки 'Submit':\n- 'primary': основной стиль для главных действий\n- 'secondary': второстепенный стиль\n- 'link': текстовый стиль для ссылок",
+      control: { type: "radio" },
+      options: ["primary", "secondary", "link"],
+      table: {
+        defaultValue: { summary: "primary" },
+        type: {
+          summary: "TButtonVariant",
+          detail: '"primary" | "secondary" | "link"',
+        },
+      },
+    },
+    cancelBtnVariant: {
+      description:
+        "Стиль кнопки 'Cancel':\n- 'primary': основной стиль для главных действий\n- 'secondary': второстепенный стиль\n- 'link': текстовый стиль для ссылок",
+      control: { type: "radio" },
+      options: ["primary", "secondary", "link"],
+      table: {
+        defaultValue: { summary: "secondary" },
+        type: {
+          summary: "TButtonVariant",
+          detail: '"primary" | "secondary" | "link"',
+        },
+      },
+    },
     cancelBtnContent: {
       description: "Текст кнопки Cancel. Если не указан, кнопка не отображается\n",
       control: { type: "text" },
@@ -159,6 +185,8 @@ const meta: Meta<typeof ApplyButtons> = {
   args: {
     onClose: () => {},
     submit: () => {},
+    submitBtnVariant: "primary",
+    cancelBtnVariant: "secondary",
   },
 };
 

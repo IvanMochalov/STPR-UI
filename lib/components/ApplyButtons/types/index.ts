@@ -1,5 +1,6 @@
 import React from "react";
 
+import { TButtonVariant } from "../../Button";
 import { EIconName } from "../../Icons";
 
 export type TApplyButtonsMobileDirection = "row" | "column" | "column-reverse";
@@ -9,9 +10,11 @@ export interface ApplyButtonsProps {
   applyButtonsMobileDirection?: TApplyButtonsMobileDirection;
   applyButtonsAlign?: TApplyButtonsAlign;
   cancelBtnContent?: string;
+  cancelBtnVariant?: TButtonVariant;
   cancelBtnIconName?: EIconName;
   submitBtnIconName?: EIconName;
   submitBtnContent?: string;
+  submitBtnVariant?: TButtonVariant;
   cancelBtnDisabled?: boolean;
   formId?: string;
   disabled?: boolean;

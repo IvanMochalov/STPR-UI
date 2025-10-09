@@ -19,6 +19,8 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
     onClose,
     submit,
     loading,
+    cancelBtnVariant = "secondary",
+    submitBtnVariant = "primary",
   } = props;
   const classNameRoot = cx({
     [styles.spApplyButtons]: true,
@@ -37,7 +39,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
       {onClose && (
         <Button
           type={"button"}
-          variant={"secondary"}
+          variant={cancelBtnVariant}
           iconName={cancelBtnIconName}
           classNameRoot={classNameCancelButton}
           disabled={cancelBtnDisabled}
@@ -49,7 +51,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
       {submit && (
         <Button
           type={"submit"}
-          variant={"primary"}
+          variant={submitBtnVariant}
           iconName={submitBtnIconName}
           classNameRoot={classNameSubmitButton}
           form={formId ? formId : undefined}

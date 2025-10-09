@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
 import { EIconName } from "../../../lib/components/Icons";
 import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
 import mainStyles from "../Stories.module.scss";
-import React from "react";
 
 const meta: Meta<typeof Confirm> = {
   component: Confirm,
@@ -146,7 +146,7 @@ return (
     },
     onClose: {
       description:
-        "Callback-функция при закрытии диалога (кнопка отмены или крестик). Если не указан, кнопка 'Отмена' не отображается",
+        "Callback-функция при закрытии диалога (кнопка отмены или крестик). Если не указан, кнопка 'Cancel' не отображается",
       control: false,
     },
 
@@ -221,7 +221,7 @@ return (
     },
     submit: {
       description:
-        "Callback-функция при подтверждении действия. Если не указан, кнопка 'Подтвердить' не отображается",
+        "Callback-функция при подтверждении действия. Если не указан, кнопка 'Submit' не отображается",
       control: false,
     },
     classNameRoot: {
@@ -249,6 +249,8 @@ return (
   args: {
     onClose: () => {},
     submit: () => {},
+    submitBtnVariant: "primary",
+    cancelBtnVariant: "secondary",
   },
 };
 

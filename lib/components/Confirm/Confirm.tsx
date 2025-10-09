@@ -28,6 +28,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     size,
     classNameRoot,
     classNameLayerRoot,
+    submitBtnVariant,
+    cancelBtnVariant,
   } = props;
 
   const isVisibleFooter =
@@ -56,6 +58,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
             cancelBtnDisabled={cancelBtnDisabled}
             submitBtnContent={submitBtnContent}
             submitBtnIconName={submitBtnIconName}
+            submitBtnVariant={submitBtnVariant}
+            cancelBtnVariant={cancelBtnVariant}
             formId={formId}
             disabled={disabled}
             onClose={onClose}
