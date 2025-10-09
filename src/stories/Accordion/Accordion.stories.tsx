@@ -1,7 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 
-import { Accordion, Checkbox, Form, Input, Select } from "../../../lib/test-stpr-ui-kit.ts";
+import {
+  Accordion,
+  Checkbox,
+  Form,
+  Input,
+  Select,
+  TOnChangeCheckbox,
+  TOnChangeInput,
+} from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";
 
@@ -231,17 +239,17 @@ export const WithForm: Story = {
       is: false,
     });
 
-    const handleInputChange = (
-      _event: React.ChangeEvent<HTMLInputElement>,
-      data: {
-        name: string;
-        value?: string;
-        checked?: boolean;
-      },
-    ) => {
+    const handleInputChange: TOnChangeInput = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.checked !== undefined ? data.checked : data.value,
+        [name]: value,
+      }));
+    };
+
+    const handleCheckboxChange: TOnChangeCheckbox = (_event, { name, checked }) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: checked,
       }));
     };
 
@@ -262,7 +270,7 @@ export const WithForm: Story = {
             label={"Включить проверку"}
             name={"is"}
             checked={formData.is}
-            onChange={handleInputChange}
+            onChange={handleCheckboxChange}
           />
           <Input
             label={"Наименование адреса"}
