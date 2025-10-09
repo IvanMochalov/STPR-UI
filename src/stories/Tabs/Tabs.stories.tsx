@@ -13,7 +13,6 @@ const meta: Meta<typeof Tabs> = {
     variant: {
       description: `Вариант стиля табов:\n- "contained" - в контейнере с заливкой фона (по умолчанию)\n- "filled" - отдельные заполненные вкладки\n`,
       control: { type: "select" },
-      options: ["contained", "filled"],
       table: {
         type: {
           summary: "TTabsVariant",
@@ -58,6 +57,13 @@ const meta: Meta<typeof Tabs> = {
     },
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента табов\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameTabElementRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента вкладки\n",
       control: false,
       table: {
         type: { summary: "string" },

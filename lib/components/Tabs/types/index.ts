@@ -1,6 +1,6 @@
 import React from "react";
 
-export type TTabsVariant = "filled" | "contained";
+export type TTabsVariant = "filled" | "contained" | "outlined";
 
 export type TPaneItem = {
   name: string;
@@ -16,5 +16,6 @@ export interface TabsProps {
   isSeparated?: boolean;
   variant?: TTabsVariant;
   classNameRoot?: string;
+  classNameTabElementRoot?: string;
   classNameBaseTooltipRoot?: string;
 }

@@ -1,7 +1,6 @@
 import cx from "clsx";
 import React from "react";
 
-import { Text } from "../Text";
 import { InfoTooltip } from "../Tooltip";
 import styles from "./Tabs.module.scss";
 import { TabsProps } from "./types";
@@ -11,6 +10,7 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     panes,
     isSeparated = false,
     classNameRoot: propsClassNameRoot,
+    classNameTabElementRoot: propsClassNameTabElementRoot,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     variant = "contained",
     size = "md",
@@ -28,15 +28,6 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     [styles.spTabs__tooltip]: true,
   });
 
-  const getTypeForText = () => {
-    switch (size) {
-      case "md":
-        return "p2";
-      case "lg":
-        return "p1";
-    }
-  };
-
   return (
     <div className={classNameRoot}>
       {panes.map((item, index) => {
@@ -48,10 +39,11 @@ export const Tabs: React.FC<TabsProps> = (props) => {
             className={cx({
               [styles.spTabs__tabElement]: true,
               [styles.spTabs__tabElement_active]: active,
+              ...(propsClassNameTabElementRoot && { [propsClassNameTabElementRoot]: true }),
             })}
             onClick={onClick}
           >
-            <Text type={getTypeForText()}>{name}</Text>
+            <span>{name}</span>
             {Boolean(infoTooltipText) && (
               <InfoTooltip
                 hover={true}

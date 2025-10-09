@@ -31,6 +31,7 @@
 
       @include styles.respond-to(sm) {
         padding: 14px 20px;
+        font-size: 20px;
       }
     }
   }
@@ -45,6 +46,7 @@
 
       @include styles.respond-to(sm) {
         padding: 11.5px 16px;
+        font-size: 16px;
       }
     }
   }
@@ -69,6 +71,30 @@
 
       & #{$block}__tooltip {
         color: styles.$color-accent-blue;
+      }
+    }
+  }
+
+  &--variant-outlined {
+    background-color: transparent;
+    padding: 0;
+
+    & #{$block}__tabElement {
+      border: 1px solid transparent;
+      color: styles.$color-gray-1;
+      background-color: transparent;
+
+      &:hover {
+        color: styles.$color-accent-blue;
+      }
+    }
+
+    & #{$block}__tabElement_active {
+      color: styles.$color-accent-blue;
+      border-bottom: 1px solid styles.$color-accent-blue;
+
+      & #{$block}__tooltip {
+        color: styles.$color-white;
       }
     }
   }
@@ -104,6 +130,10 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
   }
 
   &__tooltip {
