@@ -9,11 +9,6 @@
   max-width: 350px;
   height: fit-content;
   background-color: styles.$color-white;
-  opacity: 1;
-  @include styles.transition-prop-ease-in-out("opacity", 300ms);
-  @starting-style {
-    opacity: 0;
-  }
 
   &_loading {
     opacity: 0;
