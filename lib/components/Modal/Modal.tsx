@@ -14,7 +14,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     isHiddenModal = false,
     isVisibleCloseButton = true,
     children,
-    classNameLayerRoot,
+    classNameLayerRoot: propsClassNameLayerRoot,
     classNameRoot: propsClassNameRoot,
     style,
     modalVerticalAlign = "top",
@@ -30,6 +30,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     [styles.modalWrapper]: true,
     [styles[`modalWrapper--modalVerticalAlign-${modalVerticalAlign}`]]: modalVerticalAlign,
     [styles[`modalWrapper--textAlign-${textAlign}`]]: textAlign,
+    ...(propsClassNameLayerRoot && { [propsClassNameLayerRoot]: true }),
   });
 
   const classNameRoot = cx({
@@ -66,33 +67,31 @@ export const Modal: React.FC<ModalProps> = (props) => {
   });
 
   return (
-    <Layer zIndex={zIndex} isHiddenModal={isHiddenModal} classNameRoot={classNameLayerRoot}>
-      <div className={classNameModalWrapper}>
-        <div className={classNameRoot} style={style}>
-          {(header || subHeader) && (
-            <div className={classNameModalHeader}>
-              {typeof header === "string" ? <Text type={"h3"}>{header}</Text> : header}
-              {subHeader && (
-                <div className={classNameModalSubHeader}>
-                  {typeof subHeader === "string" ? <Text>{subHeader}</Text> : subHeader}
-                </div>
-              )}
-            </div>
-          )}
-          {children && <div className={classNameContent}>{children}</div>}
-          {footer && <div className={classNameModalFooter}>{footer}</div>}
-          {isVisibleCloseButton && onClose && (
-            <Button
-              classNameRoot={classNameCloseButton}
-              classNameIconContainerRoot={classNameButtonIconContainer}
-              onClick={onClose}
-              iconName={EIconName.Close}
-              variant={"link"}
-              noPadding={true}
-              isOnlyIcon={true}
-            />
-          )}
-        </div>
+    <Layer zIndex={zIndex} isHiddenModal={isHiddenModal} classNameRoot={classNameModalWrapper}>
+      <div className={classNameRoot} style={style}>
+        {(header || subHeader) && (
+          <div className={classNameModalHeader}>
+            {typeof header === "string" ? <Text type={"h3"}>{header}</Text> : header}
+            {subHeader && (
+              <div className={classNameModalSubHeader}>
+                {typeof subHeader === "string" ? <Text>{subHeader}</Text> : subHeader}
+              </div>
+            )}
+          </div>
+        )}
+        {children && <div className={classNameContent}>{children}</div>}
+        {footer && <div className={classNameModalFooter}>{footer}</div>}
+        {isVisibleCloseButton && onClose && (
+          <Button
+            classNameRoot={classNameCloseButton}
+            classNameIconContainerRoot={classNameButtonIconContainer}
+            onClick={onClose}
+            iconName={EIconName.Close}
+            variant={"link"}
+            noPadding={true}
+            isOnlyIcon={true}
+          />
+        )}
       </div>
     </Layer>
   );

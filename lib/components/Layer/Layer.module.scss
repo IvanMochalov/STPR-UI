@@ -12,6 +12,7 @@
   background: styles.$color-black-70;
   padding: 20px;
   @include styles.starting-style-appearance();
+  @include styles.custom-scrollbar();
 
   @include styles.respond-to(sm) {
     padding: 32px;

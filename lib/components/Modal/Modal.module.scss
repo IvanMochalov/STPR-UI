@@ -3,9 +3,11 @@
 .modalWrapper {
   $block: &;
 
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   height: 100%;
+  width: 100%;
 
   &--modalVerticalAlign {
     &-top {
