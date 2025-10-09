@@ -231,6 +231,14 @@ return (
         type: { summary: "string" },
       },
     },
+    submitBtnClassName: {
+      description: "Дополнительный CSS-класс для корневого элемента кнопки 'Submit'",
+      control: false,
+    },
+    cancelBtnClassName: {
+      description: "Дополнительный CSS-класс для корневого элемента кнопки 'Cancel'",
+      control: false,
+    },
     classNameLayerRoot: {
       description: "Дополнительный CSS-класс для слоя модального окна",
       control: false,

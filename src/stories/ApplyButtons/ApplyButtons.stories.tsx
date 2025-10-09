@@ -124,6 +124,14 @@ const meta: Meta<typeof ApplyButtons> = {
         defaultValue: { summary: "false" },
       },
     },
+    submitBtnClassName: {
+      description: "Дополнительный CSS-класс для корневого элемента кнопки 'Submit'",
+      control: false,
+    },
+    cancelBtnClassName: {
+      description: "Дополнительный CSS-класс для корневого элемента кнопки 'Cancel'",
+      control: false,
+    },
     submitBtnContent: {
       description: "Текст кнопки Submit.\n",
       control: { type: "text" },

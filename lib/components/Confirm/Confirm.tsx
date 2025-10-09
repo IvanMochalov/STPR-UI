@@ -30,6 +30,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     classNameLayerRoot,
     submitBtnVariant,
     cancelBtnVariant,
+    submitBtnClassName,
+    cancelBtnClassName,
   } = props;
 
   const isVisibleFooter =
@@ -51,6 +53,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       footer={
         isVisibleFooter ? (
           <ApplyButtons
+            submitBtnClassName={submitBtnClassName}
+            cancelBtnClassName={cancelBtnClassName}
             applyButtonsMobileDirection={applyButtonsMobileDirection}
             applyButtonsAlign={applyButtonsAlign}
             cancelBtnContent={cancelBtnContent}

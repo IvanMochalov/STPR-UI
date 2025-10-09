@@ -21,6 +21,8 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
     loading,
     cancelBtnVariant = "secondary",
     submitBtnVariant = "primary",
+    cancelBtnClassName: propsCancelBtnClassName,
+    submitBtnClassName: propsSubmitBtnClassName,
   } = props;
   const classNameRoot = cx({
     [styles.spApplyButtons]: true,
@@ -29,9 +31,11 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
   });
   const classNameSubmitButton = cx({
     [styles.spApplyButtons__submit]: true,
+    ...(propsSubmitBtnClassName && { [propsSubmitBtnClassName]: true }),
   });
   const classNameCancelButton = cx({
     [styles.spApplyButtons__cancel]: true,
+    ...(propsCancelBtnClassName && { [propsCancelBtnClassName]: true }),
   });
 
   return (
