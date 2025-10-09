@@ -45,6 +45,9 @@ const meta: Meta<typeof Dropdown> = {
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента dropdown",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     labelText: {
       description: "Текст, отображаемый на кнопке dropdown",

@@ -10,6 +10,9 @@ const meta: Meta<typeof Table> = {
   argTypes: {
     classNameRoot: {
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   decorators: [

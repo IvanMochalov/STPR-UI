@@ -138,6 +138,9 @@ const meta: Meta<typeof Button> = {
     form: {
       description: "ID формы для кнопок типа submit/reset. Позволяет управлять формой извне",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     iconName: {
       description: "Иконка для отображения слева от текста. Не отображается при loading=true",
@@ -167,14 +170,23 @@ const meta: Meta<typeof Button> = {
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента кнопки",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameTextRoot: {
       description: "Дополнительный CSS-класс для корневого элемента содержимого кнопки",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameIconContainerRoot: {
       description: "Дополнительный CSS-класс для контейнера иконки",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   decorators: [

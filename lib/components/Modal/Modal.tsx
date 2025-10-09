@@ -16,6 +16,8 @@ export const Modal: React.FC<ModalProps> = (props) => {
     children,
     classNameLayerRoot: propsClassNameLayerRoot,
     classNameRoot: propsClassNameRoot,
+    classNameHeaderRoot: propsClassNameHeaderRoot,
+    classNameFooterRoot: propsClassNameFooterRoot,
     style,
     modalVerticalAlign = "top",
     textAlign = "left",
@@ -55,15 +57,16 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameModalHeader = cx({
     [styles.modalWrapper__header]: true,
+    ...(propsClassNameHeaderRoot && { [propsClassNameHeaderRoot]: true }),
   });
 
   const classNameModalSubHeader = cx({
     [styles.modalWrapper__subHeader]: true,
-    [styles.modalWrapper__subHeader_onlySubHeader]: !header,
   });
 
   const classNameModalFooter = cx({
     [styles.modalWrapper__footer]: true,
+    ...(propsClassNameFooterRoot && { [propsClassNameFooterRoot]: true }),
   });
 
   return (

@@ -32,6 +32,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     cancelBtnVariant,
     submitBtnClassName,
     cancelBtnClassName,
+    classNameHeaderRoot,
+    classNameFooterRoot,
   } = props;
 
   const isVisibleFooter =
@@ -50,6 +52,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       size={size}
       classNameRoot={classNameRoot}
       classNameLayerRoot={classNameLayerRoot}
+      classNameHeaderRoot={classNameHeaderRoot}
+      classNameFooterRoot={classNameFooterRoot}
       footer={
         isVisibleFooter ? (
           <ApplyButtons

@@ -74,22 +74,37 @@ const meta: Meta<typeof Accordion> = {
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента аккордеона\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameHeader: {
       description: "Дополнительный CSS-класс для заголовка аккордеона\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameTitle: {
       description: "Дополнительный CSS-класс для текста заголовка\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameIcon: {
       description: "Дополнительный CSS-класс для иконки раскрытия/сворачивания\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameChildrenWrapper: {
       description: "Дополнительный CSS-класс для обертки содержимого аккордеона\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   parameters: {

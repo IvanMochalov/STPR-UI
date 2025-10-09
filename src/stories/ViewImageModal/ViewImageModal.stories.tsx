@@ -96,10 +96,16 @@ return (
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента модального окна",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameImageRoot: {
       description: "Дополнительный CSS-класс для элемента изображения",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     onLoad: {
       description: "Callback-функция при успешной загрузке изображения",

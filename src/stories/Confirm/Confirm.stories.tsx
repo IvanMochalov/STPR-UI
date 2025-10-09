@@ -218,6 +218,9 @@ return (
     formId: {
       description: "ID формы для привязки кнопки подтверждения",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     submit: {
       description:
@@ -234,13 +237,33 @@ return (
     submitBtnClassName: {
       description: "Дополнительный CSS-класс для корневого элемента кнопки 'Submit'",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     cancelBtnClassName: {
       description: "Дополнительный CSS-класс для корневого элемента кнопки 'Cancel'",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameLayerRoot: {
       description: "Дополнительный CSS-класс для слоя модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameHeaderRoot: {
+      description: "Дополнительный CSS-класс для хедера модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameFooterRoot: {
+      description: "Дополнительный CSS-класс для футера модального окна",
       control: false,
       table: {
         type: { summary: "string" },

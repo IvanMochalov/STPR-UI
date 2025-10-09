@@ -131,10 +131,16 @@ return (
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента чекбокса",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameError: {
       description: "Дополнительный CSS-класс для элемента отображения ошибки",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   decorators: [

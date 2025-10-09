@@ -26,10 +26,16 @@ const meta: Meta<typeof BaseTooltip> = {
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента тултипа\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameContentRoot: {
       description: "Дополнительный CSS-класс для контентной области тултипа\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     style: {
       description: "Инлайн-стили для кастомизации позиционирования и внешнего вида\n",

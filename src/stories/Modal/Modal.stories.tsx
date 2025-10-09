@@ -287,6 +287,9 @@ return (
     footer: {
       description: "Футер модального окна. Обычно содержит кнопки действий",
       control: false,
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
     children: {
       description: "Основное содержимое модального окна",
@@ -307,10 +310,30 @@ return (
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента модального окна",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameHeaderRoot: {
+      description: "Дополнительный CSS-класс для хедера модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameFooterRoot: {
+      description: "Дополнительный CSS-класс для футера модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     classNameLayerRoot: {
       description: "Дополнительный CSS-класс для слоя (Layer) модального окна",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
   },
   decorators: [

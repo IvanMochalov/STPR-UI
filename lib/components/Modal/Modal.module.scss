@@ -105,16 +105,11 @@
     @include styles.respond-to(sm) {
       width: 100%;
     }
-  }
-
-  &__subHeader {
-    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     @include styles.respond-to(sm) {
-      margin-top: 16px;
-    }
-
-    &_onlySubHeader {
-      margin-top: 0;
+      gap: 16px;
     }
   }
 

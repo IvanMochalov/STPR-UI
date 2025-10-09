@@ -127,10 +127,16 @@ const meta: Meta<typeof ApplyButtons> = {
     submitBtnClassName: {
       description: "Дополнительный CSS-класс для корневого элемента кнопки 'Submit'",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     cancelBtnClassName: {
       description: "Дополнительный CSS-класс для корневого элемента кнопки 'Cancel'",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     submitBtnContent: {
       description: "Текст кнопки Submit.\n",
@@ -143,6 +149,9 @@ const meta: Meta<typeof ApplyButtons> = {
       description:
         "ID формы, к которой привязана кнопка отправки (атрибут form). Позволяет отправить форму извне\n",
       control: false,
+      table: {
+        type: { summary: "string" },
+      },
     },
     disabled: {
       description:
