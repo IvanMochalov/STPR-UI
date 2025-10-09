@@ -9,11 +9,11 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
   const {
     applyButtonsMobileDirection = "column",
     applyButtonsAlign = "center",
-    cancelBtnContent,
+    cancelBtnContent = "Отменить",
     cancelBtnIconName,
     submitBtnIconName,
     cancelBtnDisabled,
-    submitBtnContent,
+    submitBtnContent = "Подтвердить",
     formId,
     disabled,
     onClose,
@@ -34,7 +34,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
 
   return (
     <div className={classNameRoot}>
-      {cancelBtnContent && (
+      {onClose && (
         <Button
           type={"button"}
           variant={"secondary"}
@@ -46,7 +46,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
           {cancelBtnContent}
         </Button>
       )}
-      {submitBtnContent && (
+      {submit && (
         <Button
           type={"submit"}
           variant={"primary"}

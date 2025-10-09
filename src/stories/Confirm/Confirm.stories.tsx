@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { EIconName } from "../../../lib/components/Icons";
 import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
 import mainStyles from "../Stories.module.scss";
+import React from "react";
 
 const meta: Meta<typeof Confirm> = {
   component: Confirm,
@@ -144,7 +145,8 @@ return (
       control: { type: "text" },
     },
     onClose: {
-      description: "Callback-функция при закрытии диалога (кнопка отмены или крестик)",
+      description:
+        "Callback-функция при закрытии диалога (кнопка отмены или крестик). Если не указан, кнопка 'Отмена' не отображается",
       control: false,
     },
 
@@ -175,7 +177,7 @@ return (
       },
     },
     cancelBtnContent: {
-      description: "Текст кнопки отмены. Если не указан, кнопка не отображается",
+      description: "Текст кнопки отмены.",
       control: { type: "text" },
     },
     cancelBtnIconName: {
@@ -184,7 +186,7 @@ return (
       options: Object.values(EIconName),
     },
     submitBtnContent: {
-      description: "Текст кнопки подтверждения. Если не указан, кнопка не отображается",
+      description: "Текст кнопки подтверждения.",
       control: { type: "text" },
     },
     submitBtnIconName: {
@@ -218,7 +220,8 @@ return (
       control: false,
     },
     submit: {
-      description: "Callback-функция при подтверждении действия",
+      description:
+        "Callback-функция при подтверждении действия. Если не указан, кнопка 'Подтвердить' не отображается",
       control: false,
     },
     classNameRoot: {
@@ -243,6 +246,10 @@ return (
       </div>
     ),
   ],
+  args: {
+    onClose: () => {},
+    submit: () => {},
+  },
 };
 
 export default meta;
@@ -294,9 +301,9 @@ export const DeleteConfirmation: Story = {
   render: (args) => {
     const { isOpen, onCloseModal, onOpenModal } = useModal();
 
-    const handleDelete = () => {
+    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
       alert("Удаление выполнено");
-      onCloseModal();
+      onCloseModal(e);
     };
 
     return (
@@ -512,6 +519,7 @@ export const MultipleConfirms: Story = {
             submitBtnContent="Удалить"
             submitBtnIconName={EIconName.Trash}
             onClose={onCloseModal}
+            submit={() => {}}
             size="md"
           />
         )}

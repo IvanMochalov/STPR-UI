@@ -18,7 +18,7 @@ const meta: Meta<typeof ApplyButtons> = {
 
 - **Адаптивный дизайн**: автоматическое переключение между строкой и колонкой на разных устройствах
 - **Гибкое выравнивание**: левое, центральное или правое расположение кнопок
-- **Условное отображение**: кнопки отображаются только при наличии контента
+- **Условное отображение**: кнопки отображаются только при наличии обработчиков клика
 - **Интеграция с формами**: поддержка привязки к форме через formId
 - **Состояния загрузки**: индикатор прогресса для кнопки отправки
 
@@ -77,6 +77,9 @@ const meta: Meta<typeof ApplyButtons> = {
     cancelBtnContent: {
       description: "Текст кнопки Cancel. Если не указан, кнопка не отображается\n",
       control: { type: "text" },
+      table: {
+        defaultValue: { summary: "Отменить" },
+      },
     },
     cancelBtnIconName: {
       description: "Иконка для кнопки Cancel (опционально)\n",
@@ -96,8 +99,11 @@ const meta: Meta<typeof ApplyButtons> = {
       },
     },
     submitBtnContent: {
-      description: "Текст кнопки Submit. Если не указан, кнопка не отображается\n",
+      description: "Текст кнопки Submit.\n",
       control: { type: "text" },
+      table: {
+        defaultValue: { summary: "Подтвердить" },
+      },
     },
     formId: {
       description:
@@ -113,7 +119,8 @@ const meta: Meta<typeof ApplyButtons> = {
       },
     },
     onClose: {
-      description: "Callback-функция для кнопки Cancel. Вызывается при клике на кнопку отмены\n",
+      description:
+        "Callback-функция для кнопки Cancel. Вызывается при клике на кнопку отмены. Если не указан, кнопка не отображается\n",
       control: false,
       table: {
         type: {
@@ -124,7 +131,7 @@ const meta: Meta<typeof ApplyButtons> = {
     },
     submit: {
       description:
-        "Callback-функция для кнопки Submit (вызывается при клике). Альтернатива отправке формы через formId\n",
+        "Callback-функция для кнопки Submit (вызывается при клике). Альтернатива отправке формы через formId. Если не указан, кнопка не отображается\n",
       control: false,
       table: {
         type: {
@@ -149,6 +156,10 @@ const meta: Meta<typeof ApplyButtons> = {
       </div>
     ),
   ],
+  args: {
+    onClose: () => {},
+    submit: () => {},
+  },
 };
 
 export default meta;
