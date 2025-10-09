@@ -1,13 +1,29 @@
 @use "src/styles/global" as styles;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .modalWrapper {
   $block: &;
 
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   height: 100%;
   width: 100%;
+
+  --layer-padding: 20px;
+  padding: var(--layer-padding);
+
+  @include styles.respond-to(sm) {
+    --layer-padding: 32px;
+  }
+
+  @include styles.respond-to(xl) {
+    --layer-padding: 60px
+  }
 
   &--modalVerticalAlign {
     &-top {
@@ -38,7 +54,8 @@
     font-weight: 400;
     position: relative;
     background-color: styles.$color-white;
-    padding: 20px;
+    --modal-padding: 20px;
+    padding: var(--modal-padding);
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -53,22 +70,34 @@
     &--size {
       &-lg {
         @include styles.respond-to(sm) {
-          padding: 64px;
+          --modal-padding: 64px;
           max-width: 920px;
         }
       }
 
       &-md {
         @include styles.respond-to(sm) {
-          padding: 32px;
+          --modal-padding: 32px;
           max-width: 600px;
         }
       }
+    }
+
+    #{$block}--modalVerticalAlign-center & {
+      max-height: calc(100vh - var(--layer-padding) * 2);
     }
   }
 
   &__content {
     width: 100%;
+
+    #{$block}--modalVerticalAlign-center & {
+      width: calc(100% + var(--modal-padding) / 2);
+      padding-right: calc(var(--modal-padding) / 2);
+      overflow-y: auto;
+      flex: 1;
+      @include styles.custom-scrollbar()
+    }
   }
 
   &__header {
@@ -132,5 +161,11 @@
         }
       }
     }
+  }
+
+  &__header,
+  &__subHeader,
+  &__footer {
+    flex-shrink: 0;
   }
 }

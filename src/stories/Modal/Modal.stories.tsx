@@ -546,6 +546,7 @@ export const WithModalInside: Story = {
         </Text>
       </Form>
     ),
+    modalVerticalAlign: "center",
     header: "Редактирование профиля",
     subHeader: "Внесите необходимые изменения в данные пользователя",
     zIndex: 1000,
