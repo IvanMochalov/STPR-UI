@@ -2,7 +2,6 @@
 
 .spBaseTooltip {
   $block: &;
-  box-sizing: border-box;
   background-color: styles.$color-white;
   box-shadow: 0 10px 45px 0 styles.$color-rgba-19-15;
   width: max-content;
@@ -12,6 +11,7 @@
   z-index: 199;
   overflow-y: auto;
   @include styles.custom-scrollbar();
+  @include styles.box-sizing-border-box();
   @include styles.transition-all-ease-in-out(200ms);
 
   &_noPadding {

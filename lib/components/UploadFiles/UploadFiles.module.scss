@@ -130,7 +130,6 @@
   &__control {
     $control: &;
 
-    box-sizing: border-box;
     width: 100%;
     min-height: 44px;
     display: flex;
@@ -206,7 +205,6 @@
   }
 
   &__fileNamesListItem {
-    box-sizing: border-box;
     position: relative;
     gap: 10px;
     display: flex;

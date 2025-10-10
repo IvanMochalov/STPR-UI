@@ -13,6 +13,7 @@
   padding: 20px;
   @include styles.starting-style-appearance();
   @include styles.custom-scrollbar();
+  @include styles.box-sizing-border-box();
 
   @include styles.respond-to(sm) {
     padding: 32px;

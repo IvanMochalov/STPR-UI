@@ -29,12 +29,14 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "storybook:build": "storybook build --output-dir storybook-static/themes/main/assets/storybook"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "lodash": "^4.17.21",
     "react-dropzone": "^14.3.8",
+    "react-input-mask": "^2.0.4",
     "react-responsive": "^10.0.1"
   },
   "devDependencies": {
@@ -53,6 +55,7 @@
     "@types/node": "^24.0.14",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/react-input-mask": "^3.0.6",
     "@types/storybook__react": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",

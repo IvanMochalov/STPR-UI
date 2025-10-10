@@ -1,7 +1,6 @@
 @use "src/styles/global" as styles;
 
 .spContextMenu {
-  box-sizing: border-box;
   font-family: styles.$main-font;
   font-weight: 400;
   margin: 0;
@@ -13,7 +12,6 @@
   background-color: styles.$color-white;
 
   &__item {
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;

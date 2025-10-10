@@ -4,7 +4,6 @@
   // Общие стили блока
   $block: &;
 
-  box-sizing: border-box;
   overflow: hidden;
   border: 1px solid styles.$color-secondary-blue-light-dark;
   background-color: styles.$color-white;

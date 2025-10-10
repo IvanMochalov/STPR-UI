@@ -27,18 +27,15 @@ export const ProgressWrapper: React.FC<ProgressWrapperProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.progressWrapper]: true,
+    [styles[`progressWrapper--animated-${animationVariant}`]]: animationVariant,
     [styles.progressWrapper_loading]: isLoading,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
+
   const classNameProgressBadgeRoot = cx({
     [styles.progressWrapper__progressBadge]: true,
     [styles.progressWrapper__progressBadge_loading]: isLoading,
     ...(propsClassNameProgressBadgeRoot && { [propsClassNameProgressBadgeRoot]: true }),
-  });
-  const classNameChildrenWrapperRoot = cx({
-    [styles.progressWrapper__childrenWrapper]: true,
-    [styles[`progressWrapper__childrenWrapper--animated-${animationVariant}`]]: animationVariant,
-    [styles.progressWrapper__childrenWrapper_loading]: isLoading,
   });
 
   // Создаем стиль для заполнения фона
@@ -47,13 +44,11 @@ export const ProgressWrapper: React.FC<ProgressWrapperProps> = (props) => {
   } as React.CSSProperties;
 
   return (
-    <div className={classNameRoot}>
-      <div
-        className={classNameChildrenWrapperRoot}
-        style={animationVariant === "backgroundProgress" ? backgroundProgressStyle : undefined}
-      >
-        {children}
-      </div>
+    <div
+      className={classNameRoot}
+      style={animationVariant === "backgroundProgress" ? backgroundProgressStyle : undefined}
+    >
+      {children}
       {isLoading && <Text classNameRoot={classNameProgressBadgeRoot}>{animatedValue}%</Text>}
     </div>
   );

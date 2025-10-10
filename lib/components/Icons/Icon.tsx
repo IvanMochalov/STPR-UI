@@ -2,6 +2,7 @@ import React, { CSSProperties } from "react";
 
 import AddFileIcon from "../../../src/images/add_file.svg?react";
 import AddUserIcon from "../../../src/images/add_user.svg?react";
+import CalendarIcon from "../../../src/images/calendar.svg?react";
 import CheckIcon from "../../../src/images/check.svg?react";
 import ChevronDownIcon from "../../../src/images/chevron_down.svg?react";
 import CloseIcon from "../../../src/images/close.svg?react";
@@ -61,6 +62,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.Refresh]: RefreshIcon,
     [EIconName.Logout]: LogoutIcon,
     [EIconName.Save]: SaveIcon,
+    [EIconName.Calendar]: CalendarIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -72,6 +74,7 @@ export const Icon: React.FC<IconProps> = (props) => {
 export {
   AddFileIcon,
   AddUserIcon,
+  CalendarIcon,
   CheckIcon,
   ChevronDownIcon,
   CloseIcon,
