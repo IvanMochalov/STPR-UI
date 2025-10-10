@@ -4,6 +4,7 @@
   // Общие стили блока
   $block: &;
 
+  font-family: styles.$main-font;
   display: inline-flex;
   flex-direction: column;
   width: 100%;
@@ -125,6 +126,7 @@
   }
 
   &__list {
+    font-weight: 400;
     position: absolute;
     width: 100%;
     z-index: 15;
@@ -136,6 +138,18 @@
     }
 
     @include styles.custom-scrollbar;
+  }
+
+  &__emptyOptions {
+    color: styles.$color-gray-1;
+    font-style: italic;
+    font-size: 12px;
+    padding: 11.5px 50px 11.5px 16px;
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+      padding: 16.5px 50px 16.5px 16px;
+    }
   }
 
   &__option {

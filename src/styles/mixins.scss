@@ -50,10 +50,8 @@
 }
 
 @mixin option-default() {
-  font-family: $main-font;
-  font-weight: 400;
-  font-size: 16px;
   color: $color-black;
+  font-size: 16px;
   padding: 11.5px 50px 11.5px 16px;
 
   @include respond-to(sm) {

@@ -158,6 +158,7 @@ const meta: Meta<typeof Select> = {
       description: `Массив опций для выбора. Каждая опция должна содержать value и label.\n`,
       control: false,
       table: {
+        defaultValue: { summary: "[]" },
         type: {
           summary: "TSelectOption[]",
           detail:
@@ -302,6 +303,15 @@ export const Default: Story = {
         onChange={onChange}
       />
     );
+  },
+};
+
+export const WithEmptyListOption: Story = {
+  render: Default.render,
+  args: {
+    label: "Округ",
+    options: [],
+    placeholder: "Выберите округ...",
   },
 };
 

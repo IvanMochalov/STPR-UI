@@ -10,7 +10,7 @@ import { SelectProps } from "./types";
 
 export const Select: React.FC<SelectProps> = (props) => {
   const {
-    options,
+    options = [],
     placeholder = "Выберите из списка...",
     value,
     name,
@@ -120,6 +120,44 @@ export const Select: React.FC<SelectProps> = (props) => {
     );
   };
 
+  const renderOptionList = () => {
+    return (
+      <div
+        className={classNameSelectList}
+        style={isScrollableList ? { maxHeight: `${maxHeightList}px` } : {}}
+      >
+        {options.length > 0 ? (
+          options.map((option) => {
+            const isSelectedOption = option.value === value;
+
+            return (
+              <div
+                key={option.value}
+                className={cx({
+                  [styles.spSelect__option]: true,
+                })}
+                onClick={(event) => handleSelect(event, option.value)}
+              >
+                {option.label}
+                {isSelectedOption && (
+                  <Icon name={EIconName.Check} className={classNameSelectIcon} />
+                )}
+              </div>
+            );
+          })
+        ) : (
+          <div
+            className={cx({
+              [styles.spSelect__emptyOptions]: true,
+            })}
+          >
+            Нет доступных вариантов выбора...
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className={classNameRoot} ref={refSelect}>
       {label && (
@@ -134,31 +172,7 @@ export const Select: React.FC<SelectProps> = (props) => {
       )}
       <div className={classNameContainer} onMouseEnter={onMouseEnter}>
         {getSelect()}
-        {isOpen && (
-          <div
-            className={classNameSelectList}
-            style={isScrollableList ? { maxHeight: `${maxHeightList}px` } : {}}
-          >
-            {options.map((option) => {
-              const isSelectedOption = option.value === value;
-
-              return (
-                <div
-                  key={option.value}
-                  className={cx({
-                    [styles.spSelect__option]: true,
-                  })}
-                  onClick={(event) => handleSelect(event, option.value)}
-                >
-                  {option.label}
-                  {isSelectedOption && (
-                    <Icon name={EIconName.Check} className={classNameSelectIcon} />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
+        {isOpen && renderOptionList()}
       </div>
       {error && <div className={classNameError}>{error}</div>}
     </div>
