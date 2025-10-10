@@ -63,14 +63,14 @@
 }
 
 // Стили scrollbar для использования в компонентах
-@mixin custom-scrollbar() {
+@mixin custom-scrollbar($custom-track-background : $scrollbar-track-background) {
   &::-webkit-scrollbar {
     width: $scrollbar-width;
     height: $scrollbar-width;
   }
 
   &::-webkit-scrollbar-track {
-    background: $scrollbar-track-background;
+    background: $custom-track-background;
   }
 
   &::-webkit-scrollbar-thumb {

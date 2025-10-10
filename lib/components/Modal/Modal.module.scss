@@ -96,7 +96,7 @@
       padding-right: calc(var(--modal-padding) / 2);
       overflow-y: auto;
       flex: 1;
-      @include styles.custom-scrollbar()
+      @include styles.custom-scrollbar(styles.$color-frost-blue)
     }
   }
 
