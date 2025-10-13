@@ -40,6 +40,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     isRelative = true,
     minDate,
     maxDate,
+    variant = "outlined",
     classNameRoot: propsClassNameRoot,
     classNameDatePickerInputRoot: propsClassNameDatePickerInputRoot,
     classNameLabel: propsClassNameLabel,
@@ -190,6 +191,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         calendarContainer={MyContainer}
         customInput={
           <DatePickerInput
+            variant={variant}
             placeholderText={placeholderText}
             dateFormatMask={dateFormatMask}
             changed={changed}
