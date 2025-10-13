@@ -9,6 +9,13 @@ import { Checkbox } from "./components/Checkbox";
 import { Confirm } from "./components/Confirm";
 import type { TContextMenuOption } from "./components/ContextMenu";
 import { ContextMenu } from "./components/ContextMenu";
+import { DatePicker } from "./components/DatePicker";
+import type {
+  IDatePickerInputProps,
+  TDatePickerInputSize,
+  TOnChangeDatePickerInput,
+} from "./components/DatePickerInput";
+import { DatePickerInput } from "./components/DatePickerInput";
 import { DefaultDropzone } from "./components/DefaultDropzone";
 import { Dropdown } from "./components/Dropdown";
 import { EllipsisTextWithTooltip } from "./components/EllipsisTextWithTooltip";
@@ -46,6 +53,8 @@ export {
   Checkbox,
   Confirm,
   ContextMenu,
+  DatePicker,
+  DatePickerInput,
   DefaultDropzone,
   Dropdown,
   EIconName,
@@ -53,6 +62,7 @@ export {
   ETooltipPosition,
   Form,
   Icon,
+  IDatePickerInputProps,
   InfoTooltip,
   Input,
   Label,
@@ -69,9 +79,11 @@ export {
   Table,
   Tabs,
   TContextMenuOption,
+  TDatePickerInputSize,
   Text,
   TextWithLabel,
   TOnChangeCheckbox,
+  TOnChangeDatePickerInput,
   TOnChangeInput,
   TOnChangeSelect,
   Tooltip,
