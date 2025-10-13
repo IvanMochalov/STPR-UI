@@ -2,7 +2,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import cx from "clsx";
 import { ru } from "date-fns/locale/ru";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import BaseDatePicker, { ReactDatePickerCustomHeaderProps } from "react-datepicker";
 
 import { DatePickerInput } from "../DatePickerInput";
@@ -38,6 +38,8 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     infoTooltipText,
     tooltipPosition,
     isRelative = true,
+    closeOnScroll = true,
+    shouldCloseOnSelect = true,
     minDate,
     maxDate,
     variant = "outlined",
@@ -48,6 +50,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   } = props;
 
   const [focused, setFocused] = useState(false);
+  const [localSelected, setLocalSelected] = useState(selected);
 
   const _onCalendarOpen = () => {
     if (onCalendarOpen) {
@@ -62,6 +65,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     }
     onBlur && onBlur();
     setFocused(false);
+    setLocalSelected(null);
   };
 
   const _onChange: (
@@ -81,6 +85,14 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     }
   };
 
+  const _onSelect = (date: Date | null) => {
+    if (shouldCloseOnSelect) {
+      _onChange(date);
+    }
+
+    setLocalSelected(date);
+  };
+
   const classNameRoot = cx({
     [styles.datePicker]: true,
     [styles.datePicker_size]: size,
@@ -89,7 +101,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     [styles.datePicker_relative]: isRelative,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
-
+  const datePickerRef = useRef<BaseDatePicker>(null);
   const classNameFieldRoot = cx({
     [styles.datePicker__customInput]: true,
     ...(propsClassNameDatePickerInputRoot && { [propsClassNameDatePickerInputRoot]: true }),
@@ -103,9 +115,35 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const classNameError = cx({
     [styles.datePicker__error]: true,
   });
-
   const onClear = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Сбрасываем значение
     _onChange(null, event);
+
+    // Закрываем календарь
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(false);
+    }
+
+    // Также вызываем закрытие календаря через наш обработчик
+    _onCalendarClose();
+  };
+
+  const onDone = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Закрываем календарь
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(false);
+    }
+
+    _onChange(localSelected, event);
+
+    // Также вызываем закрытие календаря через наш обработчик
+    _onCalendarClose();
   };
 
   const MyContainer = ({ className, children }: { className: string; children: ReactNode }) => {
@@ -122,6 +160,15 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
               onClick={onClear}
             >
               Очистить
+            </Text>
+            <Text
+              classNameRoot={cx(
+                styles.datePicker__footerActions,
+                styles.datePicker__footerActions_done,
+              )}
+              onClick={onDone}
+            >
+              Готово
             </Text>
           </div>
         )}
@@ -142,6 +189,10 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         />
       )}
       <BaseDatePicker
+        onSelect={_onSelect}
+        ref={datePickerRef}
+        closeOnScroll={closeOnScroll}
+        shouldCloseOnSelect={shouldCloseOnSelect}
         minDate={minDate}
         maxDate={maxDate}
         dateFormat={dateFormat}
@@ -150,7 +201,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         onFocus={onFocus}
         required={required}
         name={name}
-        onChange={_onChange}
+        // onChange={_onChange}
         onCalendarClose={_onCalendarClose}
         onCalendarOpen={_onCalendarOpen}
         selected={selected}

@@ -13,6 +13,8 @@ export interface IDatePickerProps extends Omit<IDatePickerInputProps, "className
   isRelative?: boolean;
   required?: boolean;
   isClearable?: boolean;
+  closeOnScroll?: boolean;
+  shouldCloseOnSelect?: boolean;
   label?: string;
   infoTooltipText?: string;
   tooltipPosition?: ETooltipPosition;

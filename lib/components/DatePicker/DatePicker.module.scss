@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  user-select: none;
 
   &_relative {
     position: relative;
@@ -46,7 +47,11 @@
     cursor: pointer;
 
     &_clear {
-      color: styles.$color-accent-red
+      color: styles.$color-accent-red;
+    }
+
+    &_done {
+      color: styles.$color-violet-1;
     }
   }
 
@@ -58,8 +63,7 @@
     font-family: styles.$main-font;
     padding: 24px;
     box-shadow: 0 4px 32px 0 #13131314;
-    @include styles.starting-style-appearance()
-
+    background-color: styles.$color-white;
   }
 
   & :global {
@@ -85,6 +89,7 @@
 
     & .react-datepicker__day-name {
       color: styles.$color-gray-1;
+
     }
 
     & .react-datepicker__day, .react-datepicker__day-name {
@@ -92,13 +97,13 @@
       width: 42px;
       font-size: 18px;
       line-height: 42px;
+      box-sizing: content-box;
+      border: 2px solid transparent;
     }
 
     & .react-datepicker__day {
-      box-sizing: content-box;
-      border: 2px solid transparent;
       color: styles.$color-black;
-      font-weight: 500;
+      font-weight: 400;
       @include styles.transition-all-ease-in-out(200ms);
 
       &--disabled,
@@ -106,13 +111,10 @@
         color: styles.$color-gray-1;
       }
 
-      &--outside-month {
-        font-weight: 400;
-      }
-
       &--today {
-        border: 2px solid styles.$color-accent-blue;
-        color: styles.$color-accent-blue;
+        border: 2px solid styles.$color-accent-blue !important;
+        background-color: transparent !important;
+        color: styles.$color-accent-blue !important;
 
         &:focus,
         &:focus-visible {
@@ -128,7 +130,8 @@
         background-color: styles.$color-accent-blue;
 
         &:hover {
-          color: styles.$color-accent-blue;
+          background-color: styles.$color-green-blue !important;
+          border-color: styles.$color-green-blue;
         }
       }
 

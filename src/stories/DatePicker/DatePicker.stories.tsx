@@ -110,6 +110,7 @@ export const Default: Story = {
     readOnlyInput: false,
     focused: false,
     changed: false,
+    shouldCloseOnSelect: true,
   },
   render: (args) => {
     const [formData, setFormData] = useState({
