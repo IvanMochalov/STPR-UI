@@ -14,8 +14,8 @@ import { IDatePickerProps } from "./types";
 
 export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const {
-    placeholderText = "дд.мм.гг",
-    dateFormatMask = "99.99.99",
+    placeholderText = "дд.мм.гггг",
+    dateFormatMask = "99.99.9999",
     dateFormat = "dd.MM.yyyy",
     size = "lg",
     disabled,
