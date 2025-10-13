@@ -1,5 +1,5 @@
 import cx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 
 import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
@@ -7,7 +7,7 @@ import { CalendarIcon } from "../Icons";
 import styles from "./DatePickerInput.module.scss";
 import { IDatePickerInputProps } from "./types";
 
-export const DatePickerInput: React.FC<IDatePickerInputProps> = (props) => {
+export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProps>((props, ref) => {
   const {
     value,
     name,
@@ -116,6 +116,7 @@ export const DatePickerInput: React.FC<IDatePickerInputProps> = (props) => {
           return (
             <input
               {...inputProps}
+              ref={ref} // ← передаем ref сюда
               autoComplete={"off"}
               placeholder={placeholderText}
               disabled={disabled}
@@ -127,4 +128,6 @@ export const DatePickerInput: React.FC<IDatePickerInputProps> = (props) => {
       <CalendarIcon className={classNameIconRoot} />
     </div>
   );
-};
+});
+
+DatePickerInput.displayName = "DatePickerInput";

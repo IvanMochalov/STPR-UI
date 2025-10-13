@@ -173,7 +173,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
                 <Icon
                   name={EIconName.ArrowBottom}
                   onClick={decreaseMonth}
-                  aria-label="Previous Month"
                   className={cx(
                     styles.datePicker__navigation,
                     styles.datePicker__navigation_previous,
@@ -182,7 +181,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
                 <Icon
                   name={EIconName.ArrowBottom}
                   onClick={increaseMonth}
-                  aria-label="Next Month"
                   className={cx(styles.datePicker__navigation)}
                 />
               </div>
