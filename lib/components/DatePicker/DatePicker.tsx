@@ -1,12 +1,9 @@
+import "react-datepicker/dist/react-datepicker.css";
+
 import cx from "clsx";
 import { ru } from "date-fns/locale/ru";
 import React, { ReactNode, useState } from "react";
 import BaseDatePicker, { ReactDatePickerCustomHeaderProps } from "react-datepicker";
-import { registerLocale } from "react-datepicker";
-
-registerLocale("ru", ru);
-
-import "react-datepicker/dist/react-datepicker.css";
 
 import { DatePickerInput } from "../DatePickerInput";
 import { EIconName, Icon } from "../Icons";
@@ -147,7 +144,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         minDate={minDate}
         maxDate={maxDate}
         dateFormat={dateFormat}
-        locale={"ru"}
+        locale={ru}
         onBlur={onBlur}
         onFocus={onFocus}
         required={required}
