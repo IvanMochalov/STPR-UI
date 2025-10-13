@@ -115,7 +115,7 @@ const meta: Meta<typeof DatePickerInput> = {
       description: `Callback-функция, вызываемая при потере фокуса полем ввода.\n`,
       control: false,
       table: {
-        type: { summary: "(event: React.FocusEvent<HTMLInputElement, Element>) => void" },
+        type: { summary: "() => void" },
       },
     },
     onMouseDownInput: {
@@ -133,7 +133,7 @@ const meta: Meta<typeof DatePickerInput> = {
       },
     },
     name: {
-      description: `Имя поля для формы. Обязательный параметр.\n`,
+      description: `Имя поля для формы.\n`,
       control: false,
       table: {
         type: { summary: "string" },
@@ -160,6 +160,7 @@ const meta: Meta<typeof DatePickerInput> = {
 - **Валидация и ошибки**: подсветка ошибок и текстовые сообщения
 - **Иконка календаря**: визуальный индикатор типа поля
 - **Управление фокусом**: автоматическое скрытие/показ при клике вне поля
+- **Гибкие пропсы**: name и onChange являются опциональными
 - **Адаптивный дизайн**: разные размеры и отступы на мобильных и desktop
 - **Доступность**: правильная семантика и поддержка screen readers
 
@@ -171,8 +172,7 @@ const meta: Meta<typeof DatePickerInput> = {
 - **Измененное**: подсветка для указания на модификацию значения
 
 ## Рекомендации по использованию:
-Для выбора даты в календаре используйте компонент \`DatePicker\`.
-Если же хотите использовать принципиально другое календарь, разрабатывайте его в связке с компонентом \`DatePickerInput\`.
+Используйте для ввода дат в формах с поддержкой валидации и стандартного форматирования.
 
 ### Базовое использование
 
@@ -193,7 +193,6 @@ const [formData, setFormData] = useState({
   placeholderText="Выберите дату"
   dateFormatMask="99.99.9999"
 />
-\`\`\`
         `,
       },
     },
@@ -239,7 +238,6 @@ export const Default: Story = {
     const [formData, setFormData] = useState({
       createAt: "",
     });
-    console.log("formData: -->", formData);
 
     const onChange: TOnChangeDatePickerInput = (_event, { name, value }) => {
       setFormData((prevState) => ({

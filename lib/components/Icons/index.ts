@@ -1,6 +1,7 @@
 export {
   AddFileIcon,
   AddUserIcon,
+  ArrowBottomIcon,
   CalendarIcon,
   CheckIcon,
   ChevronDownIcon,

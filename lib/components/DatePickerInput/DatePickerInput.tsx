@@ -17,7 +17,7 @@ export const DatePickerInput: React.FC<IDatePickerInputProps> = (props) => {
     size = "lg",
     disabled,
     error,
-    placeholderText,
+    placeholderText = "дд.мм.гггг",
     onClick,
     onBlur,
     onMouseDownInput,
@@ -60,9 +60,11 @@ export const DatePickerInput: React.FC<IDatePickerInputProps> = (props) => {
 
   const onChangeMask = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
-    const { value = "", name } = target;
+    const { value, name } = target;
 
-    onChange(event, { value, name });
+    if (onChange) {
+      onChange(event, { value: value ? new Date(value) : null, name });
+    }
   };
 
   const classNameRoot = cx({
@@ -114,6 +116,7 @@ export const DatePickerInput: React.FC<IDatePickerInputProps> = (props) => {
           return (
             <input
               {...inputProps}
+              autoComplete={"off"}
               placeholder={placeholderText}
               disabled={disabled}
               className={classNameInputRoot}

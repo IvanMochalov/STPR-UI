@@ -4,7 +4,7 @@ export type TOnChangeDatePickerInput = (
   event: React.ChangeEvent<HTMLInputElement>,
   data: {
     name: string;
-    value: string | null;
+    value: Date | null;
   },
 ) => void;
 
@@ -14,8 +14,8 @@ export type TDatePickerInputSize = "md" | "lg";
 
 export interface IDatePickerInputProps {
   value?: string;
-  name: string;
-  onChange: TOnChangeDatePickerInput;
+  name?: string;
+  onChange?: TOnChangeDatePickerInput;
   dateFormatMask: string | (string | RegExp)[];
   variant?: TDatePickerInputVariant;
   size?: TDatePickerInputSize;
@@ -23,7 +23,7 @@ export interface IDatePickerInputProps {
   error?: string;
   placeholderText?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement, Element>) => void;
+  onBlur?: () => void;
   onMouseDownInput?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   readOnlyInput?: boolean;
   focused?: boolean;

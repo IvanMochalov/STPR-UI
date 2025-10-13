@@ -1,0 +1,7 @@
+@use "src/styles/global" as styles;
+
+.storiesWrapper {
+  $block: &;
+  min-height: 100vh;
+  width: 500px;
+}
