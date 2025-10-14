@@ -3,7 +3,7 @@ import React from "react";
 import { ETooltipPosition } from "../../Tooltip";
 
 export type TSelectOption = {
-  value: string | null;
+  value: string | null | number;
   label: string;
   key?: string;
 };
@@ -15,7 +15,7 @@ export interface SelectProps {
   isAbsolutePositionError?: boolean;
   placeholder?: string;
   variant?: TSelectVariant;
-  value?: string;
+  value?: string | null | number;
   name: string;
   onChange: TOnChangeSelect;
   onMouseEnter?: () => void;

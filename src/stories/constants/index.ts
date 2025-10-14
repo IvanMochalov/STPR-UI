@@ -2,6 +2,10 @@ import { TSelectOption } from "../../../lib/components/Select";
 
 export const OKRUG_OPTIONS: TSelectOption[] = [
   {
+    value: null,
+    label: "Без округа",
+  },
+  {
     value: "0100",
     label: "ЦАО",
   },
