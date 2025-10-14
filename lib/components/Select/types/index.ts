@@ -36,5 +36,5 @@ export interface SelectProps {
 
 export type TOnChangeSelect = (
   event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  data: { value: string | null; name: string },
+  data: { value: string | null | number; name: string },
 ) => void;

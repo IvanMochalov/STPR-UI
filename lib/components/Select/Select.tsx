@@ -6,7 +6,7 @@ import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { MAX_HEIGHT_SELECT_LIST } from "./constants";
 import styles from "./Select.module.scss";
-import { SelectProps } from "./types";
+import { SelectProps, TOnChangeSelect } from "./types";
 
 export const Select: React.FC<SelectProps> = (props) => {
   const {
@@ -47,11 +47,8 @@ export const Select: React.FC<SelectProps> = (props) => {
 
   const selectedOption = options.find((option) => option.value === value);
 
-  const handleSelect = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    optionValue: string | null,
-  ) => {
-    onChange(event, { value: optionValue, name });
+  const handleSelect: TOnChangeSelect = (event, data) => {
+    onChange(event, { value: data.value, name });
     setIsOpen(false);
   };
 
@@ -106,7 +103,7 @@ export const Select: React.FC<SelectProps> = (props) => {
     return (
       <div
         tabIndex={disabled ? -1 : 0}
-        title={isVisibleDefaultTitle ? value : undefined}
+        title={isVisibleDefaultTitle && value ? String(value) : undefined}
         className={classNameControl}
         onClick={handleToggle}
       >
@@ -136,7 +133,12 @@ export const Select: React.FC<SelectProps> = (props) => {
                 className={cx({
                   [styles.spSelect__option]: true,
                 })}
-                onClick={(event) => handleSelect(event, option.value)}
+                onClick={(event) => {
+                  handleSelect(event, {
+                    value: option.value,
+                    name,
+                  });
+                }}
               >
                 {option.label}
                 {isSelectedOption && (

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { Select } from "../../../lib/components/Select";
+import { Select, TOnChangeSelect } from "../../../lib/components/Select";
 import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";
 
@@ -284,13 +284,10 @@ export const Default: Story = {
       okrug: "",
     });
 
-    const onChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const onChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 
@@ -341,13 +338,10 @@ export const RequiredField: Story = {
       requiredField: "",
     });
 
-    const onChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const onChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 
@@ -393,12 +387,7 @@ export const FilledVariant: Story = {
 export const DisabledSelect: Story = {
   render: (args) => {
     return (
-      <Select
-        {...args}
-        name={"disabled"}
-        value={OKRUG_OPTIONS[0].value || ""}
-        onChange={() => {}}
-      />
+      <Select {...args} name={"disabled"} value={OKRUG_OPTIONS[0].value} onChange={() => {}} />
     );
   },
   args: {
@@ -426,13 +415,10 @@ export const AbsolutePositionError: Story = {
       fieldWithError: "",
     });
 
-    const onChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const onChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 
@@ -462,18 +448,15 @@ export const AllVariants: Story = {
       outlined: "",
       filled: "",
       withError: "",
-      disabled: OKRUG_OPTIONS[1].value || "",
+      disabled: OKRUG_OPTIONS[1].value,
       withTooltip: "",
       scrollable: "",
     });
 
-    const onChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const onChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 
@@ -563,13 +546,10 @@ export const LongOptionsList: Story = {
       longList: "",
     });
 
-    const onChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const onChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 
