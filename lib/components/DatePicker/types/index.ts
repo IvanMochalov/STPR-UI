@@ -1,12 +1,24 @@
 import React from "react";
 
-import { IDatePickerInputProps, TOnChangeDatePickerInput } from "../../DatePickerInput";
+import { IDatePickerInputProps } from "../../DatePickerInput";
 import { ETooltipPosition } from "../../Tooltip";
 
-export type TOnChangeDatePicker = TOnChangeDatePickerInput;
+export type TOnChangeDatePicker = (
+  data: {
+    name: string;
+    value: Date | null;
+  },
+  event?: React.ChangeEvent<HTMLInputElement>,
+) => void;
 
-export interface IDatePickerProps extends Omit<IDatePickerInputProps, "classNameRoot"> {
+export interface IDatePickerProps
+  extends Omit<
+    IDatePickerInputProps,
+    "classNameRoot" | "focused" | "onClick" | "value" | "onChange"
+  > {
   dateFormat?: string;
+  value?: string;
+  onChange?: TOnChangeDatePicker;
   selected: Date | null;
   minDate?: Date;
   maxDate?: Date;

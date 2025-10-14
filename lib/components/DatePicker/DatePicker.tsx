@@ -14,21 +14,25 @@ import { IDatePickerProps } from "./types";
 
 export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const {
+    variant = "outlined",
+    size = "lg",
     placeholderText = "дд.мм.гггг",
     dateFormatMask = "99.99.9999",
     dateFormat = "dd.MM.yyyy",
-    size = "lg",
+    readOnlyInput = true,
+    isClearable = true,
+    isRelative = true,
+    shouldCloseOnSelect = false,
+    closeOnScroll = false,
     disabled,
     required,
     error,
     label,
-    readOnlyInput = true,
     value,
     selected,
     onCalendarOpen,
     onCalendarClose,
     onMouseDownInput,
-    isClearable,
     onChange,
     onBlur,
     onFocus,
@@ -37,12 +41,8 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     onMouseEnter,
     infoTooltipText,
     tooltipPosition,
-    isRelative = true,
-    closeOnScroll = true,
-    shouldCloseOnSelect = true,
     minDate,
     maxDate,
-    variant = "outlined",
     classNameRoot: propsClassNameRoot,
     classNameDatePickerInputRoot: propsClassNameDatePickerInputRoot,
     classNameLabel: propsClassNameLabel,
@@ -65,7 +65,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     }
     onBlur && onBlur();
     setFocused(false);
-    setLocalSelected(null);
   };
 
   const _onChange: (
@@ -73,15 +72,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
   ) => void = (date, _event) => {
     if (onChange) {
-      // Создаем искусственный ChangeEvent для совместимости с DatePickerInput
-      const syntheticEvent = {
-        target: {
-          name: name || "",
-          value: date ? date.toISOString() : null,
-        },
-        // Можно добавить другие необходимые поля event'а если нужно
-      } as React.ChangeEvent<HTMLInputElement>;
-      name && onChange(syntheticEvent, { name, value: date });
+      name && onChange({ name, value: date });
     }
   };
 
@@ -201,7 +192,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         onFocus={onFocus}
         required={required}
         name={name}
-        // onChange={_onChange}
         onCalendarClose={_onCalendarClose}
         onCalendarOpen={_onCalendarOpen}
         selected={selected}

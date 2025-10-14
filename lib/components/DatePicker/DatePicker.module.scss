@@ -112,9 +112,9 @@
       }
 
       &--today {
-        border: 2px solid styles.$color-accent-blue !important;
-        background-color: transparent !important;
-        color: styles.$color-accent-blue !important;
+        border: 2px solid styles.$color-accent-blue;
+        background-color: transparent;
+        color: styles.$color-accent-blue;
 
         &:focus,
         &:focus-visible {
@@ -122,12 +122,38 @@
         }
       }
 
-      &--selected,
       &--keyboard-selected {
+        color: styles.$color-accent-blue;
         border-radius: 0;
+        background-color: styles.$color-secondary-blue-light-2;
         border: 2px solid styles.$color-accent-blue;
+
+        &:focus-visible,
+        &:hover {
+          background-color: styles.$color-frost-blue;
+        }
+
+        &:active {
+          background-color: styles.$color-steel-gray;
+        }
+      }
+
+      &--selected {
         color: styles.$color-white;
+        border-radius: 0;
         background-color: styles.$color-accent-blue;
+        border: 2px solid styles.$color-accent-blue;
+
+        &:focus-visible,
+        &:hover {
+          background-color: styles.$color-aqua-blue;
+          border: 2px solid styles.$color-aqua-blue;
+        }
+
+        &:active {
+          background-color: styles.$color-green-blue;
+          border: 2px solid styles.$color-green-blue;
+        }
 
         &:hover {
           background-color: styles.$color-green-blue !important;

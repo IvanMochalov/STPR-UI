@@ -4,7 +4,7 @@ export type TOnChangeDatePickerInput = (
   event: React.ChangeEvent<HTMLInputElement>,
   data: {
     name: string;
-    value: Date | null;
+    value: string | null;
   },
 ) => void;
 

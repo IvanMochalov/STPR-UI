@@ -206,11 +206,11 @@ const [formData, setFormData] = useState({
   ],
   args: {
     dateFormatMask: "99.99.9999",
+    placeholderText: "дд.мм.гггг",
     variant: "outlined",
     size: "lg",
     disabled: false,
     error: "",
-    placeholderText: "Выберите дату",
     readOnlyInput: false,
     focused: false,
     changed: false,
@@ -223,17 +223,6 @@ type Story = StoryObj<typeof DatePickerInput>;
 
 export const Default: Story = {
   name: "Default DatePickerInput",
-  args: {
-    dateFormatMask: "99.99.9999",
-    variant: "outlined",
-    size: "lg",
-    disabled: false,
-    error: "",
-    placeholderText: "Выберите дату",
-    readOnlyInput: false,
-    focused: false,
-    changed: false,
-  },
   render: (args) => {
     const [formData, setFormData] = useState({
       createAt: "",

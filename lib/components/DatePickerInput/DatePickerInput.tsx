@@ -13,11 +13,11 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     name,
     onChange,
     dateFormatMask = "99.99.9999",
+    placeholderText = "дд.мм.гггг",
     variant = "outlined",
     size = "lg",
     disabled,
     error,
-    placeholderText = "дд.мм.гггг",
     onClick,
     onBlur,
     onMouseDownInput,
@@ -63,7 +63,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     const { value, name } = target;
 
     if (onChange) {
-      onChange(event, { value: value ? new Date(value) : null, name });
+      onChange(event, { value, name });
     }
   };
 

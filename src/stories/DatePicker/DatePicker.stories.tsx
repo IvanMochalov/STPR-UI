@@ -88,6 +88,22 @@ const meta: Meta<typeof DatePicker> = {
       </div>
     ),
   ],
+  args: {
+    variant: "outlined",
+    size: "lg",
+    placeholderText: "дд.мм.гггг",
+    dateFormatMask: "99.99.9999",
+    dateFormat: "dd.MM.yyyy",
+    readOnlyInput: true,
+    isClearable: true,
+    isRelative: true,
+    shouldCloseOnSelect: false,
+    closeOnScroll: false,
+    disabled: false,
+    required: false,
+    error: "",
+    label: "Дата выдачи",
+  },
 };
 
 export default meta;
@@ -96,29 +112,12 @@ type Story = StoryObj<typeof DatePicker>;
 
 export const Default: Story = {
   name: "Default DatePicker",
-  args: {
-    size: "lg",
-    dateFormat: "dd.MM.yyyy",
-    dateFormatMask: "99.99.9999",
-    placeholderText: "дд.мм.гггг",
-    variant: "outlined",
-    isClearable: true,
-    disabled: false,
-    error: "",
-    required: true,
-    label: "Дата выдачи",
-    readOnlyInput: false,
-    focused: false,
-    changed: false,
-    shouldCloseOnSelect: true,
-  },
   render: (args) => {
     const [formData, setFormData] = useState({
       createAt: null,
     });
-    console.log("formData: -->", formData);
 
-    const onChange: TOnChangeDatePicker = (_event, { name, value }) => {
+    const onChange: TOnChangeDatePicker = ({ name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
         [name]: value,
