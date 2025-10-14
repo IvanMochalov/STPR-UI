@@ -28,6 +28,7 @@ export enum EIconName {
   AddFile = "addFile",
   Calendar = "calendar",
   ArrowBottom = "arrowBottom",
+  UserRight = "userRight",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;

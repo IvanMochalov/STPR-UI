@@ -26,6 +26,7 @@ export {
   TerminalSquareIcon,
   TrashIcon,
   UploadIcon,
+  UserRightIcon,
   WarningColorIcon,
 } from "./Icon.tsx";
 export type { IconProps, SVGComponent } from "./types";

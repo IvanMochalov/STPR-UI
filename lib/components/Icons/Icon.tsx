@@ -26,6 +26,7 @@ import SelectChevronDownIcon from "../../../src/images/select_chevron_down.svg?r
 import TerminalSquareIcon from "../../../src/images/terminal_square.svg?react";
 import TrashIcon from "../../../src/images/trash.svg?react";
 import UploadIcon from "../../../src/images/upload.svg?react";
+import UserRightIcon from "../../../src/images/user-right.svg?react";
 import WarningColorIcon from "../../../src/images/warning_color.svg?react";
 import { EIconName, IconProps, SVGComponent } from "./types";
 
@@ -65,6 +66,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.Save]: SaveIcon,
     [EIconName.Calendar]: CalendarIcon,
     [EIconName.ArrowBottom]: ArrowBottomIcon,
+    [EIconName.UserRight]: UserRightIcon,
   };
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
@@ -100,5 +102,6 @@ export {
   TerminalSquareIcon,
   TrashIcon,
   UploadIcon,
+  UserRightIcon,
   WarningColorIcon,
 };
