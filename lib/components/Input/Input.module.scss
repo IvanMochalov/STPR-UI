@@ -41,6 +41,8 @@
     font-size: 16px;
     color: styles.$color-black;
     padding: 11.5px 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @include styles.respond-to(sm) {
       font-size: 18px;
