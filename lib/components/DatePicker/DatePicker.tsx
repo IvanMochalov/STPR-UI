@@ -112,6 +112,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
 
     // Сбрасываем значение
     _onChange(null, event);
+    setLocalSelected(null);
 
     // Закрываем календарь
     if (datePickerRef.current) {
@@ -180,6 +181,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         />
       )}
       <BaseDatePicker
+        disabledKeyboardNavigation={!localSelected}
         onSelect={_onSelect}
         ref={datePickerRef}
         closeOnScroll={closeOnScroll}
