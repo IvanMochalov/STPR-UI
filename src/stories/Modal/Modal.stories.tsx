@@ -283,6 +283,9 @@ return (
       description:
         "React-компонент. Подзаголовок модального окна. Отображается под основным заголовком",
       control: { type: "text" },
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
     footer: {
       description: "Футер модального окна. Обычно содержит кнопки действий",

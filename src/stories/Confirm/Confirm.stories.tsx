@@ -139,10 +139,16 @@ return (
     header: {
       description: "Заголовок диалога подтверждения. Может быть строкой или React-компонентом",
       control: { type: "text" },
+      table: {
+        type: { summary: "string | ReactNode" },
+      },
     },
     subHeader: {
       description: "Подзаголовок с дополнительной информацией или пояснением",
       control: { type: "text" },
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
     onClose: {
       description:
