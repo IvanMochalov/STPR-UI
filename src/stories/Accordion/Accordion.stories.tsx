@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import {
   Accordion,
@@ -9,6 +9,7 @@ import {
   Select,
   TOnChangeCheckbox,
   TOnChangeInput,
+  TOnChangeSelect,
 } from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";
@@ -253,10 +254,7 @@ export const WithForm: Story = {
       }));
     };
 
-    const handleSelectChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const handleSelectChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
         [data.name]: data.value || "",

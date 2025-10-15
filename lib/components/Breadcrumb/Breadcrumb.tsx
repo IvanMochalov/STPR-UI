@@ -25,7 +25,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
   return (
     <nav aria-label="breadcrumb" className={classNameRoot}>
       <ol className={classNameListRoot}>
-        {crumbsList.map(({ text, onClick, active }, i) => {
+        {crumbsList.map(({ text, onClick, active, visible }, i) => {
+          if (visible === false) {
+            return null;
+          }
+
           return (
             <li
               key={i}

@@ -85,7 +85,8 @@ return <Breadcrumb crumbsList={crumbsList} />;
       table: {
         type: {
           summary: "TCrumbItem[]",
-          detail: "TCrumbItem[] = { text: string; onClick?: () => void; active?: boolean; }[]",
+          detail:
+            "TCrumbItem[] = { text: string; onClick?: () => void; active?: boolean; visible?: boolean; }[]",
         },
       },
     },

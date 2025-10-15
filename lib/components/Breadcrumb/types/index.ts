@@ -8,4 +8,5 @@ export type TCrumbItem = {
   text: string;
   onClick?: () => void;
   active?: boolean;
+  visible?: boolean;
 };
