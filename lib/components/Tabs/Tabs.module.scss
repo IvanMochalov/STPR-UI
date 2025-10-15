@@ -80,7 +80,7 @@
     padding: 0;
 
     & #{$block}__tabElement {
-      border-bottom: 1px solid transparent;
+      border-bottom: 2px solid transparent;
       color: styles.$color-gray-1;
       background-color: transparent;
 
@@ -91,7 +91,7 @@
 
     & #{$block}__tabElement_active {
       color: styles.$color-accent-blue;
-      border-bottom: 1px solid styles.$color-accent-blue;
+      border-bottom: 2px solid styles.$color-accent-blue;
 
       & #{$block}__tooltip {
         color: styles.$color-white;
