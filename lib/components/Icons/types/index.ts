@@ -18,6 +18,7 @@ export enum EIconName {
   Minus = "minus",
   TerminalSquare = "terminalSquare",
   File = "file",
+  FileNotFilled = "fileNotFilled",
   InfoError = "infoError",
   Save = "save",
   Refresh = "refresh",
@@ -36,4 +37,5 @@ export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: EIconName;
   rotate?: number;
+  classNameRoot?: string;
 }

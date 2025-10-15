@@ -12,6 +12,7 @@ import DotsIcon from "../../../src/images/dots.svg?react";
 import DownloadIcon from "../../../src/images/download.svg?react";
 import EditIcon from "../../../src/images/edit.svg?react";
 import FileIcon from "../../../src/images/file.svg?react";
+import FileNotFilledIcon from "../../../src/images/file_not_filled.svg?react";
 import HistoryClockIcon from "../../../src/images/history_clock.svg?react";
 import InfoIcon from "../../../src/images/info.svg?react";
 import InfoErrorIcon from "../../../src/images/info_error.svg?react";
@@ -29,9 +30,10 @@ import UploadIcon from "../../../src/images/upload.svg?react";
 import UserRightIcon from "../../../src/images/user-right.svg?react";
 import WarningColorIcon from "../../../src/images/warning_color.svg?react";
 import { EIconName, IconProps, SVGComponent } from "./types";
+import cx from "clsx";
 
 export const Icon: React.FC<IconProps> = (props) => {
-  const { name, rotate, ...svgProps } = props;
+  const { name, rotate, className: propsClassName, ...svgProps } = props;
 
   const style = {
     ...svgProps,
@@ -67,11 +69,15 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.Calendar]: CalendarIcon,
     [EIconName.ArrowBottom]: ArrowBottomIcon,
     [EIconName.UserRight]: UserRightIcon,
+    [EIconName.FileNotFilled]: FileNotFilledIcon,
   };
+
+  const className = cx("stpr-icon", propsClassName);
 
   return React.createElement<React.SVGProps<SVGSVGElement>>(ICONS[name], {
     ...svgProps,
     style,
+    className,
   });
 };
 
@@ -88,6 +94,7 @@ export {
   DownloadIcon,
   EditIcon,
   FileIcon,
+  FileNotFilledIcon,
   HistoryClockIcon,
   InfoErrorIcon,
   InfoIcon,

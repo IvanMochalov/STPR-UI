@@ -136,7 +136,7 @@
       overflow-y: auto;
     }
 
-    @include styles.custom-scrollbar;
+    @include styles.custom-scrollbar();
   }
 
   &__emptyOptions {

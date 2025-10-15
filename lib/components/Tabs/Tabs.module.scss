@@ -134,6 +134,10 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
+
+    &_active {
+      font-weight: 500;
+    }
   }
 
   &__tooltip {
