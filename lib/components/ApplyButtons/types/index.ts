@@ -10,6 +10,7 @@ export interface ApplyButtonsProps {
   applyButtonsMobileDirection?: TApplyButtonsMobileDirection;
   applyButtonsAlign?: TApplyButtonsAlign;
   cancelBtnContent?: string;
+  classNameRoot?: string;
   cancelBtnClassName?: string;
   submitBtnClassName?: string;
   cancelBtnVariant?: TButtonVariant;

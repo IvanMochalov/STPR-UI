@@ -48,6 +48,13 @@ const meta: Meta<typeof ApplyButtons> = {
     },
   },
   argTypes: {
+    classNameRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     applyButtonsMobileDirection: {
       description:
         "Расположение кнопок на мобильных устройствах:\n- 'column': кнопки в колонку (cancel сверху)\n- 'column-reverse': кнопки в колонку (cancel снизу)\n- 'row': кнопки в строку\n- На desktop всегда в строку",

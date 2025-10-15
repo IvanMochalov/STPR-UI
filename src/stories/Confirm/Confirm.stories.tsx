@@ -157,6 +157,13 @@ return (
     },
 
     // ApplyButtons Props
+    classNameApplyButtonsRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента над кнопками в футере\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     applyButtonsMobileDirection: {
       description:
         "Расположение кнопок на мобильных устройствах:\n- 'column': в колонку\n- 'column-reverse': в колонку (обратный порядок)\n- 'row': в строку",
@@ -234,7 +241,7 @@ return (
       control: false,
     },
     classNameRoot: {
-      description: "Дополнительный CSS-класс для корневого элемента",
+      description: "Дополнительный CSS-класс для корневого элемента МО",
       control: false,
       table: {
         type: { summary: "string" },

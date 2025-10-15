@@ -6,6 +6,7 @@ import { ConfirmProps } from "./types";
 
 export const Confirm: React.FC<ConfirmProps> = (props) => {
   const {
+    classNameApplyButtonsRoot,
     zIndex,
     header,
     subHeader,
@@ -57,6 +58,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       footer={
         isVisibleFooter ? (
           <ApplyButtons
+            classNameRoot={classNameApplyButtonsRoot}
             submitBtnClassName={submitBtnClassName}
             cancelBtnClassName={cancelBtnClassName}
             applyButtonsMobileDirection={applyButtonsMobileDirection}

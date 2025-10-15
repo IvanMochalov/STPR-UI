@@ -37,5 +37,4 @@ export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: EIconName;
   rotate?: number;
-  classNameRoot?: string;
 }
