@@ -377,6 +377,7 @@ export const WithMask: Story = {
       phone: "",
       date: "",
       serial: "",
+      phoneAlways: "",
     });
 
     const onChange: TOnChangeInput = (_event, { name, value }) => {
@@ -397,7 +398,7 @@ export const WithMask: Story = {
               onChange={onChange}
               label="Номер телефона"
               mask="+7 (999) 999-99-99"
-              placeholder="+7 (___) ___-__-__"
+              placeholder="Введите номер телефона"
             />
           </div>
           <div className={styles.viewInputListItem}>
@@ -426,12 +427,12 @@ export const WithMask: Story = {
             <Input
               {...args}
               name={"phoneAlways"}
-              value={formData.phone}
+              value={formData.phoneAlways}
               onChange={onChange}
               label="Телефон (маска всегда видна)"
               mask="+7 (999) 999-99-99"
               alwaysShowMask={true}
-              placeholder=""
+              placeholder="меня не видно"
             />
           </div>
         </Form>
