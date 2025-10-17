@@ -1,5 +1,6 @@
 import cx from "clsx";
 import React from "react";
+import InputMask from "react-input-mask";
 
 import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
@@ -28,6 +29,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     classNameError: propsClassNameError,
     classNameLabel: propsClassNameLabel,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
+    alwaysShowMask = false,
+    mask,
     ...otherProps
   } = props;
 
@@ -79,6 +82,26 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
   };
 
   const getInput = () => {
+    if (mask) {
+      return (
+        <InputMask
+          className={classNameControl}
+          alwaysShowMask={alwaysShowMask}
+          onChange={_onChange}
+          disabled={disabled}
+          value={value}
+          mask={mask}
+          name={name}
+          {...otherProps}
+        >
+          {(inputProps) => {
+            return (
+              <input {...inputProps} disabled={disabled} placeholder={placeholder} ref={ref} />
+            );
+          }}
+        </InputMask>
+      );
+    }
     return (
       <input
         {...otherProps}

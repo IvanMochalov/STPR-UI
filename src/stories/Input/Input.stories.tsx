@@ -142,6 +142,36 @@ const meta: Meta<typeof Input> = {
         defaultValue: { summary: '"Введите..."' },
       },
     },
+    mask: {
+      description: `Маска для форматирования ввода. Может быть строкой или массивом строк/регулярных выражений.
+Поддерживает стандартные шаблоны маски:
+- "99.99.9999" - для дат
+- "+7 (999) 999-99-99" - для телефонов
+- "aa-9999-aa" - для смешанного ввода
+- [/[a-zA-Zа-яА-Я]/, /[a-zA-Zа-яА-Я]/, " ", /\\\\d/, /\\\\d/] - для смешанного ввода с любыми буквами
+
+Особенности:
+- Символ "9" представляет цифру
+- Символ "a" представляет букву
+- Остальные символы считаются статическими разделителями\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string | (string | RegExp)[]" },
+      },
+    },
+    alwaysShowMask: {
+      description: `Всегда показывать маску, даже когда поле пустое.
+Полезно для визуального указания ожидаемого формата ввода.
+
+Особенности:
+- При \`false\` маска появляется только во время ввода
+- При \`true\` маска всегда видна, включая плейсхолдеры\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     value: {
       description: `Значение поля ввода. Контролируемое свойство.\n`,
       control: false,
@@ -198,6 +228,7 @@ const meta: Meta<typeof Input> = {
 - **Два варианта стиля**: outlined (с границей) и filled (с заполненным фоном)
 - **Валидация и ошибки**: подсветка ошибок и текстовые сообщения
 - **Очистка значения**: иконка очистки при включенном \`isClearable\`
+- **Маски ввода**: поддержка форматирования через \`react-input-mask\`
 - **Подсказки лейбла**: встроенная поддержка тултипов для пояснений
 - **Паттерны ввода**: валидация по регулярным выражениям
 - **Адаптивный дизайн**: разные размеры и отступы на мобильных и desktop
@@ -209,8 +240,16 @@ const meta: Meta<typeof Input> = {
 - **Отключенное**: серый цвет и блокировка взаимодействия
 - **С фокусом**: синяя граница для указания активного состояния
 
+## Маски ввода:
+Компонент поддерживает форматирование ввода через маски. Используйте параметр \`mask\` для указания шаблона:
+- **Телефоны**: "+7 (999) 999-99-99"
+- **Даты**: "99.99.9999" 
+- **Серии документов**: "99 99"
+- **Смешанный ввод**: "aa-9999-aa"
+- **Регулярные выражения**: [/[a-zA-Zа-яА-Я]/, /[a-zA-Zа-яА-Я]/, " ", /\\\\d/, /\\\\d/] (подробнее на https://www.npmjs.com/package/react-input-mask)
+
 ## Рекомендации по использованию:
-Используйте для текстового ввода в формах с поддержкой валидации и подсказок.
+Используйте для текстового ввода в формах с поддержкой валидации, масок и подсказок.
 
 ### Базовое использование
 
@@ -230,6 +269,19 @@ const [formData, setFormData] = useState({
   }
   label="Имя пользователя"
   placeholder="Введите ваше имя"
+/>
+\`\`\`
+
+### Использование с маской
+
+\`\`\`jsx
+<Input
+  name="phone"
+  value={formData.phone}
+  onChange={onChange}
+  label="Телефон"
+  mask="+7 (999) 999-99-99"
+  placeholder="+7 (___) ___-__-__"
 />
 \`\`\`
         `,
@@ -255,6 +307,8 @@ const [formData, setFormData] = useState({
     error: "",
     isVisibleDefaultTitle: true,
     placeholder: "Введите...",
+    mask: "",
+    alwaysShowMask: false,
   },
 };
 
@@ -313,6 +367,80 @@ export const Default: Story = {
         </div>
       </div>
     );
+  },
+};
+
+export const WithMask: Story = {
+  name: "Input with Mask",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      phone: "",
+      date: "",
+      serial: "",
+    });
+
+    const onChange: TOnChangeInput = (_event, { name, value }) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    };
+
+    return (
+      <div className={styles.storiesWrapper}>
+        <Form addMargin={true} size={"md"} withSeparator={true}>
+          <div className={styles.viewInputListItem}>
+            <Input
+              {...args}
+              name={"phone"}
+              value={formData.phone}
+              onChange={onChange}
+              label="Номер телефона"
+              mask="+7 (999) 999-99-99"
+              placeholder="+7 (___) ___-__-__"
+            />
+          </div>
+          <div className={styles.viewInputListItem}>
+            <Input
+              {...args}
+              name={"date"}
+              value={formData.date}
+              onChange={onChange}
+              label="Дата"
+              mask="99.99.9999"
+              placeholder="дд.мм.гггг"
+            />
+          </div>
+          <div className={styles.viewInputListItem}>
+            <Input
+              {...args}
+              name={"serial"}
+              value={formData.serial}
+              onChange={onChange}
+              label="Серия документа"
+              mask="aa 999999"
+              placeholder="aa 999999"
+            />
+          </div>
+          <div className={styles.viewInputListItem}>
+            <Input
+              {...args}
+              name={"phoneAlways"}
+              value={formData.phone}
+              onChange={onChange}
+              label="Телефон (маска всегда видна)"
+              mask="+7 (999) 999-99-99"
+              alwaysShowMask={true}
+              placeholder=""
+            />
+          </div>
+        </Form>
+      </div>
+    );
+  },
+  args: {
+    label: "Поле с маской",
+    placeholder: "Введите значение...",
   },
 };
 

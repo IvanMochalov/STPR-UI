@@ -26,6 +26,8 @@ export interface InputProps {
   classNameRoot?: string;
   classNameBaseTooltipRoot?: string;
   ref?: ForwardedRef<HTMLInputElement>;
+  mask?: string | (string | RegExp)[];
+  alwaysShowMask?: boolean;
 }
 
 export type TOnChangeInput = (
