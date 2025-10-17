@@ -71,7 +71,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const classNameRoot = cx({
     [styles.spUploadFiles]: true,
     [styles[`spUploadFiles--variant-${variant}`]]: variant,
-    [styles.spUploadFiles_error]: hasErrors && !multiple && error && error.length > 0,
+    [styles.spUploadFiles_error]: !multiple && (hasErrors || (error && error.length > 0)),
     [styles.spUploadFiles_disabled]: disabled,
     [styles.spUploadFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
@@ -263,6 +263,25 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     );
   };
 
+  const renderSingleUploadFileIcon = () => {
+    if (multiple) return null;
+
+    if (hasErrors && isFileUploaded) {
+      return (
+        <Icon
+          className={styles.spUploadFiles__startIcon_error}
+          name={EIconName.InfoError}
+          style={{ flexShrink: 0 }}
+        />
+      );
+    }
+    if (isFileUploaded) {
+      return <Icon name={EIconName.Check} style={{ flexShrink: 0 }} />;
+    }
+
+    return <Icon name={EIconName.Upload} style={{ flexShrink: 0 }} />;
+  };
+
   return (
     <DefaultDropzone
       getRootProps={getRootProps}
@@ -281,15 +300,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           />
         )}
         <div className={classNameControlRoot}>
-          {isInputVariant &&
-            (loading ? (
-              <Spinner />
-            ) : (
-              <Icon
-                name={isFileUploaded ? EIconName.Check : EIconName.Upload}
-                style={{ flexShrink: 0 }}
-              />
-            ))}
+          {isInputVariant && (loading ? <Spinner /> : renderSingleUploadFileIcon())}
           {getUploadFilesContent()}
         </div>
         {error && <div className={styles.spUploadFiles__error}>{error}</div>}

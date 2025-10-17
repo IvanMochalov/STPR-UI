@@ -28,6 +28,12 @@
     }
   }
 
+  &__startIcon {
+    &_error {
+      color: styles.$color-accent-red;
+    }
+  }
+
   &__placeholderContainer {
     width: 100%;
   }
