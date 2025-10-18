@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { EllipsisTextWithTooltip } from "../../../lib/components/EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../../../lib/components/Icons";
@@ -7,6 +7,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./IconsStories.module.scss";
 
 const meta: Meta<typeof Icon> = {
+  title: "Components/Icon",
   component: Icon,
   tags: ["autodocs"],
   parameters: {

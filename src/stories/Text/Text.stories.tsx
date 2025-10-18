@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Text } from "../../../lib/components/Text";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Text> = {
+  title: "Components/Text",
   component: Text,
   tags: ["autodocs"],
   argTypes: {

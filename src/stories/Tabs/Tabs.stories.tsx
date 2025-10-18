@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
 
 import { Tabs } from "../../../lib/components/Tabs";
@@ -7,6 +7,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./TabsStories.module.scss";
 
 const meta: Meta<typeof Tabs> = {
+  title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
   argTypes: {

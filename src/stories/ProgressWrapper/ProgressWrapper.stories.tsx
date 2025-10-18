@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { Accordion, ProgressWrapper, TextWithLabel } from "../../../lib/test-stpr-ui-kit.ts";
@@ -7,6 +7,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./ProgressWrapperStories.module.scss";
 
 const meta: Meta<typeof ProgressWrapper> = {
+  title: "Components/ProgressWrapper",
   component: ProgressWrapper,
   tags: ["autodocs"],
   argTypes: {

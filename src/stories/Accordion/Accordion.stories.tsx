@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import {
@@ -15,6 +15,7 @@ import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Accordion> = {
+  title: "Components/Accordion",
   component: Accordion,
   tags: ["autodocs"],
   argTypes: {

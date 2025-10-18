@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 
 import { Checkbox, CheckboxProps } from "../../../lib/components/Checkbox";
@@ -6,6 +6,7 @@ import { ETooltipPosition } from "../../../lib/components/Tooltip";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Checkbox> = {
+  title: "Components/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
   parameters: {

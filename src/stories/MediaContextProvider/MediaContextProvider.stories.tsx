@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { MediaContextProvider } from "../../../lib/components/MediaContextProvider";
 import mainStyles from "../Stories.module.scss";
 import { MediaContent } from "./components";
 
 const meta: Meta<typeof MediaContextProvider> = {
+  title: "Providers/MediaContextProvider",
   component: MediaContextProvider,
   tags: ["autodocs"],
   parameters: {

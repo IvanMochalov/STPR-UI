@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ContextMenu, EIconName } from "../../../lib/test-stpr-ui-kit.ts";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof ContextMenu> = {
+  title: "Components/ContextMenu",
   component: ContextMenu,
   tags: ["autodocs"],
   parameters: {

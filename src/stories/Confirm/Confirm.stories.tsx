@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 
 import { EIconName } from "../../../lib/components/Icons";
@@ -6,6 +6,7 @@ import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Confirm> = {
+  title: "Components/Confirm",
   component: Confirm,
   tags: ["autodocs"],
   parameters: {

@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Dropdown, ETooltipPosition } from "../../../lib/test-stpr-ui-kit.ts";
 import mainStyles from "../Stories.module.scss";
 import styles from "./DropdownStories.module.scss";
 
 const meta: Meta<typeof Dropdown> = {
+  title: "Components/Dropdown",
   component: Dropdown,
   tags: ["autodocs"],
   parameters: {

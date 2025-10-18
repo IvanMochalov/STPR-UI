@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "../../../lib/components/Button";
 import { Spinner } from "../../../lib/components/Spinner";
@@ -7,6 +7,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./SpinnerStories.module.scss";
 
 const meta: Meta<typeof Spinner> = {
+  title: "Components/Spinner",
   component: Spinner,
   tags: ["autodocs"],
   argTypes: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
 
 import { TextWithLabel } from "../../../lib/components/TextWithLabel";
@@ -6,6 +6,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./TextWithLabelStories.module.scss";
 
 const meta: Meta<typeof TextWithLabel> = {
+  title: "Components/TextWithLabel",
   component: TextWithLabel,
   tags: ["autodocs"],
   argTypes: {

@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { BaseTooltip } from "../../../lib/components/BaseTooltip";
 import { Button } from "../../../lib/components/Button";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof BaseTooltip> = {
+  title: "Components/BaseTooltip",
   component: BaseTooltip,
   tags: ["autodocs"],
   argTypes: {

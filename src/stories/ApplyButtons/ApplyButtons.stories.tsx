@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ApplyButtons } from "../../../lib/components/ApplyButtons";
 import { EIconName } from "../../../lib/components/Icons";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof ApplyButtons> = {
+  title: "Components/ApplyButtons",
   component: ApplyButtons,
   tags: ["autodocs"],
   parameters: {

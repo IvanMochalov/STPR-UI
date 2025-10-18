@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { Select, TOnChangeSelect } from "../../../lib/components/Select";
@@ -6,6 +6,7 @@ import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Select> = {
+  title: "Components/Select",
   component: Select,
   tags: ["autodocs"],
   argTypes: {

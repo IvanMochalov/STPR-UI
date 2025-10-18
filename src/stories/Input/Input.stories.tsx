@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { Form } from "../../../lib/components/Form";
@@ -8,6 +8,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./InputStories.module.scss";
 
 const meta: Meta<typeof Input> = {
+  title: "Components/Input",
   component: Input,
   tags: ["autodocs"],
   argTypes: {

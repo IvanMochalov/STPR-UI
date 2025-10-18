@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "../../../lib/components/Button";
 import { useModal } from "../../../lib/components/Modal";
@@ -7,6 +7,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./ViewImageModalStories.module.scss";
 
 const meta: Meta<typeof ViewImageModal> = {
+  title: "Components/ViewImageModal",
   component: ViewImageModal,
   tags: ["autodocs"],
   parameters: {

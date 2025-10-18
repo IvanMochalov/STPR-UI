@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
 import { useState } from "react";
 
@@ -14,6 +14,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./TooltipStories.module.scss";
 
 const meta: Meta<typeof Tooltip> = {
+  title: "Components/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
   parameters: {

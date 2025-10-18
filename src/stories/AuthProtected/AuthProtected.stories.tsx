@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { AuthProtected } from "../../../lib/components/AuthProtected";
@@ -8,6 +8,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./AuthProtectedStories.module.scss";
 
 const meta: Meta<typeof AuthProtected> = {
+  title: "Components/AuthProtected",
   component: AuthProtected,
   tags: ["autodocs"],
   argTypes: {

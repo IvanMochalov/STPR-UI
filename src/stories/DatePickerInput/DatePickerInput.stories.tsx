@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { DatePickerInput, TOnChangeDatePickerInput } from "../../../lib/components/DatePickerInput";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof DatePickerInput> = {
+  title: "Components/DatePickerInput",
   component: DatePickerInput,
   tags: ["autodocs"],
   argTypes: {

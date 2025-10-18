@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
 
 import {
   Checkbox,
@@ -8,11 +8,13 @@ import {
   Select,
   TOnChangeCheckbox,
   TOnChangeInput,
+  TOnChangeSelect,
 } from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Form> = {
+  title: "Components/Form",
   component: Form,
   tags: ["autodocs"],
   argTypes: {
@@ -188,13 +190,10 @@ export const Default: Story = {
       }));
     };
 
-    const handleSelectChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const handleSelectChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 
@@ -305,13 +304,10 @@ export const ComplexForm: Story = {
       }));
     };
 
-    const handleSelectChange = (
-      _event: React.MouseEvent<HTMLDivElement>,
-      data: { value: string | null; name: string },
-    ) => {
+    const handleSelectChange: TOnChangeSelect = (_event, data) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [data.name]: data.value,
       }));
     };
 

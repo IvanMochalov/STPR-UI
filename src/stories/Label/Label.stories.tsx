@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Label } from "../../../lib/components/Label";
 import { Text } from "../../../lib/components/Text";
@@ -7,6 +7,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./LabelStories.module.scss";
 
 const meta: Meta<typeof Label> = {
+  title: "Components/Label",
   component: Label,
   tags: ["autodocs"],
   argTypes: {

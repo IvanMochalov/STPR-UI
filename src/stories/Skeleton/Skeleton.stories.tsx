@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Skeleton } from "../../../lib/components/Skeleton";
 import { Text } from "../../../lib/components/Text";
@@ -6,6 +6,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./SkeletonStories.module.scss";
 
 const meta: Meta<typeof Skeleton> = {
+  title: "Components/Skeleton",
   component: Skeleton,
   tags: ["autodocs"],
   argTypes: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
 import React, { useState } from "react";
 
@@ -8,6 +8,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./UploadFilesStories.module.scss";
 
 const meta: Meta<typeof UploadFiles> = {
+  title: "Components/UploadFiles",
   component: UploadFiles,
   tags: ["autodocs"],
   argTypes: {

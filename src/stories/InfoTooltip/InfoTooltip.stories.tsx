@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Text } from "../../../lib/components/Text";
 import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
@@ -6,6 +6,7 @@ import mainStyles from "../Stories.module.scss";
 import styles from "./InfoTooltip.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
+  title: "Components/InfoTooltip",
   component: InfoTooltip,
   tags: ["autodocs"],
   parameters: {

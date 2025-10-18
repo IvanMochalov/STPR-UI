@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   ApplyButtons,
@@ -13,6 +13,7 @@ import {
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Modal> = {
+  title: "Components/Modal",
   component: Modal,
   tags: ["autodocs"],
   parameters: {

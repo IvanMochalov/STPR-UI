@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import cx from "clsx";
 import { useState } from "react";
 
 import { DatePicker } from "../../../lib/components/DatePicker";
-import { TOnChangeDatePicker } from "../../../lib/components/DatePicker/types";
+import { TOnChangeDatePicker } from "../../../lib/components/DatePicker";
 import mainStyles from "../Stories.module.scss";
 import localStyles from "./DatePickerStories.module.scss";
-import cx from "clsx";
 
 const meta: Meta<typeof DatePicker> = {
+  title: "Components/DatePicker",
   component: DatePicker,
   tags: ["autodocs"],
   argTypes: {
