@@ -2,6 +2,7 @@
 
 .storiesWrapper {
   $block: &;
-  min-height: 100vh;
+  min-height: 460px;
   width: 500px;
+  align-items: flex-start;
 }
