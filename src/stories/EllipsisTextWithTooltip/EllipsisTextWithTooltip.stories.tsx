@@ -12,7 +12,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
       description: `Текст для отображения. При переполнении контейнера будет обрезан с многоточием и покажет тултип при наведении.\n`,
       control: { type: "text" },
       table: {
-        type: { summary: "string" },
+        type: { summary: "string | ReactNode" },
       },
     },
     type: {

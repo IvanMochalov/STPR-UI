@@ -23,7 +23,7 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
   const extensionRef = useRef<HTMLDivElement>(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
   const endText = getEndText(text);
-  const isVisibleFixedEnd = endText !== text;
+  const isVisibleFixedEnd = Boolean(text) && endText !== text;
 
   const updateDimensions = () => {
     if (textRef.current) {
