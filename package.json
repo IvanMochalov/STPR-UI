@@ -33,6 +33,8 @@
     "storybook:build": "storybook build --output-dir storybook-static/themes/main/assets/storybook"
   },
   "dependencies": {
+    "@storybook/addon-essentials": "^9.0.0-alpha.12",
+    "@storybook/blocks": "^9.0.0-alpha.17",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
