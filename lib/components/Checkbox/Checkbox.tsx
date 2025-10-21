@@ -82,8 +82,13 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
         <span className={classNameCheckmark}>
           <span className={classNameInnerSquare} />
         </span>
-        {label && <span className={classNameLabel}>{label}</span>}
-        {required && <div className={classNameRequired}>*</div>}
+        {label && (
+          <span className={classNameLabel}>
+            {label}
+
+            {required && <div className={classNameRequired}>*</div>}
+          </span>
+        )}
         {infoTooltipText && (
           <div className={classNameCheckboxTooltip}>
             <InfoTooltip hover={true} position={tooltipPosition} text={infoTooltipText} />

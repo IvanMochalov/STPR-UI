@@ -34,8 +34,10 @@ export const Label: React.FC<LabelProps> = (props) => {
 
   return (
     <div className={classNameRoot}>
-      <label className={classNameLabelText}>{label}</label>
-      {required && <div className={classNameLabelRequired}>*</div>}
+      <label className={classNameLabelText}>
+        {label}
+        {required && <div className={classNameLabelRequired}>*</div>}
+      </label>
       {infoTooltipText && (
         <InfoTooltip
           hover={true}
