@@ -5,6 +5,7 @@ import { DefaultDropzone } from "../DefaultDropzone";
 import { useDefaultDropzone } from "../DefaultDropzone/hooks/useDefaultDropzone.ts";
 import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
+import { Label } from "../Label";
 import { Spinner } from "../Spinner";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
 import { Accept, FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
@@ -16,6 +17,8 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     placeholder = "Загрузите файл",
     variant = "input",
     name,
+    label,
+    required,
     onDropFiles,
     accept,
     disabled,
@@ -24,6 +27,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     infoTooltipText,
     tooltipPosition = ETooltipPosition.TopRight,
     classNameRoot: propsClassNameRoot,
+    classNameLabel: propsClassNameLabel,
     loading,
     error,
   } = props;
@@ -87,6 +91,9 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const classNameAllFilesDeleteRoot = cx({
     [styles.spUploadFiles__delete]: true,
     [styles.spUploadFiles__delete_loading]: loading,
+  });
+  const classNameLabel = cx({
+    ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
   });
 
   const deleteFile = (fileName: string, isError?: boolean) => {
@@ -283,28 +290,28 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   };
 
   return (
-    <DefaultDropzone
-      getRootProps={getRootProps}
-      getInputProps={getInputProps}
-      disabled={disabled}
-      name={name}
-    >
-      <div className={classNameRoot}>
-        {isDropzoneVariant && (
-          <Tooltip
-            hover={true}
-            text={infoTooltipText}
-            position={tooltipPosition}
-            classNameTooltip={styles.spUploadFiles__tooltip}
-            trigger={undefined}
-          />
-        )}
-        <div className={classNameControlRoot}>
-          {isInputVariant && (loading ? <Spinner /> : renderSingleUploadFileIcon())}
-          {getUploadFilesContent()}
-        </div>
-        {error && <div className={styles.spUploadFiles__error}>{error}</div>}
-      </div>
-    </DefaultDropzone>
+    <div className={classNameRoot}>
+      {label && <Label classNameRoot={classNameLabel} required={required} label={label} />}
+      <DefaultDropzone
+        getRootProps={getRootProps}
+        getInputProps={getInputProps}
+        disabled={disabled}
+        name={name}
+      >
+        <Tooltip
+          hover={true}
+          text={infoTooltipText}
+          isVisibleTooltip={isDropzoneVariant}
+          position={tooltipPosition}
+          trigger={
+            <div className={classNameControlRoot}>
+              {isInputVariant && (loading ? <Spinner /> : renderSingleUploadFileIcon())}
+              {getUploadFilesContent()}
+            </div>
+          }
+        />
+      </DefaultDropzone>
+      {error && <div className={styles.spUploadFiles__error}>{error}</div>}
+    </div>
   );
 };

@@ -29,6 +29,21 @@ const meta: Meta<typeof UploadFiles> = {
         defaultValue: { summary: '"input"' },
       },
     },
+    required: {
+      description: `Пометить поле как обязательное для заполнения. Добавляет звездочку к лейблу.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    label: {
+      description: `Текст лейбла поля. Отображается над полем ввода.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
     disabled: {
       description: `Отключить компонент загрузки файлов. Заблокирует взаимодействие и изменит визуальный стиль.\n`,
       control: { type: "boolean" },
@@ -170,6 +185,13 @@ const meta: Meta<typeof UploadFiles> = {
         type: { summary: "string" },
       },
     },
+    classNameLabel: {
+      description: "Дополнительный CSS-класс для элемента лейбла\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
   },
   parameters: {
     layout: "fullscreen",
@@ -260,6 +282,8 @@ const [formData, setFormData] = useState({
     infoTooltipText: "Подсказка для поля загрузки модель/-и формата IFC",
     loading: false,
     error: "",
+    label: "",
+    required: false,
   },
 };
 

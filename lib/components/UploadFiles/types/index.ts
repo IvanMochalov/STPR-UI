@@ -12,6 +12,8 @@ export interface UploadFilesProps {
     fileRejections?: FileRejection[],
     event?: DropEvent,
   ) => void;
+  label?: string;
+  required?: boolean;
   accept: Accept;
   disabled?: boolean;
   multiple?: boolean;
@@ -19,6 +21,7 @@ export interface UploadFilesProps {
   infoTooltipText?: string;
   tooltipPosition?: ETooltipPosition;
   classNameRoot?: string;
+  classNameLabel?: string;
   loading?: boolean;
   error?: string;
 }
