@@ -26,6 +26,6 @@ export type TOnChangeCheckbox = (
   data: {
     name: string;
     value?: string;
-    checked?: boolean;
+    checked: boolean;
   },
 ) => void;
