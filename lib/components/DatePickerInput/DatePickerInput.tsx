@@ -4,6 +4,7 @@ import InputMask from "react-input-mask";
 
 import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
 import { CalendarIcon } from "../Icons";
+import { Label } from "../Label";
 import styles from "./DatePickerInput.module.scss";
 import { IDatePickerInputProps } from "./types";
 
@@ -22,9 +23,16 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     onBlur,
     onMouseDownInput,
     readOnlyInput = false,
+    isVisibleCalendarIcon = false,
     focused,
     changed,
     classNameRoot: propsClassNameRoot,
+    required,
+    classNameLabel,
+    tooltipPosition,
+    label,
+    infoTooltipText,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
   } = props;
 
   const [localFocused, setLocalFocused] = useState(false);
@@ -89,43 +97,56 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
   });
 
   return (
-    <div
-      ref={rootRef}
-      onMouseDown={onMouseDown}
-      onClick={onClick}
-      onBlur={onBlurContainer}
-      className={classNameRoot}
-    >
-      <InputMask
-        className={styles.datepickerInput}
-        alwaysShowMask={false}
-        disabled={disabled}
-        mask={dateFormatMask}
-        onBlur={onBlur}
-        onMouseDown={(event) => {
-          if (readOnlyInput) {
-            event.preventDefault();
-          }
-        }}
-        onChange={onChangeMask}
-        name={name}
-        value={value}
-        placeholder={placeholderText}
+    <div>
+      {label && (
+        <Label
+          classNameRoot={classNameLabel}
+          tooltipPosition={tooltipPosition}
+          required={required}
+          label={label}
+          infoTooltipText={infoTooltipText}
+          classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
+        />
+      )}
+      <div
+        ref={rootRef}
+        onMouseDown={onMouseDown}
+        onClick={onClick}
+        onBlur={onBlurContainer}
+        className={classNameRoot}
       >
-        {(inputProps) => {
-          return (
-            <input
-              {...inputProps}
-              ref={ref} // ← передаем ref сюда
-              autoComplete={"off"}
-              placeholder={placeholderText}
-              disabled={disabled}
-              className={classNameInputRoot}
-            />
-          );
-        }}
-      </InputMask>
-      <CalendarIcon className={classNameIconRoot} />
+        <InputMask
+          className={styles.datepickerInput}
+          alwaysShowMask={false}
+          disabled={disabled}
+          mask={dateFormatMask}
+          onBlur={onBlur}
+          onMouseDown={(event) => {
+            if (readOnlyInput) {
+              event.preventDefault();
+            }
+          }}
+          onChange={onChangeMask}
+          name={name}
+          value={value}
+          placeholder={placeholderText}
+        >
+          {(inputProps) => {
+            return (
+              <input
+                {...inputProps}
+                ref={ref} // ← передаем ref сюда
+                autoComplete={"off"}
+                placeholder={placeholderText}
+                disabled={disabled}
+                className={classNameInputRoot}
+              />
+            );
+          }}
+        </InputMask>
+        {isVisibleCalendarIcon && <CalendarIcon className={classNameIconRoot} />}
+      </div>
+      {error && <div>{error}</div>}
     </div>
   );
 });

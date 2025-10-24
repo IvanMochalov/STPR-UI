@@ -1,4 +1,5 @@
 import React from "react";
+import { ETooltipPosition } from "../../Tooltip";
 
 export type TOnChangeDatePickerInput = (
   event: React.ChangeEvent<HTMLInputElement>,
@@ -28,5 +29,12 @@ export interface IDatePickerInputProps {
   readOnlyInput?: boolean;
   focused?: boolean;
   changed?: boolean;
+  isVisibleCalendarIcon?: boolean;
+  required?: boolean;
+  label?: string;
+  infoTooltipText?: string;
+  tooltipPosition?: ETooltipPosition;
   classNameRoot?: string;
+  classNameLabel?: string;
+  classNameBaseTooltipRoot?: string;
 }
