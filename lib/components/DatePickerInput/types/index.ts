@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ETooltipPosition } from "../../Tooltip";
 
 export type TOnChangeDatePickerInput = (
@@ -36,5 +37,6 @@ export interface IDatePickerInputProps {
   tooltipPosition?: ETooltipPosition;
   classNameRoot?: string;
   classNameLabel?: string;
+  classNameError?: string;
   classNameBaseTooltipRoot?: string;
 }

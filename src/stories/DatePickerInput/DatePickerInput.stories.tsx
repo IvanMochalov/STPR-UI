@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { DatePickerInput, TOnChangeDatePickerInput } from "../../../lib/components/DatePickerInput";
+import { ETooltipPosition } from "../../../lib/components/Tooltip";
 import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof DatePickerInput> = {
@@ -9,80 +10,78 @@ const meta: Meta<typeof DatePickerInput> = {
   component: DatePickerInput,
   tags: ["autodocs"],
   argTypes: {
+    // Основные параметры
+    value: {
+      description: `Текущее значение поля ввода даты в формате маски.\n`,
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    name: {
+      description: `Имя поля для использования в формах.\n`,
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     onChange: {
-      description: `Callback-функция, вызываемая при изменении значения поля ввода даты.
-Получает два параметра:
-- event: стандартное React событие ChangeEvent<HTMLInputElement>
-- data: объект с именем поля и новым значением
-
-Особенности:
-- Значение всегда передается как \`string\` в формате маски
-- Работает с маской ввода для обеспечения корректного формата даты
-- Для работы с формами рекомендуется использовать вместе с состоянием React\n`,
+      description: `Callback-функция при изменении значения. Получает событие и объект с name и value.\n`,
       control: false,
       table: {
         type: {
-          detail:
-            "(event: React.ChangeEvent<HTMLInputElement>,\n" +
-            "data: {\n" +
-            "  name: string;\n" +
-            "  value: string | null;\n" +
-            "}) => void",
+          detail: `(event: React.ChangeEvent<HTMLInputElement>, data: { name: string; value: string | null }) => void`,
           summary: "TOnChangeDatePickerInput",
         },
       },
     },
-    variant: {
-      description: `Вариант стиля поля ввода даты:\n- "outlined" - с границей (по умолчанию)\n- "filled" - с заполненным фоном\n`,
-      control: { type: "select" },
-      options: ["outlined", "filled"],
-      table: {
-        type: { summary: "TDatePickerInputVariant", detail: "'outlined' | 'filled'" },
-        defaultValue: { summary: '"outlined"' },
-      },
-    },
-    size: {
-      description: `Размер поля ввода даты:\n- "md" - средний размер\n- "lg" - большой размер (по умолчанию)\n`,
-      control: { type: "select" },
-      options: ["md", "lg"],
-      table: {
-        type: { summary: "TDatePickerInputSize", detail: "'md' | 'lg'" },
-        defaultValue: { summary: '"lg"' },
-      },
-    },
-    disabled: {
-      description: `Отключить поле ввода даты. Заблокирует взаимодействие и изменит визуальный стиль.\n`,
-      control: { type: "boolean" },
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
     dateFormatMask: {
-      description: `Маска для форматирования ввода даты. Может быть строкой или массивом строк/регулярных выражений.\nПо умолчанию: "99.99.9999" (формат ДД.ММ.ГГГГ)\n`,
+      description: `Маска форматирования даты. По умолчанию: "99.99.9999" для формата ДД.ММ.ГГГГ\nПримеры: "99/99/9999", "9999-99-99"\n`,
       control: { type: "text" },
       table: {
         type: { summary: "string | (string | RegExp)[]" },
         defaultValue: { summary: '"99.99.9999"' },
       },
     },
-    error: {
-      description: `Текст ошибки валидации. Подсвечивает поле красным и показывает сообщение об ошибке.\n`,
-      control: { type: "text" },
+
+    // Стили и внешний вид
+    variant: {
+      description: `Стиль оформления поля:\n- "outlined" - с границей (по умолчанию)\n- "filled" - с заполненным фоном\n`,
+      control: { type: "select" },
+      options: ["outlined", "filled"],
       table: {
-        type: { summary: "string" },
+        type: { summary: "TDatePickerInputVariant", detail: '"outlined" | "filled"' },
+        defaultValue: { summary: '"outlined"' },
       },
     },
-    placeholderText: {
-      description: `Текст-подсказка внутри поля когда значение отсутствует.\n`,
+    size: {
+      description: `Размер поля:\n- "md" - средний\n- "lg" - большой (по умолчанию)\n`,
+      control: { type: "select" },
+      options: ["md", "lg"],
+      table: {
+        type: { summary: "TDatePickerInputSize", detail: '"md" | "lg"' },
+        defaultValue: { summary: '"lg"' },
+      },
+    },
+
+    // Состояния
+    disabled: {
+      description: `Блокирует взаимодействие с полем.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    error: {
+      description: `Текст ошибки валидации. Подсвечивает поле и показывает сообщение.\n`,
       control: { type: "text" },
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: '"Выберите дату"' },
       },
     },
     readOnlyInput: {
-      description: `Сделать поле только для чтения. Блокирует прямое редактирование, но сохраняет возможность выбора через календарь.\n`,
+      description: `Режим только для чтения. Блокирует прямое редактирование, но сохраняет возможность выбора через календарь.\n`,
       control: { type: "boolean" },
       table: {
         type: { summary: "boolean" },
@@ -90,7 +89,7 @@ const meta: Meta<typeof DatePickerInput> = {
       },
     },
     focused: {
-      description: `Внешнее управление состоянием фокуса поля.\n`,
+      description: `Внешнее управление состоянием фокуса.\n`,
       control: { type: "boolean" },
       table: {
         type: { summary: "boolean" },
@@ -98,50 +97,124 @@ const meta: Meta<typeof DatePickerInput> = {
       },
     },
     changed: {
-      description: `Визуальный индикатор изменения поля. Подсвечивает поле для указания на модификацию.\n`,
+      description: `Визуальный индикатор изменения значения поля.\n`,
       control: { type: "boolean" },
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
+
+    // Текст и подписи
+    placeholderText: {
+      description: `Текст-подсказка при отсутствии значения. По умолчанию: "дд.мм.гггг"\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: '"дд.мм.гггг"' },
+      },
+    },
+    label: {
+      description: `Текст метки над полем ввода.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    required: {
+      description: `Отображает звездочку как индикатор обязательного поля.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+
+    // Иконка и тултипы
+    isVisibleCalendarIcon: {
+      description: `Отображать иконку календаря в правой части поля.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    infoTooltipText: {
+      description: `Текст подсказки для метки поля.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    tooltipPosition: {
+      description: `Позиция тултипа для подсказки лейбла.\n`,
+      control: { type: "select" },
+      options: [
+        "top",
+        "top-left",
+        "top-right",
+        "bottom",
+        "bottom-left",
+        "bottom-right",
+        "left",
+        "left-top",
+        "left-bottom",
+        "right",
+        "right-top",
+        "right-bottom",
+      ],
+      table: {
+        type: { summary: "ETooltipPosition" },
+        defaultValue: { summary: '"bottom-left"' },
+      },
+    },
+    // Callback-функции
     onClick: {
-      description: `Callback-функция, вызываемая при клике на поле ввода даты.\n`,
+      description: `Callback при клике на поле ввода.\n`,
       control: false,
       table: {
         type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
       },
     },
     onBlur: {
-      description: `Callback-функция, вызываемая при потере фокуса полем ввода.\n`,
+      description: `Callback при потере фокуса полем.\n`,
       control: false,
       table: {
         type: { summary: "() => void" },
       },
     },
     onMouseDownInput: {
-      description: `Callback-функция, вызываемая при нажатии кнопки мыши на поле ввода.\n`,
+      description: `Callback при нажатии кнопки мыши на поле.\n`,
       control: false,
       table: {
         type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
       },
     },
-    value: {
-      description: `Значение поля ввода даты. Контролируемое свойство.\n`,
-      control: false,
-      table: {
-        type: { summary: "string" },
-      },
-    },
-    name: {
-      description: `Имя поля для формы.\n`,
-      control: false,
-      table: {
-        type: { summary: "string" },
-      },
-    },
+
+    // CSS-классы
     classNameRoot: {
-      description: "Дополнительный CSS-класс для корневого элемента поля ввода даты\n",
+      description: "Дополнительный CSS-класс для корневого элемента поля.\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameLabel: {
+      description: "Дополнительный CSS-класс для элемента метки.\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameError: {
+      description: "Дополнительный CSS-класс для элемента ошибки.\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipRoot: {
+      description: "Дополнительный CSS-класс для тултипа.\n",
       control: false,
       table: {
         type: { summary: "string" },
@@ -152,48 +225,32 @@ const meta: Meta<typeof DatePickerInput> = {
     docs: {
       description: {
         component: `
-Компонент поля ввода даты с маской и поддержкой различных состояний.
+Компонент поля ввода даты с маской, валидацией и поддержкой различных состояний.
 
 ## Особенности:
-- **Маска ввода**: автоматическое форматирование даты по заданному шаблону
-- **Два варианта стиля**: outlined (с границей) и filled (с заполненным фоном)
+- **Автоматическое форматирование** через маску ввода
+- **Два стиля оформления**: outlined (с границей) и filled (с заполненным фоном)
 - **Два размера**: md (средний) и lg (большой)
-- **Валидация и ошибки**: подсветка ошибок и текстовые сообщения
-- **Иконка календаря**: визуальный индикатор типа поля
-- **Управление фокусом**: автоматическое скрытие/показ при клике вне поля
-- **Гибкие пропсы**: name и onChange являются опциональными
-- **Адаптивный дизайн**: разные размеры и отступы на мобильных и desktop
-- **Доступность**: правильная семантика и поддержка screen readers
+- **Валидация** с подсветкой ошибок и текстовыми сообщениями
+- **Опциональная иконка календаря**
+- **Управление фокусом** с автоматическим скрытием при клике вне поля
+- **Поддержка меток** с тултипами и индикатором обязательности
+- **Гибкая система CSS-классов** для кастомизации
 
-## Состояния поля:
-- **Обычное**: стандартное состояние
-- **С ошибкой**: красная граница и текст ошибки
-- **Отключенное**: серый цвет и блокировка взаимодействия
-- **С фокусом**: синяя граница для указания активного состояния
-- **Измененное**: подсветка для указания на модификацию значения
-
-## Рекомендации по использованию:
-Используйте для ввода дат в формах с поддержкой валидации и стандартного форматирования.
-
-### Базовое использование
+## Использование с состоянием:
 
 \`\`\`jsx
-const [formData, setFormData] = useState({
-  birthDate: "",
-});
+const [date, setDate] = useState("");
 
 <DatePickerInput
   name="birthDate"
-  value={formData.birthDate}
-  onChange={(_event, { name, value }) =>
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
-  }
-  placeholderText="Выберите дату"
-  dateFormatMask="99.99.9999"
+  value={date}
+  onChange={(event, { name, value }) => setDate(value)}
+  label="Дата рождения"
+  required
+  isVisibleCalendarIcon
 />
+\`\`\`
         `,
       },
     },
@@ -215,6 +272,11 @@ const [formData, setFormData] = useState({
     readOnlyInput: false,
     focused: false,
     changed: false,
+    isVisibleCalendarIcon: false,
+    required: false,
+    label: "",
+    infoTooltipText: "",
+    tooltipPosition: ETooltipPosition.BottomLeft,
   },
 };
 
@@ -239,5 +301,33 @@ export const Default: Story = {
     return (
       <DatePickerInput {...args} name="createAt" value={formData.createAt} onChange={onChange} />
     );
+  },
+};
+
+export const WithLabel: Story = {
+  name: "With Label and Tooltip",
+  args: {
+    label: "Дата создания",
+    infoTooltipText: "Выберите дату создания документа",
+    required: true,
+    isVisibleCalendarIcon: true,
+  },
+};
+
+export const WithError: Story = {
+  name: "With Error State",
+  args: {
+    label: "Дата окончания",
+    error: "Дата не может быть в прошлом",
+    isVisibleCalendarIcon: true,
+  },
+};
+
+export const Disabled: Story = {
+  name: "Disabled State",
+  args: {
+    label: "Дата блокировки",
+    disabled: true,
+    value: "01.01.2024",
   },
 };

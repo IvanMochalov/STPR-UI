@@ -26,9 +26,10 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     isVisibleCalendarIcon = false,
     focused,
     changed,
-    classNameRoot: propsClassNameRoot,
     required,
-    classNameLabel,
+    classNameRoot: propsClassNameRoot,
+    classNameError: propsClassNameError,
+    classNameLabel: propsClassNameLabel,
     tooltipPosition,
     label,
     infoTooltipText,
@@ -96,6 +97,15 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     [styles.datepickerInput__icon]: true,
   });
 
+  const classNameError = cx({
+    [styles.datepickerInput__error]: true,
+    ...(propsClassNameError && { [propsClassNameError]: true }),
+  });
+
+  const classNameLabel = cx({
+    ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
+  });
+
   return (
     <div>
       {label && (
@@ -128,14 +138,14 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           }}
           onChange={onChangeMask}
           name={name}
-          value={value}
+          value={value || ""}
           placeholder={placeholderText}
         >
           {(inputProps) => {
             return (
               <input
                 {...inputProps}
-                ref={ref} // ← передаем ref сюда
+                ref={ref}
                 autoComplete={"off"}
                 placeholder={placeholderText}
                 disabled={disabled}
@@ -146,7 +156,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
         </InputMask>
         {isVisibleCalendarIcon && <CalendarIcon className={classNameIconRoot} />}
       </div>
-      {error && <div>{error}</div>}
+      {error && <div className={classNameError}>{error}</div>}
     </div>
   );
 });
