@@ -24,6 +24,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     onMouseDownInput,
     readOnlyInput = false,
     isVisibleCalendarIcon = false,
+    isVisibleErrorText = true,
+    isVisibleLabelText = true,
     focused,
     changed,
     required,
@@ -108,7 +110,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
 
   return (
     <div>
-      {label && (
+      {isVisibleLabelText && label && (
         <Label
           classNameRoot={classNameLabel}
           tooltipPosition={tooltipPosition}
@@ -156,7 +158,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
         </InputMask>
         {isVisibleCalendarIcon && <CalendarIcon className={classNameIconRoot} />}
       </div>
-      {error && <div className={classNameError}>{error}</div>}
+      {isVisibleErrorText && error && <div className={classNameError}>{error}</div>}
     </div>
   );
 });

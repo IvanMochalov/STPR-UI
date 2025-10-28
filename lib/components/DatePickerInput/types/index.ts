@@ -32,6 +32,8 @@ export interface IDatePickerInputProps {
   changed?: boolean;
   isVisibleCalendarIcon?: boolean;
   required?: boolean;
+  isVisibleErrorText?: boolean;
+  isVisibleLabelText?: boolean;
   label?: string;
   infoTooltipText?: string;
   tooltipPosition?: ETooltipPosition;

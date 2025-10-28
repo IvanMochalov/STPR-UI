@@ -14,7 +14,15 @@ export type TOnChangeDatePicker = (
 export interface IDatePickerProps
   extends Omit<
     IDatePickerInputProps,
-    "classNameRoot" | "focused" | "onClick" | "value" | "onChange" | "dateFormatMask"
+    | "classNameRoot"
+    | "focused"
+    | "onClick"
+    | "value"
+    | "onChange"
+    | "dateFormatMask"
+    | "isVisibleErrorText"
+    | "isVisibleLabelText"
+    | "isVisibleCalendarIcon"
   > {
   dateFormatMask?: string | (string | RegExp)[];
   dateFormat?: string;

@@ -7,6 +7,7 @@ import BaseDatePicker, { ReactDatePickerCustomHeaderProps } from "react-datepick
 
 import { DatePickerInput } from "../DatePickerInput";
 import { EIconName, Icon } from "../Icons";
+import { Label } from "../Label";
 import { Text } from "../Text";
 import styles from "./DatePicker.module.scss";
 import { IDatePickerProps } from "./types";
@@ -45,6 +46,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     classNameRoot: propsClassNameRoot,
     classNameDatePickerInputRoot: propsClassNameDatePickerInputRoot,
     classNameLabel: propsClassNameLabel,
+    classNameError: propsClassNameError,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
   } = props;
 
@@ -86,8 +88,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const classNameRoot = cx({
     [styles.datePicker]: true,
     [styles.datePicker_size]: size,
-    [styles.datePicker_active]: Boolean(value),
-    [styles.datePicker_error]: Boolean(error),
     [styles.datePicker_relative]: isRelative,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
@@ -99,6 +99,11 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
 
   const classNameLabel = cx({
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
+  });
+
+  const classNameError = cx({
+    [styles.datePicker__error]: true,
+    ...(propsClassNameError && { [propsClassNameError]: true }),
   });
 
   const onClear = (event: React.MouseEvent<HTMLElement>) => {
@@ -165,6 +170,16 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
 
   return (
     <div onMouseEnter={onMouseEnter} className={classNameRoot}>
+      {label && (
+        <Label
+          classNameRoot={classNameLabel}
+          tooltipPosition={tooltipPosition}
+          required={required}
+          label={label}
+          infoTooltipText={infoTooltipText}
+          classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
+        />
+      )}
       <BaseDatePicker
         disabledKeyboardNavigation={!localSelected}
         onSelect={_onSelect}
@@ -219,27 +234,23 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         calendarContainer={MyContainer}
         customInput={
           <DatePickerInput
-            classNameLabel={classNameLabel}
-            tooltipPosition={tooltipPosition}
-            required={required}
-            label={label}
-            infoTooltipText={infoTooltipText}
-            classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
             variant={variant}
             placeholderText={placeholderText}
             dateFormatMask={dateFormatMask}
             changed={changed}
             classNameRoot={classNameFieldRoot}
             size={size}
-            error={error}
             focused={focused}
             onMouseDownInput={onMouseDownInput}
             readOnlyInput={readOnlyInput}
             disabled={disabled}
             isVisibleCalendarIcon={true}
+            isVisibleErrorText={false}
+            isVisibleLabelText={false}
           />
         }
       />
+      {error && <div className={classNameError}>{error}</div>}
     </div>
   );
 };
