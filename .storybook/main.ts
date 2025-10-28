@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@chromatic-com/storybook",
     "@storybook/addon-docs",
+    "@storybook/addon-a11y",
   ],
   core: {
     builder: "@storybook/builder-vite",
