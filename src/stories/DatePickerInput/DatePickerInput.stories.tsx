@@ -105,6 +105,24 @@ const meta: Meta<typeof DatePickerInput> = {
       },
     },
 
+    // Видимость элементов
+    isVisibleErrorText: {
+      description: `Отображать текст ошибки под полем ввода. Если false - ошибка будет только подсвечивать поле.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+    },
+    isVisibleLabelText: {
+      description: `Отображать метку над полем ввода. Полезно для скрытия лейбла при сохранении структуры.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+    },
+
     // Текст и подписи
     placeholderText: {
       description: `Текст-подсказка при отсутствии значения. По умолчанию: "дд.мм.гггг"\n`,
@@ -168,6 +186,7 @@ const meta: Meta<typeof DatePickerInput> = {
         defaultValue: { summary: '"bottom-left"' },
       },
     },
+
     // Callback-функции
     onClick: {
       description: `Callback при клике на поле ввода.\n`,
@@ -236,6 +255,7 @@ const meta: Meta<typeof DatePickerInput> = {
 - **Управление фокусом** с автоматическим скрытием при клике вне поля
 - **Поддержка меток** с тултипами и индикатором обязательности
 - **Гибкая система CSS-классов** для кастомизации
+- **Контроль видимости** текста ошибки и метки
 
 ## Использование с состоянием:
 
@@ -249,6 +269,8 @@ const [date, setDate] = useState("");
   label="Дата рождения"
   required
   isVisibleCalendarIcon
+  isVisibleErrorText={true}
+  isVisibleLabelText={true}
 />
 \`\`\`
         `,
@@ -273,6 +295,8 @@ const [date, setDate] = useState("");
     focused: false,
     changed: false,
     isVisibleCalendarIcon: false,
+    isVisibleErrorText: true,
+    isVisibleLabelText: true,
     required: false,
     label: "",
     infoTooltipText: "",
@@ -329,5 +353,24 @@ export const Disabled: Story = {
     label: "Дата блокировки",
     disabled: true,
     value: "01.01.2024",
+  },
+};
+
+export const HiddenLabel: Story = {
+  name: "With Hidden Label",
+  args: {
+    label: "Скрытая метка",
+    isVisibleLabelText: false,
+    placeholderText: "Метка скрыта, но доступна для screen readers",
+  },
+};
+
+export const HiddenErrorText: Story = {
+  name: "With Hidden Error Text",
+  args: {
+    label: "Дата с ошибкой",
+    error: "Эта ошибка не будет отображена текстом",
+    isVisibleErrorText: false,
+    isVisibleCalendarIcon: true,
   },
 };
