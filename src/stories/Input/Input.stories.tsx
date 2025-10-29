@@ -160,6 +160,14 @@ const meta: Meta<typeof Input> = {
         type: { summary: "string | (string | RegExp)[]" },
       },
     },
+    maskChar: {
+      description: `Символ, закрывающий незаполненные части маски. По умолчанию — символ «_». Если задано значение null или пустая строка, незаполненные части будут пустыми, как при обычном вводе.`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "_" },
+      },
+    },
     alwaysShowMask: {
       description: `Всегда показывать маску, даже когда поле пустое.
 Полезно для визуального указания ожидаемого формата ввода.
@@ -309,6 +317,7 @@ const [formData, setFormData] = useState({
     isVisibleDefaultTitle: true,
     placeholder: "Введите...",
     mask: "",
+    maskChar: "_",
     alwaysShowMask: false,
   },
 };

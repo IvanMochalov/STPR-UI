@@ -31,6 +31,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     alwaysShowMask = false,
     mask,
+    maskChar = "_",
     ...otherProps
   } = props;
 
@@ -92,6 +93,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
           value={value}
           mask={mask}
           name={name}
+          maskChar={maskChar}
           {...otherProps}
         >
           {(inputProps) => {

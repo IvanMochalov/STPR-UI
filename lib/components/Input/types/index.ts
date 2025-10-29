@@ -28,6 +28,7 @@ export interface InputProps {
   ref?: ForwardedRef<HTMLInputElement>;
   mask?: string | (string | RegExp)[];
   alwaysShowMask?: boolean;
+  maskChar?: string;
 }
 
 export type TOnChangeInput = (
