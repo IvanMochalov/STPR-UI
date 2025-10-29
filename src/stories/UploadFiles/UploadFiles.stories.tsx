@@ -112,7 +112,8 @@ const meta: Meta<typeof UploadFiles> = {
       },
     },
     accept: {
-      description: `Объект с разрешенными типами файлов. Ключ - MIME-тип, значение - массив расширений.\n`,
+      description: `Объект с разрешенными типами файлов. Ключ - MIME-тип, значение - массив расширений.
+Если параметр не указан, разрешена загрузка файлов любых форматов.\n`,
       control: { type: "object" },
       table: {
         type: {
@@ -143,6 +144,7 @@ const meta: Meta<typeof UploadFiles> = {
   "application/xml": [".xml"]
 }`,
         },
+        defaultValue: { summary: "undefined" }, // Добавляем информацию о значении по умолчанию
       },
     },
     files: {
@@ -262,6 +264,24 @@ const [formData, setFormData] = useState({
   multiple={true}
 />
 \`\`\`
+
+### Загрузка файлов любых форматов
+
+\`\`\`jsx
+const [formData, setFormData] = useState({
+  files: []
+});
+
+// Без параметра accept - разрешены все форматы
+<UploadFiles
+  name="files"
+  files={formData.files}
+  onDropFiles={(acceptedFiles, name) => setFormData(prev => ({...prev, [name]: acceptedFiles}))}
+  placeholder="Загрузите любой файл"
+  variant="input"
+/>
+\`\`\`
+
         `,
       },
     },

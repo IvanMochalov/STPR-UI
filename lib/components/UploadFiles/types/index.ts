@@ -14,7 +14,7 @@ export interface UploadFilesProps {
   ) => void;
   label?: string;
   required?: boolean;
-  accept: Accept;
+  accept?: Accept;
   disabled?: boolean;
   multiple?: boolean;
   files: File[];

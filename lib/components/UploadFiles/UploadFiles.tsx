@@ -135,7 +135,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   };
 
   const getSingleFileName = () => {
-    if (hasErrors) {
+    if (hasErrors && accept) {
       const formatsName = getMostFormat(accept);
 
       return (
