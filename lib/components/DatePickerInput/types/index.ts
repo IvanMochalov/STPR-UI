@@ -18,7 +18,7 @@ export interface IDatePickerInputProps {
   value?: string;
   name?: string;
   onChange?: TOnChangeDatePickerInput;
-  dateFormatMask: string | (string | RegExp)[];
+  dateFormatMask?: string | (string | RegExp)[];
   variant?: TDatePickerInputVariant;
   size?: TDatePickerInputSize;
   disabled?: boolean;
