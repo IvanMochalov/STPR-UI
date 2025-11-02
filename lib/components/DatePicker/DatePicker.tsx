@@ -23,7 +23,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     isClearable = true,
     isRelative = true,
     shouldCloseOnSelect = false,
-    enablePortal = true,
+    enablePortal = false,
     closeOnScroll = false,
     disabled,
     required,
