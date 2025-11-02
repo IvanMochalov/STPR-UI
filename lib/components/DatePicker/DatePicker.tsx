@@ -2,7 +2,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import cx from "clsx";
 import { ru } from "date-fns/locale/ru";
-import React, { ReactNode, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import BaseDatePicker, { ReactDatePickerCustomHeaderProps } from "react-datepicker";
 
 import { DatePickerInput } from "../DatePickerInput";
@@ -23,6 +23,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     isClearable = true,
     isRelative = true,
     shouldCloseOnSelect = false,
+    enablePortal = true,
     closeOnScroll = false,
     disabled,
     required,
@@ -48,23 +49,46 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     classNameLabel: propsClassNameLabel,
     classNameError: propsClassNameError,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
+    classNamePortalRoot: propsClassNamePortalRoot,
   } = props;
 
   const [focused, setFocused] = useState(false);
   const [localSelected, setLocalSelected] = useState(selected);
+  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
+
+  // Создаем кастомный портал для react-datepicker только если enablePortal = true
+  useEffect(() => {
+    if (!enablePortal) {
+      setPortalNode(null);
+      return;
+    }
+
+    const portalId = "custom-datepicker-portal";
+    let portalElement = document.getElementById(portalId);
+
+    if (!portalElement) {
+      portalElement = document.createElement("div");
+      portalElement.id = portalId;
+      portalElement.className = cx(styles.datePickerPortal, propsClassNamePortalRoot);
+      document.body.appendChild(portalElement);
+    }
+
+    setPortalNode(portalElement);
+
+    return () => {
+      // Очистка не нужна - портал используется всеми DatePicker'ами
+    };
+  }, [enablePortal, propsClassNamePortalRoot]); // Добавил enablePortal в зависимости
 
   const _onCalendarOpen = () => {
-    if (onCalendarOpen) {
-      onCalendarOpen();
-    }
-    onFocus && onFocus();
+    onCalendarOpen?.();
+    onFocus?.();
     setFocused(true);
   };
+
   const _onCalendarClose = () => {
-    if (onCalendarClose) {
-      onCalendarClose();
-    }
-    onBlur && onBlur();
+    onCalendarClose?.();
+    onBlur?.();
     setFocused(false);
   };
 
@@ -72,8 +96,8 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     date: Date | null,
     event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
   ) => void = (date, _event) => {
-    if (onChange) {
-      name && onChange({ name, value: date });
+    if (onChange && name) {
+      onChange({ name, value: date });
     }
   };
 
@@ -81,7 +105,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     if (shouldCloseOnSelect) {
       _onChange(date);
     }
-
     setLocalSelected(date);
   };
 
@@ -91,7 +114,9 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     [styles.datePicker_relative]: isRelative,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
+
   const datePickerRef = useRef<BaseDatePicker>(null);
+
   const classNameFieldRoot = cx({
     [styles.datePicker__customInput]: true,
     ...(propsClassNameDatePickerInputRoot && { [propsClassNameDatePickerInputRoot]: true }),
@@ -109,17 +134,12 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const onClear = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     event.stopPropagation();
-
-    // Сбрасываем значение
     _onChange(null, event);
     setLocalSelected(null);
 
-    // Закрываем календарь
     if (datePickerRef.current) {
       datePickerRef.current.setOpen(false);
     }
-
-    // Также вызываем закрытие календаря через наш обработчик
     _onCalendarClose();
   };
 
@@ -127,14 +147,10 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     event.preventDefault();
     event.stopPropagation();
 
-    // Закрываем календарь
     if (datePickerRef.current) {
       datePickerRef.current.setOpen(false);
     }
-
     _onChange(localSelected, event);
-
-    // Также вызываем закрытие календаря через наш обработчик
     _onCalendarClose();
   };
 
@@ -168,6 +184,9 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     );
   };
 
+  // Определяем portalId в зависимости от enablePortal
+  const portalId = enablePortal && portalNode ? "custom-datepicker-portal" : undefined;
+
   return (
     <div onMouseEnter={onMouseEnter} className={classNameRoot}>
       {label && (
@@ -181,6 +200,8 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         />
       )}
       <BaseDatePicker
+        portalId={portalId}
+        popperPlacement="bottom-end"
         disabledKeyboardNavigation={!localSelected}
         onSelect={_onSelect}
         ref={datePickerRef}

@@ -36,6 +36,7 @@ export interface IDatePickerProps
   isClearable?: boolean;
   closeOnScroll?: boolean;
   shouldCloseOnSelect?: boolean;
+  enablePortal?: boolean;
   label?: string;
   infoTooltipText?: string;
   tooltipPosition?: ETooltipPosition;
@@ -47,4 +48,5 @@ export interface IDatePickerProps
   classNameDatePickerInputRoot?: string;
   classNameLabel?: string;
   classNameBaseTooltipRoot?: string;
+  classNamePortalRoot?: string;
 }
