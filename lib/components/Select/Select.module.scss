@@ -136,6 +136,10 @@
       overflow-y: auto;
     }
 
+    &_withSearch {
+      padding-top: 0;
+    }
+
     @include styles.custom-scrollbar();
   }
 
@@ -175,6 +179,57 @@
 
     @include styles.respond-to(sm) {
       font-size: 14px;
+    }
+  }
+
+  // Новые стили для поиска
+  &__search {
+    position: relative;
+    padding: 8px 16px;
+    border-bottom: 1px solid styles.$color-alice-blue;
+    background-color: styles.$color-white;
+  }
+
+  &__searchInput {
+    width: 100%;
+    outline: none;
+    font-family: styles.$main-font;
+    font-size: 14px;
+    padding: 8px 30px;
+    border: 1px solid styles.$color-secondary-blue-light-dark;
+    border-radius: 4px;
+
+    &:focus {
+      border-color: styles.$color-accent-blue;
+    }
+
+    &::placeholder {
+      color: styles.$color-gray-1;
+    }
+  }
+
+  &__searchIcon {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: styles.$color-gray-1;
+    width: 16px;
+    height: 16px;
+  }
+
+  &__searchClearIcon {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: styles.$color-gray-1;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+
+    &:hover {
+      color: styles.$color-black;
     }
   }
 }

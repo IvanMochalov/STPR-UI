@@ -32,9 +32,11 @@ export interface SelectProps {
   classNameError?: string;
   classNameLabel?: string;
   classNameBaseTooltipRoot?: string;
+  isSearchable?: boolean;
+  searchPlaceholder?: string;
 }
 
 export type TOnChangeSelect = (
-  event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  event: React.MouseEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>,
   data: { value: string | null | number; name: string },
 ) => void;
