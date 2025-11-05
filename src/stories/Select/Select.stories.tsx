@@ -332,9 +332,32 @@ export default meta;
 
 type Story = StoryObj<typeof Select>;
 
-// Существующие stories остаются без изменений...
+export const Default: Story = {
+  name: "Default Select",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      okrug: "",
+    });
 
-// Добавляем новые stories для поиска
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    return (
+      <Select
+        {...args}
+        error={!formData.okrug ? args.error : undefined}
+        name={"okrug"}
+        value={formData.okrug}
+        onChange={onChange}
+      />
+    );
+  },
+};
+
 export const Searchable: Story = {
   name: "Searchable Select",
   render: (args) => {
@@ -372,32 +395,6 @@ export const Searchable: Story = {
         `,
       },
     },
-  },
-};
-
-export const Default: Story = {
-  name: "Default Select",
-  render: (args) => {
-    const [formData, setFormData] = useState({
-      okrug: "",
-    });
-
-    const onChange: TOnChangeSelect = (_event, data) => {
-      setFormData((prevState) => ({
-        ...prevState,
-        [data.name]: data.value,
-      }));
-    };
-
-    return (
-      <Select
-        {...args}
-        error={!formData.okrug ? args.error : undefined}
-        name={"okrug"}
-        value={formData.okrug}
-        onChange={onChange}
-      />
-    );
   },
 };
 
