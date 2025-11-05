@@ -30,6 +30,7 @@ export enum EIconName {
   Calendar = "calendar",
   ArrowBottom = "arrowBottom",
   UserRight = "userRight",
+  Search = "search",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;

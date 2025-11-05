@@ -1,3 +1,4 @@
+import cx from "clsx";
 import React, { CSSProperties } from "react";
 
 import AddFileIcon from "../../../src/images/add_file.svg?react";
@@ -23,6 +24,7 @@ import PlusCircleIcon from "../../../src/images/plus_circle.svg?react";
 import PlusSquareIcon from "../../../src/images/plus_square.svg?react";
 import RefreshIcon from "../../../src/images/refresh.svg?react";
 import SaveIcon from "../../../src/images/save.svg?react";
+import SearchIcon from "../../../src/images/search.svg?react";
 import SelectChevronDownIcon from "../../../src/images/select_chevron_down.svg?react";
 import TerminalSquareIcon from "../../../src/images/terminal_square.svg?react";
 import TrashIcon from "../../../src/images/trash.svg?react";
@@ -30,7 +32,6 @@ import UploadIcon from "../../../src/images/upload.svg?react";
 import UserRightIcon from "../../../src/images/user-right.svg?react";
 import WarningColorIcon from "../../../src/images/warning_color.svg?react";
 import { EIconName, IconProps, SVGComponent } from "./types";
-import cx from "clsx";
 
 export const Icon: React.FC<IconProps> = (props) => {
   const { name, rotate, className: propsClassName, ...svgProps } = props;
@@ -66,6 +67,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.Refresh]: RefreshIcon,
     [EIconName.Logout]: LogoutIcon,
     [EIconName.Save]: SaveIcon,
+    [EIconName.Search]: SearchIcon,
     [EIconName.Calendar]: CalendarIcon,
     [EIconName.ArrowBottom]: ArrowBottomIcon,
     [EIconName.UserRight]: UserRightIcon,
@@ -105,6 +107,7 @@ export {
   PlusSquareIcon,
   RefreshIcon,
   SaveIcon,
+  SearchIcon,
   SelectChevronDownIcon,
   TerminalSquareIcon,
   TrashIcon,
