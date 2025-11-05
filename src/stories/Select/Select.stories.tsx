@@ -358,6 +358,15 @@ export const Default: Story = {
   },
 };
 
+export const WithEmptyListOption: Story = {
+  render: Default.render,
+  args: {
+    label: "Округ",
+    options: [],
+    placeholder: "Выберите округ...",
+  },
+};
+
 export const Searchable: Story = {
   name: "Searchable Select",
   render: (args) => {
@@ -459,15 +468,6 @@ export const SearchableWithLongList: Story = {
         `,
       },
     },
-  },
-};
-
-export const WithEmptyListOption: Story = {
-  render: Default.render,
-  args: {
-    label: "Округ",
-    options: [],
-    placeholder: "Выберите округ...",
   },
 };
 
