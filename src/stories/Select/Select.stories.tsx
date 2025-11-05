@@ -375,6 +375,32 @@ export const Searchable: Story = {
   },
 };
 
+export const Default: Story = {
+  name: "Default Select",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      okrug: "",
+    });
+
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    return (
+      <Select
+        {...args}
+        error={!formData.okrug ? args.error : undefined}
+        name={"okrug"}
+        value={formData.okrug}
+        onChange={onChange}
+      />
+    );
+  },
+};
+
 export const SearchableWithLongList: Story = {
   name: "Searchable Select with Long List",
   render: (args) => {
@@ -439,11 +465,39 @@ export const SearchableWithLongList: Story = {
   },
 };
 
-export const SearchableWithError: Story = {
-  name: "Searchable Select with Error State",
+export const WithEmptyListOption: Story = {
+  render: Default.render,
+  args: {
+    label: "Округ",
+    options: [],
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const WithLabel: Story = {
+  name: "Select with Label",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const WithLabelAndTooltip: Story = {
+  name: "Select with Label and Tooltip",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    infoTooltipText: "Выберите административный округ из доступного списка",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const RequiredField: Story = {
+  name: "Required Select Field",
   render: (args) => {
     const [formData, setFormData] = useState({
-      searchable: "",
+      requiredField: "",
     });
 
     const onChange: TOnChangeSelect = (_event, data) => {
@@ -456,34 +510,71 @@ export const SearchableWithError: Story = {
     return (
       <Select
         {...args}
-        name={"searchable"}
-        value={formData.searchable}
+        name={"requiredField"}
+        value={formData.requiredField}
         onChange={onChange}
-        error={!formData.searchable ? "Необходимо выбрать значение из списка" : undefined}
+        error={!formData.requiredField ? "Это поле обязательно для заполнения" : undefined}
       />
     );
   },
   args: {
-    label: "Обязательный поисковый селект",
-    isSearchable: true,
+    label: "Обязательный выбор",
     required: true,
-    searchPlaceholder: "Найдите и выберите значение...",
-    placeholder: "Выберите из списка...",
+    placeholder: "Сделайте выбор...",
   },
 };
 
-// Обновляем AllVariants story чтобы включить поисковый вариант
-export const AllVariants: Story = {
-  name: "All Select Variants",
-  render: () => {
+export const WithLabelAndTooltipAndError: Story = {
+  name: "Select with Label, Tooltip and Error",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    infoTooltipText: "Выберите административный округ из доступного списка",
+    required: true,
+    error: "Обязательное поле для заполнения",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const FilledVariant: Story = {
+  name: "Filled Variant Select",
+  render: Default.render,
+  args: {
+    label: "Округ с заполненным фоном",
+    variant: "filled",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const DisabledSelect: Story = {
+  render: (args) => {
+    return (
+      <Select {...args} name={"disabled"} value={OKRUG_OPTIONS[0].value} onChange={() => {}} />
+    );
+  },
+  args: {
+    label: "Заблокированный выбор",
+    disabled: true,
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const ScrollableList: Story = {
+  name: "Select with Scrollable List",
+  render: Default.render,
+  args: {
+    label: "Округ с прокруткой",
+    isScrollableList: true,
+    maxHeightList: 120,
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const AbsolutePositionError: Story = {
+  name: "Select with Absolute Position Error",
+  render: (args) => {
     const [formData, setFormData] = useState({
-      outlined: "",
-      filled: "",
-      withError: "",
-      disabled: OKRUG_OPTIONS[1].value,
-      withTooltip: "",
-      scrollable: "",
-      searchable: "", // добавляем новое состояние для поиска
+      fieldWithError: "",
     });
 
     const onChange: TOnChangeSelect = (_event, data) => {
@@ -494,25 +585,20 @@ export const AllVariants: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        {/* Существующие варианты... */}
-
-        <div>
-          <div style={{ fontSize: "12px", color: "#666", marginBottom: "8px" }}>
-            Searchable Select
-          </div>
-          <Select
-            name={"searchable"}
-            value={formData.searchable}
-            onChange={onChange}
-            options={OKRUG_OPTIONS}
-            label="Селект с поиском"
-            isSearchable={true}
-            searchPlaceholder="Введите для поиска..."
-            placeholder="Выберите округ..."
-          />
-        </div>
+      <div style={{ position: "relative", paddingBottom: "30px" }}>
+        <Select
+          {...args}
+          name={"fieldWithError"}
+          value={formData.fieldWithError}
+          onChange={onChange}
+          error={!formData.fieldWithError ? "Ошибка с абсолютным позиционированием" : undefined}
+        />
       </div>
     );
+  },
+  args: {
+    label: "Поле с абсолютной ошибкой",
+    isAbsolutePositionError: true,
+    placeholder: "Сделайте выбор...",
   },
 };
