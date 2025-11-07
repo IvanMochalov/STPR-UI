@@ -42,16 +42,19 @@
     position: relative;
     cursor: pointer;
     width: 100%;
+    border-width: 2px;
+    border-style: solid;
+
     @include styles.option-default;
 
     &_filled {
-      border: 2px solid styles.$color-alice-blue;
+      border-color: styles.$color-alice-blue;
       background-color: styles.$color-alice-blue;
     }
 
     &_outlined {
       background-color: transparent;
-      border: 1px solid styles.$color-secondary-blue-light-dark;
+      border-color: styles.$color-secondary-blue-light-dark;
     }
 
     &::placeholder {
@@ -80,7 +83,7 @@
       }
 
       &#{$control}_outlined {
-        border-width: 1px;
+        border-width: 2px;
       }
     }
 
