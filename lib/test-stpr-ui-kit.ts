@@ -39,6 +39,8 @@ import { Table } from "./components/Table";
 import type { TPaneItem } from "./components/Tabs";
 import { Tabs } from "./components/Tabs";
 import { Text } from "./components/Text";
+import type { TOnChangeTextarea } from "./components/Textarea";
+import { Textarea } from "./components/Textarea";
 import { TextWithLabel } from "./components/TextWithLabel";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "./components/Tooltip";
 import { UploadFiles } from "./components/UploadFiles";
@@ -82,12 +84,14 @@ export {
   TContextMenuOption,
   TDatePickerInputSize,
   Text,
+  Textarea,
   TextWithLabel,
   TOnChangeCheckbox,
   TOnChangeDatePicker,
   TOnChangeDatePickerInput,
   TOnChangeInput,
   TOnChangeSelect,
+  TOnChangeTextarea,
   Tooltip,
   TPaneItem,
   TSelectOption,
