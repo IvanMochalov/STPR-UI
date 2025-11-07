@@ -43,6 +43,8 @@
     padding: 11.5px 16px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border-width: 2px;
+    border-style: solid;
 
     @include styles.respond-to(sm) {
       font-size: 18px;
@@ -50,13 +52,13 @@
     }
 
     &_filled {
-      border: 2px solid styles.$color-alice-blue;
+      border-color: styles.$color-alice-blue;
       background-color: styles.$color-alice-blue;
     }
 
     &_outlined {
       background-color: transparent;
-      border: 1px solid styles.$color-secondary-blue-light-dark;
+      border-color: styles.$color-secondary-blue-light-dark;
     }
 
     &_disabled {
@@ -94,7 +96,7 @@
       }
 
       &#{$control}_outlined {
-        border-width: 1px;
+        border-width: 2px;
       }
 
       &:hover {
