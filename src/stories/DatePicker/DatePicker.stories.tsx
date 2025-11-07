@@ -131,7 +131,6 @@ const [selectedDate, setSelectedDate] = useState(null);
   ],
   args: {
     variant: "outlined",
-    size: "lg",
     placeholderText: "дд.мм.гггг",
     dateFormatMask: "99.99.9999",
     dateFormat: "dd.MM.yyyy",
@@ -143,7 +142,6 @@ const [selectedDate, setSelectedDate] = useState(null);
     closeOnScroll: false,
     disabled: false,
     required: false,
-    changed: false,
     error: "",
     infoTooltipText: "",
     label: "Дата выдачи",

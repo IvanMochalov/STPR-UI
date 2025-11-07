@@ -15,7 +15,6 @@ import { IDatePickerProps } from "./types";
 export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const {
     variant = "outlined",
-    size = "lg",
     placeholderText = "дд.мм.гггг",
     dateFormatMask = "99.99.9999",
     dateFormat = "dd.MM.yyyy",
@@ -35,10 +34,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     onCalendarClose,
     onMouseDownInput,
     onChange,
-    onBlur,
-    onFocus,
     name,
-    changed,
     onMouseEnter,
     infoTooltipText,
     tooltipPosition,
@@ -55,6 +51,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const [focused, setFocused] = useState(false);
   const [localSelected, setLocalSelected] = useState(selected);
   const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Создаем кастомный портал для react-datepicker только если enablePortal = true
   useEffect(() => {
@@ -78,17 +75,15 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     return () => {
       // Очистка не нужна - портал используется всеми DatePicker'ами
     };
-  }, [enablePortal, propsClassNamePortalRoot]); // Добавил enablePortal в зависимости
+  }, [enablePortal, propsClassNamePortalRoot]);
 
   const _onCalendarOpen = () => {
     onCalendarOpen?.();
-    onFocus?.();
     setFocused(true);
   };
 
   const _onCalendarClose = () => {
     onCalendarClose?.();
-    onBlur?.();
     setFocused(false);
   };
 
@@ -110,7 +105,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.datePicker]: true,
-    [styles.datePicker_size]: size,
     [styles.datePicker_relative]: isRelative,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
@@ -188,7 +182,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const portalId = enablePortal && portalNode ? "custom-datepicker-portal" : undefined;
 
   return (
-    <div onMouseEnter={onMouseEnter} className={classNameRoot}>
+    <div className={classNameRoot}>
       {label && (
         <Label
           classNameRoot={classNameLabel}
@@ -211,8 +205,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
         maxDate={maxDate}
         dateFormat={dateFormat}
         locale={ru}
-        onBlur={onBlur}
-        onFocus={onFocus}
         required={required}
         name={name}
         onCalendarClose={_onCalendarClose}
@@ -258,9 +250,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
             variant={variant}
             placeholderText={placeholderText}
             dateFormatMask={dateFormatMask}
-            changed={changed}
             classNameRoot={classNameFieldRoot}
-            size={size}
             focused={focused}
             onMouseDownInput={onMouseDownInput}
             readOnlyInput={readOnlyInput}
@@ -268,6 +258,8 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
             isVisibleCalendarIcon={true}
             isVisibleErrorText={false}
             isVisibleLabelText={false}
+            onMouseEnter={onMouseEnter}
+            ref={inputRef}
           />
         }
       />

@@ -54,15 +54,6 @@ const meta: Meta<typeof DatePickerInput> = {
         defaultValue: { summary: '"outlined"' },
       },
     },
-    size: {
-      description: `Размер поля:\n- "md" - средний\n- "lg" - большой (по умолчанию)\n`,
-      control: { type: "select" },
-      options: ["md", "lg"],
-      table: {
-        type: { summary: "TDatePickerInputSize", detail: '"md" | "lg"' },
-        defaultValue: { summary: '"lg"' },
-      },
-    },
 
     // Состояния
     disabled: {
@@ -90,14 +81,6 @@ const meta: Meta<typeof DatePickerInput> = {
     },
     focused: {
       description: `Внешнее управление состоянием фокуса.\n`,
-      control: { type: "boolean" },
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
-    changed: {
-      description: `Визуальный индикатор изменения значения поля.\n`,
       control: { type: "boolean" },
       table: {
         type: { summary: "boolean" },
@@ -195,13 +178,6 @@ const meta: Meta<typeof DatePickerInput> = {
         type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
       },
     },
-    onBlur: {
-      description: `Callback при потере фокуса полем.\n`,
-      control: false,
-      table: {
-        type: { summary: "() => void" },
-      },
-    },
     onMouseDownInput: {
       description: `Callback при нажатии кнопки мыши на поле.\n`,
       control: false,
@@ -288,12 +264,10 @@ const [date, setDate] = useState("");
     dateFormatMask: "99.99.9999",
     placeholderText: "дд.мм.гггг",
     variant: "outlined",
-    size: "lg",
     disabled: false,
     error: "",
     readOnlyInput: false,
     focused: false,
-    changed: false,
     isVisibleCalendarIcon: false,
     isVisibleErrorText: true,
     isVisibleLabelText: true,

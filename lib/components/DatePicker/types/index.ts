@@ -23,6 +23,7 @@ export interface IDatePickerProps
     | "isVisibleErrorText"
     | "isVisibleLabelText"
     | "isVisibleCalendarIcon"
+    | "onMouseEnter"
   > {
   dateFormatMask?: string | (string | RegExp)[];
   dateFormat?: string;
@@ -42,7 +43,6 @@ export interface IDatePickerProps
   tooltipPosition?: ETooltipPosition;
   onCalendarOpen?: () => void;
   onCalendarClose?: () => void;
-  onFocus?: () => void;
   onMouseEnter?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   classNameRoot?: string;
   classNameDatePickerInputRoot?: string;

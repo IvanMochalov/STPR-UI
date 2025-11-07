@@ -12,24 +12,19 @@ export type TOnChangeDatePickerInput = (
 
 export type TDatePickerInputVariant = "outlined" | "filled";
 
-export type TDatePickerInputSize = "md" | "lg";
-
 export interface IDatePickerInputProps {
   value?: string;
   name?: string;
   onChange?: TOnChangeDatePickerInput;
   dateFormatMask?: string | (string | RegExp)[];
   variant?: TDatePickerInputVariant;
-  size?: TDatePickerInputSize;
   disabled?: boolean;
   error?: string;
   placeholderText?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onBlur?: () => void;
   onMouseDownInput?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   readOnlyInput?: boolean;
   focused?: boolean;
-  changed?: boolean;
   isVisibleCalendarIcon?: boolean;
   required?: boolean;
   isVisibleErrorText?: boolean;
@@ -41,4 +36,5 @@ export interface IDatePickerInputProps {
   classNameLabel?: string;
   classNameError?: string;
   classNameBaseTooltipRoot?: string;
+  onMouseEnter?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }

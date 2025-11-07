@@ -77,14 +77,6 @@
       border-style: solid;
       border-color: styles.$color-accent-blue;
       background-color: transparent;
-
-      &#{$control}_filled {
-        border-width: 2px;
-      }
-
-      &#{$control}_outlined {
-        border-width: 2px;
-      }
     }
 
     &_disabled {

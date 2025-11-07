@@ -1,8 +1,7 @@
 import cx from "clsx";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { forwardRef } from "react";
 import InputMask from "react-input-mask";
 
-import { useClickOutside } from "../../../src/hooks/useClickOutside.ts";
 import { CalendarIcon } from "../Icons";
 import { Label } from "../Label";
 import styles from "./DatePickerInput.module.scss";
@@ -16,18 +15,14 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     dateFormatMask = "99.99.9999",
     placeholderText = "дд.мм.гггг",
     variant = "outlined",
-    size = "lg",
-    disabled,
+    disabled = false,
     error,
     onClick,
-    onBlur,
     onMouseDownInput,
     readOnlyInput = false,
-    isVisibleCalendarIcon = false,
+    isVisibleCalendarIcon = true,
     isVisibleErrorText = true,
-    isVisibleLabelText = true,
     focused,
-    changed,
     required,
     classNameRoot: propsClassNameRoot,
     classNameError: propsClassNameError,
@@ -36,66 +31,28 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     label,
     infoTooltipText,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
+    onMouseEnter,
   } = props;
-
-  const [localFocused, setLocalFocused] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  useClickOutside(
-    [rootRef],
-    () => {
-      setLocalFocused(false);
-    },
-    localFocused,
-  );
-
-  const isEmpty = Boolean(value);
-
-  useEffect(() => {
-    if (!focused) {
-      setLocalFocused(false);
-    }
-  }, [focused]);
-
-  const onMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setLocalFocused(true);
-
-    if (onMouseDownInput) {
-      onMouseDownInput(event);
-    }
-  };
-
-  const onBlurContainer = () => {
-    setLocalFocused(false);
-  };
-
-  const onChangeMask = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = event;
-    const { value, name } = target;
-
-    if (onChange) {
-      onChange(event, { value, name });
-    }
-  };
 
   const classNameRoot = cx({
     [styles.datepickerInput]: true,
-    [styles[`datepickerInput_${variant}`]]: variant,
-    [styles.datepickerInput_active]: isEmpty,
-    [styles.datepickerInput_size]: size,
-    [styles.datepickerInput_disabled]: disabled,
-    [styles.datepickerInput_changed]: changed,
-    [styles.datepickerInput_focused]: focused || localFocused,
     [styles.datepickerInput_error]: Boolean(error),
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
-  const classNameInputRoot = cx({
-    [styles.datepickerInput__input]: true,
-    [styles.datepickerInput__input_clearStyles]: true,
+  const classNameContainer = cx({
+    [styles.datepickerInput__container]: true,
   });
 
-  const classNameIconRoot = cx({
+  const classNameControl = cx({
+    [styles.datepickerInput__control]: true,
+    [styles.datepickerInput__control_disabled]: disabled,
+    [styles[`datepickerInput__control_${variant}`]]: variant,
+    [styles.datepickerInput__control_withIcon]: isVisibleCalendarIcon,
+    [styles.datepickerInput__control_focused]: focused,
+  });
+
+  const classNameIcon = cx({
     [styles.datepickerInput__icon]: true,
   });
 
@@ -108,9 +65,24 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
   });
 
+  const handleContainerClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
+  const onChangeMask = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    const { value, name } = target;
+
+    if (onChange) {
+      onChange(event, { value, name });
+    }
+  };
+
   return (
-    <div>
-      {isVisibleLabelText && label && (
+    <div className={classNameRoot}>
+      {label && (
         <Label
           classNameRoot={classNameLabel}
           tooltipPosition={tooltipPosition}
@@ -121,18 +93,17 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
         />
       )}
       <div
-        ref={rootRef}
-        onMouseDown={onMouseDown}
-        onClick={onClick}
-        onBlur={onBlurContainer}
-        className={classNameRoot}
+        className={classNameContainer}
+        onMouseEnter={onMouseEnter}
+        onMouseDown={onMouseDownInput}
+        onClick={handleContainerClick}
+        ref={ref}
       >
         <InputMask
-          className={styles.datepickerInput}
+          className={classNameControl}
           alwaysShowMask={false}
           disabled={disabled}
           mask={dateFormatMask}
-          onBlur={onBlur}
           onMouseDown={(event) => {
             if (readOnlyInput) {
               event.preventDefault();
@@ -143,20 +114,16 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           value={value || ""}
           placeholder={placeholderText}
         >
-          {(inputProps) => {
-            return (
-              <input
-                {...inputProps}
-                ref={ref}
-                autoComplete={"off"}
-                placeholder={placeholderText}
-                disabled={disabled}
-                className={classNameInputRoot}
-              />
-            );
-          }}
+          {(inputProps) => (
+            <input
+              {...inputProps}
+              autoComplete="off"
+              placeholder={placeholderText}
+              disabled={disabled}
+            />
+          )}
         </InputMask>
-        {isVisibleCalendarIcon && <CalendarIcon className={classNameIconRoot} />}
+        {isVisibleCalendarIcon && <CalendarIcon className={classNameIcon} />}
       </div>
       {isVisibleErrorText && error && <div className={classNameError}>{error}</div>}
     </div>

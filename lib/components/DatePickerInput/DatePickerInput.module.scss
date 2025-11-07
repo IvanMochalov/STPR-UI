@@ -1,126 +1,121 @@
 @use "src/styles/global" as styles;
 
 .datepickerInput {
+  // Общие стили блока
   $block: &;
 
-  position: relative;
-  max-width: 100%;
-  min-width: 123px;
-  font-family: styles.$main-font;
-  font-weight: 400;
-  overflow: hidden;
-  font-size: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
 
-  @include styles.respond-to(sm) {
-    font-size: 18px;
-  }
-
-  &_filled {
-    border: 2px solid styles.$color-alice-blue;
-    background-color: styles.$color-alice-blue;
-  }
-
-  &_outlined {
-    background-color: transparent;
-    border: 1px solid styles.$color-secondary-blue-light-dark;
-  }
-
-  &:hover {
-    #{$block}__input {
-      color: styles.$color-black;
-    }
-
-    #{$block}__icon {
-      color: styles.$color-accent-blue;
-    }
-  }
-
-  &_active {
-    #{$block}__input {
-      color: styles.$color-black;
-    }
-  }
-
-  &_focused {
-    background-color: styles.$color-white;
-
-    & #{$block}__icon {
-      color: styles.$color-accent-blue;
-    }
-
-    &#{$block}_error:hover {
-      border: 1px solid styles.$color-accent-red;
-    }
-  }
-
-  &_changed {
-    border: 1px solid styles.$color-accent-red;
-  }
-
+  // Модификаторы
   &_error {
-    border: 1px solid styles.$color-accent-red;
-
-    &#{$block}_focused {
-      background-color: styles.$color-white;
-    }
-
-    #{$block}__icon {
+    & #{$block}__control {
+      border-color: styles.$color-accent-red;
       color: styles.$color-accent-red;
+
+      &:hover {
+        &::placeholder {
+          color: styles.$color-gray-1;
+        }
+      }
     }
   }
 
-  &_disabled {
-    pointer-events: none;
-    color: styles.$color-gray-1;
+  // Элементы
+  &__container {
+    position: relative;
+    width: 100%;
+  }
 
-    & #{$block}__icon {
-      color: styles.$color-gray-1;
-      cursor: default;
+  &__control {
+    $control: &;
+
+    width: 100%;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 16px;
+    color: styles.$color-black;
+    padding: 11.5px 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-width: 2px;
+    border-style: solid;
+
+    @include styles.respond-to(sm) {
+      font-size: 18px;
+      padding: 16.5px 16px;
     }
 
-    #{$block}__input {
+    &_filled {
+      border-color: styles.$color-alice-blue;
+      background-color: styles.$color-alice-blue;
+    }
+
+    &_outlined {
+      background-color: transparent;
+      border-color: styles.$color-secondary-blue-light-dark;
+    }
+
+    &_disabled {
+      pointer-events: none;
+      color: styles.$color-gray-1;
+    }
+
+    &_withIcon {
+      padding-right: 50px;
+    }
+
+    &_focused {
+      outline: none;
+      border-style: solid;
+      border-color: styles.$color-accent-blue;
+      background-color: transparent;
+
+      &:hover {
+        &::placeholder {
+          color: styles.$color-gray-1;
+        }
+      }
+    }
+
+    &::placeholder {
       color: styles.$color-gray-1;
     }
 
     &:hover {
-      border-color: styles.$color-gray-1;
-    }
-  }
-
-  &__input {
-    font-size: inherit;
-    font-weight: inherit;
-    font-family: inherit;
-    padding: 11.5px 44px 11.5px 16px;
-    color: styles.$color-gray-1;
-
-    &::placeholder {
-      color: currentColor;
+      &::placeholder {
+        color: styles.$color-black;
+      }
     }
 
-    @include styles.respond-to(sm) {
-      padding: 16.5px 44px 16.5px 16px;
+    &_disabled:hover::placeholder {
+      color: styles.$color-gray-1;
     }
 
-    &_clearStyles {
-      border: none !important;
-      height: 100%;
-      background-color: transparent !important;
+    &:focus,
+    &:focus-visible {
       outline: none;
-      width: 100%;
+      border-style: solid;
+      border-color: styles.$color-accent-blue;
+      background-color: transparent;
+
+      &:hover {
+        &::placeholder {
+          color: styles.$color-gray-1;
+        }
+      }
     }
   }
 
   &__icon {
-    position: absolute;
-    z-index: 1;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
     color: styles.$color-gray-1;
     cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
 
   &__error {
@@ -129,11 +124,6 @@
     font-weight: 400;
     font-size: 12px;
     color: styles.$color-accent-red;
-
-    &_absolutePosition {
-      position: absolute;
-      top: 100%;
-    }
 
     @include styles.respond-to(sm) {
       font-size: 14px;

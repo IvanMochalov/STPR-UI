@@ -11,11 +11,7 @@ import type { TContextMenuOption } from "./components/ContextMenu";
 import { ContextMenu } from "./components/ContextMenu";
 import type { TOnChangeDatePicker } from "./components/DatePicker";
 import { DatePicker } from "./components/DatePicker";
-import type {
-  IDatePickerInputProps,
-  TDatePickerInputSize,
-  TOnChangeDatePickerInput,
-} from "./components/DatePickerInput";
+import type { IDatePickerInputProps, TOnChangeDatePickerInput } from "./components/DatePickerInput";
 import { DatePickerInput } from "./components/DatePickerInput";
 import { DefaultDropzone } from "./components/DefaultDropzone";
 import { Dropdown } from "./components/Dropdown";
@@ -82,7 +78,6 @@ export {
   Table,
   Tabs,
   TContextMenuOption,
-  TDatePickerInputSize,
   Text,
   Textarea,
   TextWithLabel,
