@@ -66,6 +66,8 @@
       padding-right: 50px;
     }
 
+    &:focus,
+    &:focus-visible,
     &_focused {
       outline: none;
       border-style: solid;
@@ -76,6 +78,10 @@
         &::placeholder {
           color: styles.$color-gray-1;
         }
+      }
+
+      ~ #{$block}__icon {
+        color: styles.$color-accent-blue;
       }
     }
 
@@ -91,20 +97,6 @@
 
     &_disabled:hover::placeholder {
       color: styles.$color-gray-1;
-    }
-
-    &:focus,
-    &:focus-visible {
-      outline: none;
-      border-style: solid;
-      border-color: styles.$color-accent-blue;
-      background-color: transparent;
-
-      &:hover {
-        &::placeholder {
-          color: styles.$color-gray-1;
-        }
-      }
     }
   }
 
