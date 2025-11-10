@@ -47,5 +47,6 @@ export default defineConfig({
       include: ["lib"],
       rollupTypes: true,
     }),
+    libInjectCss(),
   ],
 });
