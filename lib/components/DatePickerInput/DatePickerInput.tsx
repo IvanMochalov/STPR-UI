@@ -97,7 +97,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
         onMouseEnter={onMouseEnter}
         onMouseDown={onMouseDownInput}
         onClick={handleContainerClick}
-        ref={ref}
       >
         <InputMask
           className={classNameControl}
@@ -117,6 +116,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           {(inputProps) => (
             <input
               {...inputProps}
+              ref={ref}
               autoComplete="off"
               placeholder={placeholderText}
               disabled={disabled}
