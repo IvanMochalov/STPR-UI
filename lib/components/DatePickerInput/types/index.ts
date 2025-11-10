@@ -24,7 +24,6 @@ export interface IDatePickerInputProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onMouseDownInput?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   readOnlyInput?: boolean;
-  focused?: boolean;
   isVisibleCalendarIcon?: boolean;
   required?: boolean;
   isVisibleErrorText?: boolean;

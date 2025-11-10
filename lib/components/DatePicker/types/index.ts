@@ -15,7 +15,6 @@ export interface IDatePickerProps
   extends Omit<
     IDatePickerInputProps,
     | "classNameRoot"
-    | "focused"
     | "onClick"
     | "value"
     | "onChange"

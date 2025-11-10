@@ -48,10 +48,8 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     classNamePortalRoot: propsClassNamePortalRoot,
   } = props;
 
-  const [focused, setFocused] = useState(false);
   const [localSelected, setLocalSelected] = useState(selected);
   const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   // Создаем кастомный портал для react-datepicker только если enablePortal = true
   useEffect(() => {
@@ -79,12 +77,10 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
 
   const _onCalendarOpen = () => {
     onCalendarOpen?.();
-    setFocused(true);
   };
 
   const _onCalendarClose = () => {
     onCalendarClose?.();
-    setFocused(false);
   };
 
   const _onChange: (
@@ -112,7 +108,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const datePickerRef = useRef<BaseDatePicker>(null);
 
   const classNameFieldRoot = cx({
-    [styles.datePicker__customInput]: true,
     ...(propsClassNameDatePickerInputRoot && { [propsClassNameDatePickerInputRoot]: true }),
   });
 
@@ -251,7 +246,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
             placeholderText={placeholderText}
             dateFormatMask={dateFormatMask}
             classNameRoot={classNameFieldRoot}
-            focused={focused}
             onMouseDownInput={onMouseDownInput}
             readOnlyInput={readOnlyInput}
             disabled={disabled}
@@ -259,7 +253,6 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
             isVisibleErrorText={false}
             isVisibleLabelText={false}
             onMouseEnter={onMouseEnter}
-            ref={inputRef}
           />
         }
       />

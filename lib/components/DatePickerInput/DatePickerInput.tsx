@@ -22,7 +22,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     readOnlyInput = false,
     isVisibleCalendarIcon = true,
     isVisibleErrorText = true,
-    focused,
     required,
     classNameRoot: propsClassNameRoot,
     classNameError: propsClassNameError,
@@ -49,7 +48,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
     [styles.datepickerInput__control_disabled]: disabled,
     [styles[`datepickerInput__control_${variant}`]]: variant,
     [styles.datepickerInput__control_withIcon]: isVisibleCalendarIcon,
-    [styles.datepickerInput__control_focused]: focused,
   });
 
   const classNameIcon = cx({
@@ -74,6 +72,10 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
   const onChangeMask = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     const { value, name } = target;
+
+    if (readOnlyInput) {
+      return;
+    }
 
     if (onChange) {
       onChange(event, { value, name });
@@ -103,11 +105,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           alwaysShowMask={false}
           disabled={disabled}
           mask={dateFormatMask}
-          onMouseDown={(event) => {
-            if (readOnlyInput) {
-              event.preventDefault();
-            }
-          }}
           onChange={onChangeMask}
           name={name}
           value={value || ""}

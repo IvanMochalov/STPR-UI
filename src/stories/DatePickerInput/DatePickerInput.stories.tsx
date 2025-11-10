@@ -79,14 +79,6 @@ const meta: Meta<typeof DatePickerInput> = {
         defaultValue: { summary: "false" },
       },
     },
-    focused: {
-      description: `Внешнее управление состоянием фокуса.\n`,
-      control: { type: "boolean" },
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
 
     // Видимость элементов
     isVisibleErrorText: {
@@ -267,7 +259,6 @@ const [date, setDate] = useState("");
     disabled: false,
     error: "",
     readOnlyInput: false,
-    focused: false,
     isVisibleCalendarIcon: false,
     isVisibleErrorText: true,
     isVisibleLabelText: true,
