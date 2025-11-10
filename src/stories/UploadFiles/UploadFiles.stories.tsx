@@ -120,7 +120,7 @@ const meta: Meta<typeof UploadFiles> = {
           summary: "Accept",
           detail: `{
   // Изображения
-  "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"],
+  "image": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"],
   // PDF документы
   "application/pdf": [".pdf"],
   // Word документы
@@ -258,7 +258,7 @@ const [formData, setFormData] = useState({
   name="images"
   files={formData.images}
   onDropFiles={(acceptedFiles, name) => setFormData(prev => {...prev, [name]: acceptedFiles})}
-  accept={{ "image/*": [".jpg", ".png", ".gif"] }}
+  accept={{ "image": [".jpg", ".png", ".gif"] }}
   placeholder="Загрузите изображения"
   variant="dropzone"
   multiple={true}
@@ -339,7 +339,7 @@ export const DropzoneVariant: Story = {
   args: {
     placeholder: "Перетащите файлы сюда или нажмите для выбора",
     variant: "dropzone",
-    accept: { "image/*": [".jpg", ".jpeg", ".png", ".gif"] },
+    accept: { image: [".jpg", ".jpeg", ".png", ".gif"] },
     infoTooltipText: "Поддерживаются изображения JPG, PNG, GIF. Максимальный размер 5MB",
   },
 };
@@ -442,7 +442,7 @@ export const ImageFiles: Story = {
     variant: "dropzone",
     multiple: true,
     accept: {
-      "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+      image: [".jpg", ".jpeg", ".png", ".gif", ".webp"],
     },
     infoTooltipText: "Поддерживаются JPG, PNG, GIF, WebP. Максимальный размер 5MB",
   },
@@ -606,7 +606,7 @@ export const DifferentFileTypes: Story = {
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
       "application/vnd.ms-excel": [".xls"],
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
-      "image/*": [".jpg", ".jpeg", ".png", ".gif"],
+      image: [".jpg", ".jpeg", ".png", ".gif"],
       "text/plain": [".txt"],
     },
     infoTooltipText: "Поддерживаются документы, таблицы, изображения и текстовые файлы",
