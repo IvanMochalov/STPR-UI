@@ -120,7 +120,11 @@ const meta: Meta<typeof UploadFiles> = {
           summary: "Accept",
           detail: `{
   // Изображения
-  "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"],
+  "image/jpeg": [".jpg", ".jpeg"],
+  "image/png": [".png"],
+  "image/gif": [".gif"],
+  "image/webp": [".webp"],
+  "image/svg+xml": [".svg"],
   // PDF документы
   "application/pdf": [".pdf"],
   // Word документы
@@ -144,7 +148,7 @@ const meta: Meta<typeof UploadFiles> = {
   "application/xml": [".xml"]
 }`,
         },
-        defaultValue: { summary: "undefined" }, // Добавляем информацию о значении по умолчанию
+        defaultValue: { summary: "undefined" },
       },
     },
     files: {
@@ -258,7 +262,11 @@ const [formData, setFormData] = useState({
   name="images"
   files={formData.images}
   onDropFiles={(acceptedFiles, name) => setFormData(prev => {...prev, [name]: acceptedFiles})}
-  accept={{ "image/*": [".jpg", ".png", ".gif"] }}
+  accept={{ 
+    "image/jpeg": [".jpg", ".jpeg"],
+    "image/png": [".png"],
+    "image/gif": [".gif"]
+  }}
   placeholder="Загрузите изображения"
   variant="dropzone"
   multiple={true}
@@ -339,7 +347,11 @@ export const DropzoneVariant: Story = {
   args: {
     placeholder: "Перетащите файлы сюда или нажмите для выбора",
     variant: "dropzone",
-    accept: { "image/*": [".jpg", ".jpeg", ".png", ".gif"] },
+    accept: {
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/png": [".png"],
+      "image/gif": [".gif"],
+    },
     infoTooltipText: "Поддерживаются изображения JPG, PNG, GIF. Максимальный размер 5MB",
   },
 };
@@ -442,7 +454,10 @@ export const ImageFiles: Story = {
     variant: "dropzone",
     multiple: true,
     accept: {
-      "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/png": [".png"],
+      "image/gif": [".gif"],
+      "image/webp": [".webp"],
     },
     infoTooltipText: "Поддерживаются JPG, PNG, GIF, WebP. Максимальный размер 5MB",
   },
@@ -606,7 +621,9 @@ export const DifferentFileTypes: Story = {
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
       "application/vnd.ms-excel": [".xls"],
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
-      "image/*": [".jpg", ".jpeg", ".png", ".gif"],
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/png": [".png"],
+      "image/gif": [".gif"],
       "text/plain": [".txt"],
     },
     infoTooltipText: "Поддерживаются документы, таблицы, изображения и текстовые файлы",
