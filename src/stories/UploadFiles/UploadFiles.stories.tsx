@@ -454,12 +454,9 @@ export const ImageFiles: Story = {
     variant: "dropzone",
     multiple: true,
     accept: {
-      "image/jpeg": [".jpg", ".jpeg"],
-      "image/png": [".png"],
-      "image/gif": [".gif"],
-      "image/webp": [".webp"],
+      "image/png": [".jpg", ".jpeg", ".png"],
     },
-    infoTooltipText: "Поддерживаются JPG, PNG, GIF, WebP. Максимальный размер 5MB",
+    infoTooltipText: "Поддерживаются JPG, JPEG, PNG. Максимальный размер 5MB",
   },
 };
 
