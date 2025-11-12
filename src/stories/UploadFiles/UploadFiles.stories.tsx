@@ -198,6 +198,13 @@ const meta: Meta<typeof UploadFiles> = {
         type: { summary: "string" },
       },
     },
+    classNameBaseInfoTooltipRoot: {
+      description: "Дополнительный CSS-класс для информационного элемента тултипа\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
   },
   parameters: {
     layout: "fullscreen",

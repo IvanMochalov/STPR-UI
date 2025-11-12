@@ -26,10 +26,11 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     files = [],
     infoTooltipText,
     tooltipPosition = ETooltipPosition.TopRight,
-    classNameRoot: propsClassNameRoot,
-    classNameLabel: propsClassNameLabel,
     loading,
     error,
+    classNameRoot: propsClassNameRoot,
+    classNameLabel: propsClassNameLabel,
+    classNameBaseInfoTooltipRoot: propsClassNameBaseInfoTooltipRoot,
   } = props;
 
   const [errors, setErrors] = useState<Array<TLocalErrorFile>>([]);
@@ -94,6 +95,9 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   });
   const classNameLabel = cx({
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
+  });
+  const classNameBaseInfoTooltipRoot = cx({
+    ...(propsClassNameBaseInfoTooltipRoot && { [propsClassNameBaseInfoTooltipRoot]: true }),
   });
 
   const deleteFile = (fileName: string, isError?: boolean) => {
@@ -263,6 +267,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
               position={tooltipPosition}
               text={infoTooltipText}
               classNameTooltip={styles.spUploadFiles__tooltip}
+              classNameBaseTooltipRoot={classNameBaseInfoTooltipRoot}
             />
           )
         )}

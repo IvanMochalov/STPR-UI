@@ -24,6 +24,7 @@ export interface UploadFilesProps {
   classNameLabel?: string;
   loading?: boolean;
   error?: string;
+  classNameBaseInfoTooltipRoot?: string;
 }
 
 export type TLocalErrorFile = {
