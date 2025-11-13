@@ -3,7 +3,7 @@
   "description": "UI-kit package",
   "author": "Mochalov Ivan",
   "license": "MIT",
-  "version": "0.5.80",
+  "version": "0.5.81",
   "type": "module",
   "files": [
     "dist"
