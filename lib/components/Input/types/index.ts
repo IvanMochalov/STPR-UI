@@ -7,7 +7,8 @@ export type TInputVariant = "outlined" | "filled";
 export interface InputProps {
   name: string;
   variant?: TInputVariant;
-  onChange: TOnChangeInput;
+  onChange?: TOnChangeInput;
+  onBlur?: TOnBlurInput;
   value?: string;
   error?: string;
   isAbsolutePositionError?: boolean;
@@ -33,6 +34,14 @@ export interface InputProps {
 
 export type TOnChangeInput = (
   event: React.ChangeEvent<HTMLInputElement>,
+  data: {
+    name: string;
+    value: string | null;
+  },
+) => void;
+
+export type TOnBlurInput = (
+  event: React.FocusEvent<HTMLInputElement>,
   data: {
     name: string;
     value: string | null;

@@ -11,6 +11,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
   const {
     value,
     onChange,
+    onBlur,
     label,
     variant = "outlined",
     disabled = false,
@@ -68,7 +69,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
   });
 
   const onClear = (event: never) => {
-    onChange(event, { name, value: "" });
+    onChange?.(event, { name, value: "" });
   };
 
   // Для задания паттернов ввода
@@ -79,7 +80,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       return;
     }
 
-    onChange(event, { value, name });
+    onChange?.(event, { value, name });
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+
+    onBlur?.(event, { name, value: value });
   };
 
   const getInput = () => {
@@ -89,6 +96,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
           className={classNameControl}
           alwaysShowMask={alwaysShowMask}
           onChange={_onChange}
+          onBlur={handleBlur}
           disabled={disabled}
           value={value}
           mask={mask}
@@ -110,6 +118,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
         placeholder={placeholder}
         disabled={disabled}
         onChange={_onChange}
+        onBlur={handleBlur}
         title={isVisibleDefaultTitle ? value : undefined}
         value={value}
         name={name}
