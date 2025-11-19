@@ -6,7 +6,7 @@ import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { MAX_HEIGHT_SELECT_LIST } from "./constants";
 import styles from "./Select.module.scss";
-import { SelectProps, TOnChangeSelect } from "./types";
+import { SelectProps, TOnBlurSelect, TOnChangeSelect } from "./types";
 
 export const Select: React.FC<SelectProps> = (props) => {
   const {
@@ -16,6 +16,7 @@ export const Select: React.FC<SelectProps> = (props) => {
     name,
     variant = "outlined",
     onChange,
+    onBlur,
     onMouseEnter,
     error,
     label,
@@ -75,9 +76,15 @@ export const Select: React.FC<SelectProps> = (props) => {
       : options;
 
   const handleSelect: TOnChangeSelect = (event, data) => {
-    onChange(event, { value: data.value, name });
+    onChange?.(event, { value: data.value, name });
     setIsOpen(false);
     setSearchQuery(""); // сбрасываем поиск после выбора
+
+    handleBlur({ value: data.value, name });
+  };
+
+  const handleBlur: TOnBlurSelect = ({ name, value }) => {
+    onBlur?.({ name, value });
   };
 
   const handleToggle = () => {

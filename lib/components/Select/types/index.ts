@@ -17,7 +17,8 @@ export interface SelectProps {
   variant?: TSelectVariant;
   value?: string | null | number;
   name: string;
-  onChange: TOnChangeSelect;
+  onChange?: TOnChangeSelect;
+  onBlur?: TOnBlurSelect;
   onMouseEnter?: () => void;
   error?: string;
   label?: string;
@@ -37,6 +38,8 @@ export interface SelectProps {
 }
 
 export type TOnChangeSelect = (
-  event: React.MouseEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>,
+  event: React.MouseEvent<HTMLDivElement>,
   data: { value: string | null | number; name: string },
 ) => void;
+
+export type TOnBlurSelect = (data: { value: string | null | number; name: string }) => void;

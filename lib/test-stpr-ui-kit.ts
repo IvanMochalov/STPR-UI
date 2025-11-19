@@ -18,7 +18,7 @@ import { Dropdown } from "./components/Dropdown";
 import { EllipsisTextWithTooltip } from "./components/EllipsisTextWithTooltip";
 import { Form } from "./components/Form";
 import { EIconName, Icon } from "./components/Icons";
-import type { TOnChangeInput, TOnBlurInput } from "./components/Input";
+import type { TOnBlurInput, TOnChangeInput } from "./components/Input";
 import { Input } from "./components/Input";
 import { Label } from "./components/Label";
 import { Layer } from "./components/Layer";
@@ -27,7 +27,7 @@ import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
 import type { ProgressWrapperProps } from "./components/ProgressWrapper";
 import { ProgressWrapper, useAnimatedValue } from "./components/ProgressWrapper";
-import type { TOnChangeSelect, TSelectOption } from "./components/Select";
+import type { TOnBlurSelect, TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
@@ -81,11 +81,12 @@ export {
   Text,
   Textarea,
   TextWithLabel,
+  TOnBlurInput,
+  TOnBlurSelect,
   TOnChangeCheckbox,
   TOnChangeDatePicker,
   TOnChangeDatePickerInput,
   TOnChangeInput,
-  TOnBlurInput,
   TOnChangeSelect,
   TOnChangeTextarea,
   Tooltip,
