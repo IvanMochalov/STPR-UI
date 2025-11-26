@@ -10,7 +10,7 @@ export type TSelectOption = {
 
 export type TSelectVariant = "outlined" | "filled";
 
-export interface SelectProps {
+export interface ISelectProps {
   options: TSelectOption[];
   isAbsolutePositionError?: boolean;
   placeholder?: string;

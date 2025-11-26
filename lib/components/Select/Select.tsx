@@ -6,9 +6,9 @@ import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { MAX_HEIGHT_SELECT_LIST } from "./constants";
 import styles from "./Select.module.scss";
-import { SelectProps, TOnBlurSelect, TOnChangeSelect } from "./types";
+import { ISelectProps, TOnBlurSelect, TOnChangeSelect } from "./types";
 
-export const Select: React.FC<SelectProps> = (props) => {
+export const Select: React.FC<ISelectProps> = (props) => {
   const {
     options = [],
     placeholder = "Выберите из списка...",

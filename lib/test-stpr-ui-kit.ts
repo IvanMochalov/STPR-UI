@@ -27,7 +27,12 @@ import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
 import type { ProgressWrapperProps } from "./components/ProgressWrapper";
 import { ProgressWrapper, useAnimatedValue } from "./components/ProgressWrapper";
-import type { TOnBlurSelect, TOnChangeSelect, TSelectOption } from "./components/Select";
+import type {
+  ISelectProps,
+  TOnBlurSelect,
+  TOnChangeSelect,
+  TSelectOption,
+} from "./components/Select";
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
@@ -65,6 +70,7 @@ export {
   IInputProps,
   InfoTooltip,
   Input,
+  ISelectProps,
   Label,
   Layer,
   MediaContext,

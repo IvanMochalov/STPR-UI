@@ -1,2 +1,2 @@
 export { Select } from "./Select";
-export type { SelectProps, TOnBlurSelect, TOnChangeSelect, TSelectOption } from "./types";
+export type { ISelectProps, TOnBlurSelect, TOnChangeSelect, TSelectOption } from "./types";
