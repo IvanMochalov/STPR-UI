@@ -4,7 +4,7 @@ import { ETooltipPosition } from "../../Tooltip";
 
 export type TInputVariant = "outlined" | "filled";
 
-export interface InputProps {
+export interface IInputProps {
   name: string;
   variant?: TInputVariant;
   onChange?: TOnChangeInput;

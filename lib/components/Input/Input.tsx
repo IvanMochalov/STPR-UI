@@ -5,9 +5,9 @@ import InputMask from "react-input-mask";
 import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import styles from "./Input.module.scss";
-import { InputProps } from "./types";
+import { IInputProps } from "./types";
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
   const {
     value,
     onChange,

@@ -1,2 +1,2 @@
 export { Input } from "./Input";
-export type { InputProps, TOnBlurInput, TOnChangeInput } from "./types";
+export type { IInputProps, TOnBlurInput, TOnChangeInput } from "./types";

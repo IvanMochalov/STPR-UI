@@ -18,7 +18,7 @@ import { Dropdown } from "./components/Dropdown";
 import { EllipsisTextWithTooltip } from "./components/EllipsisTextWithTooltip";
 import { Form } from "./components/Form";
 import { EIconName, Icon } from "./components/Icons";
-import type { TOnBlurInput, TOnChangeInput } from "./components/Input";
+import type { IInputProps, TOnBlurInput, TOnChangeInput } from "./components/Input";
 import { Input } from "./components/Input";
 import { Label } from "./components/Label";
 import { Layer } from "./components/Layer";
@@ -62,6 +62,7 @@ export {
   Form,
   Icon,
   IDatePickerInputProps,
+  IInputProps,
   InfoTooltip,
   Input,
   Label,
