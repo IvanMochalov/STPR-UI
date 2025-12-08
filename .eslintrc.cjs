@@ -30,7 +30,7 @@ module.exports = {
     "simple-import-sort",
     "prettier",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ["dist", ".eslintrc.cjs", "storybook-static/**/*"],
   rules: {
     "prettier/prettier": ["error", { endOfLine: "crlf" }],
     "react/react-in-jsx-scope": "off",
