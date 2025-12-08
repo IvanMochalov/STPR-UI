@@ -22,7 +22,7 @@ export const useModal = (params: UseModalParams = {}) => {
   };
 
   const onCloseModal = (
-    _event: React.MouseEvent<HTMLButtonElement>,
+    _event?: React.MouseEvent<HTMLButtonElement>,
     closeData?: { [name: string]: boolean | NonNullable<unknown> },
   ) => {
     if (closeData && Object.keys(closeData).length > 0) {
