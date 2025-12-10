@@ -119,12 +119,18 @@
     margin: auto;
   }
 
-  &__list {
-    font-weight: 400;
+  &__listWrapper {
     position: absolute;
     width: 100%;
-    z-index: 15;
+    background-color: styles.$color-white;
+    border-radius: 4px;
     box-shadow: 1px 1px 26px 0 styles.$color-rgba-19-15;
+  }
+
+  &__list {
+    font-weight: 400;
+    width: 100%;
+    z-index: 15;
     background-color: styles.$color-white;
 
     &_scrollable {
@@ -179,6 +185,7 @@
 
   // Новые стили для поиска
   &__search {
+    z-index: 16;
     position: relative;
     padding: 8px 16px;
     border-bottom: 1px solid styles.$color-alice-blue;

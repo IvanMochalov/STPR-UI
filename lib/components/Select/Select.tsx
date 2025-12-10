@@ -193,45 +193,46 @@ export const Select: React.FC<ISelectProps> = (props) => {
 
   const renderOptionList = () => {
     return (
-      <div
-        className={classNameSelectList}
-        style={isScrollableList ? { maxHeight: `${maxHeightList}px` } : {}}
-      >
+      <div className={styles.spSelect__listWrapper}>
         {renderSearchField()}
+        <div
+          className={classNameSelectList}
+          style={isScrollableList ? { maxHeight: `${maxHeightList}px` } : {}}
+        >
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option) => {
+              const isSelectedOption = option.value === value;
 
-        {filteredOptions.length > 0 ? (
-          filteredOptions.map((option) => {
-            const isSelectedOption = option.value === value;
-
-            return (
-              <div
-                key={option.value}
-                className={cx({
-                  [styles.spSelect__option]: true,
-                })}
-                onClick={(event) => {
-                  handleSelect(event, {
-                    value: option.value,
-                    name,
-                  });
-                }}
-              >
-                {option.label}
-                {isSelectedOption && (
-                  <Icon name={EIconName.Check} className={classNameSelectIcon} />
-                )}
-              </div>
-            );
-          })
-        ) : (
-          <div
-            className={cx({
-              [styles.spSelect__emptyOptions]: true,
-            })}
-          >
-            {searchQuery ? "Ничего не найдено" : "Нет доступных вариантов выбора..."}
-          </div>
-        )}
+              return (
+                <div
+                  key={option.value}
+                  className={cx({
+                    [styles.spSelect__option]: true,
+                  })}
+                  onClick={(event) => {
+                    handleSelect(event, {
+                      value: option.value,
+                      name,
+                    });
+                  }}
+                >
+                  {option.label}
+                  {isSelectedOption && (
+                    <Icon name={EIconName.Check} className={classNameSelectIcon} />
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <div
+              className={cx({
+                [styles.spSelect__emptyOptions]: true,
+              })}
+            >
+              {searchQuery ? "Ничего не найдено" : "Нет доступных вариантов выбора..."}
+            </div>
+          )}
+        </div>
       </div>
     );
   };
