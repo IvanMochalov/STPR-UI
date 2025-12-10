@@ -29,7 +29,6 @@ export const Layer: React.FC<LayerProps> = (props) => {
     const body = document.body;
 
     // Блокируем скролл и фиксируем позицию
-    body.style.position = "fixed";
     body.style.top = `-${scrollY}px`;
     body.style.left = "0";
     body.style.right = "0";
