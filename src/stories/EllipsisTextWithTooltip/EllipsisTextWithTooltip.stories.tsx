@@ -115,6 +115,15 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
         defaultValue: { summary: "false" },
       },
     },
+    isInheritFontStyles: {
+      description: `Наследовать стили шрифта от родительского элемента.
+Если true, компонент будет использовать наследуемые значения font-size, font-weight, font-style и font-family вместо стандартных стилей.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     defaultTooltipPosition: {
       description: `Позиция тултипа относительно текста. Определяет где будет отображаться тултип при наведении.\n`,
       control: { type: "select" },
@@ -137,6 +146,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
 - **Автоматическая обрезка** - всегда включает \`isEllipsis=true\` для текста
 - **Производительность** - проверка переполнения происходит только при изменении текста
 - **Фиксированный конец текста** - опция \`isWithFixedEnd\` позволяет отображать окончание текста (например, расширение файла) при обрезке
+- **Наследование стилей шрифта** - опция \`isInheritFontStyles\` позволяет компоненту наследовать стили шрифта от родительского элемента
 
 ## Поведение:
 - Компонент автоматически определяет, помещается ли текст в доступную ширину
@@ -144,6 +154,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
 - Если текст полностью помещается, тултип не отображается даже при наведении
 - При \`isWithFixedEnd=true\` окончание текста (последнее слово или расширение файла) отображается после многоточия
 - Поддерживает все типографические стили родительского Text компонента
+- При \`isInheritFontStyles=true\` компонент использует наследуемые значения родителя \`font-size\`, \`font-weight\`, \`font-style\` и \`font-family\`
 
 ## Рекомендации по использованию:
 Идеально подходит для таблиц, карточек и любых контейнеров с ограниченной шириной, где текст может быть обрезан.
@@ -170,6 +181,17 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
   />
 </div>
 \`\`\`
+
+### С наследуемыми стилями шрифта
+
+\`\`\`jsx
+<div style={{ width: "200px", fontSize: "18px", fontWeight: "bold" }}>
+  <EllipsisTextWithTooltip 
+    text="Текст с наследуемыми стилями шрифта"
+    isInheritFontStyles={true}
+  />
+</div>
+\`\`\`
         `,
       },
     },
@@ -187,6 +209,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
     isCursorPointer: false,
     isCursorPointerByOnClick: true,
     isWithFixedEnd: false,
+    isInheritFontStyles: false,
   },
   render: (args) => {
     return (
@@ -216,6 +239,14 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
           isWithFixedEnd={true}
           text={`${args.text}, with long text and fixed end!`}
         />
+
+        <div style={{ fontSize: "18px", fontWeight: "bold" }}>
+          <EllipsisTextWithTooltip
+            {...args}
+            isInheritFontStyles={true}
+            text={`${args.text} with inherited font styles`}
+          />
+        </div>
       </div>
     );
   },
@@ -289,14 +320,26 @@ export const ClickableWithTooltip: Story = {
 };
 
 export const CustomColor: Story = {
-  name: "Custom Color with Tooltip",
+  name: "Custom color",
   args: {
-    text: "Текст с кастомным цветом который будет обрезан",
-    color: "#ff6b6b",
-    type: "p1",
+    text: "Текст с кастомным цветом",
+    color: "#ff0000",
   },
   render: (args) => (
     <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+      <EllipsisTextWithTooltip {...args} />
+    </div>
+  ),
+};
+
+export const InheritFontStyles: Story = {
+  name: "Inherit font styles",
+  args: {
+    text: "Текст с наследуемыми стилями шрифта",
+    isInheritFontStyles: true,
+  },
+  render: (args) => (
+    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px", fontSize: "18px" }}>
       <EllipsisTextWithTooltip {...args} />
     </div>
   ),

@@ -11,6 +11,7 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
   const {
     text,
     isWithFixedEnd = false,
+    isInheritFontStyles = false,
     classNameRoot: propsClassNameRoot,
     classNameTooltipRoot: propsClassNameTooltipRoot,
     classNameBaseTooltipContentRoot,
@@ -46,6 +47,7 @@ export const EllipsisTextWithTooltip: React.FC<EllipsisTextWithTooltipProps> = (
 
   const classNameRoot = cx({
     [styles.ellipsisTextWithTooltip]: true,
+    [styles.ellipsisTextWithTooltip_inheritFontStyles]: isInheritFontStyles,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 

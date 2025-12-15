@@ -5,6 +5,13 @@
   width: 100%;
   position: relative;
 
+  &_inheritFontStyles {
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+  }
+
   &__tooltip {
     width: 100%;
   }

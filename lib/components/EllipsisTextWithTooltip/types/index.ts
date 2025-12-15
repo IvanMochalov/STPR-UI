@@ -12,4 +12,5 @@ export interface EllipsisTextWithTooltipProps
   classNameTooltipRoot?: string;
   classNameBaseTooltipRoot?: string;
   isWithFixedEnd?: boolean;
+  isInheritFontStyles?: boolean;
 }
