@@ -159,6 +159,7 @@
   &__option {
     cursor: pointer;
     position: relative;
+    white-space: pre-line;
     @include styles.option-default;
 
     &:hover {
