@@ -59,13 +59,12 @@
   &__header {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-
+    gap: 8px;
     @include styles.transition-all-ease-in-out(300ms);
   }
 
   &__name {
-    width: calc(100% - 20px);
+    width: 100%;
     font-family: styles.$title-font;
     line-height: 120%;
     font-weight: 500;
@@ -97,10 +96,11 @@
   }
 
   &__icon {
-    cursor: pointer;
-    color: styles.$color-accent-blue;
-    width: 16px;
+    width: 24px;
     height: 24px;
+    flex-shrink: 0;
+    color: styles.$color-accent-blue;
+    cursor: pointer;
 
     &_hidden {
       visibility: hidden;
