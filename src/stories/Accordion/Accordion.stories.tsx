@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   Accordion,
   Checkbox,
+  EIconName,
   Form,
   Input,
   Select,
@@ -69,6 +70,15 @@ const meta: Meta<typeof Accordion> = {
           summary: "TAccordionLevel",
           detail: "1 | 2",
         },
+      },
+    },
+    expandIconName: {
+      description:
+        "Имя иконки для раскрытия/сворачивания аккордеона. Использует компонент Icon из библиотеки\n",
+      control: { type: "select" },
+      options: Object.values(EIconName),
+      table: {
+        defaultValue: { summary: "EIconName.ChevronDown" },
       },
     },
     onOpen: {
@@ -139,8 +149,15 @@ const meta: Meta<typeof Accordion> = {
 ## Комбинации noBorder и noPadding:
 
 - \`noBorder={true}\` - убирает все границы
-- \`noBorder={true} noPadding={true}\` - добавляется нижняя границу и отступ
+- \`noBorder={true} noPadding={true}\` - добавляется нижняя граница и отступ
 - \`noBorder={false} noPadding={true}\` - только граница без внутренних отступов
+
+## Дополнительные возможности:
+
+- Поддержка кастомных иконок через \`expandIconName\`
+- Возможность отключения анимации с помощью CSS-переменных
+- Поддержка различных уровней вложенности заголовков
+- Адаптивная верстка для мобильных устройств
 
 ## Базовое использование
 
@@ -149,6 +166,18 @@ const meta: Meta<typeof Accordion> = {
   <div>
     Какое то содержимое раскрывающегося блока
   </div>
+</Accordion>
+\`\`\`
+
+## Пример с формой
+
+\`\`\`jsx
+<Accordion name="Форма с полями">
+  <Form>
+    <Input name="username" label="Имя пользователя" />
+    <Input name="email" label="Email" type="email" />
+    <Checkbox name="subscribe" label="Подписаться на рассылку" />
+  </Form>
 </Accordion>
 \`\`\`
         `,
@@ -255,98 +284,37 @@ export const WithForm: Story = {
       }));
     };
 
-    const handleSelectChange: TOnChangeSelect = (_event, data) => {
+    const handleSelectChange: TOnChangeSelect = (_event, { name, value }) => {
       setFormData((prevState) => ({
         ...prevState,
-        [data.name]: data.value || "",
+        [name]: value,
       }));
     };
 
     return (
-      <Accordion name={args.name}>
-        <Form addMargin={true} fullWidth={true} withSeparator={true}>
-          <Checkbox
-            label={"Включить проверку"}
-            name={"is"}
-            checked={formData.is}
-            onChange={handleCheckboxChange}
-          />
+      <Accordion {...args}>
+        <Form>
           <Input
-            label={"Наименование адреса"}
-            name={"addressName"}
+            name="addressName"
+            label="Название адреса"
             value={formData.addressName}
             onChange={handleInputChange}
           />
           <Select
-            label={"Округ"}
+            name="okrug"
+            label="Округ"
             options={OKRUG_OPTIONS}
-            name={"okrug"}
             value={formData.okrug}
             onChange={handleSelectChange}
           />
+          <Checkbox
+            name="is"
+            label="Является основным адресом"
+            checked={formData.is}
+            onChange={handleCheckboxChange}
+          />
         </Form>
       </Accordion>
-    );
-  },
-};
-
-export const NestedAccordions: Story = {
-  args: {
-    name: "Родительский аккордеон",
-    noBorder: true,
-  },
-  render: (args) => {
-    return (
-      <Accordion name={args.name}>
-        <div style={{ padding: "16px 0" }}>
-          <p>Содержимое родительского аккордеона</p>
-
-          <Accordion name="Вложенный аккордеон уровень 2" level={2}>
-            <div style={{ padding: "16px 0" }}>
-              Содержимое вложенного аккордеона второго уровня
-              <Accordion name="Вложенный аккордеон уровень 2" level={2}>
-                <div style={{ padding: "16px 0" }}>Еще один вложенный аккордеон</div>
-              </Accordion>
-            </div>
-          </Accordion>
-        </div>
-      </Accordion>
-    );
-  },
-};
-
-export const CallbackExample: Story = {
-  name: "Accordion with Callback",
-  args: {
-    name: "Аккордеон с callback на открытие/закрытие",
-  },
-  render: (args) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [log, setLog] = useState<string[]>([]);
-
-    const handleOpen = (open: boolean) => {
-      setIsOpen(open);
-      setLog((prev) => [
-        ...prev,
-        `Аккордеон ${open ? "открыт" : "закрыт"} в ${new Date().toLocaleTimeString()}`,
-      ]);
-    };
-    return (
-      <div>
-        <Accordion {...args} onOpen={handleOpen}>
-          <div>
-            <p>Текущее состояние: {isOpen ? "Открыт" : "Закрыт"}</p>
-            <p>Этот аккордеон отслеживает события открытия/закрытия</p>
-          </div>
-        </Accordion>
-
-        <div style={{ marginTop: "20px", fontSize: "14px" }}>
-          <strong>История событий:</strong>
-          {log.map((entry, index) => (
-            <div key={index}>{entry}</div>
-          ))}
-        </div>
-      </div>
     );
   },
 };

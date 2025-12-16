@@ -17,6 +17,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     noBorder = false,
     noPadding = false,
     level = 1,
+    expandIconName = EIconName.ChevronDown,
     classNameRoot: propsClassNameRoot,
     classNameHeader: propsClassNameHeader,
     classNameTitle: propsClassNameTitle,
@@ -77,7 +78,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
         <div className={classNameTitle}>
           <span onClick={onClick}>{name}</span>
         </div>
-        <Icon onClick={onClick} className={classNameIcon} name={EIconName.ChevronDown} />
+        <Icon onClick={onClick} className={classNameIcon} name={expandIconName} />
       </div>
       <div className={classNameChildrenWrapper}>
         <div className={classNameChildrenContent}>{children}</div>

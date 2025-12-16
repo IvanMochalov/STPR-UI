@@ -1,5 +1,7 @@
 import React from "react";
 
+import { EIconName } from "../../Icons";
+
 type TAccordionLevel = 1 | 2;
 
 export interface AccordionProps extends React.PropsWithChildren {
@@ -14,5 +16,6 @@ export interface AccordionProps extends React.PropsWithChildren {
   classNameTitle?: string;
   classNameIcon?: string;
   classNameChildrenWrapper?: string;
+  expandIconName?: EIconName;
   level?: TAccordionLevel;
 }
