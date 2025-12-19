@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "../Button";
 import { EIconName } from "../Icons";
 import { Layer } from "../Layer";
+import { Spinner } from "../Spinner";
 import { Text } from "../Text";
 import styles from "./Modal.module.scss";
 import { ModalProps } from "./types";
@@ -12,6 +13,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const {
     zIndex = 999,
     isHiddenModal = false,
+    disabled = false,
     isVisibleCloseButton = true,
     children,
     classNameLayerRoot: propsClassNameLayerRoot,
@@ -38,11 +40,13 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const classNameRoot = cx({
     [styles.modalWrapper__modal]: true,
     [styles[`modalWrapper__modal--size-${size}`]]: size,
+    [styles.modalWrapper__modal_disabled]: disabled,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
   const classNameCloseButton = cx({
     [styles.modalWrapper__closeButton]: true,
+    [styles.modalWrapper__closeButton_disabled]: disabled,
     [styles[`modalWrapper__closeButton--size-${size}`]]: size,
   });
 
@@ -53,19 +57,23 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const classNameContent = cx({
     [styles.modalWrapper__content]: true,
+    [styles.modalWrapper__content_disabled]: disabled,
   });
 
   const classNameModalHeader = cx({
     [styles.modalWrapper__header]: true,
+    [styles.modalWrapper__header_disabled]: disabled,
     ...(propsClassNameHeaderRoot && { [propsClassNameHeaderRoot]: true }),
   });
 
   const classNameModalSubHeader = cx({
     [styles.modalWrapper__subHeader]: true,
+    [styles.modalWrapper__subHeader_disabled]: disabled,
   });
 
   const classNameModalFooter = cx({
     [styles.modalWrapper__footer]: true,
+    [styles.modalWrapper__footer_disabled]: disabled,
     ...(propsClassNameFooterRoot && { [propsClassNameFooterRoot]: true }),
   });
 
@@ -94,6 +102,11 @@ export const Modal: React.FC<ModalProps> = (props) => {
             noPadding={true}
             isOnlyIcon={true}
           />
+        )}
+        {disabled && (
+          <div className={styles.modalWrapper__spinnerOverlay}>
+            <Spinner size="lg" />
+          </div>
         )}
       </div>
     </Layer>

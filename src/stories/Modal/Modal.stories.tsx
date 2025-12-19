@@ -232,6 +232,14 @@ return (
         },
       },
     },
+    disabled: {
+      description:
+        "Блокирует взаимодействие с модальным окном. При true отображает спинер поверх содержимого и блокирует все пользовательские события",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     modalVerticalAlign: {
       description:
         "Вертикальное выравнивание модального окна:\n- 'top': прижато к верху экрана (подходит для короткого контента)\n- 'center': центрировано по вертикали (автоматически добавляет скролл для контента при переполнении, фиксируя хедер и футер)",
@@ -359,6 +367,7 @@ export const Default: Story = {
     children: "Содержимое модального окна. Здесь может быть любой React-компонент или текст.",
     header: "Заголовок модального окна",
     isHiddenModal: false,
+    disabled: false,
     isVisibleCloseButton: true,
     textAlign: "left",
     size: "lg",

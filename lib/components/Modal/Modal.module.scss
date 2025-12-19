@@ -80,6 +80,10 @@
     #{$block}--modalVerticalAlign-center & {
       max-height: calc(100vh - var(--layer-padding) * 2);
     }
+
+    &_disabled {
+      pointer-events: none;
+    }
   }
 
   &__content {
@@ -91,6 +95,10 @@
       overflow-y: auto;
       flex: 1;
       @include styles.custom-scrollbar(styles.$color-frost-blue)
+    }
+
+    &_disabled {
+      opacity: 0.5;
     }
   }
 
@@ -148,11 +156,32 @@
         }
       }
     }
+
+    &_disabled {
+      opacity: 0.5;
+    }
   }
 
   &__header,
   &__subHeader,
   &__footer {
     flex-shrink: 0;
+
+    &_disabled {
+      opacity: 0.5;
+    }
+  }
+
+  &__spinnerOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 10;
   }
 }
