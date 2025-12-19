@@ -94,7 +94,7 @@
       border-bottom: 2px solid styles.$color-accent-blue;
 
       & #{$block}__tooltip {
-        color: styles.$color-white;
+        color: styles.$color-accent-blue;
       }
     }
   }

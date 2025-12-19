@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
 
-import { Tabs } from "../../../lib/components/Tabs";
+import { Tabs, TPaneItem } from "../../../lib/components/Tabs";
 import { Text } from "../../../lib/components/Text";
 import mainStyles from "../Stories.module.scss";
 import styles from "./TabsStories.module.scss";
@@ -181,6 +181,14 @@ export const Filled: Story = {
   },
 };
 
+export const Outlined: Story = {
+  name: "Filled Tabs",
+  render: Default.render,
+  args: {
+    variant: "outlined",
+  },
+};
+
 export const Separated: Story = {
   name: "Separated Tabs",
   render: Default.render,
@@ -225,10 +233,10 @@ export const AllVariants: Story = {
   render: () => {
     const [tabState, setTabState] = useState("tab1");
 
-    const commonTabs = [
-      { name: "Основные данные", key: "tab1" },
-      { name: "Дополнительно", key: "tab2" },
-      { name: "Настройки", key: "tab3" },
+    const commonTabs: TPaneItem[] = [
+      { name: "Основные данные", key: "tab1", infoTooltipText: "Основные данные" },
+      { name: "Дополнительно", key: "tab2", infoTooltipText: "Дополнительно" },
+      { name: "Настройки", key: "tab3", infoTooltipText: "Настройки" },
     ];
 
     return (
@@ -239,7 +247,7 @@ export const AllVariants: Story = {
             panes={commonTabs.map((tab) => ({
               ...tab,
               active: tabState === tab.key,
-              onClick: () => setTabState(tab.key),
+              onClick: () => setTabState(tab.key || ""),
             }))}
             variant="contained"
             size="md"
@@ -251,7 +259,7 @@ export const AllVariants: Story = {
             panes={commonTabs.map((tab) => ({
               ...tab,
               active: tabState === tab.key,
-              onClick: () => setTabState(tab.key),
+              onClick: () => setTabState(tab.key || ""),
             }))}
             isSeparated={true}
             variant="contained"
@@ -264,7 +272,7 @@ export const AllVariants: Story = {
             panes={commonTabs.map((tab) => ({
               ...tab,
               active: tabState === tab.key,
-              onClick: () => setTabState(tab.key),
+              onClick: () => setTabState(tab.key || ""),
             }))}
             variant="filled"
             size="md"
@@ -276,10 +284,22 @@ export const AllVariants: Story = {
             panes={commonTabs.map((tab) => ({
               ...tab,
               active: tabState === tab.key,
-              onClick: () => setTabState(tab.key),
+              onClick: () => setTabState(tab.key || ""),
             }))}
             isSeparated={true}
             variant="filled"
+            size="md"
+          />
+        </div>
+        <div className={styles.differentTabsWrapper__tabsGroup}>
+          <Text type="p1">Outlined Variant</Text>
+          <Tabs
+            panes={commonTabs.map((tab) => ({
+              ...tab,
+              active: tabState === tab.key,
+              onClick: () => setTabState(tab.key || ""),
+            }))}
+            variant="outlined"
             size="md"
           />
         </div>
