@@ -3,6 +3,7 @@ import { ApplyButtons } from "./components/ApplyButtons";
 import { AuthProtected } from "./components/AuthProtected";
 import { BaseTooltip } from "./components/BaseTooltip";
 import { Breadcrumb } from "./components/Breadcrumb";
+import type { TButtonVariant } from "./components/Button";
 import { Button } from "./components/Button";
 import type { TOnChangeCheckbox } from "./components/Checkbox";
 import { Checkbox } from "./components/Checkbox";
@@ -84,6 +85,7 @@ export {
   Spinner,
   Table,
   Tabs,
+  TButtonVariant,
   TContextMenuOption,
   Text,
   Textarea,
