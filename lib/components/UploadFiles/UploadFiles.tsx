@@ -10,7 +10,7 @@ import { Spinner } from "../Spinner";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
 import { Accept, FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
 import styles from "./UploadFiles.module.scss";
-import { formatFileSize, getErrorTextFromError } from "./utils";
+import { formatFileSize, getErrorTextFromError, getKbFromMb } from "./utils";
 
 export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const {
@@ -31,9 +31,10 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     classNameRoot: propsClassNameRoot,
     classNameLabel: propsClassNameLabel,
     classNameBaseInfoTooltipRoot: propsClassNameBaseInfoTooltipRoot,
+    maxSizeMb,
   } = props;
 
-  const [errors, setErrors] = useState<Array<TLocalErrorFile>>([]);
+  const [localErrors, setLocalErrors] = useState<Array<TLocalErrorFile>>([]);
 
   const onDrop = useCallback(
     (acceptedFiles: File[], fileRejections: FileRejection[]) => {
@@ -45,7 +46,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
       });
 
       if (!multiple) {
-        setErrors([..._fileRejections]);
+        setLocalErrors([..._fileRejections]);
         onDropFiles(acceptedFiles, name);
 
         return;
@@ -53,10 +54,10 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
 
       const _files = [...files, ...acceptedFiles];
 
-      setErrors([..._fileRejections, ...errors]);
+      setLocalErrors([..._fileRejections, ...localErrors]);
       onDropFiles(_files, name);
     },
-    [errors, files, multiple, name, onDropFiles],
+    [localErrors, files, multiple, name, onDropFiles],
   );
 
   const { getRootProps, getInputProps } = useDefaultDropzone({
@@ -64,12 +65,13 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     onDrop,
     multiple,
     disabled,
+    maxSize: maxSizeMb ? getKbFromMb(maxSizeMb) : undefined,
   });
 
-  const hasErrors = errors ? errors?.length > 0 : undefined;
+  const hasErrors = localErrors ? localErrors?.length > 0 : false;
 
-  const fileNames = [...files.map((file) => ({ file, errors: null })), ...errors];
-  const isFileUploaded = fileNames?.length > 0 || errors?.length > 0;
+  const fileNames = [...files.map((file) => ({ file, errors: null })), ...localErrors];
+  const isFileUploaded = fileNames?.length > 0 || localErrors?.length > 0;
   const isInputVariant = variant === "input";
   const isDropzoneVariant = variant === "dropzone";
 
@@ -106,13 +108,13 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     }
 
     if (isError) {
-      const _errors = [...errors];
+      const _errors = [...localErrors];
 
       const index = _errors.findIndex((errorFile) => errorFile.file.name === fileName);
 
       _errors.splice(index, 1);
 
-      setErrors(_errors);
+      setLocalErrors(_errors);
 
       return;
     }
@@ -129,7 +131,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const onAllDelete = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     onDropFiles([], name);
-    setErrors([]);
+    setLocalErrors([]);
   };
 
   const getMostFormat = (accept: Accept) => {
@@ -141,10 +143,11 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const getSingleFileName = () => {
     if (hasErrors && accept) {
       const formatsName = getMostFormat(accept);
+      const errorText = localErrors[0].errors.map(getErrorTextFromError).join(", ");
 
       return (
         <EllipsisTextWithTooltip
-          text={`Неверный формат файла. Загрузите файл в формате ${formatsName}`}
+          text={`${errorText}. Загрузите файл формата ${formatsName} размером до ${maxSizeMb}MB`}
           classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
           classNameRoot={cx(
             styles.spUploadFiles__fileName,

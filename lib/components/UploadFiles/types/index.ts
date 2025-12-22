@@ -25,6 +25,7 @@ export interface UploadFilesProps {
   loading?: boolean;
   error?: string;
   classNameBaseInfoTooltipRoot?: string;
+  maxSizeMb?: number;
 }
 
 export type TLocalErrorFile = {

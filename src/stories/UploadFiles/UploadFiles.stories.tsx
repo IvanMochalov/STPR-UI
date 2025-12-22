@@ -104,6 +104,13 @@ const meta: Meta<typeof UploadFiles> = {
         type: { summary: "string" },
       },
     },
+    maxSizeMb: {
+      description: `Максимальный размер добавляемого файла в МБ.\n`,
+      control: { type: "number" },
+      table: {
+        type: { summary: "number" },
+      },
+    },
     error: {
       description: `Текст ошибки валидации. Подсвечивает компонент красным и показывает сообщение об ошибке.\n`,
       control: { type: "text" },

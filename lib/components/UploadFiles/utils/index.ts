@@ -29,3 +29,5 @@ export const formatFileSize = (
 
   return parseFloat((bytes / Math.pow(k, i)).toFixed(decimalPlaces)) + separator + units[i];
 };
+
+export const getKbFromMb = (mb: number) => mb * 1024 * 1024;
