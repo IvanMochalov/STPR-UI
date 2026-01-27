@@ -1,6 +1,7 @@
 import React from "react";
 
 import { EIconName } from "../../Icons";
+import { ETooltipPosition } from "../../Tooltip";
 
 type TAccordionLevel = 1 | 2;
 
@@ -18,4 +19,7 @@ export interface AccordionProps extends React.PropsWithChildren {
   classNameChildrenWrapper?: string;
   expandIconName?: EIconName;
   level?: TAccordionLevel;
+  infoTooltipText?: string;
+  tooltipPosition?: ETooltipPosition;
+  classNameBaseTooltipRoot?: string;
 }

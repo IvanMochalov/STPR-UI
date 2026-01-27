@@ -2,6 +2,8 @@ import cx from "clsx";
 import React, { useState } from "react";
 
 import { EIconName, Icon } from "../Icons";
+import { Text } from "../Text";
+import { InfoTooltip } from "../Tooltip";
 import styles from "./Accordion.module.scss";
 import { AccordionProps } from "./types";
 
@@ -18,11 +20,14 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     noPadding = false,
     level = 1,
     expandIconName = EIconName.ChevronDown,
+    infoTooltipText,
+    tooltipPosition,
     classNameRoot: propsClassNameRoot,
     classNameHeader: propsClassNameHeader,
     classNameTitle: propsClassNameTitle,
     classNameIcon: propsClassNameIcon,
     classNameChildrenWrapper: propsClassNameChildrenWrapper,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
   } = props;
 
   const [open, setOpen] = useState(defaultOpen);
@@ -76,7 +81,17 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     <div className={classNameRoot}>
       <div className={classNameHeader}>
         <div className={classNameTitle}>
-          <span onClick={onClick}>{name}</span>
+          <Text classNameRoot={styles.spAccordion__nameText} onClick={onClick}>
+            {name}
+          </Text>
+          {infoTooltipText && (
+            <InfoTooltip
+              hover={true}
+              position={tooltipPosition}
+              text={infoTooltipText}
+              classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
+            />
+          )}
         </div>
         <Icon onClick={onClick} className={classNameIcon} name={expandIconName} />
       </div>

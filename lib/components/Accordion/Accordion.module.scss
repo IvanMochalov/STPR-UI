@@ -68,15 +68,20 @@
     font-family: styles.$title-font;
     line-height: 120%;
     font-weight: 500;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: styles.$color-black;
 
-    & span {
+    & #{$block}__nameText {
       cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
     }
 
     &_hiddenExpand {
-      & span {
+      & #{$block}__nameText {
         cursor: default;
         pointer-events: none;
       }

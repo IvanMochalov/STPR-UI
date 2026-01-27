@@ -5,6 +5,7 @@ import {
   Accordion,
   Checkbox,
   EIconName,
+  ETooltipPosition,
   Form,
   Input,
   Select,
@@ -91,6 +92,35 @@ const meta: Meta<typeof Accordion> = {
         },
       },
     },
+    infoTooltipText: {
+      description: `Текст подсказки для имени аккордеона. Показывает иконку информации с тултипом.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    tooltipPosition: {
+      description: `Позиция тултипа для подсказки имени аккордеона.\n`,
+      control: { type: "select" },
+      options: [
+        "top",
+        "top-left",
+        "top-right",
+        "bottom",
+        "bottom-left",
+        "bottom-right",
+        "left",
+        "left-top",
+        "left-bottom",
+        "right",
+        "right-top",
+        "right-bottom",
+      ],
+      table: {
+        type: { summary: "ETooltipPosition" },
+        defaultValue: { summary: '"bottom-left"' },
+      },
+    },
     classNameRoot: {
       description: "Дополнительный CSS-класс для корневого элемента аккордеона\n",
       control: false,
@@ -121,6 +151,13 @@ const meta: Meta<typeof Accordion> = {
     },
     classNameChildrenWrapper: {
       description: "Дополнительный CSS-класс для обертки содержимого аккордеона\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента тултипа имени аккордеона\n",
       control: false,
       table: {
         type: { summary: "string" },
@@ -206,6 +243,8 @@ export const Default: Story = {
     noPadding: false,
     name: "Основное задание",
     level: 1,
+    infoTooltipText: "",
+    tooltipPosition: ETooltipPosition.BottomLeft,
     children: (
       <div style={{ textAlign: "justify" }}>
         Разработать комплексную стратегию устойчивого развития, направленную на баланс между ростом
@@ -218,6 +257,16 @@ export const Default: Story = {
         государств и частного сектора с учетом культурных особенностей регионов.
       </div>
     ),
+  },
+};
+
+export const WithInfoTooltip: Story = {
+  name: "Accordion with InfoTooltip",
+  render: Default.render,
+  args: {
+    ...Default.args,
+    infoTooltipText: "Информация о том, как работает аккордеон",
+    name: "Аккордеон с информационным тултипом",
   },
 };
 
@@ -293,7 +342,7 @@ export const WithForm: Story = {
 
     return (
       <Accordion {...args}>
-        <Form>
+        <Form addMargin={true}>
           <Input
             name="addressName"
             label="Название адреса"
