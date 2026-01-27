@@ -70,84 +70,134 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
-    const GAP = 6; // Отступ между триггером и тултипом в пикселях
+    // Отступ между триггером и тултипом в пикселях
+    const triggerTooltipGap = 6;
 
-    let top = 0;
-    let left = 0;
+    // Функция для расчета координат по позиции
+    const calculatePosition = (position: ETooltipPosition): { top: number; left: number } => {
+      let top = 0;
+      let left = 0;
 
-    // Базовая позиция
-    switch (defaultTooltipPosition) {
-      case ETooltipPosition.Right:
-        top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
-        left = triggerRect.right + window.scrollX + GAP;
-        break;
-      case ETooltipPosition.RightTop:
-        top = triggerRect.top + window.scrollY;
-        left = triggerRect.right + window.scrollX + GAP;
-        break;
-      case ETooltipPosition.RightBottom:
-        top = triggerRect.bottom + window.scrollY - tooltipRect.height;
-        left = triggerRect.right + window.scrollX + GAP;
-        break;
-      case ETooltipPosition.Left:
-        top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
-        left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
-        break;
-      case ETooltipPosition.LeftTop:
-        top = triggerRect.top + window.scrollY;
-        left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
-        break;
-      case ETooltipPosition.LeftBottom:
-        top = triggerRect.bottom + window.scrollY - tooltipRect.height;
-        left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
-        break;
-      case ETooltipPosition.Bottom:
-        top = triggerRect.bottom + window.scrollY + GAP;
-        left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
-        break;
-      case ETooltipPosition.BottomLeft:
-        top = triggerRect.bottom + window.scrollY + GAP;
-        left = triggerRect.left + window.scrollX;
-        break;
-      case ETooltipPosition.BottomRight:
-        top = triggerRect.bottom + window.scrollY + GAP;
-        left = triggerRect.right + window.scrollX - tooltipRect.width;
-        break;
-      case ETooltipPosition.Top:
-        top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
-        left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
-        break;
-      case ETooltipPosition.TopLeft:
-        top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
-        left = triggerRect.left + window.scrollX;
-        break;
-      case ETooltipPosition.TopRight:
-        top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
-        left = triggerRect.right + window.scrollX - tooltipRect.width;
-        break;
-      default:
-        top = triggerRect.bottom + window.scrollY + GAP;
-        left = triggerRect.left + window.scrollX;
-    }
+      switch (position) {
+        case ETooltipPosition.Right:
+          top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
+          left = triggerRect.right + window.scrollX + triggerTooltipGap;
+          break;
+        case ETooltipPosition.RightTop:
+          top = triggerRect.top + window.scrollY;
+          left = triggerRect.right + window.scrollX + triggerTooltipGap;
+          break;
+        case ETooltipPosition.RightBottom:
+          top = triggerRect.bottom + window.scrollY - tooltipRect.height;
+          left = triggerRect.right + window.scrollX + triggerTooltipGap;
+          break;
+        case ETooltipPosition.Left:
+          top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
+          left = triggerRect.left + window.scrollX - tooltipRect.width - triggerTooltipGap;
+          break;
+        case ETooltipPosition.LeftTop:
+          top = triggerRect.top + window.scrollY;
+          left = triggerRect.left + window.scrollX - tooltipRect.width - triggerTooltipGap;
+          break;
+        case ETooltipPosition.LeftBottom:
+          top = triggerRect.bottom + window.scrollY - tooltipRect.height;
+          left = triggerRect.left + window.scrollX - tooltipRect.width - triggerTooltipGap;
+          break;
+        case ETooltipPosition.Bottom:
+          top = triggerRect.bottom + window.scrollY + triggerTooltipGap;
+          left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
+          break;
+        case ETooltipPosition.BottomLeft:
+          top = triggerRect.bottom + window.scrollY + triggerTooltipGap;
+          left = triggerRect.left + window.scrollX;
+          break;
+        case ETooltipPosition.BottomRight:
+          top = triggerRect.bottom + window.scrollY + triggerTooltipGap;
+          left = triggerRect.right + window.scrollX - tooltipRect.width;
+          break;
+        case ETooltipPosition.Top:
+          top = triggerRect.top + window.scrollY - tooltipRect.height - triggerTooltipGap;
+          left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
+          break;
+        case ETooltipPosition.TopLeft:
+          top = triggerRect.top + window.scrollY - tooltipRect.height - triggerTooltipGap;
+          left = triggerRect.left + window.scrollX;
+          break;
+        case ETooltipPosition.TopRight:
+          top = triggerRect.top + window.scrollY - tooltipRect.height - triggerTooltipGap;
+          left = triggerRect.right + window.scrollX - tooltipRect.width;
+          break;
+        default:
+          top = triggerRect.bottom + window.scrollY + triggerTooltipGap;
+          left = triggerRect.left + window.scrollX;
+      }
 
-    // Проверка на выход за границы viewport
-    if (
-      top + tooltipRect.height > window.innerHeight + window.scrollY &&
-      defaultTooltipPosition.includes("bottom")
-    ) {
-      top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
-    } else if (top < window.scrollY && defaultTooltipPosition.includes("top")) {
-      top = triggerRect.bottom + window.scrollY + GAP;
-    }
+      return { top, left };
+    };
 
-    // Проверка на выход за границы viewport по горизонтали
-    if (
-      left + tooltipRect.width > window.innerWidth + window.scrollX &&
-      defaultTooltipPosition.includes("left")
-    ) {
-      left = triggerRect.right + window.scrollX + GAP;
-    } else if (left < window.scrollX && defaultTooltipPosition.includes("right")) {
-      left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
+    // Функция для проверки, помещается ли тултип в viewport
+    const viewportTop = window.scrollY;
+    const viewportBottom = window.innerHeight + window.scrollY;
+    const viewportLeft = window.scrollX;
+    const viewportRight = window.innerWidth + window.scrollX;
+
+    const isPositionValid = (top: number, left: number): boolean => {
+      return (
+        top >= viewportTop &&
+        top + tooltipRect.height <= viewportBottom &&
+        left >= viewportLeft &&
+        left + tooltipRect.width <= viewportRight
+      );
+    };
+
+    // Сначала пробуем заданную позицию
+    let { top, left } = calculatePosition(defaultTooltipPosition);
+
+    // Если заданная позиция не подходит, ищем подходящую среди всех возможных
+    if (!isPositionValid(top, left)) {
+      const allPositions = Object.values(ETooltipPosition);
+
+      // Приоритет: сначала пробуем заданную позицию, затем остальные
+      const positionsToTry = [
+        defaultTooltipPosition,
+        ...allPositions.filter((pos) => pos !== defaultTooltipPosition),
+      ];
+
+      let foundValidPosition = false;
+      for (const position of positionsToTry) {
+        const calculated = calculatePosition(position);
+        if (isPositionValid(calculated.top, calculated.left)) {
+          top = calculated.top;
+          left = calculated.left;
+          foundValidPosition = true;
+          break;
+        }
+      }
+
+      // Если ни одна позиция не подходит, используем ту, которая максимально помещается
+      // (минимальное перекрытие с границами viewport)
+      if (!foundValidPosition) {
+        let bestPosition = defaultTooltipPosition;
+        let minOverlap = Infinity;
+
+        for (const position of allPositions) {
+          const calculated = calculatePosition(position);
+          const overlap =
+            Math.max(0, viewportTop - calculated.top) +
+            Math.max(0, calculated.top + tooltipRect.height - viewportBottom) +
+            Math.max(0, viewportLeft - calculated.left) +
+            Math.max(0, calculated.left + tooltipRect.width - viewportRight);
+
+          if (overlap < minOverlap) {
+            minOverlap = overlap;
+            bestPosition = position;
+          }
+        }
+
+        const calculated = calculatePosition(bestPosition);
+        top = calculated.top;
+        left = calculated.left;
+      }
     }
 
     setTooltipStyle((prev) => ({
