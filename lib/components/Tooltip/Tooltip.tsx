@@ -70,6 +70,8 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
+    const GAP = 6; // Отступ между триггером и тултипом в пикселях
+
     let top = 0;
     let left = 0;
 
@@ -77,54 +79,54 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     switch (defaultTooltipPosition) {
       case ETooltipPosition.Right:
         top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
-        left = triggerRect.right + window.scrollX;
+        left = triggerRect.right + window.scrollX + GAP;
         break;
       case ETooltipPosition.RightTop:
         top = triggerRect.top + window.scrollY;
-        left = triggerRect.right + window.scrollX;
+        left = triggerRect.right + window.scrollX + GAP;
         break;
       case ETooltipPosition.RightBottom:
         top = triggerRect.bottom + window.scrollY - tooltipRect.height;
-        left = triggerRect.right + window.scrollX;
+        left = triggerRect.right + window.scrollX + GAP;
         break;
       case ETooltipPosition.Left:
         top = triggerRect.top + window.scrollY - (tooltipRect.height - triggerRect.height) / 2;
-        left = triggerRect.left + window.scrollX - tooltipRect.width;
+        left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
         break;
       case ETooltipPosition.LeftTop:
         top = triggerRect.top + window.scrollY;
-        left = triggerRect.left + window.scrollX - tooltipRect.width;
+        left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
         break;
       case ETooltipPosition.LeftBottom:
         top = triggerRect.bottom + window.scrollY - tooltipRect.height;
-        left = triggerRect.left + window.scrollX - tooltipRect.width;
+        left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
         break;
       case ETooltipPosition.Bottom:
-        top = triggerRect.bottom + window.scrollY;
+        top = triggerRect.bottom + window.scrollY + GAP;
         left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
         break;
       case ETooltipPosition.BottomLeft:
-        top = triggerRect.bottom + window.scrollY;
+        top = triggerRect.bottom + window.scrollY + GAP;
         left = triggerRect.left + window.scrollX;
         break;
       case ETooltipPosition.BottomRight:
-        top = triggerRect.bottom + window.scrollY;
+        top = triggerRect.bottom + window.scrollY + GAP;
         left = triggerRect.right + window.scrollX - tooltipRect.width;
         break;
       case ETooltipPosition.Top:
-        top = triggerRect.top + window.scrollY - tooltipRect.height;
+        top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
         left = triggerRect.left + window.scrollX - (tooltipRect.width - triggerRect.width) / 2;
         break;
       case ETooltipPosition.TopLeft:
-        top = triggerRect.top + window.scrollY - tooltipRect.height;
+        top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
         left = triggerRect.left + window.scrollX;
         break;
       case ETooltipPosition.TopRight:
-        top = triggerRect.top + window.scrollY - tooltipRect.height;
+        top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
         left = triggerRect.right + window.scrollX - tooltipRect.width;
         break;
       default:
-        top = triggerRect.bottom + window.scrollY;
+        top = triggerRect.bottom + window.scrollY + GAP;
         left = triggerRect.left + window.scrollX;
     }
 
@@ -133,9 +135,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       top + tooltipRect.height > window.innerHeight + window.scrollY &&
       defaultTooltipPosition.includes("bottom")
     ) {
-      top = triggerRect.top + window.scrollY - tooltipRect.height;
+      top = triggerRect.top + window.scrollY - tooltipRect.height - GAP;
     } else if (top < window.scrollY && defaultTooltipPosition.includes("top")) {
-      top = triggerRect.bottom + window.scrollY;
+      top = triggerRect.bottom + window.scrollY + GAP;
     }
 
     // Проверка на выход за границы viewport по горизонтали
@@ -143,9 +145,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       left + tooltipRect.width > window.innerWidth + window.scrollX &&
       defaultTooltipPosition.includes("left")
     ) {
-      left = triggerRect.left + window.scrollX - tooltipRect.width + triggerRect.width;
+      left = triggerRect.right + window.scrollX + GAP;
     } else if (left < window.scrollX && defaultTooltipPosition.includes("right")) {
-      left = triggerRect.right + window.scrollX - triggerRect.width;
+      left = triggerRect.left + window.scrollX - tooltipRect.width - GAP;
     }
 
     setTooltipStyle((prev) => ({
