@@ -1,0 +1,12 @@
+@use "/src/styles/global" as styles;
+
+.spTooltip {
+  $block: &;
+  position: relative;
+  display: flex;
+  width: fit-content;
+}
+
+.spInfoTooltip {
+  color: styles.$color-gray-1;
+}

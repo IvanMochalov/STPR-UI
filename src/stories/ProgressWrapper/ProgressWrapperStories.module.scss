@@ -1,0 +1,13 @@
+@use "/src/styles/global" as styles;
+
+.customProgressContent {
+  width: 190px;
+  border: 1px solid styles.$color-secondary-blue-light-dark;
+  padding: 16px;
+}
+
+.progressList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

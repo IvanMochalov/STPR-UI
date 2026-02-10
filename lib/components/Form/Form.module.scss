@@ -1,0 +1,48 @@
+@use "/src/styles/global" as styles;
+
+.spForm {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+
+  // Модификаторы блока
+  &_fullWidth {
+    width: 100%;
+  }
+
+  &_addMargin {
+    &.spForm--size-lg {
+      --form-gap: 32px;
+      gap: var(--form-gap);
+
+      @include styles.respond-to(sm) {
+        --form-gap: 48px;
+      }
+    }
+
+    &.spForm--size-md {
+      --form-gap: 24px;
+      gap: var(--form-gap);
+
+      @include styles.respond-to(sm) {
+        --form-gap: 32px;
+      }
+    }
+  }
+
+  &_withSeparator {
+    & > *:not(:first-child) {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: calc(var(--form-gap) / -2);
+        height: 1px;
+        background: styles.$color-secondary-blue-light-dark;
+      }
+    }
+  }
+}

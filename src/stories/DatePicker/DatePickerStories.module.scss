@@ -1,0 +1,8 @@
+@use "/src/styles/global" as styles;
+
+.storiesWrapper {
+  $block: &;
+  min-height: 460px;
+  width: 500px;
+  align-items: flex-start;
+}

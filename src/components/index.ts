@@ -1,1 +1,0 @@
-export * from "./Label/index.ts";

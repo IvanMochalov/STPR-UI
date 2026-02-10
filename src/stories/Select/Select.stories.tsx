@@ -1,0 +1,601 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
+
+import { Select, TOnChangeSelect } from "../../../lib/components/Select";
+import { OKRUG_OPTIONS } from "../constants";
+import mainStyles from "../Stories.module.scss";
+
+const meta: Meta<typeof Select> = {
+  title: "Components/Select",
+  component: Select,
+  tags: ["autodocs"],
+  argTypes: {
+    onChange: {
+      description: `Callback-функция, вызываемая при выборе значения из списка.
+Получает два параметра:
+- event: React событие MouseEvent<HTMLDivElement>
+- data: объект с именем поля и выбранным значением
+
+Особенности:
+- При выборе значения передается \`string\` или \`null\` если сброс
+- Автоматически закрывает выпадающий список после выбора
+- Для работы с формами рекомендуется использовать вместе с состоянием React\n`,
+      control: false,
+      table: {
+        type: {
+          detail:
+            "(event: React.MouseEvent<HTMLDivElement>,\n" +
+            "data: {\n" +
+            "  name: string;\n" +
+            "  value: string | null\n" +
+            "}) => void",
+          summary: "TOnChangeSelect",
+        },
+      },
+    },
+    variant: {
+      description: `Вариант стиля селекта:\n- "outlined" - с границей (по умолчанию)\n- "filled" - с заполненным фоном\n`,
+      control: { type: "select" },
+      options: ["outlined", "filled"],
+      table: {
+        type: { summary: "TSelectVariant", detail: "'outlined' | 'filled'" },
+        defaultValue: { summary: '"outlined"' },
+      },
+    },
+    disabled: {
+      description: `Отключить селект. Заблокирует взаимодействие и изменит визуальный стиль.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isAbsolutePositionError: {
+      description: `Позиционировать текст ошибки абсолютно. Полезно для компактных форм.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isVisibleDefaultTitle: {
+      description: `Показывать стандартный title при наведении на селект с текстом значения.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" },
+      },
+    },
+    isScrollableList: {
+      description: `Включить прокрутку для длинных списков опций. Автоматически добавляет скроллбар.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isSearchable: {
+      description: `Включить функцию поиска в выпадающем списке. Добавляет поле поиска вверху списка опций.
+
+Особенности:
+- Поиск работает по тексту лейблов опций
+- Фильтрация происходит локально без внешних запросов
+- Поисковый запрос сбрасывается после выбора значения
+- Автоматически фокусируется на поле поиска при открытии\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    required: {
+      description: `Пометить поле как обязательное для заполнения. Добавляет звездочку к лейблу.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    maxHeightList: {
+      description: `Максимальная высота выпадающего списка в пикселях. Работает только при \`isScrollableList={true}\`.\n`,
+      control: { type: "number" },
+      table: {
+        type: { summary: "number" },
+        defaultValue: { summary: "180" },
+      },
+    },
+    tooltipPosition: {
+      description: `Позиция тултипа для подсказки лейбла.\n`,
+      control: { type: "select" },
+      options: [
+        "top",
+        "top-left",
+        "top-right",
+        "bottom",
+        "bottom-left",
+        "bottom-right",
+        "left",
+        "left-top",
+        "left-bottom",
+        "right",
+        "right-top",
+        "right-bottom",
+      ],
+      table: {
+        type: { summary: "ETooltipPosition" },
+        defaultValue: { summary: '"bottom-left"' },
+      },
+    },
+    label: {
+      description: `Текст лейбла селекта. Отображается над элементом выбора.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    infoTooltipText: {
+      description: `Текст подсказки для лейбла. Показывает иконку информации с тултипом.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    error: {
+      description: `Текст ошибки валидации. Подсвечивает селект красным и показывает сообщение об ошибке.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    placeholder: {
+      description: `Текст-подсказка когда значение не выбрано.\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: '"Выберите из списка..."' },
+      },
+    },
+    searchPlaceholder: {
+      description: `Текст-подсказка для поля поиска. Отображается только при \`isSearchable={true}\`.
+
+Особенности:
+- Используется только когда включен поиск
+- Помогает пользователю понять назначение поля поиска
+- По умолчанию: "Поиск..."\n`,
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: '"Поиск..."' },
+      },
+    },
+    value: {
+      description: `Выбранное значение селекта. Должно соответствовать одному из \`options.value\`.\n`,
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    name: {
+      description: `Имя поля для формы. Обязательный параметр.\n`,
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    options: {
+      description: `Массив опций для выбора. Каждая опция должна содержать value и label.\n`,
+      control: false,
+      table: {
+        defaultValue: { summary: "[]" },
+        type: {
+          summary: "TSelectOption[]",
+          detail:
+            "TSelectOption[] = {\n" +
+            "  value: string | null;\n" +
+            "  label: string;\n" +
+            "  key?: string;\n" +
+            "}[]",
+        },
+      },
+    },
+    classNameRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента селекта\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameLabel: {
+      description: "Дополнительный CSS-класс для элемента лейбла\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameError: {
+      description: "Дополнительный CSS-класс для элемента ошибки\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameBaseTooltipRoot: {
+      description: "Дополнительный CSS-класс для корневого элемента тултипа лейбла\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Компонент выпадающего списка с поддержкой различных состояний, валидации и дополнительных функций.
+
+## Особенности:
+- **Два варианта стиля**: outlined (с границей) и filled (с заполненным фоном)
+- **Валидация и ошибки**: подсветка ошибок и текстовые сообщения
+- **Подсказки лейбла**: встроенная поддержка тултипов для пояснений
+- **Прокручиваемые списки**: поддержка длинных списков с настройкой максимальной высоты
+- **Поиск по опциям**: локальная фильтрация при включенном \`isSearchable\`
+- **Автоматическое закрытие**: клик вне области закрывает выпадающий список
+- **Адаптивный дизайн**: разные размеры и отступы на мобильных и desktop
+- **Визуальная обратная связь**: иконка галочки для выбранного элемента
+
+## Состояния селекта:
+- **Обычное**: стандартное состояние
+- **Открытое**: раскрытый список опций
+- **С ошибкой**: красная граница и текст ошибки
+- **Отключенное**: серый цвет и блокировка взаимодействия
+- **С фокусом**: синяя граница для указания активного состояния
+
+## Функция поиска:
+При включении \`isSearchable={true}\` в выпадающем списке появляется поле поиска:
+- **Локальная фильтрация**: поиск происходит по тексту лейблов без внешних запросов
+- **Автофокус**: поле поиска автоматически получает фокус при открытии
+- **Сброс поиска**: поисковый запрос сбрасывается после выбора значения
+- **Очистка поиска**: иконка крестика для быстрой очистки поля поиска
+- **Сообщения**: разные тексты для пустого списка и "ничего не найдено"
+
+## Рекомендации по использованию:
+Используйте для выбора значений из предопределенного списка в формах.
+
+### Базовое использование
+
+\`\`\`jsx
+const [formData, setFormData] = useState({
+  district: "",
+});
+
+<Select
+  name="district"
+  value={formData.district}
+  onChange={(event, {name, value}) => setFormData(prev => ({
+    ...prev,
+    [name]: value,
+  }))}
+  options={[
+    { value: "center", label: "Центральный округ" },
+    { value: "north", label: "Северный округ" },
+    { value: "south", label: "Южный округ" },
+  ]}
+  label="Округ"
+  placeholder="Выберите округ..."
+/>
+\`\`\`
+
+### Использование с поиском
+
+\`\`\`jsx
+<Select
+  name="district"
+  value={formData.district}
+  onChange={onChange}
+  options={LONG_DISTRICT_LIST}
+  label="Округ"
+  isSearchable={true}
+  searchPlaceholder="Начните вводить название..."
+  isScrollableList={true}
+  maxHeightList={200}
+/>
+\`\`\`
+        `,
+      },
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div className={mainStyles.storyWrapper}>
+        <div style={{ width: "400px", marginTop: "80px" }}>
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
+  args: {
+    options: OKRUG_OPTIONS,
+    variant: "outlined",
+    placeholder: "Выберите из списка...",
+    disabled: false,
+    required: false,
+    isAbsolutePositionError: false,
+    isScrollableList: false,
+    isVisibleDefaultTitle: true,
+    isSearchable: false, // новый параметр по умолчанию
+    searchPlaceholder: "Поиск...", // новый параметр по умолчанию
+    maxHeightList: 180,
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Select>;
+
+export const Default: Story = {
+  name: "Default Select",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      okrug: "",
+    });
+
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    return (
+      <Select
+        {...args}
+        error={!formData.okrug ? args.error : undefined}
+        name={"okrug"}
+        value={formData.okrug}
+        onChange={onChange}
+      />
+    );
+  },
+};
+
+export const WithEmptyListOption: Story = {
+  render: Default.render,
+  args: {
+    label: "Округ",
+    options: [],
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const Searchable: Story = {
+  name: "Searchable Select",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      searchable: "",
+    });
+
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    return <Select {...args} name={"searchable"} value={formData.searchable} onChange={onChange} />;
+  },
+  args: {
+    label: "Поисковый селект",
+    isSearchable: true,
+    searchPlaceholder: "Введите для поиска...",
+    placeholder: "Выберите округ...",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Демонстрирует селект с включенной функцией поиска. При открытии списка появляется поле поиска для фильтрации опций.
+
+**Особенности:**
+- Поле поиска автоматически получает фокус при открытии
+- Поиск работает по тексту лейблов опций
+- Результаты фильтруются в реальном времени
+- Поисковый запрос сбрасывается после выбора значения
+- Иконка крестика для быстрой очистки поля поиска
+        `,
+      },
+    },
+  },
+};
+
+export const SearchableWithLongList: Story = {
+  name: "Searchable Select with Long List",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      searchable: "",
+    });
+
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    const LONG_OPTIONS = [
+      { value: "1", label: "Центральный административный округ города Москвы" },
+      { value: "2", label: "Северный административный округ с очень длинным названием" },
+      { value: "3", label: "Северо-Восточный административный округ" },
+      { value: "4", label: "Восточный административный округ города Москвы" },
+      { value: "5", label: "Юго-Восточный административный округ" },
+      { value: "6", label: "Южный административный округ с длинным описанием" },
+      { value: "7", label: "Юго-Западный административный округ города" },
+      { value: "8", label: "Западный административный округ Москвы" },
+      { value: "9", label: "Северо-Западный административный округ" },
+      { value: "10", label: "Зеленоградский административный округ города Москвы" },
+      { value: "11", label: "Троицкий административный округ" },
+      { value: "12", label: "Новомосковский административный округ" },
+    ];
+
+    return (
+      <Select
+        {...args}
+        name={"searchable"}
+        value={formData.searchable}
+        onChange={onChange}
+        options={LONG_OPTIONS}
+      />
+    );
+  },
+  args: {
+    label: "Поиск в длинном списке",
+    isSearchable: true,
+    isScrollableList: true,
+    maxHeightList: 200,
+    searchPlaceholder: "Начните вводить название...",
+    placeholder: "Выберите из списка...",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Демонстрирует селект с поиском для работы с большими списками опций. Сочетает функции поиска и прокрутки.
+
+**Идеальные сценарии использования:**
+- Списки с большим количеством опций (10+ элементов)
+- Когда пользователь может не знать точное название нужной опции
+- Для улучшения UX в формах с длинными справочниками
+- Когда нужно быстро найти нужный элемент без прокрутки всего списка
+        `,
+      },
+    },
+  },
+};
+
+export const WithLabel: Story = {
+  name: "Select with Label",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const WithLabelAndTooltip: Story = {
+  name: "Select with Label and Tooltip",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    infoTooltipText: "Выберите административный округ из доступного списка",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const RequiredField: Story = {
+  name: "Required Select Field",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      requiredField: "",
+    });
+
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    return (
+      <Select
+        {...args}
+        name={"requiredField"}
+        value={formData.requiredField}
+        onChange={onChange}
+        error={!formData.requiredField ? "Это поле обязательно для заполнения" : undefined}
+      />
+    );
+  },
+  args: {
+    label: "Обязательный выбор",
+    required: true,
+    placeholder: "Сделайте выбор...",
+  },
+};
+
+export const WithLabelAndTooltipAndError: Story = {
+  name: "Select with Label, Tooltip and Error",
+  render: Default.render,
+  args: {
+    label: "Округ",
+    infoTooltipText: "Выберите административный округ из доступного списка",
+    required: true,
+    error: "Обязательное поле для заполнения",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const FilledVariant: Story = {
+  name: "Filled Variant Select",
+  render: Default.render,
+  args: {
+    label: "Округ с заполненным фоном",
+    variant: "filled",
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const DisabledSelect: Story = {
+  render: (args) => {
+    return (
+      <Select {...args} name={"disabled"} value={OKRUG_OPTIONS[0].value} onChange={() => {}} />
+    );
+  },
+  args: {
+    label: "Заблокированный выбор",
+    disabled: true,
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const ScrollableList: Story = {
+  name: "Select with Scrollable List",
+  render: Default.render,
+  args: {
+    label: "Округ с прокруткой",
+    isScrollableList: true,
+    maxHeightList: 120,
+    placeholder: "Выберите округ...",
+  },
+};
+
+export const AbsolutePositionError: Story = {
+  name: "Select with Absolute Position Error",
+  render: (args) => {
+    const [formData, setFormData] = useState({
+      fieldWithError: "",
+    });
+
+    const onChange: TOnChangeSelect = (_event, data) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        [data.name]: data.value,
+      }));
+    };
+
+    return (
+      <div style={{ position: "relative", paddingBottom: "30px" }}>
+        <Select
+          {...args}
+          name={"fieldWithError"}
+          value={formData.fieldWithError}
+          onChange={onChange}
+          error={!formData.fieldWithError ? "Ошибка с абсолютным позиционированием" : undefined}
+        />
+      </div>
+    );
+  },
+  args: {
+    label: "Поле с абсолютной ошибкой",
+    isAbsolutePositionError: true,
+    placeholder: "Сделайте выбор...",
+  },
+};

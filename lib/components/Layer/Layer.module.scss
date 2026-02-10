@@ -1,0 +1,29 @@
+@use "/src/styles/global" as styles;
+
+.layer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 1400;
+  background: styles.$color-black-70;
+  padding: 20px;
+  @include styles.starting-style-appearance();
+  @include styles.custom-scrollbar();
+  @include styles.box-sizing-border-box();
+
+  @include styles.respond-to(sm) {
+    padding: 32px;
+  }
+
+  @include styles.respond-to(xl) {
+    padding: 60px
+  }
+
+  &_hidden {
+    visibility: hidden
+  }
+}

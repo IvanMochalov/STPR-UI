@@ -1,0 +1,27 @@
+@use "/src/styles/global" as styles;
+
+.storiesWrapper {
+  $block: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 400px;
+}
+
+.viewInputList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.viewInputListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__description {
+    color: styles.$color-gray-1;
+    font-weight: 500;
+  }
+}

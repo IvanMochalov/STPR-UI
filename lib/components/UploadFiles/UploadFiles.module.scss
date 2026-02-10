@@ -1,0 +1,347 @@
+@use "../../../src/styles/global" as styles;
+
+.spUploadFiles {
+  $block: &;
+
+  display: inline-flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  min-width: 280px;
+  height: 100%;
+
+  &_error {
+    & #{$block}__control {
+      border-color: styles.$color-accent-red;
+      color: styles.$color-accent-red;
+    }
+  }
+
+  &__tooltipRoot {
+    width: 100%;
+  }
+
+  &__fileNameContainer {
+    width: 100%;
+    text-align: start;
+  }
+
+  &__fileName {
+    &_dragError {
+      color: styles.$color-accent-red;
+    }
+  }
+
+  &__startIcon {
+    &_error {
+      color: styles.$color-accent-red;
+    }
+  }
+
+  &__placeholderContainer {
+    width: 100%;
+  }
+
+  &--variant {
+    &-input {
+      #{$block}__fileNameContainer {
+        max-width: calc(100% - 68px);
+      }
+
+      #{$block}__placeholderContainer {
+        text-align: start;
+        max-width: calc(100% - 36px);
+      }
+
+      #{$block}__placeholderContainer_withUloadTooltip {
+        max-width: calc(100% - 72px);
+      }
+
+      #{$block}__control {
+        padding: 12px 16px;
+        height: fit-content;
+      }
+
+      #{$block}__placeholder {
+        font-size: 16px;
+
+        @include styles.respond-to(sm) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    &-dropzone {
+      #{$block}__fileNameContainer {
+        max-width: calc(100% - 32px);
+      }
+
+      #{$block}__placeholderContainer {
+        text-align: center;
+      }
+
+      #{$block}__control {
+        justify-content: center;
+        height: 100%;
+        padding: 24px 48px;
+        min-height: 190px;
+
+        @include styles.respond-to(sm) {
+          padding: 32px 84px;
+        }
+      }
+
+      #{$block}__control_loading {
+        $start-color: styles.$color-gray-3;
+        $end-color: styles.$color-white;
+        background-image: linear-gradient(
+                        90deg,
+                        $start-color 0%,
+                        $end-color 50%,
+                        $start-color 100%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite ease-in-out;
+      }
+
+      #{$block}__placeholder {
+        font-family: styles.$title-font;
+        font-size: 20px;
+        font-weight: 500;
+
+        @include styles.respond-to(sm) {
+          font-size: 24px;
+        }
+      }
+
+      #{$block}__fileName {
+        text-align: center;
+        font-family: styles.$title-font;
+        font-size: 20px;
+        font-weight: 500;
+
+        @include styles.respond-to(sm) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  &__control {
+    $control: &;
+
+    width: 100%;
+    position: relative;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    color: styles.$color-gray-1;
+    background-color: styles.$color-white;
+    border: 1px dashed styles.$color-gray-1;
+    gap: 12px;
+    cursor: pointer;
+    @include styles.transition-all-ease-in-out(200ms);
+
+    @include styles.respond-to(sm) {
+      padding: 16px;
+      min-height: 56px;
+    }
+  }
+
+  &:not(#{$block}_fileUploaded, #{$block}_disabled) {
+    & #{$block}__control:hover {
+      border-color: styles.$color-secondary-blue-light-2
+    }
+  }
+
+  &_disabled {
+    & #{$block}__control {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &_fileUploaded {
+    & #{$block}__control {
+      cursor: default;
+      color: styles.$color-black;
+    }
+  }
+
+  &__fileNamesList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+    min-width: 240px;
+
+    // Проба верстки адаптива списка файлов на @container
+    container: file-list-container / inline-size;
+
+    &_loading {
+      opacity: 0.7;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    #{$block}__fileNamesListItem {
+      width: 100%;
+      @include styles.starting-style-appearance();
+
+      @container file-list-container (min-width: calc(170px * 2 + 24px)) {
+        width: calc((100cqw - 24px) / 2);
+      }
+
+      @container file-list-container (min-width: calc(170px * 3 + 24px * 2)) {
+        width: calc((100cqw - 24px * 2) / 3);
+      }
+
+      @container file-list-container (min-width: calc(170px * 4 + 24px * 3)) {
+        width: calc((100cqw - 24px * 3) / 4);
+      }
+    }
+  }
+
+  &__fileNamesListItem {
+    position: relative;
+    gap: 10px;
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    background-color: styles.$color-alice-blue;
+
+    &__iconContainer {
+      display: flex;
+      color: styles.$color-accent-blue;
+      flex-shrink: 0;
+
+      & :global {
+        & .stpr-icon {
+          height: 32px;
+          width: 32px;
+        }
+      }
+
+      &_error :global {
+        & .stpr-icon {
+          color: styles.$color-accent-red;
+          height: 28px;
+          width: 28px;
+        }
+      }
+    }
+
+    &__mainContent {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    &__fileNameWrapper {
+      max-width: 90%;
+      overflow: hidden;
+    }
+
+    &__fileName {
+      font-size: 14px;
+    }
+
+    &__fileNameTooltip {
+      padding: 8px !important;
+    }
+
+    &__description {
+      font-size: 12px;
+      line-height: 1;
+      color: styles.$color-gray-60;
+
+      &__tooltipContent {
+        padding: 8px !important;
+      }
+
+      &_error {
+        color: styles.$color-accent-red;
+      }
+    }
+  }
+
+  &__fileNamesListItemDelete {
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    color: styles.$color-black;
+    background-color: styles.$color-black-15;
+    padding: 6px;
+    width: fit-content;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include styles.transition-all-ease-in-out(200ms);
+
+    &_error {
+      color: styles.$color-black;
+    }
+
+    & :global {
+      & .stpr-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &:hover {
+      background-color: styles.$color-black-32;
+    }
+  }
+
+  &__infoTooltip {
+    margin-left: auto;
+  }
+
+  &__delete {
+    display: flex;
+    cursor: pointer;
+
+    &_loading {
+      opacity: 0.7;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+
+    & :global {
+      & .stpr-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  &__error {
+    padding-top: 8px;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 12px;
+    color: styles.$color-accent-red;
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

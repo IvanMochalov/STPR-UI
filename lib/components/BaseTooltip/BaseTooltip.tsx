@@ -1,0 +1,34 @@
+import cx from "clsx";
+import React from "react";
+
+import styles from "./BaseTooltip.module.scss";
+import { BaseTooltipProps } from "./types";
+
+export const BaseTooltip = React.forwardRef<HTMLDivElement, BaseTooltipProps>((props, ref) => {
+  const {
+    text,
+    noPadding = false,
+    style,
+    classNameRoot: propsClassNameRoot,
+    classNameContentRoot: propsClassNameContentRoot,
+  } = props;
+
+  const classNameRoot = cx({
+    [styles.spBaseTooltip]: true,
+    [styles.spBaseTooltip_noPadding]: noPadding,
+    ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
+  });
+
+  const classNameContent = cx({
+    [styles.spBaseTooltip__content]: true,
+    ...(propsClassNameContentRoot && { [propsClassNameContentRoot]: true }),
+  });
+
+  return (
+    <div className={classNameRoot} ref={ref} style={style}>
+      <div className={classNameContent}>{text}</div>
+    </div>
+  );
+});
+
+BaseTooltip.displayName = "BaseTooltip";

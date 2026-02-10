@@ -1,0 +1,38 @@
+@use "/src/styles/global" as styles;
+
+.iconCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background-color: styles.$color-white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  min-width: 90px;
+
+  @include styles.respond-to(sm) {
+    max-width: calc((100% - 16px * 5) / 6);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &__iconName {
+    font-size: 14px;
+    color: styles.$color-gray-1;
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+.gallery {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,141 @@
+@use "/src/styles/global" as styles;
+
+.defaultTooltipTrigger {
+  font-weight: 500;
+  padding: 12px 20px;
+  border: 1px dashed styles.$color-accent-blue;
+  color: styles.$color-accent-blue;
+  border-radius: 6px;
+  background-color: styles.$color-gray-4-transparent;
+}
+
+.clickableTooltipTrigger {
+  border-color: styles.$color-green-1;
+  background-color: styles.$color-green-2-transparent-10;
+  color: styles.$color-green-1;
+}
+
+.toggleClickableTooltipTrigger {
+  border-color: styles.$color-red-2;
+  background-color: styles.$color-red-3-transparent-10;
+  color: styles.$color-red-2;
+}
+
+.iconTooltipWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconTooltipTrigger {
+  color: styles.$color-accent-blue;
+  width: 20px;
+  height: 20px;
+}
+
+.allPositionTooltipWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 40px;
+  max-width: 800px;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.allPositionTooltipTrigger {
+  padding: 6px 10px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.richContentTooltipTextWrapper {
+  max-width: 250px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__title {
+    color: styles.$color-accent-blue;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+  }
+
+  &__list {
+    margin: 8px 0;
+    padding-left: 16px;
+  }
+
+  &__description {
+    font-size: 12px;
+    color: styles.$color-gray-1;
+  }
+}
+
+.noPaddingTooltipTextWrapper {
+  border-radius: 6px;
+  background-color: styles.$color-accent-blue-light;
+  color: styles.$color-white;
+  font-size: 14px;
+  padding: 6px;
+}
+
+.actionCallbacksTooltipWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  &__logsWrapper {
+    padding: 12px;
+    background-color: styles.$color-gray-4-transparent;
+    border-radius: 4px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+
+      &__item {
+        font-family: monospace;
+        font-size: 12px;
+      }
+    }
+
+    &__description {
+      font-size: 12px;
+      color: styles.$color-gray-1;
+      font-style: italic;
+    }
+  }
+}
+
+.stopPropagationTooltipWrapper {
+  padding: 30px;
+  border-radius: 8px;
+  background-color: styles.$color-green-2-transparent-10;
+  border: 2px solid styles.$color-green-1;
+  color: styles.$color-green-1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__title {
+    font-weight: 500;
+    color: styles.$color-green-2;
+  }
+}

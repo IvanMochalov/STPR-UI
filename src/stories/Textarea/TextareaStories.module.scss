@@ -1,0 +1,25 @@
+@use "/src/styles/global" as styles;
+
+.storiesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 400px;
+}
+
+.viewTextareaList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.viewTextareaListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__description {
+    color: styles.$color-gray-1;
+    font-weight: 500;
+  }
+}

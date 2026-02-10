@@ -1,0 +1,262 @@
+import "react-datepicker/dist/react-datepicker.css";
+
+import cx from "clsx";
+import { ru } from "date-fns/locale/ru";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
+import BaseDatePicker, { ReactDatePickerCustomHeaderProps } from "react-datepicker";
+
+import { DatePickerInput } from "../DatePickerInput";
+import { EIconName, Icon } from "../Icons";
+import { Label } from "../Label";
+import { Text } from "../Text";
+import styles from "./DatePicker.module.scss";
+import { IDatePickerProps } from "./types";
+
+export const DatePicker: React.FC<IDatePickerProps> = (props) => {
+  const {
+    variant = "outlined",
+    placeholderText = "дд.мм.гггг",
+    dateFormatMask = "99.99.9999",
+    dateFormat = "dd.MM.yyyy",
+    readOnlyInput = true,
+    isClearable = true,
+    isRelative = true,
+    shouldCloseOnSelect = false,
+    enablePortal = false,
+    closeOnScroll = false,
+    disabled,
+    required,
+    error,
+    label,
+    value,
+    selected,
+    onCalendarOpen,
+    onCalendarClose,
+    onMouseDownInput,
+    onChange,
+    name,
+    onMouseEnter,
+    infoTooltipText,
+    tooltipPosition,
+    minDate,
+    maxDate,
+    classNameRoot: propsClassNameRoot,
+    classNameDatePickerInputRoot: propsClassNameDatePickerInputRoot,
+    classNameLabel: propsClassNameLabel,
+    classNameError: propsClassNameError,
+    classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
+    classNamePortalRoot: propsClassNamePortalRoot,
+  } = props;
+
+  const [localSelected, setLocalSelected] = useState(selected);
+  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
+
+  // Создаем кастомный портал для react-datepicker только если enablePortal = true
+  useEffect(() => {
+    if (!enablePortal) {
+      setPortalNode(null);
+      return;
+    }
+
+    const portalId = "custom-datepicker-portal";
+    let portalElement = document.getElementById(portalId);
+
+    if (!portalElement) {
+      portalElement = document.createElement("div");
+      portalElement.id = portalId;
+      portalElement.className = cx(styles.datePickerPortal, propsClassNamePortalRoot);
+      document.body.appendChild(portalElement);
+    }
+
+    setPortalNode(portalElement);
+
+    return () => {
+      // Очистка не нужна - портал используется всеми DatePicker'ами
+    };
+  }, [enablePortal, propsClassNamePortalRoot]);
+
+  const _onCalendarOpen = () => {
+    onCalendarOpen?.();
+  };
+
+  const _onCalendarClose = () => {
+    onCalendarClose?.();
+  };
+
+  const _onChange: (
+    date: Date | null,
+    event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+  ) => void = (date, _event) => {
+    if (onChange && name) {
+      onChange({ name, value: date });
+    }
+  };
+
+  const _onSelect = (date: Date | null) => {
+    if (shouldCloseOnSelect) {
+      _onChange(date);
+    }
+    setLocalSelected(date);
+  };
+
+  const classNameRoot = cx({
+    [styles.datePicker]: true,
+    [styles.datePicker_relative]: isRelative,
+    ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
+  });
+
+  const datePickerRef = useRef<BaseDatePicker>(null);
+
+  const classNameFieldRoot = cx({
+    ...(propsClassNameDatePickerInputRoot && { [propsClassNameDatePickerInputRoot]: true }),
+  });
+
+  const classNameLabel = cx({
+    ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
+  });
+
+  const classNameError = cx({
+    [styles.datePicker__error]: true,
+    ...(propsClassNameError && { [propsClassNameError]: true }),
+  });
+
+  const onClear = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    _onChange(null, event);
+    setLocalSelected(null);
+
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(false);
+    }
+    _onCalendarClose();
+  };
+
+  const onDone = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(false);
+    }
+    _onChange(localSelected, event);
+    _onCalendarClose();
+  };
+
+  const MyContainer = ({ className, children }: { className: string; children: ReactNode }) => {
+    return (
+      <div className={cx(styles.datePicker__customContainer, className)}>
+        {children}
+        {isClearable && (
+          <div className={styles.datePicker__footer}>
+            <Text
+              classNameRoot={cx(
+                styles.datePicker__footerActions,
+                styles.datePicker__footerActions_clear,
+              )}
+              onClick={onClear}
+            >
+              Очистить
+            </Text>
+            <Text
+              classNameRoot={cx(
+                styles.datePicker__footerActions,
+                styles.datePicker__footerActions_done,
+              )}
+              onClick={onDone}
+            >
+              Готово
+            </Text>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Определяем portalId в зависимости от enablePortal
+  const portalId = enablePortal && portalNode ? "custom-datepicker-portal" : undefined;
+
+  return (
+    <div className={classNameRoot}>
+      {label && (
+        <Label
+          classNameRoot={classNameLabel}
+          tooltipPosition={tooltipPosition}
+          required={required}
+          label={label}
+          infoTooltipText={infoTooltipText}
+          classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
+        />
+      )}
+      <BaseDatePicker
+        portalId={portalId}
+        popperPlacement="bottom-end"
+        disabledKeyboardNavigation={!localSelected}
+        onSelect={_onSelect}
+        ref={datePickerRef}
+        closeOnScroll={closeOnScroll}
+        shouldCloseOnSelect={shouldCloseOnSelect}
+        minDate={minDate}
+        maxDate={maxDate}
+        dateFormat={dateFormat}
+        locale={ru}
+        required={required}
+        name={name}
+        onCalendarClose={_onCalendarClose}
+        onCalendarOpen={_onCalendarOpen}
+        selected={selected}
+        value={value}
+        disabled={disabled}
+        renderCustomHeader={({
+          monthDate,
+          decreaseMonth,
+          increaseMonth,
+        }: ReactDatePickerCustomHeaderProps) => {
+          const monthName = monthDate.toLocaleString("ru-RU", {
+            month: "short",
+          });
+          const year = monthDate.getFullYear();
+          const formattedDate = monthName.charAt(0).toUpperCase() + monthName.slice(1) + " " + year;
+
+          return (
+            <div className={styles.datePicker__customHeader}>
+              <Text>{formattedDate.replace(".", "")}</Text>
+              <div className={styles.datePicker__navigationWrapper}>
+                <Icon
+                  name={EIconName.ArrowBottom}
+                  onClick={decreaseMonth}
+                  className={cx(
+                    styles.datePicker__navigation,
+                    styles.datePicker__navigation_previous,
+                  )}
+                />
+                <Icon
+                  name={EIconName.ArrowBottom}
+                  onClick={increaseMonth}
+                  className={cx(styles.datePicker__navigation)}
+                />
+              </div>
+            </div>
+          );
+        }}
+        calendarContainer={MyContainer}
+        customInput={
+          <DatePickerInput
+            variant={variant}
+            placeholderText={placeholderText}
+            dateFormatMask={dateFormatMask}
+            classNameRoot={classNameFieldRoot}
+            onMouseDownInput={onMouseDownInput}
+            readOnlyInput={readOnlyInput}
+            disabled={disabled}
+            isVisibleCalendarIcon={true}
+            isVisibleErrorText={false}
+            isVisibleLabelText={false}
+            onMouseEnter={onMouseEnter}
+          />
+        }
+      />
+      {error && <div className={classNameError}>{error}</div>}
+    </div>
+  );
+};

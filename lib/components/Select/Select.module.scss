@@ -1,0 +1,237 @@
+@use "/src/styles/global" as styles;
+
+.spSelect {
+  // Общие стили блока
+  $block: &;
+
+  font-family: styles.$main-font;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+
+  // Модификаторы
+  &_error {
+    & #{$block}__control {
+      border-color: styles.$color-accent-red;
+      color: styles.$color-accent-red;
+
+      &:hover {
+        & #{$block}__value_empty {
+          color: styles.$color-gray-1;
+        }
+
+        & #{$block}__icon {
+          color: styles.$color-gray-1;
+        }
+      }
+    }
+  }
+
+  &_absolutePositionError {
+    position: relative;
+  }
+
+  // Элементы
+  &__container {
+    position: relative;
+  }
+
+  &__control {
+    $control: &;
+
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+
+    @include styles.option-default;
+
+    &_filled {
+      border-color: styles.$color-alice-blue;
+      background-color: styles.$color-alice-blue;
+    }
+
+    &_outlined {
+      background-color: transparent;
+      border-color: styles.$color-secondary-blue-light-dark;
+    }
+
+    &::placeholder {
+      color: styles.$color-gray-1;
+    }
+
+    &:hover {
+      & #{$block}__value_empty {
+        color: styles.$color-black;
+      }
+
+      & #{$block}__icon {
+        color: styles.$color-black;
+      }
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border-style: solid;
+      border-color: styles.$color-accent-blue;
+      background-color: transparent;
+    }
+
+    &_disabled {
+      cursor: default;
+      color: styles.$color-gray-1;
+      pointer-events: none;
+    }
+
+    &_disabled:hover {
+      & #{$block}__value_empty {
+        color: styles.$color-gray-1;
+      }
+
+      & #{$block}__icon {
+        color: styles.$color-gray-1;
+        cursor: default;
+      }
+    }
+  }
+
+  &__value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+
+    &_empty {
+      color: styles.$color-gray-1;
+    }
+  }
+
+  &__icon {
+    z-index: 10;
+    color: styles.$color-gray-1;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &__listWrapper {
+    position: absolute;
+    width: 100%;
+    background-color: styles.$color-white;
+    border-radius: 4px;
+    box-shadow: 1px 1px 26px 0 styles.$color-rgba-19-15;
+    z-index: 15;
+  }
+
+  &__list {
+    font-weight: 400;
+    width: 100%;
+    background-color: styles.$color-white;
+
+    &_scrollable {
+      overflow-y: auto;
+    }
+
+    &_withSearch {
+      padding-top: 0;
+    }
+
+    @include styles.custom-scrollbar();
+  }
+
+  &__emptyOptions {
+    color: styles.$color-gray-1;
+    font-style: italic;
+    font-size: 12px;
+    padding: 11.5px 50px 11.5px 16px;
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+      padding: 16.5px 50px 16.5px 16px;
+    }
+  }
+
+  &__option {
+    cursor: pointer;
+    position: relative;
+    white-space: pre-line;
+    @include styles.option-default;
+
+    &:hover {
+      background-color: styles.$color-alice-blue;
+    }
+  }
+
+  &__error {
+    padding-top: 8px;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 12px;
+    color: styles.$color-accent-red;
+
+    &_absolutePosition {
+      position: absolute;
+      top: 100%;
+    }
+
+    @include styles.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+
+  // Новые стили для поиска
+  &__search {
+    position: relative;
+    padding: 8px 16px;
+    border-bottom: 1px solid styles.$color-alice-blue;
+    background-color: styles.$color-white;
+  }
+
+  &__searchInput {
+    width: 100%;
+    outline: none;
+    font-family: styles.$main-font;
+    font-size: 14px;
+    padding: 8px 30px;
+    border: 1px solid styles.$color-secondary-blue-light-dark;
+    border-radius: 4px;
+
+    &:focus {
+      border-color: styles.$color-accent-blue;
+    }
+
+    &::placeholder {
+      color: styles.$color-gray-1;
+    }
+  }
+
+  &__searchIcon {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: styles.$color-gray-1;
+    width: 16px;
+    height: 16px;
+  }
+
+  &__searchClearIcon {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: styles.$color-gray-1;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+
+    &:hover {
+      color: styles.$color-black;
+    }
+  }
+}

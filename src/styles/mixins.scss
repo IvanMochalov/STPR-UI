@@ -1,3 +1,6 @@
+@use "./constants" as *;
+@use "./colors" as *;
+
 @mixin respond-to($breakpoint) {
   @if $breakpoint == xs {
     @media only screen and (max-width: 767px) {
@@ -5,6 +8,10 @@
     }
   } @else if $breakpoint == sm {
     @media only screen and (min-width: 768px) {
+      @content
+    }
+  } @else if $breakpoint == lg {
+    @media only screen and (min-width: 1200px) {
       @content
     }
   } @else if $breakpoint == xl {
@@ -16,4 +23,66 @@
 
 @mixin calc-width-with-gutter($gutter, $countElement) {
   width: calc((100% - (#{$gutter} * ($countElement - 1))) / $countElement) !important;
+}
+
+@mixin transition-all-ease-in-out($duration) {
+  & {
+    transition: all #{$duration} ease-in-out;
+  }
+}
+
+@mixin box-sizing-border-box() {
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+@mixin transition-prop-ease-in-out($props, $duration) {
+  & {
+    transition-property: $props;
+    transition-duration: #{$duration};
+    transition-timing-function: ease-in-out;
+  }
+}
+
+@mixin starting-style-appearance {
+  opacity: 1;
+  visibility: visible;
+  @include transition-all-ease-in-out(300ms);
+  @starting-style {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@mixin option-default() {
+  color: $color-black;
+  font-size: 16px;
+  padding: 11.5px 50px 11.5px 16px;
+
+  @include respond-to(sm) {
+    font-size: 18px;
+    padding: 16.5px 50px 16.5px 16px;
+  }
+}
+
+// Стили scrollbar для использования в компонентах
+@mixin custom-scrollbar($custom-track-background : $scrollbar-track-background) {
+  &::-webkit-scrollbar {
+    width: $scrollbar-width;
+    height: $scrollbar-width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $custom-track-background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $scrollbar-thumb-background;
+
+    &:hover {
+      background: $scrollbar-thumb-background-hover;
+    }
+  }
 }

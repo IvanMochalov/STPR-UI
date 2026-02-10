@@ -1,0 +1,67 @@
+@use "/src/styles/global" as styles;
+
+.spinner {
+  --spinner-size: 24px;
+  --spinner-thickness: 2px;
+
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border-radius: 50%;
+  position: relative;
+  animation: spinner-rotate 1s linear infinite;
+  flex-shrink: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: var(--spinner-thickness) solid currentColor;
+    animation: spinner-clip 2s linear infinite;
+  }
+
+  // Size variants - адаптируем под новые размеры
+  &--sm {
+    --spinner-size: 16px;
+    --spinner-thickness: 2px;
+  }
+
+  &--md {
+    --spinner-size: 24px;
+    --spinner-thickness: 3px;
+  }
+
+  &--lg {
+    --spinner-size: 32px;
+    --spinner-thickness: 4px;
+  }
+
+  &--xl {
+    --spinner-size: 48px;
+    --spinner-thickness: 5px;
+  }
+}
+
+@keyframes spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-clip {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
