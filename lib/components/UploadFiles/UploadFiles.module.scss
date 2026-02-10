@@ -17,6 +17,10 @@
     }
   }
 
+  &__tooltipRoot {
+    width: 100%;
+  }
+
   &__fileNameContainer {
     width: 100%;
     text-align: start;
@@ -297,7 +301,7 @@
     }
   }
 
-  &__tooltip {
+  &__infoTooltip {
     margin-left: auto;
   }
 

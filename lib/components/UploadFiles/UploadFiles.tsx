@@ -269,7 +269,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
               hover={true}
               position={tooltipPosition}
               text={infoTooltipText}
-              classNameTooltip={styles.spUploadFiles__tooltip}
+              classNameTooltip={styles.spUploadFiles__infoTooltip}
               classNameBaseTooltipRoot={classNameBaseInfoTooltipRoot}
             />
           )
@@ -311,6 +311,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           text={infoTooltipText}
           isVisibleTooltip={isDropzoneVariant}
           position={tooltipPosition}
+          classNameTooltip={styles.spUploadFiles__tooltipRoot}
           trigger={
             <div className={classNameControlRoot}>
               {isInputVariant && (loading ? <Spinner /> : renderSingleUploadFileIcon())}
