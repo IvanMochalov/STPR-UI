@@ -31,7 +31,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "storybook:build": "storybook build --output-dir storybook-static/themes/main/assets/storybook"
+    "storybook:build": "storybook build --output-dir storybook-static/themes/main/assets/storybook && node scripts/fix-storybook-paths.js"
   },
   "dependencies": {
     "@storybook/addon-essentials": "^9.0.0-alpha.12",
