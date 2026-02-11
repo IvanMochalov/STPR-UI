@@ -11,7 +11,6 @@ export default defineConfig({
   base: "/",
   build: {
     outDir: "dist",
-    assetsDir: "assets",
     lib: {
       entry: resolve(__dirname, "lib/test-stpr-ui-kit.ts"),
       name: "test-stpr-ui-kit",
@@ -26,17 +25,6 @@ export default defineConfig({
         },
       },
       plugins: [
-        {
-          name: "rewrite-font-paths",
-          generateBundle(_options, bundle) {
-            for (const [fileName, file] of Object.entries(bundle)) {
-              if (fileName.endsWith(".css") && "source" in file) {
-                // Заменяем абсолютные пути подключения шрифтов в стилях dist/lk/themes/main/assets/znp/index-ro-fpzNQ.css на относительные
-                file.source = file.source.toString().replace(/url\(\/fonts\//g, "url(../fonts/");
-              }
-            }
-          },
-        },
         copy({
           targets: [
             {
