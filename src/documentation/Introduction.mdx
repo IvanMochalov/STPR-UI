@@ -27,3 +27,67 @@ function App() {
   );
 }
 ```
+
+## 🔤 Font setup
+
+The library components use **ALSGorizont** and **ALSHauss** fonts. Font loading is not included in component styles — you need to add it in your project.
+
+Copy the following `@font-face` rules into your global styles (e.g. `index.css` or `App.css`):
+
+```css
+@font-face {
+  font-family: "ALSGorizont";
+  src: url("../assets/fonts/ALS_Gorizont_Regular_Expanded_2.1.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALSGorizont";
+  src: url("../assets/fonts/ALS_Gorizont_Medium_Expanded_2.1.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALSGorizont";
+  src: url("../assets/fonts/ALS_Gorizont_Bold_Expanded_2.1.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALSHauss";
+  src: url("../assets/fonts/ALS_Hauss_Regular_1.002.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALSHauss";
+  src: url("../assets/fonts/ALS_Hauss_Medium_1.2.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALSHauss";
+  src: url("../assets/fonts/ALS_Hauss_Bold_1.002.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+```
+
+**Note:** Adjust the `url("../assets/fonts/...")` path to match your project structure. Font family names (`ALSGorizont`, `ALSHauss`) must match exactly — the components reference them:
+
+```scss
+// Text variables used in test-stpr-ui-kit
+$title-font: "ALSGorizont", Verdana, Arial, Sans-serif;
+$main-font: "ALSHauss", Verdana, Arial, Sans-serif;
+```
