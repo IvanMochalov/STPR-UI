@@ -10,6 +10,7 @@
   align-items: stretch;
   border: 1px solid styles.$color-accent-blue;
   background-color: styles.$color-white;
+  @include styles.starting-style-appearance();
 
   &__item {
     display: flex;

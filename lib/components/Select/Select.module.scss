@@ -8,6 +8,7 @@
   display: inline-flex;
   flex-direction: column;
   width: 100%;
+  @include styles.starting-style-appearance();
 
   // Модификаторы
   &_error {

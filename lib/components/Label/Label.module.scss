@@ -11,6 +11,7 @@
   font-family: styles.$main-font;
   font-weight: 400;
   line-height: 1;
+  @include styles.starting-style-appearance();
 
   // Элементы
   &__text {

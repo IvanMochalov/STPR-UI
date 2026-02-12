@@ -6,6 +6,7 @@
 
   width: 100%;
   position: relative;
+  @include styles.starting-style-appearance();
 
   // Модификаторы
   &_fluidHeight {

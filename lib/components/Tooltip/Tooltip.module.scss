@@ -5,6 +5,7 @@
   position: relative;
   display: flex;
   width: fit-content;
+  @include styles.starting-style-appearance();
 }
 
 .spInfoTooltip {

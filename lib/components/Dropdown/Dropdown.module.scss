@@ -10,6 +10,7 @@
   background-color: styles.$color-frost-blue;
   cursor: pointer;
   color: styles.$color-accent-blue;
+  @include styles.starting-style-appearance();
 
   &:hover {
     background-color: styles.$color-secondary-blue-light-2;

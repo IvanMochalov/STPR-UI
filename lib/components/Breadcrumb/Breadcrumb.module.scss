@@ -3,6 +3,7 @@
 .spBreadcrumb {
   $block: &;
   display: block;
+  @include styles.starting-style-appearance();
 
   &__list {
     display: flex;

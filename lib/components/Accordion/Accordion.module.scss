@@ -11,6 +11,7 @@
   padding: 16px;
   font-family: styles.$main-font;
   @include styles.transition-all-ease-in-out(200ms);
+  @include styles.starting-style-appearance();
 
   @include styles.respond-to(sm) {
     padding: 32px;

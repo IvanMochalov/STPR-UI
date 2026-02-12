@@ -9,6 +9,7 @@
   width: 100%;
   min-width: 280px;
   height: 100%;
+  @include styles.starting-style-appearance();
 
   &_error {
     & #{$block}__control {

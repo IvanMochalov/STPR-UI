@@ -13,6 +13,7 @@
   @include styles.custom-scrollbar();
   @include styles.box-sizing-border-box();
   @include styles.transition-all-ease-in-out(200ms);
+  @include styles.starting-style-appearance();
 
   &_noPadding {
     padding: 0;

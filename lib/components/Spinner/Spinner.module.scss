@@ -10,6 +10,7 @@
   position: relative;
   animation: spinner-rotate 1s linear infinite;
   flex-shrink: 0;
+  @include styles.starting-style-appearance();
 
   &::before {
     content: "";
