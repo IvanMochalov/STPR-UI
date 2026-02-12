@@ -164,7 +164,7 @@ export const Default: Story = {
   args: {
     value: 0,
     doneValue: 100,
-    duration: 20000,
+    duration: 2000,
     animationVariant: "backgroundProgress",
   },
   render: ({ animationVariant, duration = 2000, doneValue, value }) => {
