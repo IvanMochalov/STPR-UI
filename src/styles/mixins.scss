@@ -47,8 +47,10 @@
 }
 
 @mixin starting-style-appearance {
-  opacity: 1;
-  visibility: visible;
+  & {
+    opacity: 1;
+    visibility: visible;
+  }
   @include transition-all-ease-in-out(300ms);
   @starting-style {
     opacity: 0;
