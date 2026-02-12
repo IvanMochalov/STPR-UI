@@ -27,7 +27,7 @@ const meta: Meta<typeof Tooltip> = {
 
 - **Два режима активации**: по наведению (\`hover\`) и по клику (\`click\`)
 - **12 позиций отображения**: полная поддержка всех сторон и углов
-- **Автоматическое позиционирование**: предотвращает выход за границы \`viewport\`
+- **Автоматическое позиционирование**: предотвращает выход за границы \`viewport\` (отключается параметром \`lockPosition\`)
 - **Портальное отображение**: рендеринг вне DOM-иерархии для избежания \`overflow\`
 - **Гибкая кастомизация**: поддержка кастомных триггеров и содержимого
 - **Обработка кликов вне области**: автоматическое закрытие при клике вне тултипа
@@ -132,6 +132,14 @@ const meta: Meta<typeof Tooltip> = {
         defaultValue: { summary: '"bottom-left"' },
       },
     },
+    lockPosition: {
+      description: `Запрещает перерасчёт позиции. Если true, используется только переданная позиция без проверки viewport и подбора альтернатив. Полезно для выпадающих списков.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     text: {
       description: `Содержимое тултипа. Может быть строкой или React-компонентом. Поддерживает многострочный текст и HTML-разметку.\n`,
       control: { type: "text" },
@@ -211,6 +219,7 @@ const meta: Meta<typeof Tooltip> = {
     isStopPropagationClickOnTrigger: false,
     noPadding: false,
     isToggleClick: false,
+    lockPosition: false,
   },
 };
 

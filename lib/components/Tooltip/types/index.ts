@@ -23,6 +23,8 @@ export interface TooltipProps
   isToggleClick?: boolean;
   isVisibleTooltip?: boolean;
   position?: ETooltipPosition;
+  /** When true, disables position recalculation — only the passed `position` is used. */
+  lockPosition?: boolean;
   trigger?: React.ReactNode;
   triggerAction?: () => void;
   actionOnClose?: () => void;

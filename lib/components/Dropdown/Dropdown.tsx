@@ -74,6 +74,7 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
       actionOnClose={() => setOpen(false)}
       text={renderTooltipContent()}
       position={dropdownPosition}
+      lockPosition={true}
       noPadding={true}
       isToggleClick={true}
       isStopPropagationClickOnTrigger={true}

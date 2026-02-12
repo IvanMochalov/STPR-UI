@@ -19,6 +19,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     actionOnClose,
     classNameTooltip: propsClassNameTooltip,
     position: defaultTooltipPosition = ETooltipPosition.BottomLeft,
+    lockPosition = false,
     text,
     noPadding,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
@@ -153,8 +154,8 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     // Сначала пробуем заданную позицию
     let { top, left } = calculatePosition(defaultTooltipPosition);
 
-    // Если заданная позиция не подходит, ищем подходящую среди всех возможных
-    if (!isPositionValid(top, left)) {
+    // Если lockPosition — используем только переданную позицию, без перерасчёта
+    if (!lockPosition && !isPositionValid(top, left)) {
       const allPositions = Object.values(ETooltipPosition);
 
       // Приоритет: сначала пробуем заданную позицию, затем остальные
@@ -207,7 +208,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       visibility: isOpen || isHovered ? "visible" : "hidden",
       opacity: isOpen || isHovered ? 1 : 0,
     }));
-  }, [defaultTooltipPosition, isOpen, isHovered]);
+  }, [defaultTooltipPosition, lockPosition, isOpen, isHovered]);
 
   // Эффекты для обновления позиции
   useEffect(() => {
