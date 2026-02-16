@@ -276,6 +276,13 @@ return (
         type: { summary: "string" },
       },
     },
+    classNameSubHeaderRoot: {
+      description: "Дополнительный CSS-класс для саб-хедера модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     classNameFooterRoot: {
       description: "Дополнительный CSS-класс для футера модального окна",
       control: false,

@@ -13,6 +13,7 @@ export interface ModalProps extends React.PropsWithChildren {
   isVisibleCloseButton?: boolean;
   classNameRoot?: string;
   classNameHeaderRoot?: string;
+  classNameSubHeaderRoot?: string;
   classNameFooterRoot?: string;
   classNameLayerRoot?: string;
   header: string | ReactNode;

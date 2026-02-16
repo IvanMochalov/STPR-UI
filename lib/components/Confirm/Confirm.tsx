@@ -34,6 +34,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     submitBtnClassName,
     cancelBtnClassName,
     classNameHeaderRoot,
+    classNameSubHeaderRoot,
     classNameFooterRoot,
   } = props;
 
@@ -54,6 +55,7 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       classNameRoot={classNameRoot}
       classNameLayerRoot={classNameLayerRoot}
       classNameHeaderRoot={classNameHeaderRoot}
+      classNameSubHeaderRoot={classNameSubHeaderRoot}
       classNameFooterRoot={classNameFooterRoot}
       footer={
         isVisibleFooter ? (
