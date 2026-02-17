@@ -14,6 +14,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     zIndex = 999,
     isHiddenModal = false,
     disabled = false,
+    loading = false,
     isVisibleCloseButton = true,
     children,
     classNameLayerRoot: propsClassNameLayerRoot,
@@ -42,12 +43,14 @@ export const Modal: React.FC<ModalProps> = (props) => {
     [styles.modalWrapper__modal]: true,
     [styles[`modalWrapper__modal--size-${size}`]]: size,
     [styles.modalWrapper__modal_disabled]: disabled,
+    [styles.modalWrapper__modal_loading]: loading,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
   const classNameCloseButton = cx({
     [styles.modalWrapper__closeButton]: true,
     [styles.modalWrapper__closeButton_disabled]: disabled,
+    [styles.modalWrapper__closeButton_loading]: loading,
     [styles[`modalWrapper__closeButton--size-${size}`]]: size,
   });
 
@@ -59,23 +62,27 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const classNameContent = cx({
     [styles.modalWrapper__content]: true,
     [styles.modalWrapper__content_disabled]: disabled,
+    [styles.modalWrapper__content_loading]: loading,
   });
 
   const classNameModalHeader = cx({
     [styles.modalWrapper__header]: true,
     [styles.modalWrapper__header_disabled]: disabled,
+    [styles.modalWrapper__header_loading]: loading,
     ...(propsClassNameHeaderRoot && { [propsClassNameHeaderRoot]: true }),
   });
 
   const classNameModalSubHeader = cx({
     [styles.modalWrapper__subHeader]: true,
     [styles.modalWrapper__subHeader_disabled]: disabled,
+    [styles.modalWrapper__subHeader_loading]: loading,
     ...(propsClassNameSubHeaderRoot && { [propsClassNameSubHeaderRoot]: true }),
   });
 
   const classNameModalFooter = cx({
     [styles.modalWrapper__footer]: true,
     [styles.modalWrapper__footer_disabled]: disabled,
+    [styles.modalWrapper__footer_loading]: loading,
     ...(propsClassNameFooterRoot && { [propsClassNameFooterRoot]: true }),
   });
 
@@ -105,7 +112,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
             isOnlyIcon={true}
           />
         )}
-        {disabled && (
+        {loading && (
           <div className={styles.modalWrapper__spinnerOverlay}>
             <Spinner size="lg" />
           </div>

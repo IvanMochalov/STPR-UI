@@ -234,7 +234,15 @@ return (
     },
     disabled: {
       description:
-        "Блокирует взаимодействие с модальным окном. При true отображает спинер поверх содержимого и блокирует все пользовательские события",
+        "Блокирует взаимодействие с модальным окном. При true блокирует все пользовательские события (pointer-events: none) и затемняет контент (opacity: 0.5).",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    loading: {
+      description:
+        "По сути то же, что disabled (блокирует взаимодействие и затемняет контент), но дополнительно отображает спиннер поверх всего содержимого. Используйте при асинхронной загрузке данных.",
       control: { type: "boolean" },
       table: {
         defaultValue: { summary: "false" },
@@ -375,6 +383,7 @@ export const Default: Story = {
     header: "Заголовок модального окна",
     isHiddenModal: false,
     disabled: false,
+    loading: false,
     isVisibleCloseButton: true,
     textAlign: "left",
     size: "lg",
@@ -391,6 +400,24 @@ export const Default: Story = {
         {isOpen && <Modal {...args} onClose={onCloseModal} />}
       </>
     );
+  },
+};
+
+export const WithDisabled: Story = {
+  name: "Modal with disabled",
+  render: Default.render,
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const WithLoading: Story = {
+  name: "Modal with loading",
+  render: Default.render,
+  args: {
+    ...Default.args,
+    loading: true,
   },
 };
 

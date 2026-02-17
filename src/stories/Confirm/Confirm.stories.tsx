@@ -229,6 +229,22 @@ return (
         defaultValue: { summary: "false" },
       },
     },
+    disabledConfirm: {
+      description:
+        "Блокирует взаимодействие с модальным окном. При true блокирует все пользовательские события (pointer-events: none) и затемняет контент (opacity: 0.5).",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    loadingConfirm: {
+      description:
+        "По сути то же, что disabledConfirm (блокирует взаимодействие и затемняет контент), но дополнительно отображает спиннер поверх всего содержимого. Используйте при асинхронной загрузке данных.",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     formId: {
       description: "ID формы для привязки кнопки подтверждения",
       control: false,
@@ -323,6 +339,8 @@ export const Default: Story = {
     cancelBtnDisabled: false,
     disabled: false,
     loading: false,
+    disabledConfirm: false,
+    loadingConfirm: false,
     applyButtonsMobileDirection: "column",
     isVisibleCloseButton: true,
     modalVerticalAlign: "top",

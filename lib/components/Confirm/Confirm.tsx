@@ -16,14 +16,16 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
     submitBtnContent,
     submitBtnIconName,
     submit,
-    disabled,
     formId,
     onClose,
     applyButtonsMobileDirection = "column",
     applyButtonsAlign = "right",
     modalVerticalAlign = "top",
     textAlign = "left",
-    loading,
+    disabled = false,
+    loading = false,
+    disabledConfirm = false,
+    loadingConfirm = false,
     isVisibleCloseButton,
     isHiddenModal,
     size,
@@ -57,6 +59,8 @@ export const Confirm: React.FC<ConfirmProps> = (props) => {
       classNameHeaderRoot={classNameHeaderRoot}
       classNameSubHeaderRoot={classNameSubHeaderRoot}
       classNameFooterRoot={classNameFooterRoot}
+      loading={loadingConfirm}
+      disabled={disabledConfirm}
       footer={
         isVisibleFooter ? (
           <ApplyButtons

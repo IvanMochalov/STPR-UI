@@ -22,4 +22,5 @@ export interface ModalProps extends React.PropsWithChildren {
   subHeader?: ReactNode;
   onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
+  loading?: boolean;
 }

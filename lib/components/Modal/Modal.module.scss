@@ -81,7 +81,8 @@
       max-height: calc(100vh - var(--layer-padding) * 2);
     }
 
-    &_disabled {
+    &_disabled,
+    &_loading {
       pointer-events: none;
     }
   }
@@ -97,7 +98,8 @@
       @include styles.custom-scrollbar(styles.$color-frost-blue)
     }
 
-    &_disabled {
+    &_disabled,
+    &_loading {
       opacity: 0.5;
     }
   }
@@ -157,7 +159,8 @@
       }
     }
 
-    &_disabled {
+    &_disabled,
+    &_loading {
       opacity: 0.5;
     }
   }
@@ -167,7 +170,8 @@
   &__footer {
     flex-shrink: 0;
 
-    &_disabled {
+    &_disabled,
+    &_loading {
       opacity: 0.5;
     }
   }
