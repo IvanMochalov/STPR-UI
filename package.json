@@ -1,6 +1,6 @@
 {
   "name": "test-stpr-ui-kit",
-  "version": "0.5.110",
+  "version": "0.5.111",
   "description": "UI-kit package",
   "license": "MIT",
   "author": "Mochalov Ivan",
@@ -16,7 +16,9 @@
   "files": [
     "dist"
   ],
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "main": "./dist/test-stpr-ui-kit.umd.cjs",
   "module": "./dist/test-stpr-ui-kit.js",
   "types": "./dist/test-stpr-ui-kit.es.d.ts",
