@@ -13,7 +13,7 @@ const meta: Meta<typeof Select> = {
     onChange: {
       description: `Callback-функция, вызываемая при выборе значения из списка.
 Получает два параметра:
-- event: React событие MouseEvent<HTMLDivElement>
+- event: React событие MouseEvent&lt;HTMLDivElement&gt;
 - data: объект с именем поля и выбранным значением
 
 Особенности:
@@ -24,7 +24,7 @@ const meta: Meta<typeof Select> = {
       table: {
         type: {
           detail:
-            "(event: React.MouseEvent<HTMLDivElement>,\n" +
+            "(event: React.MouseEvent&lt;HTMLDivElement&gt;,\n" +
             "data: {\n" +
             "  name: string;\n" +
             "  value: string | null\n" +

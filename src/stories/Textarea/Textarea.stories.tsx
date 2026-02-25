@@ -15,7 +15,7 @@ const meta: Meta<typeof Textarea> = {
     onChange: {
       description: `Callback-функция, вызываемая при изменении значения текстового поля.
 Получает два параметра:
-- event: стандартное React событие ChangeEvent<HTMLTextAreaElement>
+- event: стандартное React событие ChangeEvent&lt;HTMLTextAreaElement&gt;
 - data: объект с именем поля и новым значением
 
 Особенности:
@@ -26,7 +26,7 @@ const meta: Meta<typeof Textarea> = {
       table: {
         type: {
           detail:
-            "(event: React.ChangeEvent<HTMLTextAreaElement>,\n" +
+            "(event: React.ChangeEvent&lt;HTMLTextAreaElement&gt;,\n" +
             "data: {\n" +
             "  name: string;\n" +
             "  value: string | null;\n" +

@@ -33,7 +33,7 @@ const meta: Meta<typeof DatePicker> = {
       control: false,
       table: {
         type: {
-          detail: `(data: { name: string; value: Date | null }, event?: React.ChangeEvent<HTMLInputElement>) => void`,
+          detail: `(data: { name: string; value: Date | null }, event?: React.ChangeEvent&lt;HTMLInputElement&gt;) => void`,
           summary: "TOnChangeDatePicker",
         },
       },
@@ -224,14 +224,14 @@ const meta: Meta<typeof DatePicker> = {
       description: `Callback при нажатии кнопки мыши на поле ввода.\n`,
       control: false,
       table: {
-        type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
+        type: { summary: "(event: React.MouseEvent&lt;HTMLDivElement, MouseEvent&gt;) => void" },
       },
     },
     onMouseEnter: {
       description: `Callback при наведении курсора на поле ввода.\n`,
       control: false,
       table: {
-        type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
+        type: { summary: "(event: React.MouseEvent&lt;HTMLDivElement, MouseEvent&gt;) => void" },
       },
     },
 

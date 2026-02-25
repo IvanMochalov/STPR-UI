@@ -15,7 +15,7 @@ const meta: Meta<typeof Input> = {
     onChange: {
       description: `Callback-функция, вызываемая при изменении значения поля ввода.
 Получает два параметра:
-- event: стандартное React событие ChangeEvent<HTMLInputElement>
+- event: стандартное React событие ChangeEvent&lt;HTMLInputElement&gt;
 - data: объект с именем поля и новым значением
 
 Особенности:
@@ -27,7 +27,7 @@ const meta: Meta<typeof Input> = {
       table: {
         type: {
           detail:
-            "(event: React.ChangeEvent<HTMLInputElement>,\n" +
+            "(event: React.ChangeEvent&lt;HTMLInputElement&gt;,\n" +
             "data: {\n" +
             "  name: string;\n" +
             "  value: string | null;\n" +
