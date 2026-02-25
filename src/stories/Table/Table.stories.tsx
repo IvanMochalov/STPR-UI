@@ -531,7 +531,7 @@ export const WithError: Story = {
   args: {
     columns: defaultColumns,
     hasError: true,
-    errorText: "Произошла ошибка загрузки данных",
+    errorText: "Ошибка в данных таблицы",
   },
   parameters: {
     docs: {

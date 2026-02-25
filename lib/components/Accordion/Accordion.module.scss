@@ -76,9 +76,7 @@
 
     & #{$block}__nameText {
       cursor: pointer;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
+      @include styles.inherit-font-style;
     }
 
     &_hiddenExpand {
