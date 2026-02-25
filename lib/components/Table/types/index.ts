@@ -1,30 +1,45 @@
-export interface TableProps {
-  isNotTableOnNotDesktop?: boolean;
-  data: TTableRowsData;
-  columns: TTableColumnsData;
+import type { Dispatch, ReactNode } from "react";
+
+export interface TableProps<TData extends Record<string, any> = any> {
+  data: TData[];
+  columns: TColumn<TData>[];
+  dispatch?: Dispatch<TClickOnCellAction<TData>>;
   classNameRoot?: string;
-  isDesktop?: boolean;
+  classNameTableRoot?: string;
+  classNameTdContentRoot?: string;
+  renderCellContent?: (row: TData, col: TColumn<TData>) => ReactNode;
+  styleVariant?: TTableStyleVariant;
+  noData?: {
+    isVisibleHeader?: boolean;
+    noDataText?: string;
+  };
+  loading?: boolean;
+  hasError?: boolean;
+  errorText?: string;
 }
 
-export type TTableRowsData = TTableRowsDataItem[];
-
-export type TTableRowsDataItem = {
-  name: string;
-  description?: string;
+export type TClickOnCellAction<TData> = {
+  clickOn: string;
+  rowData: TData;
 };
 
-export type TTableColumnsData = TTableColumnsDataItem[];
+export type TTableStyleVariant = "default" | "znp";
 
-export type TTableColumnsDataItem = {
-  key: keyof TTableRowsDataItem;
+export type TColumn<TData> = {
+  key: keyof TData | TDefaultColumnKey;
   title: string;
-  isBeCopiedValue?: boolean;
-  isColorContentsCurlyBrackets?: boolean;
   isVisible?: boolean;
+  isClickable?: boolean;
+  isSortable?: boolean;
+  isDisabled?: boolean;
+  width?: number;
+  renderCell?: (row: TData, col: TColumn<TData>) => ReactNode;
+  sortBy?: keyof TData;
 };
 
-export interface HandleCopyToClipboardProps {
-  text: string;
-  rowIndex: number;
-  colIndex: number;
-}
+export type TSortState<TData> = {
+  key: keyof TData | TDefaultColumnKey;
+  direction: "asc" | "desc";
+};
+
+export type TDefaultColumnKey = "controls" | "deleteControl" | "editControl";

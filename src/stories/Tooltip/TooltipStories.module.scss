@@ -10,9 +10,9 @@
 }
 
 .clickableTooltipTrigger {
-  border-color: styles.$color-green-1;
+  border-color: styles.$color-accent-green-dark-1;
   background-color: styles.$color-green-2-transparent-10;
-  color: styles.$color-green-1;
+  color: styles.$color-accent-green-dark-1;
 }
 
 .toggleClickableTooltipTrigger {
@@ -127,8 +127,8 @@
   padding: 30px;
   border-radius: 8px;
   background-color: styles.$color-green-2-transparent-10;
-  border: 2px solid styles.$color-green-1;
-  color: styles.$color-green-1;
+  border: 2px solid styles.$color-accent-green-dark-1;
+  color: styles.$color-accent-green-dark-1;
   cursor: pointer;
   display: flex;
   flex-direction: column;

@@ -1,8 +1,10 @@
-export { Table } from "./Table.tsx";
+export { useTableActions } from "./hooks";
+export { Table } from "./Table";
 export type {
   TableProps,
-  TTableColumnsData,
-  TTableColumnsDataItem,
-  TTableRowsData,
-  TTableRowsDataItem,
+  TClickOnCellAction,
+  TColumn,
+  TDefaultColumnKey,
+  TSortState,
+  TTableStyleVariant,
 } from "./types";

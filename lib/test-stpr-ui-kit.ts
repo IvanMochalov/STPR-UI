@@ -37,7 +37,8 @@ import type {
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
-import { Table } from "./components/Table";
+import type { TableProps, TClickOnCellAction, TColumn } from "./components/Table";
+import { Table, useTableActions } from "./components/Table";
 import type { TPaneItem } from "./components/Tabs";
 import { Tabs } from "./components/Tabs";
 import { Text } from "./components/Text";
@@ -84,8 +85,11 @@ export {
   Skeleton,
   Spinner,
   Table,
+  TableProps,
   Tabs,
   TButtonVariant,
+  TClickOnCellAction,
+  TColumn,
   TContextMenuOption,
   Text,
   Textarea,
@@ -104,5 +108,6 @@ export {
   UploadFiles,
   useAnimatedValue,
   useModal,
+  useTableActions,
   ViewImageModal,
 };
