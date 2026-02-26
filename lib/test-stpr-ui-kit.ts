@@ -2,7 +2,7 @@ import { Accordion } from "./components/Accordion";
 import { ApplyButtons } from "./components/ApplyButtons";
 import { AuthProtected } from "./components/AuthProtected";
 import { BaseTooltip } from "./components/BaseTooltip";
-import { Breadcrumb } from "./components/Breadcrumb";
+import { Breadcrumb, type TCrumbItem } from "./components/Breadcrumb";
 import type { TButtonVariant } from "./components/Button";
 import { Button } from "./components/Button";
 import type { TOnChangeCheckbox } from "./components/Checkbox";
@@ -91,6 +91,7 @@ export {
   TClickOnCellAction,
   TColumn,
   TContextMenuOption,
+  TCrumbItem,
   Text,
   Textarea,
   TextWithLabel,

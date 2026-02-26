@@ -118,6 +118,9 @@ const meta: Meta<typeof ProgressWrapper> = {
 
 ### Базовое использование
 \`\`\`jsx
+import { useInterval } from "test-stpr-ui-kit";
+
+...
 const doneValue = 100;
 const duration = 2000;
 const [progress, setProgress] = useState(0);

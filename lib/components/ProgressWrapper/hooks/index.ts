@@ -3,100 +3,109 @@ import { useEffect, useRef, useState } from "react";
 import { DEFAULT_DURATION } from "../constants";
 import { TUseAnimatedValueProps } from "../types";
 
+const COMPLETION_DELAY_MS = 500;
+
+function easeInOutCubic(t: number): number {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
 export const useAnimatedValue = (props: TUseAnimatedValueProps) => {
   const { targetValue, duration = DEFAULT_DURATION, doneValue, onSuccessLoaded } = props;
-  const [currentValue, setCurrentValue] = useState(targetValue);
-  const animationRef = useRef<number>();
-  const startValueRef = useRef(0);
-  const startTimeRef = useRef<number>();
-  const targetValueRef = useRef(targetValue);
-  const [isLoading, setIsLoading] = useState(false);
-  const timeoutRef = useRef<number>();
 
+  const [currentValue, setCurrentValue] = useState(targetValue);
+  const [isLoading, setIsLoading] = useState(targetValue !== doneValue);
+
+  const animationRef = useRef<number>();
+  const startValueRef = useRef(targetValue);
+  const startTimeRef = useRef<number>(0);
+  const targetValueRef = useRef(targetValue);
+  const currentValueRef = useRef(currentValue);
+  const completionTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const completionFiredRef = useRef(false);
+
+  currentValueRef.current = currentValue;
+
+  // Анимация: при изменении targetValue плавно переходим от текущего отображаемого значения к новому
   useEffect(() => {
     targetValueRef.current = targetValue;
 
-    // Если значение не изменилось, ничего не делаем
-    if (targetValue === startValueRef.current) return;
-
-    // Отменяем предыдущую анимацию, если она есть
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-    }
-
-    // Если targetValue равно doneValue, сразу устанавливаем конечное значение
-    if (targetValue === doneValue && !isLoading) {
-      setCurrentValue(doneValue);
-      startValueRef.current = doneValue;
+    if (targetValue === startValueRef.current) {
       return;
     }
 
-    // Устанавливаем начальные значения для анимации
-    startValueRef.current = currentValue;
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+      animationRef.current = undefined;
+    }
+
+    // Уже на финале и снова пришло doneValue — только синхронизируем, без анимации
+    if (targetValue === doneValue && startValueRef.current === doneValue) {
+      setCurrentValue(doneValue);
+      return;
+    }
+
+    startValueRef.current = currentValueRef.current;
     startTimeRef.current = performance.now();
 
-    const animate = (currentTime: number) => {
-      if (!startTimeRef.current) return;
+    const animate = (now: number) => {
+      const startTime = startTimeRef.current;
+      if (startTime === undefined) return;
 
-      // Вычисляем прошедшее время
-      const elapsedTime = currentTime - startTimeRef.current;
-      const progress = Math.min(elapsedTime / duration, 1);
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
 
-      // Вычисляем текущее значение с easing-функцией
-      const easedProgress =
-        progress < 0.5
-          ? 4 * progress * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      const start = startValueRef.current;
+      const target = targetValueRef.current;
+      const value = Math.max(0, Math.floor(start + (target - start) * eased));
+      setCurrentValue(value);
 
-      const newValue =
-        startValueRef.current + (targetValueRef.current - startValueRef.current) * easedProgress;
-
-      // Обеспечиваем, чтобы значение не было отрицательным и было целым числом
-      const clampedValue = Math.max(0, Math.floor(newValue));
-      setCurrentValue(clampedValue);
-
-      // Продолжаем анимацию, если не достигли конца
       if (progress < 1) {
         animationRef.current = requestAnimationFrame(animate);
+      } else {
+        startValueRef.current = target;
+        animationRef.current = undefined;
       }
     };
 
-    // Запускаем анимацию
     animationRef.current = requestAnimationFrame(animate);
 
-    // Очистка при размонтировании
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+        animationRef.current = undefined;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetValue, duration, doneValue, isLoading]);
+  }, [targetValue, duration, doneValue]);
 
+  // Состояние «завершено»: 500 мс показываем результат, затем скрываем бейдж и вызываем onSuccessLoaded один раз
   useEffect(() => {
-    // Если значение value достигло или изначально равно doneValue, устанавливаем таймер для скрытия
     if (currentValue === doneValue) {
-      timeoutRef.current = window.setTimeout(() => {
-        if (isLoading) {
-          onSuccessLoaded && onSuccessLoaded();
-        }
+      if (completionFiredRef.current) return;
+
+      completionTimeoutRef.current = setTimeout(() => {
+        completionTimeoutRef.current = undefined;
+        completionFiredRef.current = true;
+        onSuccessLoaded?.();
         setIsLoading(false);
-      }, 500);
-    } else {
-      // Если значение изменилось с doneValue, отменяем таймер и показываем компонент
-      setIsLoading(true);
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current);
-      }
+      }, COMPLETION_DELAY_MS);
+
+      return () => {
+        if (completionTimeoutRef.current) {
+          clearTimeout(completionTimeoutRef.current);
+          completionTimeoutRef.current = undefined;
+        }
+      };
     }
 
-    // Очистка таймера при размонтировании компонента
-    return () => {
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [currentValue, doneValue, isLoading, onSuccessLoaded]);
+    completionFiredRef.current = false;
+    if (completionTimeoutRef.current) {
+      clearTimeout(completionTimeoutRef.current);
+      completionTimeoutRef.current = undefined;
+    }
+    setIsLoading(true);
+    return undefined;
+  }, [currentValue, doneValue, onSuccessLoaded]);
 
   return {
     animatedValue: currentValue,
