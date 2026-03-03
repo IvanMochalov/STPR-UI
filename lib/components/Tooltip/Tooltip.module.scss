@@ -9,5 +9,23 @@
 }
 
 .spInfoTooltip {
+  $infoBlock: &;
   color: styles.$color-gray-1;
+
+  // hover-режим: синий при наведении
+  &_hover:hover {
+    color: styles.$color-accent-blue;
+  }
+
+  // режим по клику: синий, когда тултип открыт (Tooltip вешает класс .active при isOpen)
+  &_clickable {
+    cursor: pointer;
+  }
+  &:global(.tooltip-active)#{$infoBlock}_clickable {
+    cursor: default;
+  }
+  &:global(.tooltip-active) {
+
+    color: styles.$color-accent-blue;
+  }
 }

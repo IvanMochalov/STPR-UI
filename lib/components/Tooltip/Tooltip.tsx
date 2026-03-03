@@ -244,6 +244,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
   const classNameTooltip = cx({
     [styles.spTooltip]: true,
+    "tooltip-active": isOpen,
     ...(propsClassNameTooltip && { [propsClassNameTooltip]: true }),
   });
 
@@ -279,6 +280,8 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = (props) => {
   const propsClassNameInfoTooltip = props.classNameTooltip;
   const classNameInfoTooltip = cx({
     [styles.spInfoTooltip]: true,
+    [styles.spInfoTooltip_hover]: props.hover,
+    [styles.spInfoTooltip_clickable]: !props.hover,
     ...(propsClassNameInfoTooltip && { [propsClassNameInfoTooltip]: true }),
   });
 
