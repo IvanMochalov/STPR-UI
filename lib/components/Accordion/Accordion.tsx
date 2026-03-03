@@ -8,7 +8,7 @@ import styles from "./Accordion.module.scss";
 import { AccordionProps } from "./types";
 
 // TODO
-//  В дальнейшем реализовать через HTML тег details
+//  В дальнейшем рассмотреть возможность реализации через HTML тег details
 export const Accordion: React.FC<AccordionProps> = (props) => {
   const {
     name,
@@ -41,7 +41,6 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
   const classNameRoot = cx({
     [styles.spAccordion]: true,
     [styles.spAccordion_open]: open,
-    [styles.spAccordion_noOpen]: !open,
     [styles.spAccordion_noBorder]: noBorder,
     [styles.spAccordion_noPadding]: noPadding,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
