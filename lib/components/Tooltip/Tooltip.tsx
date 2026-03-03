@@ -276,12 +276,16 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   );
 };
 
-export const InfoTooltip: React.FC<InfoTooltipProps> = (props) => {
+export const InfoTooltip: React.FC<InfoTooltipProps> = ({
+  hover = true,
+  isVisibleTooltip = true,
+  ...props
+}) => {
   const propsClassNameInfoTooltip = props.classNameTooltip;
   const classNameInfoTooltip = cx({
     [styles.spInfoTooltip]: true,
-    [styles.spInfoTooltip_hover]: props.hover,
-    [styles.spInfoTooltip_clickable]: !props.hover,
+    [styles.spInfoTooltip_hover]: hover,
+    [styles.spInfoTooltip_clickable]: !hover,
     ...(propsClassNameInfoTooltip && { [propsClassNameInfoTooltip]: true }),
   });
 
@@ -289,6 +293,8 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = (props) => {
     <Tooltip
       {...props}
       classNameTooltip={classNameInfoTooltip}
+      hover={hover}
+      isVisibleTooltip={isVisibleTooltip}
       trigger={<Icon name={EIconName.Info} />}
     />
   );
