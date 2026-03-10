@@ -16,3 +16,9 @@
 - Страница «История версий» в Storybook: отображение CHANGELOG.md и текущей версии из package.json
 - Скрипт `scripts/inline-changelog.js`: генерация Changelog.mdx из CHANGELOG.md перед сборкой Storybook
 - Документация для разработчиков: раздел **Documentation/Development/Release workflow** — инструкция по внесению изменений, обновлению CHANGELOG, версионированию и публикации пакета и Storybook
+
+## [0.5.116] — 2026-03-10
+
+### Fixed
+- Фикс компонента Select: рендер списка через Portal;
+- Обновлена документация компонента Select;
