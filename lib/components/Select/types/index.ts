@@ -43,3 +43,10 @@ export type TOnChangeSelect = (
 ) => void;
 
 export type TOnBlurSelect = (data: { value: string | null | number; name: string }) => void;
+
+export type TSelectListStyle = {
+  top: number;
+  left: number;
+  width: number;
+  placement: "top" | "bottom";
+} | null;

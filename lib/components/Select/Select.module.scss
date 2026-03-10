@@ -72,6 +72,7 @@
       }
     }
 
+    &_open,
     &:focus,
     &:focus-visible {
       outline: none;
@@ -123,13 +124,25 @@
   &__listWrapper {
     position: absolute;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: styles.$color-white;
     border-radius: 4px;
     box-shadow: 1px 1px 26px 0 styles.$color-rgba-19-15;
     z-index: 15;
+
+    &_placementBottom {
+      animation: selectListOpenFromBottom 0.2s ease-out forwards;
+    }
+
+    &_placementTop {
+      flex-direction: column-reverse;
+      animation: selectListOpenFromTop 0.2s ease-out forwards;
+    }
   }
 
   &__list {
+    font-family: styles.$main-font;
     font-weight: 400;
     width: 100%;
     background-color: styles.$color-white;
@@ -191,6 +204,11 @@
     padding: 8px 16px;
     border-bottom: 1px solid styles.$color-alice-blue;
     background-color: styles.$color-white;
+
+    &_atBottom {
+      border-bottom: none;
+      border-top: 1px solid styles.$color-alice-blue;
+    }
   }
 
   &__searchInput {
@@ -201,6 +219,7 @@
     padding: 8px 30px;
     border: 1px solid styles.$color-secondary-blue-light-dark;
     border-radius: 4px;
+    box-sizing: border-box;
 
     &:focus {
       border-color: styles.$color-accent-blue;
@@ -234,5 +253,27 @@
     &:hover {
       color: styles.$color-black;
     }
+  }
+}
+
+@keyframes selectListOpenFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes selectListOpenFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -4,16 +4,14 @@ import ReactDOM from "react-dom";
 import { PortalProps } from "./types";
 
 export const Portal: React.FC<PortalProps> = ({ children, node, classNameRoot }) => {
-  const [container, setContainer] = useState<Element | DocumentFragment | null>(null);
+  const [container, setContainer] = useState<Element | DocumentFragment | null>(() => node ?? null);
 
   useEffect(() => {
-    // Если node передан извне, используем его
     if (node) {
       setContainer(node);
       return;
     }
 
-    // Иначе создаём свой контейнер
     const newContainer = document.createElement("div");
     if (classNameRoot) {
       newContainer.className = classNameRoot;
@@ -22,9 +20,7 @@ export const Portal: React.FC<PortalProps> = ({ children, node, classNameRoot })
     setContainer(newContainer);
 
     return () => {
-      if (!node) {
-        document.body.removeChild(newContainer);
-      }
+      document.body.removeChild(newContainer);
     };
   }, [node, classNameRoot]);
 
