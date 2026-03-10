@@ -4,10 +4,11 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
-## [Unreleased]
+## [0.6.1] — 2026-03-10
 
-### Added
-- (здесь будут следующие изменения)
+### Changed
+- Changelog.mdx добавлен в .gitignore (файл генерируется при сборке Storybook)
+- Уточнён текст в CHANGELOG.md
 
 ## [0.6.0] — 2026-03-10
 

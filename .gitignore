@@ -25,3 +25,6 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Генерируется из CHANGELOG.md и package.json при запуске storybook / storybook:build
+src/documentation/Changelog.mdx
