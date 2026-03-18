@@ -3,7 +3,6 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
-import copy from "rollup-plugin-copy";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 // https://vitejs.dev/config/
@@ -24,18 +23,6 @@ export default defineConfig({
           "react/jsx-runtime": "jsxRuntime",
         },
       },
-      plugins: [
-        copy({
-          targets: [
-            {
-              src: "public/fonts/*",
-              dest: "dist/fonts",
-            },
-          ],
-          hook: "writeBundle",
-          copyOnce: true,
-        }),
-      ],
     },
   },
   plugins: [

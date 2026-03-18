@@ -31,8 +31,8 @@ import TrashIcon from "../../../src/images/trash.svg?react";
 import UploadIcon from "../../../src/images/upload.svg?react";
 import UserRightIcon from "../../../src/images/user-right.svg?react";
 import WarningColorIcon from "../../../src/images/warning_color.svg?react";
-import { EIconName, IconProps, SVGComponent } from "./types";
 import styles from "./Icon.module.scss";
+import { EIconName, IconProps, SVGComponent } from "./types";
 
 export const Icon: React.FC<IconProps> = (props) => {
   const { name, rotate, className: propsClassName, ...svgProps } = props;
