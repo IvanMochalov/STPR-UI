@@ -13,7 +13,6 @@ import mainStyles from "../Stories.module.scss";
 import { defaultColumns, SampleRow } from "./constants";
 import { defaultTableData } from "./constants";
 
-// Таблица с конкретным типом строки для сторис — как в formation-design-assignment (TableProps<TCustomerInTable> и т.д.)
 const TableSampleRow = Table as ComponentType<TableProps<SampleRow>>;
 
 const meta: Meta<typeof TableSampleRow> = {
@@ -323,7 +322,6 @@ export const WithControls: Story = {
     ],
     dispatch: (action) => {
       if (typeof window !== "undefined") {
-        // eslint-disable-next-line no-console
         console.log("Table dispatch:", action);
       }
     },
@@ -358,7 +356,7 @@ export const WithUseTableActions: Story = {
 
     return (
       <>
-        <Table
+        <TableSampleRow
           {...args}
           data={data}
           columns={[
@@ -403,7 +401,6 @@ export const WithEditControlOnly: Story = {
     ],
     dispatch: (action) => {
       if (typeof window !== "undefined" && action.clickOn === "edit") {
-        // eslint-disable-next-line no-console
         console.log("Edit:", action.rowData);
       }
     },
@@ -427,7 +424,6 @@ export const WithDeleteControlOnly: Story = {
     ],
     dispatch: (action) => {
       if (typeof window !== "undefined" && action.clickOn === "delete") {
-        // eslint-disable-next-line no-console
         console.log("Delete:", action.rowData);
       }
     },
@@ -451,7 +447,6 @@ export const WithClickableCell: Story = {
     ],
     dispatch: (action) => {
       if (typeof window !== "undefined" && action.clickOn === "name") {
-        // eslint-disable-next-line no-console
         console.log("Clicked name:", action.rowData);
       }
     },

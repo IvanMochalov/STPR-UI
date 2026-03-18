@@ -36,21 +36,23 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   useClickOutside(
     [triggerRef, tooltipRef],
     () => {
-      actionOnClose && actionOnClose();
+      actionOnClose?.();
       setOpen(false);
     },
     isOpen,
   );
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    isStopPropagationClickOnTrigger && event.stopPropagation();
+    if (isStopPropagationClickOnTrigger) {
+      event.stopPropagation();
+    }
 
     if (hover) return;
 
     if (isOpen) {
-      actionOnClose && actionOnClose();
+      actionOnClose?.();
     } else {
-      triggerAction && triggerAction();
+      triggerAction?.();
     }
 
     setOpen((prevState) => (isToggleClick ? !prevState : true));

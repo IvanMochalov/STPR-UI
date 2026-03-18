@@ -21,7 +21,7 @@ const mdx = `import { Meta, Title } from "@storybook/addon-docs/blocks";
 <Meta title="Documentation/Changelog" />
 <Title>История версий</Title>
 
-Текущая версия пакета в репозитории: **${version}**. (В шапке Storybook отображается версия собранной документации; в проекте может быть установлена другая версия \`test-stpr-ui-kit\`.)
+Текущая версия пакета в репозитории: **${version}**.
 
 Ниже — полная история изменений из \`CHANGELOG.md\`. По ней можно выбрать нужную версию для установки.
 

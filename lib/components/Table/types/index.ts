@@ -1,6 +1,6 @@
 import type { Dispatch, ReactNode } from "react";
 
-export interface TableProps<TData extends Record<string, any> = any> {
+export interface TableProps<TData extends object = Record<string, unknown>> {
   data: TData[];
   columns: TColumn<TData>[];
   dispatch?: Dispatch<TClickOnCellAction<TData>>;

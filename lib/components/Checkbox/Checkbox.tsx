@@ -67,7 +67,8 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
   });
 
   const handleChangeChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
-    !disabled && onChange && onChange(event, { name, checked: !checked, value });
+    if (disabled) return;
+    onChange?.(event, { name, checked: !checked, value });
   };
 
   return (

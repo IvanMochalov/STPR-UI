@@ -21,7 +21,7 @@ export const AuthProtected: React.FC<AuthProtectedProps> = (props) => {
 
   const handleClickAuthorization = () => {
     setShowAuthModal(false);
-    onClickAuthorization && onClickAuthorization();
+    onClickAuthorization?.();
   };
 
   return (

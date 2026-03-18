@@ -35,4 +35,4 @@ export interface TooltipProps
   styleTooltip?: React.CSSProperties;
 }
 
-export interface InfoTooltipProps extends Omit<TooltipProps, "trigger"> {}
+export type InfoTooltipProps = Omit<TooltipProps, "trigger">;

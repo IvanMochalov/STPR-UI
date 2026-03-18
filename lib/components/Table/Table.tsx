@@ -9,7 +9,7 @@ import styles from "./Table.module.scss";
 import type { TableProps, TColumn, TSortState } from "./types";
 import { isNumber, isString } from "./utils";
 
-export const Table = <TData extends Record<string, any>>(props: TableProps<TData>) => {
+export const Table = <TData extends object>(props: TableProps<TData>) => {
   const {
     columns,
     data,
@@ -41,7 +41,9 @@ export const Table = <TData extends Record<string, any>>(props: TableProps<TData
 
   // Функция для получения реального поля для сортировки
   const getSortField = useCallback((column: TColumn<TData>): keyof TData => {
-    return column.sortBy || column.key;
+    // sortBy может явно указать поле строки даже для колонок с "служебными" key
+    // (controls/editControl/deleteControl). В остальных случаях используем ключ колонки.
+    return column.sortBy ?? (column.key as keyof TData);
   }, []);
 
   // Функция для сортировки данных
