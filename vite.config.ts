@@ -14,7 +14,7 @@ export default defineConfig({
       entry: resolve(__dirname, "lib/test-stpr-ui-kit.ts"),
       name: "test-stpr-ui-kit",
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
       output: {
         globals: {
