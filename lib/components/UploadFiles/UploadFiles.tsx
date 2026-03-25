@@ -147,7 +147,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
 
       return (
         <EllipsisTextWithTooltip
-          text={`${errorText}. Загрузите файл формата ${formatsName} размером до ${maxSizeMb}MB`}
+          text={`${errorText}. Загрузите файл формата ${formatsName}${maxSizeMb ? ` размером до ${maxSizeMb}MB` : ""}`}
           classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
           classNameRoot={cx(
             styles.spUploadFiles__fileName,

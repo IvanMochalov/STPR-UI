@@ -353,6 +353,7 @@ export const InputVariant: Story = {
     variant: "input",
     accept: { "application/pdf": [".pdf"] },
     infoTooltipText: "Поддерживается только формат PDF. Максимальный размер 10MB",
+    maxSizeMb: 0,
   },
 };
 
