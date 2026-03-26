@@ -8,12 +8,7 @@ import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { Spinner } from "../Spinner";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
-import {
-  Accept,
-  FileRejection,
-  TLocalErrorFile,
-  UploadFilesProps,
-} from "./types";
+import { FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
 import styles from "./UploadFiles.module.scss";
 import {
   formatFileSize,
@@ -61,10 +56,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           }));
 
           const { validAcceptedFiles, invalidDimensionErrors } =
-            await validateAcceptedFilesByImageDimensions(
-              acceptedFiles,
-              requiredImageDimensionsPx,
-            );
+            await validateAcceptedFilesByImageDimensions(acceptedFiles, requiredImageDimensionsPx);
 
           const allErrors = [..._fileRejections, ...invalidDimensionErrors];
 
@@ -159,34 +151,13 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     setLocalErrors([]);
   };
 
-  const getMostFormat = (accept: Accept) => {
-    return Object.values(accept)
-      .flatMap((item) => item.map((ext) => ext.toUpperCase()))
-      .join(", ");
-  };
-
   const getSingleFileName = () => {
     if (hasErrors) {
       const errorText = localErrors[0].errors.map(getErrorTextFromError).join(", ");
 
-      if (!accept) {
-        return (
-          <EllipsisTextWithTooltip
-            text={errorText}
-            classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
-            classNameRoot={cx(
-              styles.spUploadFiles__fileName,
-              hasErrors && styles.spUploadFiles__fileName_dragError,
-            )}
-          />
-        );
-      }
-
-      const formatsName = getMostFormat(accept);
-
       return (
         <EllipsisTextWithTooltip
-          text={`${errorText}. Загрузите файл формата ${formatsName}${maxSizeMb ? ` размером до ${maxSizeMb}MB` : ""}`}
+          text={errorText}
           classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
           classNameRoot={cx(
             styles.spUploadFiles__fileName,

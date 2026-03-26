@@ -1,4 +1,4 @@
-import { ErrorCode, FileError, TImageDimensionsPx, TLocalErrorFile } from "../types";
+import { Accept, ErrorCode, FileError, TImageDimensionsPx, TLocalErrorFile } from "../types";
 
 export const getErrorTextFromError = (error: FileError) => {
   switch (error.code) {
@@ -121,4 +121,10 @@ export const validateAcceptedFilesByImageDimensions = async (
     validAcceptedFiles,
     invalidDimensionErrors,
   };
+};
+
+export const getMostFormat = (accept: Accept) => {
+  return Object.values(accept)
+    .flatMap((item) => item.map((ext) => ext.toUpperCase()))
+    .join(", ");
 };

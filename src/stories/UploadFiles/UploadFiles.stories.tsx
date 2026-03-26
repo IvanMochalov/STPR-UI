@@ -513,8 +513,8 @@ export const ImageWithStrictDimensions: Story = {
   },
   args: {
     placeholder: "Загрузите JPG изображение 256x256",
-    variant: "dropzone",
-    multiple: true,
+    variant: "input",
+    multiple: false,
     accept: {
       "image/jpeg": [".jpg", ".jpeg"],
     },
