@@ -4,6 +4,11 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.6.7] — 2026-03-26
+
+### Updated
+- Обновлен react-datepicker до 9.1.0 версии;
+
 ## [0.6.6] — 2026-03-26
 
 ### Fixed
