@@ -111,6 +111,22 @@ const meta: Meta<typeof UploadFiles> = {
         type: { summary: "number" },
       },
     },
+    requiredImageDimensionsPx: {
+      description: `Строгая проверка размеров растровых изображений (image/*, кроме SVG) в пикселях.
+Если параметр передан, изображение должно иметь точные размеры width x height (не больше и не меньше).
+Если параметр не передан, проверка размеров изображения не выполняется.\n`,
+      control: { type: "object" },
+      table: {
+        type: {
+          summary: "{ width: number; height: number }",
+          detail: `{
+  width: 256,
+  height: 256
+}`,
+        },
+        defaultValue: { summary: "undefined" },
+      },
+    },
     error: {
       description: `Текст ошибки валидации. Подсвечивает компонент красным и показывает сообщение об ошибке.\n`,
       control: { type: "text" },
@@ -175,7 +191,8 @@ const meta: Meta<typeof UploadFiles> = {
 
 Особенности:
 - Автоматически обрабатывает drag & drop и клик по области
-- Валидирует файлы по формату и размеру
+- Валидирует файлы по формату и размеру файла
+- Поддерживает строгую валидацию размеров изображения в пикселях через requiredImageDimensionsPx
 - Для работы с формами рекомендуется использовать вместе с состоянием React\n`,
       control: false,
       table: {
@@ -224,6 +241,7 @@ const meta: Meta<typeof UploadFiles> = {
 - **Два варианта стиля**: input (компактный) и dropzone (расширенная область)
 - **Drag & Drop**: поддержка перетаскивания файлов в область загрузки
 - **Валидация файлов**: автоматическая проверка формата и размера файлов
+- **Проверка размеров изображения**: строгая валидация raster image по width/height через \`requiredImageDimensionsPx\`
 - **Визуальная обратная связь**: подсветка при наведении и состоянии перетаскивания
 - **Список файлов**: отображение загруженных файлов с информацией и возможностью удаления
 - **Адаптивный дизайн**: разные размеры и отступы на мобильных и desktop
@@ -472,6 +490,39 @@ export const ImageFiles: Story = {
       "image/png": [".jpg", ".jpeg", ".png"],
     },
     infoTooltipText: "Поддерживаются JPG, JPEG, PNG. Максимальный размер 5MB",
+  },
+};
+
+export const ImageWithStrictDimensions: Story = {
+  name: "Image 256x256 strict dimensions",
+  render: (args) => {
+    const [files, setFiles] = useState<File[]>([]);
+    const uploadFiles = (acceptedFiles: File[]) => {
+      setFiles(acceptedFiles);
+    };
+
+    return (
+      <div className={styles.differentFileTypesWrapper}>
+        <UploadFiles {...args} onDropFiles={uploadFiles} name={"avatar"} files={files} />
+        <Text type={"description"} classNameRoot={styles.differentFileTypesWrapper__description}>
+          Ожидаемые размеры изображения: {args.requiredImageDimensionsPx?.width}x
+          {args.requiredImageDimensionsPx?.height}px
+        </Text>
+      </div>
+    );
+  },
+  args: {
+    placeholder: "Загрузите JPG изображение 256x256",
+    variant: "dropzone",
+    multiple: true,
+    accept: {
+      "image/jpeg": [".jpg", ".jpeg"],
+    },
+    requiredImageDimensionsPx: {
+      width: 256,
+      height: 256,
+    },
+    infoTooltipText: "Только JPG 256x256px",
   },
 };
 

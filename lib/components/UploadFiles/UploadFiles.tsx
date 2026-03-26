@@ -8,9 +8,19 @@ import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { Spinner } from "../Spinner";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
-import { Accept, FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
+import {
+  Accept,
+  FileRejection,
+  TLocalErrorFile,
+  UploadFilesProps,
+} from "./types";
 import styles from "./UploadFiles.module.scss";
-import { formatFileSize, getErrorTextFromError, getKbFromMb } from "./utils";
+import {
+  formatFileSize,
+  getErrorTextFromError,
+  getKbFromMb,
+  validateAcceptedFilesByImageDimensions,
+} from "./utils";
 
 export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const {
@@ -32,39 +42,54 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     classNameLabel: propsClassNameLabel,
     classNameBaseInfoTooltipRoot: propsClassNameBaseInfoTooltipRoot,
     maxSizeMb,
+    requiredImageDimensionsPx,
   } = props;
 
   const [localErrors, setLocalErrors] = useState<Array<TLocalErrorFile>>([]);
+  const [pendingValidationsCount, setPendingValidationsCount] = useState(0);
+  const isLoading = Boolean(loading) || pendingValidationsCount > 0;
 
   const onDrop = useCallback(
     (acceptedFiles: File[], fileRejections: FileRejection[]) => {
-      const _fileRejections = fileRejections.map(({ file, errors }: FileRejection) => {
-        return {
-          file,
-          errors,
-        };
-      });
+      setPendingValidationsCount((prev) => prev + 1);
 
-      if (!multiple) {
-        setLocalErrors([..._fileRejections]);
-        onDropFiles(acceptedFiles, name);
+      void (async () => {
+        try {
+          const _fileRejections = fileRejections.map(({ file, errors }: FileRejection) => ({
+            file,
+            errors,
+          }));
 
-        return;
-      }
+          const { validAcceptedFiles, invalidDimensionErrors } =
+            await validateAcceptedFilesByImageDimensions(
+              acceptedFiles,
+              requiredImageDimensionsPx,
+            );
 
-      const _files = [...files, ...acceptedFiles];
+          const allErrors = [..._fileRejections, ...invalidDimensionErrors];
 
-      setLocalErrors([..._fileRejections, ...localErrors]);
-      onDropFiles(_files, name);
+          if (!multiple) {
+            setLocalErrors(allErrors);
+            onDropFiles(validAcceptedFiles, name);
+            return;
+          }
+
+          const _files = [...files, ...validAcceptedFiles];
+          setLocalErrors((prev) => [...allErrors, ...prev]);
+          onDropFiles(_files, name);
+        } finally {
+          setPendingValidationsCount((prev) => (prev > 0 ? prev - 1 : 0));
+        }
+      })();
     },
-    [localErrors, files, multiple, name, onDropFiles],
+    [files, multiple, name, onDropFiles, requiredImageDimensionsPx],
   );
 
   const { getRootProps, getInputProps } = useDefaultDropzone({
     accept,
     onDrop,
     multiple,
-    disabled,
+    disabled: disabled || isLoading,
     maxSize: maxSizeMb ? getKbFromMb(maxSizeMb) : undefined,
   });
 
@@ -79,21 +104,21 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
     [styles.spUploadFiles]: true,
     [styles[`spUploadFiles--variant-${variant}`]]: variant,
     [styles.spUploadFiles_error]: !multiple && (hasErrors || (error && error.length > 0)),
-    [styles.spUploadFiles_disabled]: disabled,
+    [styles.spUploadFiles_disabled]: disabled || isLoading,
     [styles.spUploadFiles_fileUploaded]: isFileUploaded,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
   const classNameControlRoot = cx({
     [styles.spUploadFiles__control]: true,
-    [styles.spUploadFiles__control_loading]: loading,
+    [styles.spUploadFiles__control_loading]: isLoading,
   });
   const classNameFileListRoot = cx({
     [styles.spUploadFiles__fileNamesList]: true,
-    [styles.spUploadFiles__fileNamesList_loading]: loading,
+    [styles.spUploadFiles__fileNamesList_loading]: isLoading,
   });
   const classNameAllFilesDeleteRoot = cx({
     [styles.spUploadFiles__delete]: true,
-    [styles.spUploadFiles__delete_loading]: loading,
+    [styles.spUploadFiles__delete_loading]: isLoading,
   });
   const classNameLabel = cx({
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
@@ -103,7 +128,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   });
 
   const deleteFile = (fileName: string, isError?: boolean) => {
-    if (loading) {
+    if (isLoading) {
       return;
     }
 
@@ -141,9 +166,23 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   };
 
   const getSingleFileName = () => {
-    if (hasErrors && accept) {
-      const formatsName = getMostFormat(accept);
+    if (hasErrors) {
       const errorText = localErrors[0].errors.map(getErrorTextFromError).join(", ");
+
+      if (!accept) {
+        return (
+          <EllipsisTextWithTooltip
+            text={errorText}
+            classNameTooltipRoot={cx(styles.spUploadFiles__fileNameContainer)}
+            classNameRoot={cx(
+              styles.spUploadFiles__fileName,
+              hasErrors && styles.spUploadFiles__fileName_dragError,
+            )}
+          />
+        );
+      }
+
+      const formatsName = getMostFormat(accept);
 
       return (
         <EllipsisTextWithTooltip
@@ -314,7 +353,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
           classNameTooltip={styles.spUploadFiles__tooltipRoot}
           trigger={
             <div className={classNameControlRoot}>
-              {isInputVariant && (loading ? <Spinner /> : renderSingleUploadFileIcon())}
+              {isInputVariant && (isLoading ? <Spinner /> : renderSingleUploadFileIcon())}
               {getUploadFilesContent()}
             </div>
           }

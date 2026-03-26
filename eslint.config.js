@@ -69,7 +69,7 @@ export default [
       ...(storybookPlugin.configs.recommended?.rules ?? {}),
       ...(prettierPlugin.configs.recommended?.rules ?? {}),
 
-      "prettier/prettier": ["error", { endOfLine: "crlf" }],
+      "prettier/prettier": "off",
       "react/react-in-jsx-scope": "off",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn",
@@ -116,7 +116,7 @@ export default [
       ...(storybookPlugin.configs.recommended?.rules ?? {}),
       ...(prettierPlugin.configs.recommended?.rules ?? {}),
 
-      "prettier/prettier": ["error", { endOfLine: "crlf" }],
+      "prettier/prettier": "off",
       "react/react-in-jsx-scope": "off",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn",

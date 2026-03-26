@@ -26,7 +26,13 @@ export interface UploadFilesProps {
   error?: string;
   classNameBaseInfoTooltipRoot?: string;
   maxSizeMb?: number;
+  requiredImageDimensionsPx?: TImageDimensionsPx;
 }
+
+export type TImageDimensionsPx = {
+  width: number;
+  height: number;
+};
 
 export type TLocalErrorFile = {
   file: File;
