@@ -4,6 +4,11 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.6.8] — 2026-03-26
+
+### Updated
+- Обновлен vite до 7.2.2 версии;
+
 ## [0.6.7] — 2026-03-26
 
 ### Updated
