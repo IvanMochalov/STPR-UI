@@ -28,6 +28,7 @@ import SearchIcon from "../../../src/images/search.svg?react";
 import SelectChevronDownIcon from "../../../src/images/select_chevron_down.svg?react";
 import TerminalSquareIcon from "../../../src/images/terminal_square.svg?react";
 import TrashIcon from "../../../src/images/trash.svg?react";
+import UpdateIcon from "../../../src/images/update.svg?react";
 import UploadIcon from "../../../src/images/upload.svg?react";
 import UserRightIcon from "../../../src/images/user-right.svg?react";
 import WarningColorIcon from "../../../src/images/warning_color.svg?react";
@@ -73,6 +74,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.ArrowBottom]: ArrowBottomIcon,
     [EIconName.UserRight]: UserRightIcon,
     [EIconName.FileNotFilled]: FileNotFilledIcon,
+    [EIconName.Update]: UpdateIcon,
   };
 
   const className = cx("stpr-icon", propsClassName);
@@ -112,6 +114,7 @@ export {
   SelectChevronDownIcon,
   TerminalSquareIcon,
   TrashIcon,
+  UpdateIcon,
   UploadIcon,
   UserRightIcon,
   WarningColorIcon,

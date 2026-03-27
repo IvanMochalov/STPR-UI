@@ -31,6 +31,7 @@ export enum EIconName {
   ArrowBottom = "arrowBottom",
   UserRight = "userRight",
   Search = "search",
+  Update = "update",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
