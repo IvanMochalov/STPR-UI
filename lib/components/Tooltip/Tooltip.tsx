@@ -25,6 +25,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     classNameBaseTooltipContentRoot: propsClassNameBaseTooltipContentRoot,
     styleTooltip,
+    triggerTooltipGap = 6,
   } = props;
 
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -72,9 +73,6 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
-
-    // Отступ между триггером и тултипом в пикселях
-    const triggerTooltipGap = 6;
 
     // Функция для расчета координат по позиции
     const calculatePosition = (position: ETooltipPosition): { top: number; left: number } => {
@@ -209,8 +207,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       left: `${left}px`,
       visibility: isOpen || isHovered ? "visible" : "hidden",
       opacity: isOpen || isHovered ? 1 : 0,
+      pointerEvents: isOpen || isHovered ? "all" : "none",
     }));
-  }, [defaultTooltipPosition, lockPosition, isOpen, isHovered]);
+  }, [defaultTooltipPosition, lockPosition, triggerTooltipGap, isOpen, isHovered]);
 
   // Эффекты для обновления позиции
   useEffect(() => {

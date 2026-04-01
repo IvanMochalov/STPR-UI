@@ -17,8 +17,10 @@ export enum ETooltipPosition {
   RightBottom = "right-bottom",
 }
 
-export interface TooltipProps
-  extends Omit<BaseTooltipProps, "classNameRoot" | "classNameContentRoot"> {
+export interface TooltipProps extends Omit<
+  BaseTooltipProps,
+  "classNameRoot" | "classNameContentRoot"
+> {
   hover?: boolean;
   isToggleClick?: boolean;
   isVisibleTooltip?: boolean;
@@ -33,6 +35,7 @@ export interface TooltipProps
   classNameBaseTooltipContentRoot?: string;
   isStopPropagationClickOnTrigger?: boolean;
   styleTooltip?: React.CSSProperties;
+  triggerTooltipGap?: number;
 }
 
 export type InfoTooltipProps = Omit<TooltipProps, "trigger">;

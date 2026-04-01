@@ -147,6 +147,13 @@ const meta: Meta<typeof Tooltip> = {
         type: { summary: "string | ReactNode" },
       },
     },
+    triggerTooltipGap: {
+      description: `Расстояние между триггером и тултипом.\nПо умолчанию 6.`,
+      control: { type: "number" },
+      table: {
+        type: { summary: "number" },
+      },
+    },
     noPadding: {
       description: `Убрать внутренние отступы у тултипа. Полезно для кастомного оформления контента.\n`,
       control: { type: "boolean" },
@@ -220,6 +227,7 @@ const meta: Meta<typeof Tooltip> = {
     noPadding: false,
     isToggleClick: false,
     lockPosition: false,
+    triggerTooltipGap: 6,
   },
 };
 
