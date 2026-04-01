@@ -32,6 +32,10 @@ export enum EIconName {
   UserRight = "userRight",
   Search = "search",
   Update = "update",
+  Filter = "filter",
+  Folder = "folder",
+  LayersThree = "layersThree",
+  LinkAngled = "linkAngled",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;

@@ -4,6 +4,15 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.6.10] — 2026-04-01
+
+### Added
+- Добавлены иконки update.svg, filter.svg, folder.svg, layers-three.svg и link-angled.svg;
+- Добавлен параметр triggerTooltipGap компоненту Tooltip для управления отступом между триггером и тултипом;
+
+### Fixed
+- Исправлена доступность скрытого BaseTooltip для hover и click в компоненте Tooltip;
+
 ## [0.6.9] — 2026-03-26
 
 ### Fixed

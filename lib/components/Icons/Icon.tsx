@@ -14,9 +14,13 @@ import DownloadIcon from "../../../src/images/download.svg?react";
 import EditIcon from "../../../src/images/edit.svg?react";
 import FileIcon from "../../../src/images/file.svg?react";
 import FileNotFilledIcon from "../../../src/images/file_not_filled.svg?react";
+import FilterIcon from "../../../src/images/filter.svg?react";
+import FolderIcon from "../../../src/images/folder.svg?react";
 import HistoryClockIcon from "../../../src/images/history_clock.svg?react";
 import InfoIcon from "../../../src/images/info.svg?react";
 import InfoErrorIcon from "../../../src/images/info_error.svg?react";
+import LayersThreeIcon from "../../../src/images/layers-three.svg?react";
+import LinkAngledIcon from "../../../src/images/link-angled.svg?react";
 import LogoutIcon from "../../../src/images/logout.svg?react";
 import MinusIcon from "../../../src/images/minus.svg?react";
 import PlusIcon from "../../../src/images/plus.svg?react";
@@ -75,6 +79,10 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.UserRight]: UserRightIcon,
     [EIconName.FileNotFilled]: FileNotFilledIcon,
     [EIconName.Update]: UpdateIcon,
+    [EIconName.Filter]: FilterIcon,
+    [EIconName.Folder]: FolderIcon,
+    [EIconName.LayersThree]: LayersThreeIcon,
+    [EIconName.LinkAngled]: LinkAngledIcon,
   };
 
   const className = cx("stpr-icon", propsClassName);
@@ -100,9 +108,13 @@ export {
   EditIcon,
   FileIcon,
   FileNotFilledIcon,
+  FilterIcon,
+  FolderIcon,
   HistoryClockIcon,
   InfoErrorIcon,
   InfoIcon,
+  LayersThreeIcon,
+  LinkAngledIcon,
   LogoutIcon,
   MinusIcon,
   PlusCircleIcon,
