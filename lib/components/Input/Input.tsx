@@ -93,20 +93,20 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
     if (mask) {
       return (
         <InputMask
-          ref={ref}
-          className={classNameControl}
-          alwaysShowMask={alwaysShowMask}
+          {...otherProps}
+          placeholder={placeholder}
+          disabled={disabled}
           onChange={_onChange}
           onBlur={handleBlur}
-          disabled={disabled}
+          title={isVisibleDefaultTitle ? value : undefined}
           value={value}
-          mask={mask}
           name={name}
+          className={classNameControl}
+          ref={ref}
+          alwaysShowMask={alwaysShowMask}
+          mask={mask}
           maskPlaceholder={maskChar}
-          {...otherProps}
-        >
-          <input placeholder={placeholder} title={isVisibleDefaultTitle ? value : undefined} />
-        </InputMask>
+        />
       );
     }
     return (

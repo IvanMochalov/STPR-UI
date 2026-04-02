@@ -110,9 +110,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           name={name}
           value={value || ""}
           placeholder={placeholderText}
-        >
-          <input autoComplete="off" />
-        </InputMask>
+          autoComplete="off"
+        />
         {isVisibleCalendarIcon && <CalendarIcon className={classNameIcon} />}
       </div>
       {isVisibleErrorText && error && <div className={classNameError}>{error}</div>}
