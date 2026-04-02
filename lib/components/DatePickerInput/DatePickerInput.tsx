@@ -101,6 +101,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
         onClick={handleContainerClick}
       >
         <InputMask
+          ref={ref}
           className={classNameControl}
           alwaysShowMask={false}
           disabled={disabled}
@@ -110,15 +111,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           value={value || ""}
           placeholder={placeholderText}
         >
-          {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-            <input
-              {...inputProps}
-              ref={ref}
-              autoComplete="off"
-              placeholder={placeholderText}
-              disabled={disabled}
-            />
-          )}
+          <input autoComplete="off" />
         </InputMask>
         {isVisibleCalendarIcon && <CalendarIcon className={classNameIcon} />}
       </div>
