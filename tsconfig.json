@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "types": [
       "vite/client",
+      "node",
       "storybook__react",
       "@storybook/react"
     ],
@@ -34,10 +35,6 @@
     "lib",
     ".storybook/**/*.ts",
     ".storybook",
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
+    "vite.config.ts"
   ]
 }

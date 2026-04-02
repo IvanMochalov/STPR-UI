@@ -29,8 +29,9 @@ export default defineConfig({
     react(),
     svgr(),
     dts({
+      tsconfigPath: "tsconfig.json",
       insertTypesEntry: true,
-      include: ["lib"],
+      include: ["lib/**/*.ts", "lib/**/*.tsx"],
       rollupTypes: true,
     }),
     libInjectCss(),
