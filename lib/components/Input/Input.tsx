@@ -1,6 +1,6 @@
+import InputMask from "@mona-health/react-input-mask";
 import cx from "clsx";
 import React from "react";
-import InputMask from "react-input-mask";
 
 import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
@@ -104,7 +104,7 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
           maskChar={maskChar}
           {...otherProps}
         >
-          {(inputProps) => {
+          {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => {
             return (
               <input {...inputProps} disabled={disabled} placeholder={placeholder} ref={ref} />
             );

@@ -1,6 +1,6 @@
+import InputMask from "@mona-health/react-input-mask";
 import cx from "clsx";
 import React, { forwardRef } from "react";
-import InputMask from "react-input-mask";
 
 import { CalendarIcon } from "../Icons";
 import { Label } from "../Label";
@@ -110,7 +110,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement, IDatePickerInputProp
           value={value || ""}
           placeholder={placeholderText}
         >
-          {(inputProps) => (
+          {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
             <input
               {...inputProps}
               ref={ref}

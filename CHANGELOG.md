@@ -4,6 +4,14 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.6.11] — 2026-04-02
+
+### Added
+- Добавлена иконка refresh-dbl.svg;
+
+### Fixed
+- Исправлена совместимость компонентов Input и DatePickerInput с React 19;
+
 ## [0.6.10] — 2026-04-01
 
 ### Added
