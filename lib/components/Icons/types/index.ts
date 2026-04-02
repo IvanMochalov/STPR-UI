@@ -22,6 +22,7 @@ export enum EIconName {
   InfoError = "infoError",
   Save = "save",
   Refresh = "refresh",
+  RefreshDouble = "refreshDouble",
   Logout = "logout",
   Edit = "edit",
   Download = "download",

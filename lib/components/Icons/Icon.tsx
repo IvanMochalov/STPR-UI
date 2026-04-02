@@ -27,6 +27,7 @@ import PlusIcon from "../../../src/images/plus.svg?react";
 import PlusCircleIcon from "../../../src/images/plus_circle.svg?react";
 import PlusSquareIcon from "../../../src/images/plus_square.svg?react";
 import RefreshIcon from "../../../src/images/refresh.svg?react";
+import RefreshDoubleIcon from "../../../src/images/refresh-dbl.svg?react";
 import SaveIcon from "../../../src/images/save.svg?react";
 import SearchIcon from "../../../src/images/search.svg?react";
 import SelectChevronDownIcon from "../../../src/images/select_chevron_down.svg?react";
@@ -70,6 +71,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.AddUser]: AddUserIcon,
     [EIconName.Download]: DownloadIcon,
     [EIconName.Edit]: EditIcon,
+    [EIconName.RefreshDouble]: RefreshDoubleIcon,
     [EIconName.Refresh]: RefreshIcon,
     [EIconName.Logout]: LogoutIcon,
     [EIconName.Save]: SaveIcon,
@@ -120,6 +122,7 @@ export {
   PlusCircleIcon,
   PlusIcon,
   PlusSquareIcon,
+  RefreshDoubleIcon,
   RefreshIcon,
   SaveIcon,
   SearchIcon,
