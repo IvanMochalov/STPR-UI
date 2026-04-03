@@ -23,11 +23,12 @@ import LayersThreeIcon from "../../../src/images/layers-three.svg?react";
 import LinkAngledIcon from "../../../src/images/link-angled.svg?react";
 import LogoutIcon from "../../../src/images/logout.svg?react";
 import MinusIcon from "../../../src/images/minus.svg?react";
+import PauseCircleIcon from "../../../src/images/pause-circle.svg?react";
+import PlayCircleIcon from "../../../src/images/play-circle.svg?react";
 import PlusIcon from "../../../src/images/plus.svg?react";
 import PlusCircleIcon from "../../../src/images/plus_circle.svg?react";
 import PlusSquareIcon from "../../../src/images/plus_square.svg?react";
 import RefreshIcon from "../../../src/images/refresh.svg?react";
-import RefreshDoubleIcon from "../../../src/images/refresh-dbl.svg?react";
 import SaveIcon from "../../../src/images/save.svg?react";
 import SearchIcon from "../../../src/images/search.svg?react";
 import SelectChevronDownIcon from "../../../src/images/select_chevron_down.svg?react";
@@ -35,6 +36,7 @@ import TerminalSquareIcon from "../../../src/images/terminal_square.svg?react";
 import TrashIcon from "../../../src/images/trash.svg?react";
 import UpdateIcon from "../../../src/images/update.svg?react";
 import UploadIcon from "../../../src/images/upload.svg?react";
+import UploadTopIcon from "../../../src/images/upload-top.svg?react";
 import UserRightIcon from "../../../src/images/user-right.svg?react";
 import WarningColorIcon from "../../../src/images/warning_color.svg?react";
 import styles from "./Icon.module.scss";
@@ -49,6 +51,9 @@ export const Icon: React.FC<IconProps> = (props) => {
   } as CSSProperties;
 
   const ICONS: Record<EIconName, SVGComponent> = {
+    [EIconName.PlayCircle]: PlayCircleIcon,
+    [EIconName.PauseCircle]: PauseCircleIcon,
+    [EIconName.UploadTop]: UploadTopIcon,
     [EIconName.ChevronDown]: ChevronDownIcon,
     [EIconName.Info]: InfoIcon,
     [EIconName.Plus]: PlusIcon,
@@ -71,7 +76,6 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.AddUser]: AddUserIcon,
     [EIconName.Download]: DownloadIcon,
     [EIconName.Edit]: EditIcon,
-    [EIconName.RefreshDouble]: RefreshDoubleIcon,
     [EIconName.Refresh]: RefreshIcon,
     [EIconName.Logout]: LogoutIcon,
     [EIconName.Save]: SaveIcon,
@@ -119,10 +123,11 @@ export {
   LinkAngledIcon,
   LogoutIcon,
   MinusIcon,
+  PauseCircleIcon,
+  PlayCircleIcon,
   PlusCircleIcon,
   PlusIcon,
   PlusSquareIcon,
-  RefreshDoubleIcon,
   RefreshIcon,
   SaveIcon,
   SearchIcon,
@@ -131,6 +136,7 @@ export {
   TrashIcon,
   UpdateIcon,
   UploadIcon,
+  UploadTopIcon,
   UserRightIcon,
   WarningColorIcon,
 };

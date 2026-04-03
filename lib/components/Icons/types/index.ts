@@ -22,7 +22,6 @@ export enum EIconName {
   InfoError = "infoError",
   Save = "save",
   Refresh = "refresh",
-  RefreshDouble = "refreshDouble",
   Logout = "logout",
   Edit = "edit",
   Download = "download",
@@ -37,6 +36,9 @@ export enum EIconName {
   Folder = "folder",
   LayersThree = "layersThree",
   LinkAngled = "linkAngled",
+  PlayCircle = "playCircle",
+  UploadTop = "uploadTop",
+  PauseCircle = "pauseCircle",
 }
 
 export type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;

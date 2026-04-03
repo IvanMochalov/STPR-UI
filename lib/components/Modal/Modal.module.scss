@@ -44,34 +44,35 @@
   }
 
   &__modal {
+    display: flex;
     font-family: styles.$main-font;
     font-weight: 400;
     position: relative;
     background-color: styles.$color-white;
     --modal-padding: 20px;
     padding: var(--modal-padding);
-    display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: var(--modal-gap);
     width: 100%;
     height: fit-content;
     min-width: 335px;
     @include styles.custom-scrollbar();
-    @include styles.respond-to(sm) {
-      gap: 48px;
-    }
 
     &--size {
       &-lg {
+        --modal-gap: 32px;
         @include styles.respond-to(sm) {
           --modal-padding: 64px;
+          --modal-gap: 48px;
           max-width: 920px;
         }
       }
 
       &-md {
+        --modal-gap: 24px;
         @include styles.respond-to(sm) {
           --modal-padding: 32px;
+          --modal-gap: 32px;
           max-width: 600px;
         }
       }
