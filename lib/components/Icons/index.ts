@@ -10,6 +10,7 @@ export {
   DotsIcon,
   DownloadIcon,
   EditIcon,
+  EyeIcon,
   FileIcon,
   FileNotFilledIcon,
   FilterIcon,

@@ -4,6 +4,11 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.6.15] — IN FUTURE
+
+### Added
+- Добавлена иконка eye.svg;
+
 ## [0.6.14] — 2026-04-03
 
 ### Added

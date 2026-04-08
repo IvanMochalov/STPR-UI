@@ -24,6 +24,7 @@ export enum EIconName {
   Refresh = "refresh",
   Logout = "logout",
   Edit = "edit",
+  Eye = "eye",
   Download = "download",
   AddUser = "addUser",
   AddFile = "addFile",

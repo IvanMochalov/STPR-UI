@@ -12,6 +12,7 @@ import CopyIcon from "../../../src/images/copy.svg?react";
 import DotsIcon from "../../../src/images/dots.svg?react";
 import DownloadIcon from "../../../src/images/download.svg?react";
 import EditIcon from "../../../src/images/edit.svg?react";
+import EyeIcon from "../../../src/images/eye.svg?react";
 import FileIcon from "../../../src/images/file.svg?react";
 import FileNotFilledIcon from "../../../src/images/file_not_filled.svg?react";
 import FilterIcon from "../../../src/images/filter.svg?react";
@@ -76,6 +77,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     [EIconName.AddUser]: AddUserIcon,
     [EIconName.Download]: DownloadIcon,
     [EIconName.Edit]: EditIcon,
+    [EIconName.Eye]: EyeIcon,
     [EIconName.Refresh]: RefreshIcon,
     [EIconName.Logout]: LogoutIcon,
     [EIconName.Save]: SaveIcon,
@@ -112,6 +114,7 @@ export {
   DotsIcon,
   DownloadIcon,
   EditIcon,
+  EyeIcon,
   FileIcon,
   FileNotFilledIcon,
   FilterIcon,
