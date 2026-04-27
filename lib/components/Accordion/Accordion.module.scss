@@ -110,7 +110,6 @@
     }
 
     &_open {
-      -webkit-transform: rotateX(.5turn);
       transform: rotateX(.5turn);
     }
 
@@ -132,6 +131,7 @@
   &__childrenWrapper {
     display: grid;
     grid-template-rows: 0fr;
+    overflow: hidden;
 
     @include styles.transition-prop-ease-in-out("grid-template-rows", 300ms);
 
