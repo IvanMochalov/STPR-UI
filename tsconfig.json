@@ -14,7 +14,6 @@
       "vite/client",
       "vite-plugin-svgr/client",
       "node",
-      "storybook__react",
       "@storybook/react"
     ],
     /* Bundler mode */
@@ -35,6 +34,7 @@
     "src",
     "lib",
     ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
     ".storybook",
     "vite.config.ts"
   ]

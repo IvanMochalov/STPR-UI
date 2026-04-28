@@ -7,7 +7,6 @@ import reactHooksPlugin from "eslint-plugin-react-hooks";
 import reactRefreshPlugin from "eslint-plugin-react-refresh";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import storybookPlugin from "eslint-plugin-storybook";
-import prettierPlugin from "eslint-plugin-prettier";
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
@@ -25,7 +24,6 @@ export default [
       "**/*.log",
       "**/*.md",
       "**/*.html",
-      ".eslintrc.cjs",
       "eslint.config.js",
       "vite.config.ts",
     ],
@@ -60,16 +58,13 @@ export default [
       "react-refresh": reactRefreshPlugin,
       "simple-import-sort": simpleImportSortPlugin,
       storybook: storybookPlugin,
-      prettier: prettierPlugin,
     },
     rules: {
       ...(tsPlugin.configs.recommended?.rules ?? {}),
       ...(reactPlugin.configs.recommended?.rules ?? {}),
       ...(reactHooksPlugin.configs.recommended?.rules ?? {}),
       ...(storybookPlugin.configs.recommended?.rules ?? {}),
-      ...(prettierPlugin.configs.recommended?.rules ?? {}),
 
-      "prettier/prettier": "off",
       "react/react-in-jsx-scope": "off",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn",
@@ -108,15 +103,12 @@ export default [
       "react-refresh": reactRefreshPlugin,
       "simple-import-sort": simpleImportSortPlugin,
       storybook: storybookPlugin,
-      prettier: prettierPlugin,
     },
     rules: {
       ...(reactPlugin.configs.recommended?.rules ?? {}),
       ...(reactHooksPlugin.configs.recommended?.rules ?? {}),
       ...(storybookPlugin.configs.recommended?.rules ?? {}),
-      ...(prettierPlugin.configs.recommended?.rules ?? {}),
 
-      "prettier/prettier": "off",
       "react/react-in-jsx-scope": "off",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn",

@@ -32,7 +32,6 @@ export default defineConfig({
       tsconfigPath: "tsconfig.json",
       insertTypesEntry: true,
       include: ["lib/**/*.ts", "lib/**/*.tsx"],
-      rollupTypes: true,
     }),
     libInjectCss(),
   ],
