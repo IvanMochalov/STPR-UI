@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { DatePickerInput, TOnChangeDatePickerInput } from "../../../lib/components/DatePickerInput";
 import { ETooltipPosition } from "../../../lib/components/Tooltip";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof DatePickerInput> = {
   title: "Components/DatePickerInput",
@@ -245,13 +244,6 @@ const [date, setDate] = useState("");
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     dateFormatMask: "99.99.9999",
     placeholderText: "дд.мм.гггг",

@@ -9,7 +9,6 @@ import {
   useModal,
   useTableActions,
 } from "../../../lib/test-stpr-ui-kit";
-import mainStyles from "../Stories.module.scss";
 import { defaultColumns, SampleRow } from "./constants";
 import { defaultTableData } from "./constants";
 
@@ -261,13 +260,6 @@ const columns = [
       table: { type: { summary: "string" } },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     data: defaultTableData,
     styleVariant: "default",

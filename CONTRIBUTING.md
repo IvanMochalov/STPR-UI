@@ -150,9 +150,10 @@ const meta: Meta<typeof ComponentName> = {
       },
     },
   },
+  // Переопределение decorators при необходимости
   decorators: [
     (Story) => (
-      <div className={mainStyles.storyWrapper}>
+      <div className={localStyles.localStoryWrapper}>
         <Story />
       </div>
     ),
@@ -199,7 +200,7 @@ export const WithLongText: Story = {
 
 ### Декоратор
 
-Использовать общий wrapper, чтобы стори не прилипали к краям и были в одном стиле:
+В .storybook/preview.tsx используется общий decorators для создания storyWrapper в каждой Story, чтобы Story не прилипали к краям и были в одном стиле:
 
 ```tsx
 decorators: [
@@ -222,7 +223,7 @@ decorators: [
 - [ ] В `index.ts` экспортированы компонент и нужные типы (и хуки, если есть).
 - [ ] В `lib/test-stpr-ui-kit.ts` добавлены импорты и экспорты для компонента и всех типов/хуков, которые должны быть публичными.
 - [ ] Создана папка `src/stories/<ComponentName>/` и файл `<ComponentName>.stories.tsx`.
-- [ ] В стори заданы `meta` (title, component, tags, parameters.docs, argTypes, decorators, args), `export default meta`, одна или несколько именованных стори.
+- [ ] В стори заданы `meta` (title, component, tags, parameters.docs, argTypes, args), `export default meta`, одна или несколько именованных стори.
 - [ ] Запущен Storybook (`npm run storybook`), компонент отображается в разделе Components и Docs.
 - [ ] Сборка библиотеки проходит: `npm run build`.
 

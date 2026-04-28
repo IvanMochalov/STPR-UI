@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
@@ -138,13 +137,6 @@ const meta: Meta<typeof Text> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     children: "Text",
     isCursorPointer: false,

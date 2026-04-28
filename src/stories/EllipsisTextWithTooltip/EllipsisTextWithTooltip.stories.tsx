@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { EllipsisTextWithTooltip } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof EllipsisTextWithTooltip> = {
   title: "Components/EllipsisTextWithTooltip",
@@ -196,13 +195,6 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     text: "Ellipsis Text With Tooltip",
     title: "Ellipsis Text With Tooltip",

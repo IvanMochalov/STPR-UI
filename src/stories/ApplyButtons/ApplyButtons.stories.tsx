@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ApplyButtons } from "../../../lib/components/ApplyButtons";
 import { EIconName } from "../../../lib/components/Icons";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof ApplyButtons> = {
   title: "Components/ApplyButtons",
@@ -200,13 +199,6 @@ const meta: Meta<typeof ApplyButtons> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     onClose: () => {},
     submit: () => {},

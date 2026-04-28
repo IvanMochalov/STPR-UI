@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../../../lib/components/Button";
 import { Spinner } from "../../../lib/components/Spinner";
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./SpinnerStories.module.scss";
 
 const meta: Meta<typeof Spinner> = {
@@ -115,13 +114,6 @@ const meta: Meta<typeof Spinner> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     size: "md",
     color: "#036bfd",

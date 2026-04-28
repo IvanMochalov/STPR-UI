@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { Accordion, ProgressWrapper, TextWithLabel } from "../../../lib/test-stpr-ui-kit.ts";
 import { useInterval } from "../../hooks/useInterval.ts";
-import mainStyles from "../Stories.module.scss";
 import styles from "./ProgressWrapperStories.module.scss";
 
 const meta: Meta<typeof ProgressWrapper> = {
@@ -149,13 +148,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

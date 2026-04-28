@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EllipsisTextWithTooltip } from "../../../lib/components/EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../../../lib/components/Icons";
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./IconsStories.module.scss";
 
 const meta: Meta<typeof Icon> = {
@@ -105,13 +104,6 @@ const meta: Meta<typeof Icon> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

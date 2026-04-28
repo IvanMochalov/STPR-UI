@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Form } from "../../../lib/components/Form";
 import { Input, TOnChangeInput } from "../../../lib/components/Input";
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./InputStories.module.scss";
 
 const meta: Meta<typeof Input> = {
@@ -297,13 +296,6 @@ const [formData, setFormData] = useState({
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     variant: "outlined",
     isAbsolutePositionError: false,

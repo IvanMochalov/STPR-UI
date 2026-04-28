@@ -14,7 +14,6 @@ import {
   TOnChangeSelect,
 } from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
@@ -221,13 +220,6 @@ const meta: Meta<typeof Accordion> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 
 import { Breadcrumb, TCrumbItem } from "../../../lib/components/Breadcrumb";
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
@@ -106,13 +105,6 @@ return <Breadcrumb crumbsList={crumbsList} />;
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

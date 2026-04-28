@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../../../lib/components/Button";
 import { useModal } from "../../../lib/components/Modal";
 import { ViewImageModal } from "../../../lib/components/ViewImageModal";
-import mainStyles from "../Stories.module.scss";
 import styles from "./ViewImageModalStories.module.scss";
 
 const meta: Meta<typeof ViewImageModal> = {
@@ -130,13 +129,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     src: "/images/viewImageExample.jpg",
     fallbackSrc: "/images/fallBackSrc.jpeg",

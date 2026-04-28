@@ -10,7 +10,6 @@ import {
   Text,
   useModal,
 } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
@@ -363,13 +362,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

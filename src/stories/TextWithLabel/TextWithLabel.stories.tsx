@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
 
 import { TextWithLabel } from "../../../lib/components/TextWithLabel";
-import mainStyles from "../Stories.module.scss";
 import styles from "./TextWithLabelStories.module.scss";
 
 const meta: Meta<typeof TextWithLabel> = {
@@ -206,13 +205,6 @@ const meta: Meta<typeof TextWithLabel> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     label: "Label",
     children: "Text With Label",

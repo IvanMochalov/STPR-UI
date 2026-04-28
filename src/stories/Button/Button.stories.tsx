@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "../../../lib/components/Button";
 import { EIconName } from "../../../lib/components/Icons";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -190,13 +189,6 @@ const meta: Meta<typeof Button> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Label } from "../../../lib/components/Label";
 import { Text } from "../../../lib/components/Text";
 import { ETooltipPosition } from "../../../lib/components/Tooltip";
-import mainStyles from "../Stories.module.scss";
 import styles from "./LabelStories.module.scss";
 
 const meta: Meta<typeof Label> = {
@@ -127,13 +126,6 @@ const meta: Meta<typeof Label> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     label: "Лейбл поля",
     required: false,

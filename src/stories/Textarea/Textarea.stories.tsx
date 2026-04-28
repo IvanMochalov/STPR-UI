@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Form } from "../../../lib/components/Form";
 import { Text } from "../../../lib/components/Text";
 import { Textarea, TOnChangeTextarea } from "../../../lib/components/Textarea";
-import mainStyles from "../Stories.module.scss";
 import styles from "./TextareaStories.module.scss";
 
 const meta: Meta<typeof Textarea> = {
@@ -381,13 +380,6 @@ const meta: Meta<typeof Textarea> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     variant: "outlined",
     resize: "none",

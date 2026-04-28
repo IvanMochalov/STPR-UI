@@ -3,7 +3,6 @@ import React from "react";
 
 import { EIconName } from "../../../lib/components/Icons";
 import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof Confirm> = {
   title: "Components/Confirm",
@@ -307,13 +306,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     onClose: () => {},
     submit: () => {},

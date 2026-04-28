@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 
 import { Tabs, TPaneItem } from "../../../lib/components/Tabs";
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./TabsStories.module.scss";
 
 const meta: Meta<typeof Tabs> = {
@@ -130,13 +129,6 @@ const [activeTab, setActiveTab] = useState('tab1');
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     isSeparated: false,
     variant: "contained",

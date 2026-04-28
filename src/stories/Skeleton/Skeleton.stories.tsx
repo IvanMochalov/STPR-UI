@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Skeleton } from "../../../lib/components/Skeleton";
 import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./SkeletonStories.module.scss";
 
 const meta: Meta<typeof Skeleton> = {
@@ -132,13 +131,6 @@ const meta: Meta<typeof Skeleton> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     width: "100%",
     height: "1rem",

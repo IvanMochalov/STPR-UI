@@ -10,7 +10,6 @@ import {
   Text,
   Tooltip,
 } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 import styles from "./TooltipStories.module.scss";
 
 const meta: Meta<typeof Tooltip> = {
@@ -212,13 +211,6 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     position: ETooltipPosition.BottomLeft,
     isVisibleTooltip: true,

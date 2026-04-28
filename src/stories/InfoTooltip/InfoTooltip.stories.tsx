@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Text } from "../../../lib/components/Text";
 import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
-import mainStyles from "../Stories.module.scss";
 import styles from "./InfoTooltip.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
@@ -157,13 +156,6 @@ const meta: Meta<typeof InfoTooltip> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     text: "Поясняющая информация о элементе интерфейса",
     isVisibleTooltip: true,
