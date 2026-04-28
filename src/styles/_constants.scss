@@ -1,8 +1,8 @@
-@use "./colors" as *;
+@use "colors" as *;
 
 // Переменные для текста
-$title-font: "ALSGorizont", Verdana, Arial, Sans-serif;
-$main-font: "ALSHauss", Verdana, Arial, Sans-serif;
+$title-font: "ALS_Gorizont 2.1", Verdana, Arial, Sans-serif;
+$main-font: "ALS_Hauss", Verdana, Arial, Sans-serif;
 
 // Переменные для компонента <SPLabel />
 $spLabel-mb: 8px;

@@ -1,5 +1,5 @@
-@use "./constants" as *;
-@use "./colors" as *;
+@use "constants" as *;
+@use "colors" as *;
 
 @mixin respond-to($breakpoint) {
   @if $breakpoint == xs {

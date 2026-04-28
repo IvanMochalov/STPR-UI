@@ -1,3 +1,6 @@
+// Включение include-tokens в бандл (для объявления переменных)
+import "../src/styles/include-tokens.scss";
+
 import { Accordion } from "./components/Accordion";
 import { ApplyButtons } from "./components/ApplyButtons";
 import { AuthProtected } from "./components/AuthProtected";

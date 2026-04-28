@@ -4,6 +4,12 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [0.7.0] — 28.04.2026
+
+### Added
+- Начало внедрения CSS Custom Property взамен SCSS-переменным;
+- Внедрены CSS Custom Property в компонент Button;
+
 ## [0.6.15] — 28.04.2026
 
 ### Added

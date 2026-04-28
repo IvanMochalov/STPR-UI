@@ -1,3 +1,7 @@
+// Сбрасываем стили
+@use "../styles/reset";
+// Подключаем include-tokens.scss с объявлением переменных
+@use "../styles/include-tokens";
 // Подключаем шрифты
 @use "../styles/fonts";
 

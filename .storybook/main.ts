@@ -16,9 +16,9 @@ const config: StorybookConfig = {
   core: {
     builder: "@storybook/builder-vite",
   },
-  viteFinal: async (config) => {
-    config.base = "/themes/main/assets/storybook/";
-    return config;
-  },
+  // viteFinal: async (config) => {
+  //   config.base = "/themes/main/assets/storybook/";
+  //   return config;
+  // },
 };
 export default config;
