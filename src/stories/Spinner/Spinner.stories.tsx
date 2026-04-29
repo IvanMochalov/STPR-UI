@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, Spinner, Text } from "test-stpr-ui-kit";
+import { Button, Spinner, Text } from "local-stpr-ui-kit";
 
 import styles from "./SpinnerStories.module.scss";
 

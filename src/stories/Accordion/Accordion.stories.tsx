@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
-
 import {
   Accordion,
   Checkbox,
@@ -12,7 +10,9 @@ import {
   TOnChangeCheckbox,
   TOnChangeInput,
   TOnChangeSelect,
-} from "../../../lib/test-stpr-ui-kit.ts";
+} from "local-stpr-ui-kit";
+import { useState } from "react";
+
 import { OKRUG_OPTIONS } from "../constants";
 
 const meta: Meta<typeof Accordion> = {

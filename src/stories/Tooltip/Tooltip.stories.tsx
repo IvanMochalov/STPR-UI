@@ -1,15 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
+import { Button, EIconName, ETooltipPosition, Icon, Text, Tooltip } from "local-stpr-ui-kit";
 import { useState } from "react";
 
-import {
-  Button,
-  EIconName,
-  ETooltipPosition,
-  Icon,
-  Text,
-  Tooltip,
-} from "../../../lib/test-stpr-ui-kit.ts";
 import styles from "./TooltipStories.module.scss";
 
 const meta: Meta<typeof Tooltip> = {

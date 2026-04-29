@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { BaseTooltip, Button } from "test-stpr-ui-kit";
+import { BaseTooltip, Button } from "local-stpr-ui-kit";
 
 import mainStyles from "../Stories.module.scss";
 

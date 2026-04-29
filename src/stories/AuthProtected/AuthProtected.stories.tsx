@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { AuthProtected, Button, Text } from "local-stpr-ui-kit";
 import { useState } from "react";
-import { AuthProtected, Button, Text } from "test-stpr-ui-kit";
 
 import styles from "./AuthProtectedStories.module.scss";
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, EIconName } from "test-stpr-ui-kit";
+import { Button, EIconName } from "local-stpr-ui-kit";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",

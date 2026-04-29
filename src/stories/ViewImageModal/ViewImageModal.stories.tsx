@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, useModal, ViewImageModal } from "test-stpr-ui-kit";
+import { Button, useModal, ViewImageModal } from "local-stpr-ui-kit";
 
 import styles from "./ViewImageModalStories.module.scss";
 

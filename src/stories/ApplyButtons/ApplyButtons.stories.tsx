@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ApplyButtons, EIconName } from "test-stpr-ui-kit";
+import { ApplyButtons, EIconName } from "local-stpr-ui-kit";
 
 const meta: Meta<typeof ApplyButtons> = {
   title: "Components/ApplyButtons",

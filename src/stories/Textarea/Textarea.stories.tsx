@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Form, Text, Textarea, TOnChangeTextarea } from "local-stpr-ui-kit";
 import { useState } from "react";
-import { Form, Text, Textarea, TOnChangeTextarea } from "test-stpr-ui-kit";
 
 import styles from "./TextareaStories.module.scss";
 

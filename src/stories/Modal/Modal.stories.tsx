@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
 import {
   ApplyButtons,
   Button,
@@ -9,7 +8,7 @@ import {
   Modal,
   Text,
   useModal,
-} from "../../../lib/test-stpr-ui-kit.ts";
+} from "local-stpr-ui-kit";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",

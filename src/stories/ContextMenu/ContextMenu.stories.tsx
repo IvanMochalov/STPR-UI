@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import { ContextMenu, EIconName } from "../../../lib/test-stpr-ui-kit.ts";
+import { ContextMenu, EIconName } from "local-stpr-ui-kit";
 
 const meta: Meta<typeof ContextMenu> = {
   title: "Components/ContextMenu",

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Accordion, ProgressWrapper, TextWithLabel } from "local-stpr-ui-kit";
 import { useState } from "react";
 
-import { Accordion, ProgressWrapper, TextWithLabel } from "../../../lib/test-stpr-ui-kit.ts";
 import { useInterval } from "../../hooks/useInterval.ts";
 import styles from "./ProgressWrapperStories.module.scss";
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Select, TOnChangeSelect } from "local-stpr-ui-kit";
 import { useState } from "react";
-import { Select, TOnChangeSelect } from "test-stpr-ui-kit";
 
 import { OKRUG_OPTIONS } from "../constants";
 import mainStyles from "../Stories.module.scss";

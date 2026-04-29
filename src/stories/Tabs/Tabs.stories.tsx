@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Tabs, Text, TPaneItem } from "local-stpr-ui-kit";
 import { useMemo, useState } from "react";
-import { Tabs, Text,TPaneItem } from "test-stpr-ui-kit";
 
 import styles from "./TabsStories.module.scss";
 

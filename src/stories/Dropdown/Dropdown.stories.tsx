@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Dropdown, ETooltipPosition } from "local-stpr-ui-kit";
 
-import { Dropdown, ETooltipPosition } from "../../../lib/test-stpr-ui-kit.ts";
 import styles from "./DropdownStories.module.scss";
 
 const meta: Meta<typeof Dropdown> = {

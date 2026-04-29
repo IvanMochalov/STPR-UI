@@ -18,6 +18,11 @@
     ],
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "paths": {
+      "local-stpr-ui-kit": [
+        "./lib/test-stpr-ui-kit.ts"
+      ]
+    },
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,

@@ -1,14 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Confirm, Table, type TableProps, useModal, useTableActions } from "local-stpr-ui-kit";
 import type { ComponentType } from "react";
 import { useState } from "react";
 
-import {
-  Confirm,
-  Table,
-  type TableProps,
-  useModal,
-  useTableActions,
-} from "../../../lib/test-stpr-ui-kit";
 import { defaultColumns, SampleRow } from "./constants";
 import { defaultTableData } from "./constants";
 

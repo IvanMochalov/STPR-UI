@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Form, Input, Text, TOnChangeInput } from "local-stpr-ui-kit";
 import { useState } from "react";
-import { Form, Input, Text,TOnChangeInput } from "test-stpr-ui-kit";
 
 import styles from "./InputStories.module.scss";
 
