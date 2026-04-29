@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
+import { AuthProtected, Button, Text } from "test-stpr-ui-kit";
 
-import { AuthProtected } from "../../../lib/components/AuthProtected";
-import { Button } from "../../../lib/components/Button";
-import { Text } from "../../../lib/components/Text";
 import styles from "./AuthProtectedStories.module.scss";
 
 const meta: Meta<typeof AuthProtected> = {

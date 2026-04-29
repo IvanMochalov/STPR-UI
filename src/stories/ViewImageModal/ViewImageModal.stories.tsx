@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Button, useModal, ViewImageModal } from "test-stpr-ui-kit";
 
-import { Button } from "../../../lib/components/Button";
-import { useModal } from "../../../lib/components/Modal";
-import { ViewImageModal } from "../../../lib/components/ViewImageModal";
 import styles from "./ViewImageModalStories.module.scss";
 
 const meta: Meta<typeof ViewImageModal> = {

@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Button, Spinner, Text } from "test-stpr-ui-kit";
 
-import { Button } from "../../../lib/components/Button";
-import { Spinner } from "../../../lib/components/Spinner";
-import { Text } from "../../../lib/components/Text";
 import styles from "./SpinnerStories.module.scss";
 
 const meta: Meta<typeof Spinner> = {

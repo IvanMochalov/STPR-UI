@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-
-import { DatePickerInput, TOnChangeDatePickerInput } from "../../../lib/components/DatePickerInput";
-import { ETooltipPosition } from "../../../lib/components/Tooltip";
+import { DatePickerInput, ETooltipPosition,TOnChangeDatePickerInput } from "test-stpr-ui-kit";
 
 const meta: Meta<typeof DatePickerInput> = {
   title: "Components/DatePickerInput",

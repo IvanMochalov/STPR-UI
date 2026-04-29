@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
+import { TextWithLabel } from "test-stpr-ui-kit";
 
-import { TextWithLabel } from "../../../lib/components/TextWithLabel";
 import styles from "./TextWithLabelStories.module.scss";
 
 const meta: Meta<typeof TextWithLabel> = {

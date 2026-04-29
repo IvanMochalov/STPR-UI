@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
-
-import { Checkbox, CheckboxProps } from "../../../lib/components/Checkbox";
-import { ETooltipPosition } from "../../../lib/components/Tooltip";
+import { Checkbox, ETooltipPosition } from "test-stpr-ui-kit";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
@@ -159,6 +157,8 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 // Базовый render function для управления состоянием
+type CheckboxProps = React.ComponentProps<typeof Checkbox>;
+
 const CheckboxWithState = (args: CheckboxProps) => {
   const [formData, setFormData] = useState({
     is: args.checked || false,

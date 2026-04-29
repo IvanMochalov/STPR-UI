@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
+import { EIconName } from "test-stpr-ui-kit";
 
-import { EIconName } from "../../../lib/components/Icons";
 import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
 
 const meta: Meta<typeof Confirm> = {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ETooltipPosition, InfoTooltip, Text } from "test-stpr-ui-kit";
 
-import { Text } from "../../../lib/components/Text";
-import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
 import styles from "./InfoTooltip.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {

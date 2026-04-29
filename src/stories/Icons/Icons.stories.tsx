@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { EIconName, EllipsisTextWithTooltip, Icon, Text } from "test-stpr-ui-kit";
 
-import { EllipsisTextWithTooltip } from "../../../lib/components/EllipsisTextWithTooltip";
-import { EIconName, Icon } from "../../../lib/components/Icons";
-import { Text } from "../../../lib/components/Text";
 import styles from "./IconsStories.module.scss";
 
 const meta: Meta<typeof Icon> = {

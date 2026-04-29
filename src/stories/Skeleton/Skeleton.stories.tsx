@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Skeleton, Text } from "test-stpr-ui-kit";
 
-import { Skeleton } from "../../../lib/components/Skeleton";
-import { Text } from "../../../lib/components/Text";
 import styles from "./SkeletonStories.module.scss";
 
 const meta: Meta<typeof Skeleton> = {

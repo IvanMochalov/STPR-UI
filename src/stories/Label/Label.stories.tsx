@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ETooltipPosition, Label, Text } from "test-stpr-ui-kit";
 
-import { Label } from "../../../lib/components/Label";
-import { Text } from "../../../lib/components/Text";
-import { ETooltipPosition } from "../../../lib/components/Tooltip";
 import styles from "./LabelStories.module.scss";
 
 const meta: Meta<typeof Label> = {

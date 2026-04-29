@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
-
-import { Breadcrumb, TCrumbItem } from "../../../lib/components/Breadcrumb";
-import { Text } from "../../../lib/components/Text";
+import { Breadcrumb, TCrumbItem, Text } from "test-stpr-ui-kit";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",

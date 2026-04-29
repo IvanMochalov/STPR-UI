@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
+import { Form, Input, Text,TOnChangeInput } from "test-stpr-ui-kit";
 
-import { Form } from "../../../lib/components/Form";
-import { Input, TOnChangeInput } from "../../../lib/components/Input";
-import { Text } from "../../../lib/components/Text";
 import styles from "./InputStories.module.scss";
 
 const meta: Meta<typeof Input> = {
