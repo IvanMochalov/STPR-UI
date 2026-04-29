@@ -83,3 +83,17 @@ legend {
 input[type='file'] {
   max-width: 100%;
 }
+
+// Кастомные стили для кода в документации
+code, pre {
+  &, & * {
+    font-family: 'Cascadia Code', /* Новый красивый от Microsoft (есть у многих разработчиков) */
+    'Fira Code', /* С лигатурами, популярен */
+    Consolas, /* Windows: красивый, современный, предустановлен */
+    Menlo, /* macOS: приятный моноширинный */
+    Monaco, /* macOS (старый, но часто бывает) */
+    'DejaVu Sans Mono', /* Linux (почти везде) */
+    'Courier New', /* Абсолютный fallback (везде, но грубоват) */
+    monospace !important; /* Браузерный системный моноширинный */
+  }
+}
