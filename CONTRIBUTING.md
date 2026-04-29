@@ -105,10 +105,9 @@ export type { ModalProps } from "./types";
 
 ### Импорты в стори
 
-- Компонент и типы можно импортировать:
-  - из сборки: `import { ComponentName, ESomeEnum } from "../../../lib/test-stpr-ui-kit.ts";`
-  - или напрямую из компонента: `import { ComponentName } from "../../../lib/components/ComponentName";`
-- Обёртка для всех стори: `import mainStyles from "../Stories.module.scss";` (общий wrapper с центрированием и т.п.).
+Компонент и типы необходимо импортировать по алиасу `local-stpr-ui-kit`:
+
+`import { ComponentName, ESomeEnum } from "local-stpr-ui-kit";`
 
 ### Структура стори-файла
 
@@ -224,7 +223,9 @@ decorators: [
 - [ ] В `lib/test-stpr-ui-kit.ts` добавлены импорты и экспорты для компонента и всех типов/хуков, которые должны быть публичными.
 - [ ] Создана папка `src/stories/<ComponentName>/` и файл `<ComponentName>.stories.tsx`.
 - [ ] В стори заданы `meta` (title, component, tags, parameters.docs, argTypes, args), `export default meta`, одна или несколько именованных стори.
-- [ ] Запущен Storybook (`npm run storybook`), компонент отображается в разделе Components и Docs.
+- [ ] Линт проходит: `npm run lint`.
 - [ ] Сборка библиотеки проходит: `npm run build`.
+- [ ] Статическая сборка Storybook проходит: `npm run storybook:build`.
+- [ ] Запущен Storybook (`npm run storybook`), компонент отображается в разделе Components и Docs.
 
 После этого компонент доступен из пакета `test-stpr-ui-kit` и документирован в Storybook.
