@@ -15,28 +15,22 @@ import type { TContextMenuOption } from "./components/ContextMenu";
 import { ContextMenu } from "./components/ContextMenu";
 import type { TOnChangeDatePicker } from "./components/DatePicker";
 import { DatePicker } from "./components/DatePicker";
-import type { IDatePickerInputProps, TOnChangeDatePickerInput } from "./components/DatePickerInput";
+import type { TOnChangeDatePickerInput } from "./components/DatePickerInput";
 import { DatePickerInput } from "./components/DatePickerInput";
 import { DefaultDropzone } from "./components/DefaultDropzone";
 import { Dropdown } from "./components/Dropdown";
 import { EllipsisTextWithTooltip } from "./components/EllipsisTextWithTooltip";
 import { Form } from "./components/Form";
 import { EIconName, Icon } from "./components/Icons";
-import type { IInputProps, TOnBlurInput, TOnChangeInput } from "./components/Input";
+import type { TOnBlurInput, TOnChangeInput } from "./components/Input";
 import { Input } from "./components/Input";
 import { Label } from "./components/Label";
 import { Layer } from "./components/Layer";
 import { MediaContext, MediaContextProvider } from "./components/MediaContextProvider";
 import { Modal, useModal } from "./components/Modal";
 import { Portal } from "./components/Portal";
-import type { ProgressWrapperProps } from "./components/ProgressWrapper";
 import { ProgressWrapper, useAnimatedValue } from "./components/ProgressWrapper";
-import type {
-  ISelectProps,
-  TOnBlurSelect,
-  TOnChangeSelect,
-  TSelectOption,
-} from "./components/Select";
+import type { TOnBlurSelect, TOnChangeSelect, TSelectOption } from "./components/Select";
 import { Select } from "./components/Select";
 import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
@@ -71,11 +65,8 @@ export {
   ETooltipPosition,
   Form,
   Icon,
-  IDatePickerInputProps,
-  IInputProps,
   InfoTooltip,
   Input,
-  ISelectProps,
   Label,
   Layer,
   MediaContext,
@@ -83,7 +74,6 @@ export {
   Modal,
   Portal,
   ProgressWrapper,
-  ProgressWrapperProps,
   Select,
   Skeleton,
   Spinner,
