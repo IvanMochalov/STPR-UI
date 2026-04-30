@@ -1,18 +1,15 @@
-import React, { CSSProperties, ReactNode } from "react";
+import React, { CSSProperties } from "react";
 
 import { EIconName } from "../../Icons";
 
-export type TButtonColor = "blue" | "white";
-
 export type TButtonType = "submit" | "reset" | "button";
 
-export type TButtonVariant = "primary" | "secondary" | "link";
-
-export type TButtonIconPosition = "start" | "end";
+export type TButtonVariant = "primary" | "secondary" | "text" | "link";
+export type TButtonSize = "md" | "xl";
 
 export interface ButtonProps extends React.PropsWithChildren {
-  color?: TButtonColor;
   variant?: TButtonVariant;
+  size?: TButtonSize;
   style?: CSSProperties;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
@@ -22,11 +19,10 @@ export interface ButtonProps extends React.PropsWithChildren {
   noPadding?: boolean;
   isOnlyIcon?: boolean;
   loading?: boolean;
-  iconName?: EIconName;
-  icon?: ReactNode;
+  startIconName?: EIconName;
+  endIconName?: EIconName;
   classNameRoot?: string;
   classNameTextRoot?: string;
   classNameIconContainerRoot?: string;
   iconRotate?: number;
-  iconPosition?: TButtonIconPosition;
 }

@@ -106,7 +106,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
             classNameRoot={classNameCloseButton}
             classNameIconContainerRoot={classNameButtonIconContainer}
             onClick={onClose}
-            iconName={EIconName.Close}
+            startIconName={EIconName.Close}
             variant={"link"}
             noPadding={true}
             isOnlyIcon={true}

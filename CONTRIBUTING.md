@@ -99,7 +99,8 @@ export type { ModalProps } from "./types";
 
 - Папка: **`src/stories/<ComponentName>/`**.
 - Файл стори: **`<ComponentName>.stories.tsx`**.
-- Дополнительные стили для стори (если нужны): например `DropdownStories.module.scss` в той же папке.
+- Если для стори нужна локальная вёрстка/стилизация, не используйте inline-стили в `render`.
+- Создавайте локальный SCSS-модуль в той же папке: **`<ComponentName>Stories.module.scss`** (например `DropdownStories.module.scss`) и подключайте классы из него.
 
 В `.storybook/main.ts` уже задано: `../src/**/*.stories.@(js|jsx|mjs|ts|tsx)` — подхватываются все такие файлы.
 
@@ -223,9 +224,12 @@ decorators: [
 - [ ] В `lib/test-stpr-ui-kit.ts` добавлены импорты и экспорты для компонента и всех типов/хуков, которые должны быть публичными.
 - [ ] Создана папка `src/stories/<ComponentName>/` и файл `<ComponentName>.stories.tsx`.
 - [ ] В стори заданы `meta` (title, component, tags, parameters.docs, argTypes, args), `export default meta`, одна или несколько именованных стори.
+- [ ] При необходимости локальной стилизации стори добавлен файл `<ComponentName>Stories.module.scss`, inline-стили не используются.
+- [ ] Любые изменения компонента (`fix` / `added` / `changed` / `removed`) отражены в `CHANGELOG.md` по правилам changelog.
+- [ ] Оценено влияние на версию (`patch` / `minor` / `major`), для breaking-изменений выбран `major`.
 - [ ] Линт проходит: `npm run lint`.
 - [ ] Сборка библиотеки проходит: `npm run build`.
 - [ ] Статическая сборка Storybook проходит: `npm run storybook:build`.
-- [ ] Запущен Storybook (`npm run storybook`), компонент отображается в разделе Components и Docs.
+- [ ] Локально рекомендовано запустить Storybook (`npm run storybook`) и проверить отображение компонента в Components/Docs.
 
 После этого компонент доступен из пакета `test-stpr-ui-kit` и документирован в Storybook.

@@ -4,95 +4,135 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [1.0.0] — IN FUTURE
+
+### Added
+
+- `Button`: добавлен новый вариант `variant="text"`;
+- `Button`: добавлена настройка размера через `size: "md" | "xl"`;
+- `Button`: добавлена раздельная настройка иконок через `startIconName` и `endIconName`.
+
+### Changed
+
+- `Button`: обновлена логика рендера контента — при `loading` спиннер заменяет только стартовую иконку (если она есть), end-иконка продолжает отображаться;
+- `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (`disabled`, `hover`, `active`) и размеров;
+- `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами.
+
+### Removed
+
+- `Button`: удален prop `color` и тип `TButtonColor`;
+- `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте `startIconName`/`endIconName`).
+
 ## [0.7.0] — 28.04.2026
 
 ### Added
+
 - Начало внедрения CSS Custom Property взамен SCSS-переменным;
 - Внедрены CSS Custom Property в компонент Button;
 
 ## [0.6.15] — 28.04.2026
 
 ### Added
+
 - Добавлена иконка eye.svg;
 
 ### Fixed
+
 - Поправлена анимация разворачивания компонента Accordion;
 
 ## [0.6.14] — 2026-04-03
 
 ### Added
+
 - Добавлены иконки pause-circle.svg, play-circle.svg и upload-top.svg;
 
 ## [0.6.13] — 2026-04-02
 
 ### Fixed
+
 - Исправлена ошибка сборки и формирования поставляемых типов;
 
 ## [0.6.12] — 2026-04-02
 
 ### Fixed
+
 - Исправлена ошибка в использования компонента InputMask в компонентах Input и DatePickerInput;
 
 ## [0.6.11] — 2026-04-02
 
 ### Added
+
 - Добавлена иконка refresh-dbl.svg;
 
 ### Fixed
+
 - Исправлена совместимость компонентов Input и DatePickerInput с React 19;
 
 ## [0.6.10] — 2026-04-01
 
 ### Added
+
 - Добавлены иконки update.svg, filter.svg, folder.svg, layers-three.svg и link-angled.svg;
 - Добавлен параметр triggerTooltipGap компоненту Tooltip для управления отступом между триггером и тултипом;
 
 ### Fixed
+
 - Исправлена доступность скрытого BaseTooltip для hover и click в компоненте Tooltip;
 
 ## [0.6.9] — 2026-03-26
 
 ### Fixed
+
 - Исправлен текст ошибки при загрузке файла в компоненте UploadFiles;
 
 ## [0.6.8] — 2026-03-26
 
 ### Updated
+
 - Обновлен vite до 7.2.2 версии;
 
 ## [0.6.7] — 2026-03-26
 
 ### Updated
+
 - Обновлен react-datepicker до 9.1.0 версии;
 
 ## [0.6.6] — 2026-03-26
 
 ### Fixed
+
 - Исправлена типизация компонента Table;
 - Исправлен текст ошибки при загрузке файла без указания параметра maxSizeMb;
+
 ### Added
+
 - Добавлена проверка размера изображения в компоненте UploadFiles;
 
 ## [0.6.2 - 0.6.5] — 2026-03-10
 
 ### Updated
+
 - Обновлена документация по версионированию для разработчиков;
 
 ## [0.6.1] — 2026-03-10
 
 ### Changed
+
 - Changelog.mdx добавлен в .gitignore (файл генерируется при сборке Storybook)
 - Уточнён текст в CHANGELOG.md
 
 ## [0.6.0] — 2026-03-10
 
 ### Added
+
 - Страница «История версий» в Storybook: отображение CHANGELOG.md и текущей версии из package.json
 - Скрипт `scripts/inline-changelog.js`: генерация Changelog.mdx из CHANGELOG.md перед сборкой Storybook
-- Документация для разработчиков: раздел **Documentation/Development/Release workflow** — инструкция по внесению изменений, обновлению CHANGELOG, версионированию и публикации пакета и Storybook
+- Документация для разработчиков: раздел **Documentation/Development/Release workflow** — инструкция по внесению
+  изменений, обновлению CHANGELOG, версионированию и публикации пакета и Storybook
 
 ## [0.5.116] — 2026-03-10
 
 ### Fixed
+
 - Исправлен компонент Select: рендер списка через Portal;
 - Обновлена документация компонента Select;

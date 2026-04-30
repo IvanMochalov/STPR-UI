@@ -1,142 +1,138 @@
 @use "/src/styles/global" as styles;
 
 .spButton {
-  // Общие стили блока
   $block: &;
 
   display: flex;
-  height: var(--spui-control-height-xl);
-  padding: var(--spui-spacing-none) var(--spui-spacing-8x);
   justify-content: center;
   align-items: center;
   gap: var(--spui-spacing-2x);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: var(--spui-control-height-xl);
+  padding: var(--spui-spacing-none) var(--spui-spacing-8x);
+  background-color: var(--spui-color-surface-action);
+  color: var(--spui-color-text-on-action);
 
   @include styles.transition-all-ease-in-out(200ms);
   @include styles.starting-style-appearance();
 
-  @include styles.respond-to(sm) {
-    height: var(--spui-control-height-xl);
-    padding: var(--spui-spacing-none) var(--spui-spacing-8x);
+  &_size-md {
+    height: var(--spui-control-height-lg);
+    padding: var(--spui-spacing-none) var(--spui-spacing-6x);
+
+    & #{$block}__text {
+      font-size: var(--spui-button-font-size-md, 16px);
+      line-height: 20px;
+    }
   }
 
-  // Вариации кнопок
+  &_size-xl {
+    height: var(--spui-control-height-xl);
+    padding: var(--spui-spacing-none) var(--spui-spacing-8x);
+
+    & #{$block}__text {
+      font-size: var(--spui-button-font-size-xl, 18px);
+      line-height: 24px;
+    }
+  }
+
   &_noPadding {
     padding: var(--spui-spacing-none);
+    height: fit-content;
   }
 
   &_onlyIcon:not(#{$block}_noPadding) {
-    padding: var(--spui-spacing-2x);
-
-    @include styles.respond-to(sm) {
-      padding: var(--spui-spacing-3x);
-    }
+    padding: var(--spui-spacing-none);
+    width: var(--spui-control-height-xl);
+    min-width: var(--spui-control-height-xl);
   }
 
-  &_link {
-    & #{$block}__text {
-      font-weight: var(--spui-font-weight-medium);
-    }
-
-    &:not(#{$block}_onlyIcon) {
-      gap: var(--spui-spacing-2x);
-    }
-
-    background-color: transparent;
-    color: var(--spui-color-text-action);
-
-    &:focus-visible,
-    &:hover {
-      color: var(--spui-color-text-action-hover);
-    }
-
-    &:active {
-      color: var(--spui-color-text-action-active);
-    }
-
-    &#{$block}_white {
-      color: var(--spui-color-text-on-action);
-    }
+  &_size-md#{$block}_onlyIcon:not(#{$block}_noPadding) {
+    width: var(--spui-control-height-lg);
+    min-width: var(--spui-control-height-lg);
   }
 
-  &_primary#{$block}_blue {
+  &_primary {
     background-color: var(--spui-color-surface-action);
     color: var(--spui-color-text-on-action);
 
-    &:focus-visible,
     &:hover {
       background-color: var(--spui-color-surface-action-hover);
     }
 
+    &:focus-visible,
     &:active {
       background-color: var(--spui-color-surface-action-active);
     }
   }
 
-  &_primary#{$block}_white {
-    background-color: var(--spui-color-surface-default);
+  &_secondary {
+    background-color: var(--spui-color-surface-secondary);
     color: var(--spui-color-text-action);
 
-    &:focus-visible,
-    &:hover {
-      // TODO need MAPPED SEED token
-      background-color: var(--color-mramor-blue);
-    }
-
-    &:active {
-      background-color: var(--spui-color-surface-secondary-active);
-    }
-  }
-
-  &_secondary#{$block}_white {
-    // TODO need CREATE SEED token
-    background-color: styles.$color-white-20;
-    color: var(--spui-color-text-on-action);
-
-    &:focus-visible,
-    &:hover {
-      // TODO need CREATE SEED token
-      background-color: styles.$color-white-30;
-    }
-
-    &:active {
-      // TODO need CREATE SEED token
-      background-color: styles.$color-rgba-187-20;
-    }
-  }
-
-  &_secondary#{$block}_blue {
-    // TODO need MAPPED SEED token
-    background-color: var(--color-mramor-blue);
-    color: var(--spui-color-text-action);
-
-    &:focus-visible,
     &:hover {
       background-color: var(--spui-color-surface-secondary-hover);
     }
 
+    &:focus-visible,
     &:active {
       background-color: var(--spui-color-surface-secondary-active);
     }
   }
 
-  // Модификаторы блока
+  &_text {
+    background-color: var(--spui-color-surface-default);
+    color: var(--spui-color-text-action);
+
+    &:hover {
+      background-color: var(--spui-color-surface-secondary-hover);
+    }
+
+    &:focus-visible,
+    &:active {
+      background-color: var(--spui-color-surface-secondary-active);
+    }
+  }
+
+  &_link {
+    background-color: var(--spui-color-surface-transparent, transparent);
+    color: var(--spui-color-text-action);
+
+    &:hover {
+      color: var(--spui-color-text-action-hover);
+
+      & #{$block}__text {
+        text-decoration: underline;
+      }
+    }
+
+    &:focus-visible,
+    &:active {
+      color: var(--spui-color-text-action-active);
+    }
+  }
+
   &_fullWidth {
     width: 100%;
   }
 
   &_disabled {
     pointer-events: none;
+    cursor: default;
+    color: var(--spui-color-text-disabled) !important;
 
-    &#{$block}_link {
-      background-color: transparent !important;
+    &:not(#{$block}_link) {
+      background-color: var(--spui-color-surface-disabled) !important;
     }
 
-    background-color: var(--spui-color-surface-disabled) !important;
-    color: var(--spui-color-text-secondary) !important;
-    cursor: default;
+    &#{$block}_link,
+    &#{$block}_text {
+      background-color: transparent !important;
+    }
   }
 
-  // Элементы
   &__spinner {
     color: currentColor !important;
   }
@@ -145,19 +141,15 @@
     color: currentColor;
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-medium);
-    font-size: 16px;
-
-    @include styles.respond-to(sm) {
-      font-size: 18px;
-    }
+    text-decoration: none;
   }
 
   &__iconContainer {
     display: flex;
 
     & :global .stpr-icon {
-      width: var(--spui-icon-size-sm);
-      height: var(--spui-icon-size-sm);
+      width: var(--spui-icon-size-base);
+      height: var(--spui-icon-size-base);
     }
   }
 }

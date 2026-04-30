@@ -46,7 +46,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
         <Button
           type={"button"}
           variant={cancelBtnVariant}
-          iconName={cancelBtnIconName}
+          startIconName={cancelBtnIconName}
           classNameRoot={classNameCancelButton}
           disabled={cancelBtnDisabled}
           onClick={onClose}
@@ -58,7 +58,7 @@ export const ApplyButtons: React.FC<ApplyButtonsProps> = (props) => {
         <Button
           type={"submit"}
           variant={submitBtnVariant}
-          iconName={submitBtnIconName}
+          startIconName={submitBtnIconName}
           classNameRoot={classNameSubmitButton}
           form={formId ? formId : undefined}
           disabled={disabled}

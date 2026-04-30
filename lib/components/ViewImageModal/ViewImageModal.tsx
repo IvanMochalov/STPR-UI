@@ -89,8 +89,7 @@ export const ViewImageModal: React.FC<ViewImageModalProps> = (props) => {
         onClick={onClose}
         variant={"link"}
         isOnlyIcon={true}
-        color={"white"}
-        iconName={EIconName.Close}
+        startIconName={EIconName.Close}
       />
     </Layer>
   );

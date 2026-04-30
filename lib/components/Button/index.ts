@@ -1,2 +1,2 @@
 export { Button } from "./Button";
-export type { ButtonProps, TButtonColor, TButtonType, TButtonVariant } from "./types";
+export type { ButtonProps, TButtonSize, TButtonType, TButtonVariant } from "./types";

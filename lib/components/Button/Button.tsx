@@ -8,16 +8,15 @@ import { ButtonProps } from "./types";
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
-    color = "blue",
     variant = "primary",
+    size = "xl",
     style,
     onClick,
-    iconName,
-    icon,
+    startIconName,
+    endIconName,
     iconRotate = 0,
     disabled = false,
     type = "button",
-    iconPosition = "start",
     form,
     children,
     loading = false,
@@ -48,45 +47,42 @@ export const Button: React.FC<ButtonProps> = (props) => {
       ...(propsClassNameIconContainerRoot && { [propsClassNameIconContainerRoot]: true }),
     });
 
-    const renderIcon = () => {
-      if (loading) {
-        return (
-          <div className={classNameIconContainer}>
-            <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />
-          </div>
-        );
+    const renderSpinner = () => (
+      <div className={classNameIconContainer}>
+        <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />
+      </div>
+    );
+
+    const renderIcon = (iconName?: ButtonProps["startIconName"]) => {
+      if (!iconName) {
+        return null;
       }
 
-      if (iconName) {
-        return (
-          <div className={classNameIconContainer}>
-            <Icon name={iconName} rotate={iconRotate} />
-          </div>
-        );
-      }
-
-      if (icon) {
-        return <div className={classNameIconContainer}>{icon}</div>;
-      }
-
-      return null;
+      return (
+        <div className={classNameIconContainer}>
+          <Icon name={iconName} rotate={iconRotate} />
+        </div>
+      );
     };
+
+    const shouldRenderStartIcon = Boolean(startIconName);
+    const shouldRenderEndIcon = !isOnlyIcon && Boolean(endIconName);
 
     return (
       <>
-        {iconPosition === "start" && renderIcon()}
+        {loading ? renderSpinner() : renderIcon(shouldRenderStartIcon ? startIconName : undefined)}
         {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
-        {iconPosition === "end" && renderIcon()}
+        {renderIcon(shouldRenderEndIcon ? endIconName : undefined)}
       </>
     );
   };
 
   const classNameRoot = cx({
     [styles.spButton]: true,
+    [styles[`spButton_size-${size}`]]: size,
     [styles.spButton_noPadding]: noPadding,
     [styles.spButton_onlyIcon]: isOnlyIcon,
     [styles[`spButton_${variant}`]]: variant,
-    [styles[`spButton_${color}`]]: color,
     [styles.spButton_fullWidth]: isFullWidth,
     [styles.spButton_disabled]: disabled,
     [styles.spButton_loading]: loading,
