@@ -4,7 +4,7 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
-## [1.0.0] — IN FUTURE
+## [1.0.0] — IN FUTURE (не опубликовано)
 
 ### Added
 
@@ -14,23 +14,26 @@
 
 ### Changed
 
-- `Button`: обновлена логика рендера контента — при `loading` спиннер заменяет только стартовую иконку (если она есть), end-иконка продолжает отображаться;
-- `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (`disabled`, `hover`, `active`) и размеров;
+- `Button`: обновлена логика рендера контента — при `loading` спиннер заменяет только стартовую иконку (если она есть),
+  end-иконка продолжает отображаться;
+- `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (
+  `disabled`, `hover`, `active`) и размеров;
 - `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами.
 
 ### Removed
 
 - `Button`: удален prop `color` и тип `TButtonColor`;
-- `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте `startIconName`/`endIconName`).
+- `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте
+  `startIconName`/`endIconName`).
 
-## [0.7.0] — 28.04.2026
+## [0.7.0] — 2026-04-28
 
 ### Added
 
 - Начало внедрения CSS Custom Property взамен SCSS-переменным;
 - Внедрены CSS Custom Property в компонент Button;
 
-## [0.6.15] — 28.04.2026
+## [0.6.15] — 2026-04-28
 
 ### Added
 
