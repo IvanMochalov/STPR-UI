@@ -1,0 +1,24 @@
+---
+description: Canonical project structure and placement rules
+alwaysApply: true
+---
+
+# Project Structure Guardrails
+
+- Keep public library source code in `lib/`, with reusable components only in `lib/components/<ComponentName>/`.
+- Keep package entrypoint exports centralized in `lib/test-stpr-ui-kit.ts`; expose new public APIs there.
+- Keep Storybook stories in `src/stories/<ComponentName>/<ComponentName>.stories.tsx`.
+- Keep Storybook and developer docs in `src/documentation/`:
+  - product intro and user-facing docs in `src/documentation/*.mdx`;
+  - process docs in `src/documentation/development/*.mdx`;
+  - short how-to references in `src/documentation/cheatSheets/*.mdx`.
+- Keep shared Storybook/demo helpers in `src/hooks`, `src/utils`, `src/styles`, and media assets in `src/images`.
+- Keep Storybook runtime config in `.storybook/`; do not place component business logic there.
+- Keep automation/build helpers in `scripts/` and project-level editor/agent config in `.cursor/`.
+- Treat `dist/` and `storybook-static/` as generated output; do not place source-of-truth code there.
+- For any new feature touching component API, align all affected layers:
+  1) `lib/components`;
+  2) `lib/test-stpr-ui-kit.ts`;
+  3) `src/stories`;
+  4) `src/documentation` and `CHANGELOG.md`.
+- Avoid creating alternative top-level source folders when an existing canonical folder already fits the change.

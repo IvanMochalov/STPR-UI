@@ -1,0 +1,28 @@
+---
+description: Workflow for adding and updating library components
+alwaysApply: true
+---
+
+# Component Workflow
+
+- This repository is a component library published to npm with Storybook docs.
+- Keep component source structure in `lib/components/<ComponentName>/`:
+  - `<ComponentName>.tsx`
+  - `<ComponentName>.module.scss`
+  - `index.ts`
+  - `types/index.ts`
+  - optional `hooks/`, `utils/`, `constants/` only when needed.
+- In component implementation:
+  - import local styles from `./<ComponentName>.module.scss`;
+  - import local types from `./types`;
+  - import other library components relatively from `../<OtherComponent>`.
+- Export only public API from `lib/components/<ComponentName>/index.ts`.
+- Every public component/type/hook/enum must be wired in `lib/test-stpr-ui-kit.ts` via imports and exports.
+- Preserve backward compatibility intentionally:
+  - if API changes are breaking, call it out explicitly and provide migration guidance.
+- Required delivery chain for component changes:
+  1) update/add component in `lib/components`;
+  2) mandatory update of component stories in `src/stories` for every added component or public API change;
+  3) update `CHANGELOG.md` using changelog rule;
+  4) start post-change verification by running the `project-health-check` skill from `.cursor/skills/project-health-check/SKILL.md`;
+  5) run verification commands: `npm run lint`, `npm run build`, `npm run storybook:build`.

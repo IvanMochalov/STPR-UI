@@ -1,0 +1,21 @@
+---
+description: Storybook stories workflow for components
+alwaysApply: true
+---
+
+# Story Workflow
+
+- Each component story lives in `src/stories/<ComponentName>/<ComponentName>.stories.tsx`.
+- Import library entities in stories from `local-stpr-ui-kit`.
+- Story meta baseline:
+  - `title: "Components/<ComponentName>"`
+  - `component: <ComponentName>`
+  - `tags: ["autodocs"]`
+  - useful `parameters.docs`, `argTypes`, and default `args`.
+- Do not use inline styles in story markup (`style={{ ... }}` in render/demo layouts).
+- If custom story layout styling is needed:
+  - create `src/stories/<ComponentName>/<ComponentName>Stories.module.scss`;
+  - import it as CSS Modules and apply classes in JSX.
+- Reuse project-level Storybook decorators from `.storybook/preview.tsx`; add local decorators only when necessary.
+- If a component is added or its public API is changed in `lib/components/**`, updating the corresponding story is mandatory.
+- Story updates must reflect real current API and behavior, including new/removed/renamed props and changed states.

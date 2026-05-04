@@ -1,0 +1,55 @@
+---
+description: Multi-agent workflow for component task delivery
+alwaysApply: false
+---
+
+# Multi-Agent Development Workflow
+
+Use this workflow when a task involves implementation (new feature, enhancement, bug fix, refactor).
+
+## Roles
+
+- `orchestrator`: owns lifecycle, handoffs, status, and final acceptance.
+- `planner`: converts task into executable subtasks with dependencies.
+- `arch-review`: validates structure and repository rules.
+- `implementer`: applies code changes with senior-level quality.
+- `documenter`: updates story/docs/changelog artifacts.
+- `review`: performs code-review style quality gate.
+- `test-runner`: runs verification commands and summarizes failures.
+- `debugger`: fixes broken builds/tests/lint and unstable behavior.
+- `verifier`: confirms task completion against definition of done.
+- `security-auditor` (optional): checks risk for input handling, dependencies, and unsafe patterns.
+- `refactor` (optional): improves clarity without changing public behavior.
+
+## Mandatory sequence for component tasks
+
+1. Plan with `planner`.
+2. Validate plan with `arch-review` before editing.
+3. Implement component changes in `lib/components/**`.
+4. Synchronize exports in `lib/test-stpr-ui-kit.ts` if public API changed.
+5. Update or create story in `src/stories/<ComponentName>/<ComponentName>.stories.tsx`.
+6. Update `CHANGELOG.md` using Keep a Changelog sections (`Added`, `Changed`, `Fixed`, `Removed`, `Security`).
+7. Run quality gates: `npm run lint`, `npm run build`, `npm run storybook:build`.
+8. If any gate fails, hand over to `debugger`, then rerun gates.
+9. Run `review` and `verifier` for final decision.
+
+## Handoff contract
+
+Every role returns:
+
+- `status`: `done` | `blocked` | `needs_changes`
+- `summary`: concise outcome
+- `artifacts`: changed files / commands / checks
+- `risks`: unresolved concerns
+- `next_role`: who acts next
+
+## Definition of Done
+
+Task is done only when all are true:
+
+- Component API and implementation are aligned in `lib/components/**`.
+- Public exports are aligned in `lib/test-stpr-ui-kit.ts` (if needed).
+- Storybook stories reflect current API and states.
+- `CHANGELOG.md` updated for meaningful package changes.
+- `lint`, `build`, and `storybook:build` pass.
+- `review` and `verifier` return `done`.
