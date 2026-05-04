@@ -83,45 +83,27 @@ export default [
   },
 
   {
-    files: ["**/*.{js,jsx,mjs,cjs}"],
+    files: ["scripts/**/*.{js,mjs,cjs}"],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
       globals: {
-        ...globals.browser,
         ...globals.node,
       },
     },
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
     plugins: {
-      react: reactPlugin,
-      "react-hooks": reactHooksPlugin,
-      "react-refresh": reactRefreshPlugin,
       "simple-import-sort": simpleImportSortPlugin,
-      storybook: storybookPlugin,
     },
     rules: {
-      ...(reactPlugin.configs.recommended?.rules ?? {}),
-      ...(reactHooksPlugin.configs.recommended?.rules ?? {}),
-      ...(storybookPlugin.configs.recommended?.rules ?? {}),
-
-      "react/react-in-jsx-scope": "off",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn",
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-      "react-hooks/set-state-in-effect": "off",
-      "react-hooks/refs": "off",
     },
   },
 
   // Storybook stories часто используют хуки внутри render-функций (args-based stories).
   // Это не production-код, поэтому отключаем rules-of-hooks только для stories.
   {
-    files: ["src/**/*.stories.@(js|jsx|mjs|ts|tsx)", "src/**/*.story.@(js|jsx|mjs|ts|tsx)"],
+    files: ["src/**/*.stories.@(ts|tsx)", "src/**/*.story.@(ts|tsx)"],
     rules: {
       "react-hooks/rules-of-hooks": "off",
     },
