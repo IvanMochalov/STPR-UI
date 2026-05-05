@@ -1,81 +1,83 @@
 @use "/src/styles/global" as styles;
 
 .spAccordion {
-  // Общие стили блока
   $block: &;
-  --accordion-padding: 16px;
-  --accordion-padding-bottom: 16px;
-  --accordion-gap: 0;
-  // level-1 по умолчанию (24px), level-2 переопределяет
-  --accordion-name-font-size: 24px;
+  --spui-accordion-padding-x: var(--spui-spacing-4x);
+  --spui-accordion-padding-y: var(--spui-spacing-4x);
+  --spui-accordion-padding-bottom: var(--spui-spacing-4x);
+  --spui-accordion-gap: var(--spui-spacing-none);
+  --spui-accordion-title-font-size: var(--spui-accordion-title-font-size-level-1, 24px);
+  --spui-accordion-title-line-height: var(--spui-accordion-title-line-height-level-1, 120%);
+  --spui-accordion-title-font-weight: var(--spui-font-weight-medium);
+  --spui-accordion-content-font-size: var(--spui-accordion-content-font-size-default, 14px);
+  --spui-accordion-content-line-height: var(--spui-accordion-content-line-height-default, 20px);
 
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid styles.$color-secondary-blue-light-dark;
-  background-color: styles.$color-white;
-  font-family: styles.$main-font;
+  border: var(--spui-border-width-sm) solid var(--spui-color-border-primary);
+  background-color: var(--spui-color-surface-default);
+  color: var(--spui-color-text-primary);
+  font-family: var(--spui-font-family-main), serif;
   overflow: hidden;
 
-  padding: var(--accordion-padding);
-  gap: var(--accordion-gap);
+  padding: var(--spui-accordion-padding-y) var(--spui-accordion-padding-x);
+  gap: var(--spui-accordion-gap);
   @include styles.transition-all-ease-in-out(200ms);
   @include styles.starting-style-appearance();
 
   @include styles.respond-to(sm) {
-    --accordion-padding: 32px;
+    --spui-accordion-padding-x: var(--spui-spacing-8x);
+    --spui-accordion-padding-y: var(--spui-spacing-8x);
   }
 
-  // Модификаторы
   &_noBorder {
-    border: none
+    border: none;
   }
 
   &_noPadding {
-    --accordion-padding: 0;
+    --spui-accordion-padding-x: var(--spui-spacing-none);
+    --spui-accordion-padding-y: var(--spui-spacing-none);
   }
 
   &_open {
     overflow: visible;
-
-    --accordion-gap: 24px;
+    --spui-accordion-gap: var(--spui-spacing-6x);
 
     @include styles.respond-to(sm) {
-      --accordion-gap: 32px;
+      --spui-accordion-gap: var(--spui-spacing-8x);
     }
   }
 
   &#{$block}_noBorder {
-    border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
+    border-bottom: var(--spui-border-width-sm) solid var(--spui-color-border-primary);
 
     &#{$block}_noPadding {
-      padding-bottom: var(--accordion-padding-bottom);
+      padding-bottom: var(--spui-accordion-padding-bottom);
 
       @include styles.respond-to(sm) {
-        --accordion-padding-bottom: 32px;
+        --spui-accordion-padding-bottom: var(--spui-spacing-8x);
       }
     }
   }
 
-  // Элементы
   &__header {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: var(--spui-spacing-2x);
     @include styles.transition-all-ease-in-out(300ms);
   }
 
   &__name {
     width: 100%;
-    font-family: styles.$title-font;
-    line-height: 120%;
-    font-weight: 500;
+    font-family: var(--spui-font-family-title), serif;
+    line-height: var(--spui-accordion-title-line-height);
+    font-weight: var(--spui-accordion-title-font-weight);
     display: flex;
     align-items: center;
-    gap: 10px;
-    // значение по умолчанию для level-1
-    font-size: var(--accordion-name-font-size);
-    color: styles.$color-black;
+    gap: var(--spui-spacing-2x);
+    font-size: var(--spui-accordion-title-font-size);
+    color: var(--spui-color-text-primary);
 
     & #{$block}__nameText {
       cursor: pointer;
@@ -90,19 +92,19 @@
     }
 
     &--level-2 {
-      --accordion-name-font-size: 16px;
+      --spui-accordion-title-font-size: var(--spui-accordion-title-font-size-level-2-mobile, 16px);
 
       @include styles.respond-to(sm) {
-        --accordion-name-font-size: 24px;
+        --spui-accordion-title-font-size: var(--spui-accordion-title-font-size-level-2-desktop, 24px);
       }
     }
   }
 
   &__icon {
-    width: 24px;
-    height: 24px;
+    width: var(--spui-icon-size-base);
+    height: var(--spui-icon-size-base);
     flex-shrink: 0;
-    color: styles.$color-accent-blue;
+    color: var(--spui-color-icon-action);
     cursor: pointer;
 
     &_hidden {

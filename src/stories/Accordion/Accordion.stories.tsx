@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 
 import { OKRUG_OPTIONS } from "../constants";
+import styles from "./AccordionStories.module.scss";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
@@ -226,8 +227,21 @@ export default meta;
 
 type Story = StoryObj<typeof Accordion>;
 
-export const Default: Story = {
-  name: "Default Accordion",
+const DEFAULT_CONTENT = (
+  <div className={styles.contentText}>
+    Разработать комплексную стратегию устойчивого развития, направленную на баланс между ростом
+    населения и ограниченными ресурсами Земли. Внедрить глобальные программы по повышению уровня
+    образования, доступности контрацепции и гендерного равенства для снижения рождаемости в
+    перенаселенных регионах. Одновременно стимулировать переход на возобновляемые ресурсы,
+    технологии замкнутого цикла и альтернативные источники пищи (например, искусственное мясо).
+    Создать международные стандарты экологичного производства и потребления, чтобы минимизировать
+    нагрузку на планету. Реализовать эти меры через сотрудничество ООН, государств и частного
+    сектора с учетом культурных особенностей регионов.
+  </div>
+);
+
+export const Collapsed: Story = {
+  name: "Collapsed",
   args: {
     defaultOpen: false,
     isHiddenExpandIcon: false,
@@ -237,26 +251,23 @@ export const Default: Story = {
     level: 1,
     infoTooltipText: "",
     tooltipPosition: ETooltipPosition.BottomLeft,
-    children: (
-      <div style={{ textAlign: "justify" }}>
-        Разработать комплексную стратегию устойчивого развития, направленную на баланс между ростом
-        населения и ограниченными ресурсами Земли. Внедрить глобальные программы по повышению уровня
-        образования, доступности контрацепции и гендерного равенства для снижения рождаемости в
-        перенаселенных регионах. Одновременно стимулировать переход на возобновляемые ресурсы,
-        технологии замкнутого цикла и альтернативные источники пищи (например, искусственное мясо).
-        Создать международные стандарты экологичного производства и потребления, чтобы
-        минимизировать нагрузку на планету. Реализовать эти меры через сотрудничество ООН,
-        государств и частного сектора с учетом культурных особенностей регионов.
-      </div>
-    ),
+    children: DEFAULT_CONTENT,
+  },
+};
+
+export const Expanded: Story = {
+  name: "Expanded",
+  args: {
+    ...Collapsed.args,
+    defaultOpen: true,
   },
 };
 
 export const WithInfoTooltip: Story = {
   name: "Accordion with InfoTooltip",
-  render: Default.render,
+  render: Collapsed.render,
   args: {
-    ...Default.args,
+    ...Collapsed.args,
     infoTooltipText: "Информация о том, как работает аккордеон",
     name: "Аккордеон с информационным тултипом",
   },
