@@ -29,9 +29,17 @@ Use this workflow when a task involves implementation (new feature, enhancement,
 4. Synchronize exports in `lib/test-stpr-ui-kit.ts` if public API changed.
 5. Update or create story in `src/stories/<ComponentName>/<ComponentName>.stories.tsx`.
 6. Update `CHANGELOG.md` using Keep a Changelog sections (`Added`, `Changed`, `Fixed`, `Removed`, `Security`).
-7. Run quality gates: `npm run lint`, `npm run build`, `npm run storybook:build`.
-8. If any gate fails, hand over to `debugger`, then rerun gates.
+7. Run quality gates once via `test-runner`: `npm run lint`, `npm run build`, `npm run storybook:build`.
+8. If any gate fails, hand over to `debugger`, then rerun gates via `test-runner` only.
 9. Run `review` and `verifier` for final decision.
+
+## Quality gate ownership
+
+- `test-runner` is the single owner of repository quality gates.
+- `review` and `verifier` must consume `test-runner` artifacts instead of duplicating full builds.
+- Re-run gates only when:
+  - `debugger` produced fixes; or
+  - files changed after the latest `test-runner` report.
 
 ## Handoff contract
 
@@ -50,6 +58,6 @@ Task is done only when all are true:
 - Component API and implementation are aligned in `lib/components/**`.
 - Public exports are aligned in `lib/test-stpr-ui-kit.ts` (if needed).
 - Storybook stories reflect current API and states.
-- `CHANGELOG.md` updated for meaningful package changes.
+- `CHANGELOG.md` updated only for package-relevant changes (no Storybook-only entries).
 - `lint`, `build`, and `storybook:build` pass.
 - `review` and `verifier` return `done`.

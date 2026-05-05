@@ -37,10 +37,16 @@
 - `risks`: оставшиеся риски
 - `next_role`: следующая роль
 
+Правило запусков quality gates:
+
+- Команды `npm run lint`, `npm run build`, `npm run storybook:build` запускает только роль `test-runner`.
+- Повторный запуск этих команд допустим только после правок от `debugger` или если после последнего прогона изменились файлы.
+- Роли `review` и `verifier` не дублируют полную сборку, а используют отчёт и артефакты `test-runner`.
+
 Definition of Done:
 
 - изменения в коде завершены;
 - story и docs синхронизированы с API;
-- changelog обновлен (если релевантно);
+- changelog обновлен (если релевантно), без Storybook-only записей;
 - проходят `npm run lint`, `npm run build`, `npm run storybook:build`;
 - `review` и `verifier` подтверждают завершение.
