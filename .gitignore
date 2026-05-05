@@ -16,20 +16,26 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.cursor/*
-!.cursor/rules/
-!.cursor/rules/**
-!.cursor/skills/
-!.cursor/skills/**
-!.cursor/commands/
-!.cursor/commands/**
-!.cursor/hooks.json
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Cursor: ignore all by default
+.cursor/*
+
+# Track team-shared AI config only
+!.cursor/rules/
+!.cursor/rules/**
+!.cursor/skills/
+!.cursor/skills/**
+!.cursor/commands/
+!.cursor/commands/**
+!.cursor/agents/
+!.cursor/agents/**
+!.cursor/hooks.json
 
 *storybook.log
 storybook-static
