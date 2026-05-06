@@ -1,0 +1,36 @@
+---
+description: Validate changelog entries against previous release delta
+alwaysApply: true
+---
+
+# Changelog Delta Validation
+
+- Changelog entries must describe **release-to-release delta**, not branch-internal refactors.
+- Before writing `Changed` or `Removed`, verify the feature/prop existed in the latest released section (the last dated version in `CHANGELOG.md`).
+- If a field/API did **not** exist in the latest release, record it as `Added` (not `Changed`/`Removed`).
+- Do not write migration text like "moved from X to Y" unless X existed in the previous release.
+
+## Required Validation Step
+
+For every API-related changelog line, run this check first:
+
+1. Identify previous released version (e.g. `0.7.0`).
+2. Confirm existence of the API in that version's changelog and/or released code delta.
+3. Choose section by release delta:
+   - existed before + behavior updated -> `Changed`
+   - existed before + removed -> `Removed`
+   - did not exist before -> `Added`
+
+## Required Evidence Marker
+
+- For each API-related changelog entry, append a short marker in parentheses:
+  - `(Prev release check: yes, section: Changed)`
+  - `(Prev release check: yes, section: Removed)`
+  - `(Prev release check: no, section: Added)`
+- The marker is required in agent-generated draft notes and internal reasoning before finalizing changelog text.
+- In final human-facing `CHANGELOG.md`, keep the main entry clean: include the marker only when the user asks to preserve audit metadata in the file.
+
+## Tabs Example
+
+- Correct for current release: "`TPaneItem` expanded with optional `startIconName`, `endIconName`, `startIconRotate`, `endIconRotate`, `isOnlyIcon`."
+- Incorrect wording: "moved from top-level props" if those top-level props were never present in the previous release.
