@@ -1,4 +1,4 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
 
 .spButton {
   $block: &;
@@ -15,8 +15,8 @@
   background-color: var(--spui-color-surface-action);
   color: var(--spui-color-text-on-action);
 
-  @include styles.transition-all-ease-in-out(200ms);
-  @include styles.starting-style-appearance();
+  @include mixins.transition-all-ease-in-out(200ms);
+  @include mixins.starting-style-appearance();
 
   &_size-md {
     height: var(--spui-control-height-lg);

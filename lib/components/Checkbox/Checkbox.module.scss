@@ -1,13 +1,15 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
+@use "/src/styles/colors" as outdated_colors;
 
 .spCheckbox {
   $block: &;
 
-  position: relative;
   display: inline-flex;
   flex-direction: column;
+  align-items: flex-start;
+  position: relative;
   width: fit-content;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 
   &__control {
     display: none
@@ -16,12 +18,12 @@
   &__label {
     display: flex;
     align-items: center;
-    font-family: styles.$main-font;
-    font-weight: 400;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
     font-size: 16px;
-    color: styles.$color-black;
+    color: var(--spui-color-text-primary);
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 20px;
     }
   }
@@ -29,64 +31,69 @@
   &__box {
     $block: &;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
-    gap: 10px;
+    gap: var(--spui-spacing-3x);
     user-select: none;
-    color: styles.$color-accent-blue;
+    color: var(--spui-color-border-action);
 
     &:hover {
-      color: styles.$color-accent-blue-light;
+      color: var(--spui-color-border-action-hover);
     }
 
     &_disabled {
       cursor: default;
       pointer-events: none;
 
-      color: styles.$color-gray-2;
+      color: var(--spui-color-border-disabled);
     }
 
     &_error {
-      color: styles.$color-accent-red;
+      color: var(--spui-color-border-error);
 
       &:hover {
-        color: styles.$color-red-2;
+        // TODO добавить seed-token
+        color: outdated_colors.$color-red-2;
       }
     }
 
     &__checkmark {
-      position: relative;
-      background-color: styles.$color-white;
-      border: 2px solid currentColor;
       display: flex;
-      align-items: center;
+      width: var(--spui-control-height-base);
+      height: var(--spui-control-height-base);
+      flex-direction: column;
       justify-content: center;
-      @include styles.transition-all-ease-in-out(200ms);
+      align-items: center;
+      position: relative;
+      background-color: var(--spui-color-surface-default);
+      border: var(--spui-border-width-md) solid currentColor;
+      @include mixins.transition-all-ease-in-out(200ms);
 
       &--size-lg {
-        width: 30px;
-        height: 30px;
+        width: var(--spui-control-height-base);
+        height: var(--spui-control-height-base);
       }
 
       &--size-md {
-        width: 20px;
-        height: 20px;
+        width: var(--spui-control-height-sm);
+        height: var(--spui-control-height-sm);
       }
     }
 
     &__innerSquare {
       background: transparent;
       transform: scale(0);
-      @include styles.transition-all-ease-in-out(200ms);
+      @include mixins.transition-all-ease-in-out(200ms);
 
       &--size-lg {
-        width: 16px;
-        height: 16px;
+        width: var(--spui-icon-size-sm);
+        height: var(--spui-icon-size-sm);
       }
 
       &--size-md {
-        width: 12px;
-        height: 12px;
+        width: var(--spui-icon-size-xs);
+        height: var(--spui-icon-size-xs);
       }
 
       &_checked {
@@ -103,18 +110,18 @@
   }
 
   &__required {
-    margin-left: 4px;
-    color: styles.$color-gray-1;
+    margin-left: var(--spui-spacing-1x);
+    color: var(--spui-color-text-secondary);
   }
 
   &__error {
-    padding-top: 8px;
-    font-family: styles.$main-font;
-    font-weight: 400;
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
     font-size: 12px;
-    color: styles.$color-accent-red;
+    color: var(--spui-color-text-error);
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 14px;
     }
   }
