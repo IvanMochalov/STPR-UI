@@ -23,6 +23,7 @@
 - `ApplyButtons`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Breadcrumb`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Checkbox`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Tabs`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 
 ### Removed
 

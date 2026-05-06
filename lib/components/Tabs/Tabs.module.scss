@@ -1,4 +1,5 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
+@use "/src/styles/colors" as outdated_colors;
 
 .spTabs {
   $block: &;
@@ -6,32 +7,32 @@
   display: flex;
   width: fit-content;
   flex-direction: row;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 
   &_separated {
     &#{$block}--size-md {
       & #{$block}__tabElement:not(:last-child) {
-        margin-right: 4px;
+        margin-right: var(--spui-spacing-1x);
       }
     }
 
     &#{$block}--size-lg {
       & #{$block}__tabElement:not(:last-child) {
-        margin-right: 8px;
+        margin-right: var(--spui-spacing-2x);
       }
     }
   }
 
   &--size-lg {
     &#{$block}--variant-contained {
-      padding: 12px;
+      padding: var(--spui-spacing-3x);
     }
 
     & #{$block}__tabElement {
-      padding: 12px 16px;
+      padding: var(--spui-spacing-3x) var(--spui-spacing-4x);
 
-      @include styles.respond-to(sm) {
-        padding: 14px 20px;
+      @include mixins.respond-to(sm) {
+        padding: var(--spui-spacing-4x) var(--spui-spacing-5x);
         font-size: 20px;
       }
     }
@@ -39,39 +40,41 @@
 
   &--size-md {
     &#{$block}--variant-contained {
+      // TODO need spacing token
       padding: 6px;
     }
 
     & #{$block}__tabElement {
-      padding: 8px 12px;
+      padding: var(--spui-spacing-2x) var(--spui-spacing-3x);
 
-      @include styles.respond-to(sm) {
-        padding: 11.5px 16px;
+      @include mixins.respond-to(sm) {
+        padding: var(--spui-spacing-3x) var(--spui-spacing-4x);
         font-size: 16px;
       }
     }
   }
 
   &--variant-contained {
-    background-color: styles.$color-alice-blue;
+    background-color: var(--spui-color-surface-page);
 
     & #{$block}__tabElement {
-      color: styles.$color-gray-1;
+      color: var(--spui-color-text-secondary);
       background-color: transparent;
 
       &:hover {
         &:not(#{$block}__tabElement_active) {
-          background-color: styles.$color-secondary-blue-light;
+          // TODO need seed-token
+          background-color: outdated_colors.$color-secondary-blue-light;
         }
       }
     }
 
     & #{$block}__tabElement_active {
-      color: styles.$color-accent-blue;
-      background-color: styles.$color-white;
+      color: var(--spui-color-text-action);
+      background-color: var(--spui-color-surface-default);
 
       & #{$block}__tooltip {
-        color: styles.$color-accent-blue;
+        color: var(--spui-color-text-action);
       }
     }
   }
@@ -81,21 +84,21 @@
     padding: 0;
 
     & #{$block}__tabElement {
-      border-bottom: 2px solid transparent;
-      color: styles.$color-gray-1;
+      border-bottom: var(--spui-border-width-md) solid transparent;
+      color: var(--spui-color-text-secondary);
       background-color: transparent;
 
       &:hover {
-        color: styles.$color-accent-blue;
+        color: var(--spui-color-text-action);
       }
     }
 
     & #{$block}__tabElement_active {
-      color: styles.$color-accent-blue;
-      border-bottom: 2px solid styles.$color-accent-blue;
+      color: var(--spui-color-text-action);
+      border-bottom: var(--spui-border-width-md) solid var(--spui-color-border-action);
 
       & #{$block}__tooltip {
-        color: styles.$color-accent-blue;
+        color: var(--spui-color-text-action);
       }
     }
   }
@@ -105,22 +108,23 @@
     padding: 0;
 
     & #{$block}__tabElement {
-      border: 1px solid styles.$color-gray-4;
-      color: styles.$color-gray-1;
-      background-color: styles.$color-gray-4;
+      // TODO need mapped token for border-color
+      border: var(--spui-border-width-sm) solid var(--color-light-smoke);
+      color: var(--spui-color-text-secondary);
+      background-color: var(--spui-color-surface-disabled);
 
       &:hover {
-        border-color: styles.$color-accent-blue;
+        border-color: var(--spui-color-border-action);
       }
     }
 
     & #{$block}__tabElement_active {
-      color: styles.$color-white;
-      background-color: styles.$color-accent-blue;
-      border-color: styles.$color-accent-blue;
+      color: var(--spui-color-text-on-action);
+      background-color: var(--spui-color-surface-action);
+      border-color: var(--spui-color-border-action);
 
       & #{$block}__tooltip {
-        color: styles.$color-white;
+        color: var(--spui-color-text-on-action);
       }
     }
   }
@@ -131,18 +135,18 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    font-family: styles.$main-font;
-    font-weight: 400;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
     font-size: 16px;
     line-height: 120%;
 
     &_active {
-      font-weight: 500;
+      font-weight: var(--spui-font-weight-medium);
     }
   }
 
   &__tooltip {
-    margin-left: 8px;
+    margin-left: var(--spui-spacing-2x);
     display: flex;
     align-items: center;
   }
