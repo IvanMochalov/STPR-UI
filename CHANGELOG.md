@@ -21,6 +21,7 @@
 - `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами.
 - `Accordion`: внедрены CSS Custom Properties для отступов, типографики, границ, цветов и состояний
   collapsed/expanded с переходом от SCSS-переменных к mapped token-ам;
+- `ApplyButtons`: внедрены CSS Custom Properties для отступов с переходом от SCSS-переменных к mapped token-ам;
 
 ### Removed
 

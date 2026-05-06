@@ -7,21 +7,14 @@
   --spui-font-family-main: var(--font-family-hauss);
   --spui-font-family-title: var(--font-family-gorizont);
 
-  --spui-font-heading-1: var(--spui-font-weight-bold) 48px/56px
-  var(--spui-font-family-title);
-  --spui-font-heading-2: var(--spui-font-weight-bold) 40px/48px
-  var(--spui-font-family-title);
-  --spui-font-heading-3: var(--spui-font-weight-bold) 32px/40px
-  var(--spui-font-family-title);
-  --spui-font-heading-4: var(--spui-font-weight-bold) 28px/32px
-  var(--spui-font-family-title);
-  --spui-font-heading-5: var(--spui-font-weight-bold) 0px/56px
-  var(--spui-font-family-title);
-  --spui-font-heading-6: var(--spui-font-weight-bold) 0px/56px
-  var(--spui-font-family-title);
+  --spui-font-heading-1: var(--spui-font-weight-bold) 48px/56px var(--spui-font-family-title);
+  --spui-font-heading-2: var(--spui-font-weight-bold) 40px/48px var(--spui-font-family-title);
+  --spui-font-heading-3: var(--spui-font-weight-bold) 32px/40px var(--spui-font-family-title);
+  --spui-font-heading-4: var(--spui-font-weight-bold) 28px/32px var(--spui-font-family-title);
+  --spui-font-heading-5: var(--spui-font-weight-bold) 0px/56px var(--spui-font-family-title);
+  --spui-font-heading-6: var(--spui-font-weight-bold) 0px/56px var(--spui-font-family-title);
 
-  --spui-font-text-p1-content: var(--spui-font-weight-regular) 20px/28px
-  var(--spui-font-family-main);
+  --spui-font-text-p1-content: var(--spui-font-weight-regular) 20px/28px var(--spui-font-family-main);
 
   /* ===== ШКАЛА ОТСТУПОВ ===== */
   --spui-scale-0: 0px;
@@ -137,8 +130,4 @@
   --spui-color-surface-info: var(--primary-50, lime);
   --spui-color-surface-error: var(--error-50, lime);
   --spui-color-surface-disabled: var(--color-light-smoke);
-
-  --psor-color-green-0: #ecfdf3;
-  --psor-color-green-1: #abefc6;
-  --psor-color-green-4: #067647;
 }
