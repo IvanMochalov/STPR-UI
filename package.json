@@ -38,6 +38,7 @@
     "dev": "vite",
     "build:ignore-tsc": "vite build",
     "build": "node scripts/inline-changelog.js && tsc && vite build",
+    "changelog:update": "node scripts/inline-changelog.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "node scripts/inline-changelog.js && storybook dev -p 6006",
