@@ -1,87 +1,87 @@
 @use "/src/styles/mixins" as mixins;
-@use "/src/styles/colors" as outdated_colors;
 
 .spTabs {
   $block: &;
 
+  --tabs-container-gap: var(--spui-spacing-1x);
+  --tabs-container-padding: var(--spui-spacing-1x);
+  --tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+  --tab-item-height: var(--spui-control-height-md);
+  --tabs-contained-content-height: var(--spui-control-height-base);
+  --tab-item-bg-hover: var(--spui-color-surface-secondary-hover);
+  --tab-item-font-size: 16px;
+
+
   display: flex;
-  width: fit-content;
-  flex-direction: row;
+  align-items: flex-start;
   @include mixins.starting-style-appearance();
 
   &_separated {
-    &#{$block}--size-md {
-      & #{$block}__tabElement:not(:last-child) {
-        margin-right: var(--spui-spacing-1x);
-      }
-    }
-
-    &#{$block}--size-lg {
-      & #{$block}__tabElement:not(:last-child) {
-        margin-right: var(--spui-spacing-2x);
-      }
-    }
-  }
-
-  &--size-lg {
-    &#{$block}--variant-contained {
-      padding: var(--spui-spacing-3x);
-    }
-
-    & #{$block}__tabElement {
-      padding: var(--spui-spacing-3x) var(--spui-spacing-4x);
-
-      @include mixins.respond-to(sm) {
-        padding: var(--spui-spacing-4x) var(--spui-spacing-5x);
-        font-size: 20px;
-      }
-    }
+    background-color: transparent;
+    gap: var(--tabs-container-gap);
+    padding: var(--spui-spacing-none);
   }
 
   &--size-md {
-    &#{$block}--variant-contained {
-      // TODO need spacing token
-      padding: 6px;
-    }
+    --tabs-container-gap: var(--spui-spacing-1x);
+    --tabs-container-padding: var(--spui-spacing-1x);
+    --tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+    --tab-item-height: var(--spui-control-height-md);
+    --tabs-contained-content-height: var(--spui-control-height-base);
+    --tab-item-font-size: 16px;
+  }
 
-    & #{$block}__tabElement {
-      padding: var(--spui-spacing-2x) var(--spui-spacing-3x);
-
-      @include mixins.respond-to(sm) {
-        padding: var(--spui-spacing-3x) var(--spui-spacing-4x);
-        font-size: 16px;
-      }
-    }
+  &--size-xl {
+    --tabs-container-gap: var(--spui-spacing-2x);
+    --tabs-container-padding: var(--spui-spacing-2x);
+    --tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-5x);
+    --tab-item-height: var(--spui-control-height-xl);
+    --tabs-contained-content-height: var(--spui-control-height-md);
+    --tab-item-font-size: 20px;
   }
 
   &--variant-contained {
     background-color: var(--spui-color-surface-page);
+    padding: var(--spui-spacing-none) var(--tabs-container-padding);
 
     & #{$block}__tabElement {
       color: var(--spui-color-text-secondary);
       background-color: transparent;
+      padding: var(--spui-spacing-none);
 
       &:hover {
         &:not(#{$block}__tabElement_active) {
-          // TODO need seed-token
-          background-color: outdated_colors.$color-secondary-blue-light;
+          & #{$block}__tabContent {
+            background-color: var(--tab-item-bg-hover);
+          }
         }
       }
     }
 
     & #{$block}__tabElement_active {
       color: var(--spui-color-text-action);
-      background-color: var(--spui-color-surface-default);
+      background-color: transparent;
 
       & #{$block}__tooltip {
         color: var(--spui-color-text-action);
       }
+
+      & #{$block}__tabContent {
+        background-color: var(--spui-color-surface-default);
+      }
+    }
+
+    & #{$block}__tabContent {
+      height: var(--tabs-contained-content-height);
+      min-height: var(--tabs-contained-content-height);
+      padding: var(--tab-item-padding);
+      background-color: transparent;
     }
   }
 
   &--variant-outlined {
     background-color: transparent;
-    padding: 0;
+    padding: var(--spui-spacing-none);
 
     & #{$block}__tabElement {
       border-bottom: var(--spui-border-width-md) solid transparent;
@@ -105,11 +105,10 @@
 
   &--variant-filled {
     background-color: transparent;
-    padding: 0;
+    padding: var(--spui-spacing-none);
 
     & #{$block}__tabElement {
-      // TODO need mapped token for border-color
-      border: var(--spui-border-width-sm) solid var(--color-light-smoke);
+      border: var(--spui-border-width-sm) solid var(--spui-color-border-disabled, var(--color-light-smoke));
       color: var(--spui-color-text-secondary);
       background-color: var(--spui-color-surface-disabled);
 
@@ -130,14 +129,16 @@
   }
 
   &__tabElement {
-    $blockTabElement: &;
     display: flex;
     cursor: pointer;
     justify-content: center;
     align-items: center;
+    height: var(--tab-item-height);
+    min-height: var(--tab-item-height);
+    padding: var(--tab-item-padding);
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-regular);
-    font-size: 16px;
+    font-size: var(--tab-item-font-size);
     line-height: 120%;
 
     &_active {
@@ -145,9 +146,39 @@
     }
   }
 
-  &__tooltip {
-    margin-left: var(--spui-spacing-2x);
+  &__tabContent {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spui-spacing-2x);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    padding: var(--spui-spacing-none);
+  }
+
+  &__iconContainer {
+    display: flex;
+
+    & :global .stpr-icon {
+      width: var(--spui-icon-size-base);
+      height: var(--spui-icon-size-base);
+      transition: unset;
+      flex-shrink: 0;
+    }
+  }
+
+  &__tabText {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__tooltip {
+    display: flex;
+    flex-shrink: 0;
     align-items: center;
   }
 }

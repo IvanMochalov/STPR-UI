@@ -1,5 +1,7 @@
 import React from "react";
 
+import type { EIconName } from "../../Icons";
+
 export type TTabsVariant = "filled" | "contained" | "outlined";
 
 export type TPaneItem = {
@@ -8,10 +10,15 @@ export type TPaneItem = {
   active?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   infoTooltipText?: string;
+  isOnlyIcon?: boolean;
+  startIconName?: EIconName;
+  endIconName?: EIconName;
+  startIconRotate?: number;
+  endIconRotate?: number;
 };
 
 export interface TabsProps {
-  size?: "md" | "lg";
+  size?: "md" | "xl";
   panes: TPaneItem[];
   isSeparated?: boolean;
   variant?: TTabsVariant;

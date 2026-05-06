@@ -10,7 +10,10 @@
 
 - `Button`: добавлен новый вариант `variant="text"`;
 - `Button`: добавлена настройка размера через `size: "md" | "xl"`;
-- `Button`: добавлена раздельная настройка иконок через `startIconName` и `endIconName`.
+- `Button`: добавлена раздельная настройка иконок через `startIconName` и `endIconName`;
+- `Tabs`: в `TPaneItem` добавлены опциональные поля для управления иконками на уровне элементов `panes` —
+  `startIconName`, `endIconName`, `startIconRotate`, `endIconRotate`, `isOnlyIcon`;
+- `Tabs`: добавлена поддержка размера `size="xl"`;
 
 ### Changed
 
@@ -18,19 +21,22 @@
   end-иконка продолжает отображаться;
 - `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (
   `disabled`, `hover`, `active`) и размеров;
-- `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами.
+- `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами;
 - `Accordion`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `ApplyButtons`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Breadcrumb`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Checkbox`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Tabs`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Tabs`: обновлены размеры и поведение вариантов по токенам — высота tab-элементов теперь фиксируется
+  через size-токены (`md`/`xl`) без расхождения между контейнером и элементами;
 
 ### Removed
 
 - `Button`: удален prop `color` и тип `TButtonColor`;
 - `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте
-  `startIconName`/`endIconName`).
-- `Button`: удален `iconRotate` (вместо него используйте `startIconRotate`/`endIconRotate`).
+  `startIconName`/`endIconName`);
+- `Button`: удален `iconRotate` (вместо него используйте `startIconRotate`/`endIconRotate`);
+- `Tabs`: `size="lg"` удален;
 
 ## [0.7.0] — 2026-04-28
 

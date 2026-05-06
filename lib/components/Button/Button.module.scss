@@ -19,7 +19,7 @@
   @include mixins.starting-style-appearance();
 
   &_size-md {
-    height: var(--spui-control-height-lg);
+    height: var(--spui-control-height-md);
     padding: var(--spui-spacing-none) var(--spui-spacing-6x);
 
     & #{$block}__text {
@@ -50,8 +50,8 @@
   }
 
   &_size-md#{$block}_onlyIcon:not(#{$block}_noPadding) {
-    width: var(--spui-control-height-lg);
-    min-width: var(--spui-control-height-lg);
+    width: var(--spui-control-height-md);
+    min-width: var(--spui-control-height-md);
   }
 
   &_primary {
@@ -150,6 +150,7 @@
     & :global .stpr-icon {
       width: var(--spui-icon-size-base);
       height: var(--spui-icon-size-base);
+      flex-shrink: 0;
     }
   }
 }

@@ -36,7 +36,7 @@ import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
 import type { TableProps, TClickOnCellAction, TColumn } from "./components/Table";
 import { Table, useTableActions } from "./components/Table";
-import type { TPaneItem } from "./components/Tabs";
+import type { TabsProps, TPaneItem, TTabsVariant } from "./components/Tabs";
 import { Tabs } from "./components/Tabs";
 import { Text } from "./components/Text";
 import type { TOnChangeTextarea } from "./components/Textarea";
@@ -80,6 +80,7 @@ export {
   Table,
   TableProps,
   Tabs,
+  TabsProps,
   TButtonVariant,
   TClickOnCellAction,
   TColumn,
@@ -99,6 +100,7 @@ export {
   Tooltip,
   TPaneItem,
   TSelectOption,
+  TTabsVariant,
   UploadFiles,
   useAnimatedValue,
   useModal,
