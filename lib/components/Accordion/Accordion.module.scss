@@ -1,4 +1,4 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
 
 .spAccordion {
   $block: &;
@@ -23,10 +23,10 @@
 
   padding: var(--spui-accordion-padding-y) var(--spui-accordion-padding-x);
   gap: var(--spui-accordion-gap);
-  @include styles.transition-all-ease-in-out(200ms);
-  @include styles.starting-style-appearance();
+  @include mixins.transition-all-ease-in-out(200ms);
+  @include mixins.starting-style-appearance();
 
-  @include styles.respond-to(sm) {
+  @include mixins.respond-to(sm) {
     --spui-accordion-padding-x: var(--spui-spacing-8x);
     --spui-accordion-padding-y: var(--spui-spacing-8x);
   }
@@ -44,7 +44,7 @@
     overflow: visible;
     --spui-accordion-gap: var(--spui-spacing-6x);
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       --spui-accordion-gap: var(--spui-spacing-8x);
     }
   }
@@ -55,7 +55,7 @@
     &#{$block}_noPadding {
       padding-bottom: var(--spui-accordion-padding-bottom);
 
-      @include styles.respond-to(sm) {
+      @include mixins.respond-to(sm) {
         --spui-accordion-padding-bottom: var(--spui-spacing-8x);
       }
     }
@@ -65,7 +65,7 @@
     display: flex;
     align-items: flex-start;
     gap: var(--spui-spacing-2x);
-    @include styles.transition-all-ease-in-out(300ms);
+    @include mixins.transition-all-ease-in-out(300ms);
   }
 
   &__name {
@@ -81,7 +81,7 @@
 
     & #{$block}__nameText {
       cursor: pointer;
-      @include styles.inherit-font-style;
+      @include mixins.inherit-font-style;
     }
 
     &_hiddenExpand {
@@ -94,7 +94,7 @@
     &--level-2 {
       --spui-accordion-title-font-size: var(--spui-accordion-title-font-size-level-2-mobile, 16px);
 
-      @include styles.respond-to(sm) {
+      @include mixins.respond-to(sm) {
         --spui-accordion-title-font-size: var(--spui-accordion-title-font-size-level-2-desktop, 24px);
       }
     }
@@ -115,7 +115,7 @@
       transform: rotateX(.5turn);
     }
 
-    @include styles.transition-all-ease-in-out(300ms);
+    @include mixins.transition-all-ease-in-out(300ms);
   }
 
   // TODO https://caniuse.com/?search=interpolate-size
@@ -135,7 +135,7 @@
     grid-template-rows: 0fr;
     overflow: hidden;
 
-    @include styles.transition-prop-ease-in-out("grid-template-rows", 300ms);
+    @include mixins.transition-prop-ease-in-out("grid-template-rows", 300ms);
 
     &_open {
       grid-template-rows: 1fr;

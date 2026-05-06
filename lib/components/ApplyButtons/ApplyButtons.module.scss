@@ -1,8 +1,8 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
 
 .spApplyButtons {
   $block: &;
-  
+
   display: inline-flex;
   align-items: center;
   gap: var(--spui-spacing-3x);
@@ -23,14 +23,14 @@
 
   &_mobile-column {
     flex-direction: column;
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       flex-direction: row
     }
   }
 
   &_mobile-column-reverse {
     flex-direction: column-reverse;
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       flex-direction: row
     }
   }
