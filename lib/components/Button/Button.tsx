@@ -1,7 +1,7 @@
 import cx from "clsx";
 import React from "react";
 
-import { Icon } from "../Icons";
+import { EIconName, Icon } from "../Icons";
 import { Spinner } from "../Spinner";
 import styles from "./Button.module.scss";
 import { ButtonProps } from "./types";
@@ -14,7 +14,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
     onClick,
     startIconName,
     endIconName,
-    iconRotate = 0,
+    startIconRotate = 0,
+    endIconRotate = 0,
     disabled = false,
     type = "button",
     form,
@@ -36,44 +37,46 @@ export const Button: React.FC<ButtonProps> = (props) => {
     onClick?.(event);
   };
 
-  const getContent = () => {
-    const classNameText = cx({
-      [styles.spButton__text]: true,
-      ...(propsClassNameTextRoot && { [propsClassNameTextRoot]: true }),
-    });
+  const classNameIconContainer = cx({
+    [styles.spButton__iconContainer]: true,
+    ...(propsClassNameIconContainerRoot && { [propsClassNameIconContainerRoot]: true }),
+  });
 
-    const classNameIconContainer = cx({
-      [styles.spButton__iconContainer]: true,
-      ...(propsClassNameIconContainerRoot && { [propsClassNameIconContainerRoot]: true }),
-    });
+  const classNameText = cx({
+    [styles.spButton__text]: true,
+    ...(propsClassNameTextRoot && { [propsClassNameTextRoot]: true }),
+  });
 
-    const renderSpinner = () => (
+  const renderSpinner = () => (
+    <div className={classNameIconContainer}>
+      <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />
+    </div>
+  );
+
+  const renderIcon = (iconName?: EIconName, iconRotate?: number) => {
+    if (!iconName) {
+      return null;
+    }
+
+    return (
       <div className={classNameIconContainer}>
-        <Spinner size={"md"} classNameRoot={styles.spButton__spinner} />
+        <Icon name={iconName} rotate={iconRotate} />
       </div>
     );
+  };
 
-    const renderIcon = (iconName?: ButtonProps["startIconName"]) => {
-      if (!iconName) {
-        return null;
-      }
-
-      return (
-        <div className={classNameIconContainer}>
-          <Icon name={iconName} rotate={iconRotate} />
-        </div>
-      );
-    };
-
+  const getContent = () => {
     const shouldRenderStartIcon = Boolean(startIconName);
     const shouldRenderEndIcon = !isOnlyIcon && Boolean(endIconName);
 
     return (
-      <>
-        {loading ? renderSpinner() : renderIcon(shouldRenderStartIcon ? startIconName : undefined)}
+      <React.Fragment>
+        {loading
+          ? renderSpinner()
+          : renderIcon(shouldRenderStartIcon ? startIconName : undefined, startIconRotate)}
         {!isOnlyIcon && children && <div className={classNameText}>{children}</div>}
-        {renderIcon(shouldRenderEndIcon ? endIconName : undefined)}
-      </>
+        {renderIcon(shouldRenderEndIcon ? endIconName : undefined, endIconRotate)}
+      </React.Fragment>
     );
   };
 

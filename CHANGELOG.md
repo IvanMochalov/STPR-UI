@@ -30,6 +30,7 @@
 - `Button`: удален prop `color` и тип `TButtonColor`;
 - `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте
   `startIconName`/`endIconName`).
+- `Button`: удален `iconRotate` (вместо него используйте `startIconRotate`/`endIconRotate`).
 
 ## [0.7.0] — 2026-04-28
 

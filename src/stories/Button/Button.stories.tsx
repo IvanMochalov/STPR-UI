@@ -131,8 +131,15 @@ const meta: Meta<typeof Button> = {
       control: { type: "select" },
       options: [...Object.values(EIconName), undefined],
     },
-    iconRotate: {
-      description: "Угол поворота иконки в градусах. Полезно для анимаций",
+    startIconRotate: {
+      description: "Угол поворота стартовой иконки в градусах. Полезно для анимаций",
+      control: { type: "range", min: 0, max: 360 },
+      table: {
+        defaultValue: { summary: "0" },
+      },
+    },
+    endIconRotate: {
+      description: "Угол поворота конечной иконки в градусах. Полезно для анимаций",
       control: { type: "range", min: 0, max: 360 },
       table: {
         defaultValue: { summary: "0" },
@@ -295,7 +302,7 @@ export const RotatedIcon: Story = {
   args: {
     variant: "primary",
     startIconName: EIconName.Trash,
-    iconRotate: 45,
+    startIconRotate: 45,
     children: "Delete",
   },
 };
@@ -334,7 +341,7 @@ export const AllVariants: Story = {
           <Button variant="primary" startIconName={EIconName.Plus} endIconName={EIconName.Trash}>
             Both Icons
           </Button>
-          <Button variant="primary" startIconName={EIconName.Trash} iconRotate={45}>
+          <Button variant="primary" startIconName={EIconName.Trash} startIconRotate={45}>
             Rotated Icon
           </Button>
           <Button variant="secondary" startIconName={EIconName.Plus} isOnlyIcon />
