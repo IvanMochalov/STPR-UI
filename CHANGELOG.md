@@ -15,6 +15,7 @@
   `startIconName`, `endIconName`, `startIconRotate`, `endIconRotate`, `isOnlyIcon`;
 - `Tabs`: добавлена поддержка размера `size="xl"`;
 - `Input`: добавлена настройка размера через `size: "md" | "xl"`;
+- `InfoTooltip`: добавлен параметр classNameTriggerIcon для кастомной стилизации иконки;
 
 ### Changed
 
@@ -31,6 +32,7 @@
 - `Tabs`: обновлены размеры и поведение вариантов по токенам — высота tab-элементов теперь фиксируется
   через size-токены (`md`/`xl`) без расхождения между контейнером и элементами;
 - `Input`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Label`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 
 ### Removed
 

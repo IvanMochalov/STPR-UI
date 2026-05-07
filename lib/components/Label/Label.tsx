@@ -20,33 +20,23 @@ export const Label: React.FC<LabelProps> = (props) => {
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
-  const classNameLabelText = cx({
-    [styles.spLabel__text]: true,
-  });
-
-  const classNameLabelRequired = cx({
-    [styles.spLabel__required]: required,
-  });
-
-  const classNameLabelTooltip = cx({
-    [styles.spLabel__tooltip]: true,
+  const classNameLabelTooltipIcon = cx({
+    [styles.spLabel__tooltipIcon]: true,
   });
 
   return (
-    <div className={classNameRoot}>
-      <label className={classNameLabelText}>
-        {label}
-        {required && <div className={classNameLabelRequired}>*</div>}
-      </label>
+    <label className={classNameRoot}>
+      {label}
+      {required && <span>*</span>}
       {infoTooltipText && (
         <InfoTooltip
           hover={true}
-          classNameTooltip={classNameLabelTooltip}
           position={tooltipPosition}
           text={infoTooltipText}
+          classNameTriggerIcon={classNameLabelTooltipIcon}
           classNameBaseTooltipRoot={propsClassNameBaseTooltipRoot}
         />
       )}
-    </div>
+    </label>
   );
 };
