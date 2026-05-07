@@ -14,7 +14,7 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     classNameTabElementRoot: propsClassNameTabElementRoot,
     classNameBaseTooltipRoot: propsClassNameBaseTooltipRoot,
     variant = "contained",
-    size = "md",
+    size = "xl",
   } = props;
 
   const classNameRoot = cx({

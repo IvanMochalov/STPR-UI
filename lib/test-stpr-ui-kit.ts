@@ -6,7 +6,6 @@ import { ApplyButtons } from "./components/ApplyButtons";
 import { AuthProtected } from "./components/AuthProtected";
 import { BaseTooltip } from "./components/BaseTooltip";
 import { Breadcrumb, type TCrumbItem } from "./components/Breadcrumb";
-import type { TButtonVariant } from "./components/Button";
 import { Button } from "./components/Button";
 import type { TOnChangeCheckbox } from "./components/Checkbox";
 import { Checkbox } from "./components/Checkbox";
@@ -36,7 +35,7 @@ import { Skeleton } from "./components/Skeleton";
 import { Spinner } from "./components/Spinner";
 import type { TableProps, TClickOnCellAction, TColumn } from "./components/Table";
 import { Table, useTableActions } from "./components/Table";
-import type { TabsProps, TPaneItem, TTabsVariant } from "./components/Tabs";
+import type { TabsProps, TPaneItem } from "./components/Tabs";
 import { Tabs } from "./components/Tabs";
 import { Text } from "./components/Text";
 import type { TOnChangeTextarea } from "./components/Textarea";
@@ -81,7 +80,6 @@ export {
   TableProps,
   Tabs,
   TabsProps,
-  TButtonVariant,
   TClickOnCellAction,
   TColumn,
   TContextMenuOption,
@@ -100,7 +98,6 @@ export {
   Tooltip,
   TPaneItem,
   TSelectOption,
-  TTabsVariant,
   UploadFiles,
   useAnimatedValue,
   useModal,

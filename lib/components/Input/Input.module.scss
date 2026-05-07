@@ -1,4 +1,4 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
 
 .spInput {
   // Общие стили блока
@@ -7,17 +7,29 @@
   display: inline-flex;
   flex-direction: column;
   width: 100%;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
+
+  &_size-md {
+    --control-font-size: 16px;
+    --error-font-size: 12px;
+    --control-height: var(--spui-control-height-md);
+  }
+
+  &_size-xl {
+    --control-font-size: 18px;
+    --error-font-size: 14px;
+    --control-height: var(--spui-control-height-xl);
+  }
 
   // Модификаторы
   &_error {
     & #{$block}__control {
-      border-color: styles.$color-accent-red;
-      color: styles.$color-accent-red;
+      border-color: var(--spui-color-border-error);
+      color: var(--spui-color-text-error);
 
       &:hover {
         &::placeholder {
-          color: styles.$color-gray-1;
+          color: var(--spui-color-text-error);
         }
       }
     }
@@ -36,72 +48,68 @@
   &__control {
     $control: &;
 
+    display: flex;
+    height: var(--control-height);
+    padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+    align-items: center;
+    align-self: stretch;
     width: 100%;
-    font-family: styles.$main-font;
-    font-weight: 400;
-    font-size: 16px;
-    color: styles.$color-black;
-    padding: 11.5px 16px;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: var(--control-font-size);
+    color: var(--spui-color-text-primary);
     text-overflow: ellipsis;
     white-space: nowrap;
     border-width: 2px;
     border-style: solid;
 
-    @include styles.respond-to(sm) {
-      font-size: 18px;
-      padding: 16.5px 16px;
-    }
-
     &_filled {
-      border-color: styles.$color-alice-blue;
-      background-color: styles.$color-alice-blue;
+      border-color: var(--spui-color-border-secondary);
+      background-color: var(--spui-color-surface-page);
     }
 
     &_outlined {
-      background-color: transparent;
-      border-color: styles.$color-secondary-blue-light-dark;
+      background-color: var(--spui-color-surface-transparent);
+      border-color: var(--spui-color-border-primary);
     }
 
     &_disabled {
       pointer-events: none;
-      color: styles.$color-gray-1;
+      color: var(--spui-color-text-disabled);
     }
 
     &_clearable {
-      padding-right: 50px;
+      padding-right: var(--spui-spacing-12x);
     }
 
-    &::placeholder {
-      color: styles.$color-gray-1;
+    &::placeholder,
+    &_disabled:hover::placeholder {
+      color: var(--spui-color-text-secondary);
     }
 
     &:hover {
       &::placeholder {
-        color: styles.$color-black;
+        color: var(--spui-color-text-primary);
       }
-    }
-
-    &_disabled:hover::placeholder {
-      color: styles.$color-gray-1;
     }
 
     &:focus,
     &:focus-visible {
       outline: none;
       border-style: solid;
-      border-color: styles.$color-accent-blue;
+      border-color: var(--spui-color-border-action);
       background-color: transparent;
 
       &:hover {
         &::placeholder {
-          color: styles.$color-gray-1;
+          color: var(--spui-color-text-secondary);
         }
       }
     }
   }
 
-  &__clear {
-    color: styles.$color-gray-1;
+  &__clearControl {
+    color: var(--spui-color-text-secondary);
     cursor: pointer;
     position: absolute;
     right: 16px;
@@ -110,20 +118,20 @@
     margin: auto;
   }
 
+  &__label {
+    margin-bottom: var(--spui-spacing-2x);
+  }
+
   &__error {
-    padding-top: 8px;
-    font-family: styles.$main-font;
-    font-weight: 400;
-    font-size: 12px;
-    color: styles.$color-accent-red;
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: var(--error-font-size);
+    color: var(--spui-color-text-error);
 
     &_absolutePosition {
       position: absolute;
       top: 100%;
-    }
-
-    @include styles.respond-to(sm) {
-      font-size: 14px;
     }
   }
 }

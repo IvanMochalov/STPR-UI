@@ -3,6 +3,7 @@ import React from "react";
 import type { EIconName } from "../../Icons";
 
 export type TTabsVariant = "filled" | "contained" | "outlined";
+export type TTabsSize = "md" | "xl";
 
 export type TPaneItem = {
   name: string;
@@ -18,7 +19,7 @@ export type TPaneItem = {
 };
 
 export interface TabsProps {
-  size?: "md" | "xl";
+  size?: TTabsSize;
   panes: TPaneItem[];
   isSeparated?: boolean;
   variant?: TTabsVariant;

@@ -12,15 +12,14 @@ const meta: Meta<typeof Button> = {
       description: {
         component: `
 Универсальная кнопка с вариантами \`primary\`, \`secondary\`, \`text\`, \`link\` и размерами \`md\`/ \`xl\`.
-Иконки задаются только через \`startIconName\` и \`endIconName\` (для \`isOnlyIcon\` используется только \`startIconName\`).
 
 ## Основные возможности
 
-- **Четыре варианта стилей**: primary, secondary, text, link
-- **Поддержка иконок**: start и end иконки через \`EIconName\`
-- **Состояния**: disabled, loading, full width
-- **Типы кнопок**: button, submit, reset
-- **Размеры**: md и xl
+- **Четыре варианта стилей**: \`primary\`, \`secondary\`, \`text\`, \`link\`
+- **Размеры**: \`md\` и \`xl\`
+- **Поддержка иконок**: иконки задаются только через \`startIconName\` и \`endIconName\` (для \`isOnlyIcon\` используется только \`startIconName\`).
+- **Состояния**: \`disabled\`, \`loading\`, \`full width\`
+- **Типы кнопок**: \`button\`, \`submit\`, \`reset\`
 
 ## Базовое использование
 

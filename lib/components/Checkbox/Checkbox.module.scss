@@ -82,7 +82,7 @@
     }
 
     &__innerSquare {
-      background: transparent;
+      background: var(--spui-color-surface-transparent);
       transform: scale(0);
       @include mixins.transition-all-ease-in-out(200ms);
 

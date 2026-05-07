@@ -10,6 +10,7 @@ import { IInputProps } from "./types";
 export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
   const {
     value,
+    size = "xl",
     onChange,
     onBlur,
     label,
@@ -38,6 +39,7 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
 
   const classNameRoot = cx({
     [styles.spInput]: true,
+    [styles[`spInput_size-${size}`]]: size,
     [styles.spInput_error]: Boolean(error),
     [styles.spInput_absolutePositionError]: isAbsolutePositionError,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
@@ -54,8 +56,8 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
     [styles.spInput__control_clearable]: isClearable,
   });
 
-  const classNameClear = cx({
-    [styles.spInput__clear]: true,
+  const classNameClearControl = cx({
+    [styles.spInput__clearControl]: true,
   });
 
   const classNameError = cx({
@@ -65,6 +67,7 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
   });
 
   const classNameLabel = cx({
+    [styles.spInput__label]: true,
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
   });
 
@@ -140,7 +143,7 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
       <div className={classNameContainer} onMouseEnter={onMouseEnter}>
         {getInput()}
         {isClearable && value && !disabled && (
-          <Icon onClick={onClear} className={classNameClear} name={EIconName.Trash} />
+          <Icon onClick={onClear} className={classNameClearControl} name={EIconName.Trash} />
         )}
       </div>
       {error && <div className={classNameError}>{error}</div>}

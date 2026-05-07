@@ -3,6 +3,7 @@ import React, { ForwardedRef } from "react";
 import { ETooltipPosition } from "../../Tooltip";
 
 export type TInputVariant = "outlined" | "filled";
+export type TInputSize = "md" | "xl";
 
 export interface IInputProps {
   name: string;
@@ -30,6 +31,7 @@ export interface IInputProps {
   mask?: string | (string | RegExp)[];
   alwaysShowMask?: boolean;
   maskChar?: string;
+  size?: TInputSize;
 }
 
 export type TOnChangeInput = (

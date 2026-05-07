@@ -14,6 +14,7 @@
 - `Tabs`: в `TPaneItem` добавлены опциональные поля для управления иконками на уровне элементов `panes` —
   `startIconName`, `endIconName`, `startIconRotate`, `endIconRotate`, `isOnlyIcon`;
 - `Tabs`: добавлена поддержка размера `size="xl"`;
+- `Input`: добавлена настройка размера через `size: "md" | "xl"`;
 
 ### Changed
 
@@ -29,6 +30,7 @@
 - `Tabs`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Tabs`: обновлены размеры и поведение вариантов по токенам — высота tab-элементов теперь фиксируется
   через size-токены (`md`/`xl`) без расхождения между контейнером и элементами;
+- `Input`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 
 ### Removed
 
@@ -36,7 +38,7 @@
 - `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте
   `startIconName`/`endIconName`);
 - `Button`: удален `iconRotate` (вместо него используйте `startIconRotate`/`endIconRotate`);
-- `Tabs`: `size="lg"` удален;
+- `Tabs`: удален `size="lg"` размер;
 
 ## [0.7.0] — 2026-04-28
 

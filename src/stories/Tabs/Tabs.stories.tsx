@@ -8,6 +8,59 @@ const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Компонент табов для организации контента в связанные вкладки с поддержкой различных стилей и состояний.
+
+## Особенности:
+- **Три варианта стиля**: contained (в общем контейнере), filled (отдельные вкладки) и outlined (с активной нижней границей)
+- **Два размер**: \`md\` и \`xl\`
+- **Подсказки вкладок**: встроенная поддержка тултипов для пояснений
+- **Разделенный режим**: возможность отображения вкладок с отступами
+- **Иконки вкладок**: настраиваются отдельно для каждого элемента в \`panes\` (\`startIconName\`, \`endIconName\`, повороты) и поддерживают режим icon-only через \`isOnlyIcon\` в \`TPaneItem\`
+- **Типографика**: автоматическая настройка размера текста в зависимости от размера табов
+
+## Визуальные состояния:
+- **Активная вкладка**: выделяется цветом и фоном в зависимости от варианта стиля
+- **Неактивная вкладка**: стандартное состояние с hover-эффектом
+- **С подсказкой**: отображает иконку информации с тултипом
+
+## Варианты стилей:
+- **Contained**: вкладки в общем контейнере с заливкой фона, активная вкладка имеет белый фон
+- **Filled**: отдельные заполненные вкладки, активная вкладка выделяется акцентным цветом
+- **Outlined**: прозрачные вкладки, активная вкладка подчеркивается border-bottom акцентного цвета
+
+## Рекомендации по использованию:
+Используйте для организации связанного контента по категориям или для переключения между разными представлениями данных.
+
+### Базовое использование
+
+\`\`\`jsx
+const [activeTab, setActiveTab] = useState('tab1');
+
+<Tabs
+  panes={[
+    {
+      name: "Первая вкладка",
+      active: activeTab === 'tab1',
+      onClick: () => setActiveTab('tab1'),
+    },
+    {
+      name: "Вторая вкладка", 
+      active: activeTab === 'tab2',
+      onClick: () => setActiveTab('tab2'),
+    },
+  ]}
+  variant="contained"
+  size="md"
+/>
+\`\`\`
+        `,
+      },
+    },
+  },
   argTypes: {
     variant: {
       description: `Вариант стиля табов:\n- "contained" - в контейнере с заливкой фона (по умолчанию)\n- "filled" - отдельные заполненные вкладки\n- "outlined" - прозрачные вкладки с нижней активной границей\n`,
@@ -26,8 +79,11 @@ const meta: Meta<typeof Tabs> = {
       control: { type: "radio" },
       options: ["md", "xl"],
       table: {
-        type: { summary: '"md" | "xl"' },
-        defaultValue: { summary: '"md"' },
+        defaultValue: { summary: "xl" },
+        type: {
+          summary: "TTabsSize",
+          detail: "'md' | 'xl'",
+        },
       },
     },
     isSeparated: {
@@ -82,63 +138,10 @@ const meta: Meta<typeof Tabs> = {
       },
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component: `
-Компонент табов для организации контента в связанные вкладки с поддержкой различных стилей и состояний.
-
-## Особенности:
-- **Три варианта стиля**: contained (в общем контейнере), filled (отдельные вкладки) и outlined (с активной нижней границей)
-- **Два размер**: \`md\` и \`xl\`
-- **Подсказки вкладок**: встроенная поддержка тултипов для пояснений
-- **Разделенный режим**: возможность отображения вкладок с отступами
-- **Иконки вкладок**: настраиваются отдельно для каждого элемента в \`panes\` (\`startIconName\`, \`endIconName\`, повороты) и поддерживают режим icon-only через \`isOnlyIcon\` в \`TPaneItem\`
-- **Типографика**: автоматическая настройка размера текста в зависимости от размера табов
-
-## Визуальные состояния:
-- **Активная вкладка**: выделяется цветом и фоном в зависимости от варианта стиля
-- **Неактивная вкладка**: стандартное состояние с hover-эффектом
-- **С подсказкой**: отображает иконку информации с тултипом
-
-## Варианты стилей:
-- **Contained**: вкладки в общем контейнере с заливкой фона, активная вкладка имеет белый фон
-- **Filled**: отдельные заполненные вкладки, активная вкладка выделяется акцентным цветом
-- **Outlined**: прозрачные вкладки, активная вкладка подчеркивается border-bottom акцентного цвета
-
-## Рекомендации по использованию:
-Используйте для организации связанного контента по категориям или для переключения между разными представлениями данных.
-
-### Базовое использование
-
-\`\`\`jsx
-const [activeTab, setActiveTab] = useState('tab1');
-
-<Tabs
-  panes={[
-    {
-      name: "Первая вкладка",
-      active: activeTab === 'tab1',
-      onClick: () => setActiveTab('tab1'),
-    },
-    {
-      name: "Вторая вкладка", 
-      active: activeTab === 'tab2',
-      onClick: () => setActiveTab('tab2'),
-    },
-  ]}
-  variant="contained"
-  size="md"
-/>
-\`\`\`
-        `,
-      },
-    },
-  },
   args: {
     isSeparated: false,
     variant: "contained",
-    size: "md",
+    size: "xl",
   },
 };
 
@@ -334,7 +337,6 @@ export const AllVariants: Story = {
               onClick: () => setTabState(tab.key || ""),
             }))}
             variant="contained"
-            size="md"
           />
         </div>
         <div className={styles.differentTabsWrapper__tabsGroup}>
@@ -347,7 +349,6 @@ export const AllVariants: Story = {
             }))}
             isSeparated={true}
             variant="contained"
-            size="md"
           />
         </div>
         <div className={styles.differentTabsWrapper__tabsGroup}>
@@ -359,7 +360,6 @@ export const AllVariants: Story = {
               onClick: () => setTabState(tab.key || ""),
             }))}
             variant="filled"
-            size="md"
           />
         </div>
         <div className={styles.differentTabsWrapper__tabsGroup}>
@@ -372,7 +372,6 @@ export const AllVariants: Story = {
             }))}
             isSeparated={true}
             variant="filled"
-            size="md"
           />
         </div>
         <div className={styles.differentTabsWrapper__tabsGroup}>
@@ -384,7 +383,6 @@ export const AllVariants: Story = {
               onClick: () => setTabState(tab.key || ""),
             }))}
             variant="outlined"
-            size="md"
           />
         </div>
       </div>
@@ -426,7 +424,6 @@ export const DifferentSizes: Story = {
               onClick: () => setTabState(tab.key),
             }))}
             variant="contained"
-            size="xl"
           />
         </div>
         <div className={styles.differentTabsWrapper__tabsGroup}>
@@ -450,7 +447,6 @@ export const DifferentSizes: Story = {
               onClick: () => setTabState(tab.key),
             }))}
             variant="filled"
-            size="xl"
           />
         </div>
       </div>
@@ -497,7 +493,7 @@ export const ComplexExample: Story = {
     return (
       <div className={styles.complexTabsExample}>
         <Text type="h3">Управление объектом недвижимости</Text>
-        <Tabs panes={tabs} variant="filled" size="md" isSeparated={false} />
+        <Tabs panes={tabs} variant="filled" isSeparated={false} />
         <div className={styles.complexTabsExample__tabContentWrapper}>
           {activeTab === "info" && <Text>Содержимое основной информации...</Text>}
           {activeTab === "properties" && <Text>Содержимое характеристик...</Text>}
