@@ -126,8 +126,15 @@ const meta: Meta<typeof InfoTooltip> = {
         type: { summary: "() => void" },
       },
     },
+    classNameTriggerIcon: {
+      description: "Дополнительный CSS-класс для кастомной стилизации иконки\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     classNameTooltip: {
-      description: "Дополнительный CSS-класс для корневого элемента тултипа (триггера)\n",
+      description: "Дополнительный CSS-класс для родителя элемента триггера\n",
       control: false,
       table: {
         type: { summary: "string" },

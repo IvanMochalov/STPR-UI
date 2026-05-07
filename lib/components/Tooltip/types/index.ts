@@ -38,4 +38,6 @@ export interface TooltipProps extends Omit<
   triggerTooltipGap?: number;
 }
 
-export type InfoTooltipProps = Omit<TooltipProps, "trigger">;
+export type InfoTooltipProps = Omit<TooltipProps, "trigger"> & {
+  classNameTriggerIcon?: string;
+};

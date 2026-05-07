@@ -280,6 +280,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 export const InfoTooltip: React.FC<InfoTooltipProps> = ({
   hover = true,
   isVisibleTooltip = true,
+  classNameTriggerIcon,
   ...props
 }) => {
   const propsClassNameInfoTooltip = props.classNameTooltip;
@@ -296,7 +297,7 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
       classNameTooltip={classNameInfoTooltip}
       hover={hover}
       isVisibleTooltip={isVisibleTooltip}
-      trigger={<Icon name={EIconName.Info} />}
+      trigger={<Icon name={EIconName.Info} className={classNameTriggerIcon} />}
     />
   );
 };

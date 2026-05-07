@@ -176,7 +176,7 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
     classNameTooltip: {
-      description: "Дополнительный CSS-класс для корневого элемента тултипа (триггера)\n",
+      description: "Дополнительный CSS-класс для родителя элемента триггера\n",
       control: false,
       table: {
         type: { summary: "string" },
