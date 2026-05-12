@@ -1,5 +1,5 @@
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Text } from "local-stpr-ui-kit";
 
 const meta: Meta<typeof Text> = {
   title: "Components/Text",

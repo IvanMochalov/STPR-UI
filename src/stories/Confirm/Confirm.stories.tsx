@@ -1,5 +1,9 @@
+import { Button } from "@components/Button";
+import { Confirm } from "@components/Confirm";
+import { EIconName, Icon } from "@components/Icons";
+import { useModal } from "@components/Modal";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, Confirm, EIconName, Icon, Text, useModal } from "local-stpr-ui-kit";
 import React from "react";
 
 const meta: Meta<typeof Confirm> = {

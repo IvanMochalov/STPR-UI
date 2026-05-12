@@ -1,4 +1,4 @@
-import { TSelectOption } from "local-stpr-ui-kit";
+import type { TSelectOption } from "@components/Select";
 
 export const OKRUG_OPTIONS: TSelectOption[] = [
   {

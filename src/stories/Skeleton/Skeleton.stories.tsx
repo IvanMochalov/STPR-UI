@@ -1,5 +1,6 @@
+import { Skeleton } from "@components/Skeleton";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Skeleton, Text } from "local-stpr-ui-kit";
 
 import styles from "./SkeletonStories.module.scss";
 

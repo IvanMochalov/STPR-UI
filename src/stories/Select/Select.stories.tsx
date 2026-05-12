@@ -1,5 +1,5 @@
+import { Select, type TOnChangeSelect } from "@components/Select";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Select, TOnChangeSelect } from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import { OKRUG_OPTIONS } from "../constants";

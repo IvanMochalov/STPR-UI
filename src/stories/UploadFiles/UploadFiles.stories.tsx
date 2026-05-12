@@ -1,6 +1,7 @@
+import { Text } from "@components/Text";
+import { UploadFiles } from "@components/UploadFiles";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
-import { Text, UploadFiles } from "local-stpr-ui-kit";
 import React, { useState } from "react";
 
 import mainStyles from "../Stories.module.scss";

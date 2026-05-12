@@ -1,6 +1,6 @@
+import { DatePicker, type TOnChangeDatePicker } from "@components/DatePicker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
-import { DatePicker, TOnChangeDatePicker } from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import mainStyles from "../Stories.module.scss";

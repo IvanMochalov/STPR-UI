@@ -1,5 +1,7 @@
+import { Button } from "@components/Button";
+import { Spinner } from "@components/Spinner";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, Spinner, Text } from "local-stpr-ui-kit";
 
 import styles from "./SpinnerStories.module.scss";
 

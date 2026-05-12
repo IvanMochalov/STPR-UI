@@ -58,17 +58,6 @@
   }
 }
 
-@mixin option-default() {
-  color: $color-black;
-  font-size: 16px;
-  padding: 11.5px 50px 11.5px 16px;
-
-  @include respond-to(sm) {
-    font-size: 18px;
-    padding: 16.5px 50px 16.5px 16px;
-  }
-}
-
 @mixin inherit-font-style() {
   font-family: inherit;
   font-size: inherit;

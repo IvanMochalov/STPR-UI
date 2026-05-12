@@ -1,5 +1,6 @@
+import { Checkbox } from "@components/Checkbox";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox, ETooltipPosition } from "local-stpr-ui-kit";
 import React, { useState } from "react";
 
 const meta: Meta<typeof Checkbox> = {

@@ -1,6 +1,9 @@
+import { Button } from "@components/Button";
+import { EIconName, Icon } from "@components/Icons";
+import { Text } from "@components/Text";
+import { ETooltipPosition, Tooltip } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
-import { Button, EIconName, ETooltipPosition, Icon, Text, Tooltip } from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import styles from "./TooltipStories.module.scss";

@@ -1,5 +1,7 @@
+import { Form } from "@components/Form";
+import { Text } from "@components/Text";
+import { Textarea, type TOnChangeTextarea } from "@components/Textarea";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Form, Text, Textarea, TOnChangeTextarea } from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import styles from "./TextareaStories.module.scss";

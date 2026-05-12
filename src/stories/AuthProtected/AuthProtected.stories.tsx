@@ -1,5 +1,7 @@
+import { AuthProtected } from "@components/AuthProtected";
+import { Button } from "@components/Button";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AuthProtected, Button, Text } from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import styles from "./AuthProtectedStories.module.scss";

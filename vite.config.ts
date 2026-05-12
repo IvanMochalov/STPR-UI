@@ -8,6 +8,11 @@ import { libInjectCss } from "vite-plugin-lib-inject-css";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/",
+  resolve: {
+    alias: {
+      "@components": resolve(__dirname, "lib/components"),
+    },
+  },
   build: {
     outDir: "dist",
     lib: {

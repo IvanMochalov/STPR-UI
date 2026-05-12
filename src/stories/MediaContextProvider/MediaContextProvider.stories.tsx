@@ -1,5 +1,5 @@
+import { MediaContextProvider } from "@components/MediaContextProvider";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { MediaContextProvider } from "local-stpr-ui-kit";
 
 import { MediaContent } from "./components";
 

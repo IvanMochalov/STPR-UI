@@ -1,16 +1,11 @@
+import { Accordion } from "@components/Accordion";
+import { Checkbox, type TOnChangeCheckbox } from "@components/Checkbox";
+import { Form } from "@components/Form";
+import { EIconName } from "@components/Icons";
+import { Input, type TOnChangeInput } from "@components/Input";
+import { Select, type TOnChangeSelect } from "@components/Select";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Accordion,
-  Checkbox,
-  EIconName,
-  ETooltipPosition,
-  Form,
-  Input,
-  Select,
-  TOnChangeCheckbox,
-  TOnChangeInput,
-  TOnChangeSelect,
-} from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import { OKRUG_OPTIONS } from "../constants";

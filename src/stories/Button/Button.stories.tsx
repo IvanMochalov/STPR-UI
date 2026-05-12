@@ -1,5 +1,6 @@
+import { Button } from "@components/Button";
+import { EIconName } from "@components/Icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, EIconName } from "local-stpr-ui-kit";
 
 import styles from "./ButtonStories.module.scss";
 

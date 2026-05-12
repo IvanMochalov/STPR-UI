@@ -1,5 +1,7 @@
+import { Form } from "@components/Form";
+import { Input, type TOnChangeInput } from "@components/Input";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Form, Input, Text, TOnChangeInput } from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import styles from "./InputStories.module.scss";

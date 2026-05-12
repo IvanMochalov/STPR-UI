@@ -1,13 +1,8 @@
+import { Checkbox, type TOnChangeCheckbox } from "@components/Checkbox";
+import { Form } from "@components/Form";
+import { Input, type TOnChangeInput } from "@components/Input";
+import { Select, type TOnChangeSelect } from "@components/Select";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Checkbox,
-  Form,
-  Input,
-  Select,
-  TOnChangeCheckbox,
-  TOnChangeInput,
-  TOnChangeSelect,
-} from "local-stpr-ui-kit";
 import { useState } from "react";
 
 import { OKRUG_OPTIONS } from "../constants";

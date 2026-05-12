@@ -6,7 +6,7 @@ alwaysApply: true
 # Story Workflow
 
 - Each component story lives in `src/stories/<ComponentName>/<ComponentName>.stories.tsx`.
-- Import library entities in stories from `local-stpr-ui-kit`.
+- Import library entities in stories from `@components/<ComponentName>` (path alias to `lib/components/<ComponentName>`).
 - Story meta baseline:
   - `title: "Components/<ComponentName>"`
   - `component: <ComponentName>`

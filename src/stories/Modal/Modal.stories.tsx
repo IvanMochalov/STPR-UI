@@ -1,14 +1,11 @@
+import { ApplyButtons } from "@components/ApplyButtons";
+import { Button } from "@components/Button";
+import { Confirm } from "@components/Confirm";
+import { Form } from "@components/Form";
+import { Input } from "@components/Input";
+import { Modal, useModal } from "@components/Modal";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  ApplyButtons,
-  Button,
-  Confirm,
-  Form,
-  Input,
-  Modal,
-  Text,
-  useModal,
-} from "local-stpr-ui-kit";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",

@@ -1,5 +1,6 @@
+import { Dropdown } from "@components/Dropdown";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Dropdown, ETooltipPosition } from "local-stpr-ui-kit";
 
 import styles from "./DropdownStories.module.scss";
 

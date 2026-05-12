@@ -106,9 +106,11 @@ export type { ModalProps } from "./types";
 
 ### Импорты в стори
 
-Компонент и типы необходимо импортировать по алиасу `local-stpr-ui-kit`:
+Компонент и типы импортируйте из `@components/<ComponentName>` (алиас на `lib/components/<ComponentName>`):
 
-`import { ComponentName, ESomeEnum } from "local-stpr-ui-kit";`
+`import { ComponentName, type SomeProps } from "@components/ComponentName";`
+
+В опубликованном приложении используйте имя npm-пакета, например `test-stpr-ui-kit`.
 
 ### Структура стори-файла
 

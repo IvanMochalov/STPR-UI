@@ -1,5 +1,7 @@
+import { Label } from "@components/Label";
+import { Text } from "@components/Text";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ETooltipPosition, Label, Text } from "local-stpr-ui-kit";
 
 import styles from "./LabelStories.module.scss";
 

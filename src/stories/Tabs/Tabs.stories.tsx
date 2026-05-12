@@ -1,5 +1,7 @@
+import { EIconName } from "@components/Icons";
+import { Tabs, type TPaneItem } from "@components/Tabs";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { EIconName, Tabs, Text, type TPaneItem } from "local-stpr-ui-kit";
 import { useMemo, useState } from "react";
 
 import styles from "./TabsStories.module.scss";

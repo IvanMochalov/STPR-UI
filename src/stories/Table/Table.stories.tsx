@@ -1,5 +1,7 @@
+import { Confirm } from "@components/Confirm";
+import { useModal } from "@components/Modal";
+import { Table, type TableProps,useTableActions } from "@components/Table";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Confirm, Table, type TableProps, useModal, useTableActions } from "local-stpr-ui-kit";
 import type { ComponentType } from "react";
 import { useState } from "react";
 

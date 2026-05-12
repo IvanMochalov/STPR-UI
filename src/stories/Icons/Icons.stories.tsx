@@ -1,5 +1,7 @@
+import { EllipsisTextWithTooltip } from "@components/EllipsisTextWithTooltip";
+import { EIconName, Icon } from "@components/Icons";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { EIconName, EllipsisTextWithTooltip, Icon, Text } from "local-stpr-ui-kit";
 
 import styles from "./IconsStories.module.scss";
 
