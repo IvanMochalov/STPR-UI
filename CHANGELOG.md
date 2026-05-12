@@ -17,6 +17,7 @@
 - `Input`: добавлена настройка размера через `size: "md" | "xl"`;
 - `InfoTooltip`: добавлен параметр classNameTriggerIcon для кастомной стилизации иконки;
 - `Select`: добавлена настройка размера через `size: "md" | "xl"`;
+- `Accordion`: добавлена настройка размера через `size: "md" | "xl"`;
 
 ### Changed
 
@@ -43,6 +44,7 @@
   `startIconName`/`endIconName`);
 - `Button`: удален `iconRotate` (вместо него используйте `startIconRotate`/`endIconRotate`);
 - `Tabs`: удален `size="lg"` размер;
+- `Accordion`: удален prop `level` (вместо него используйте `size`);
 
 ## [0.7.0] — 2026-04-28
 

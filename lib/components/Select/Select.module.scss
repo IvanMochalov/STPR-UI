@@ -11,19 +11,19 @@
   @include mixins.starting-style-appearance();
 
   &_size-md {
-    --control-font-size: 16px;
-    --error-font-size: 12px;
-    --control-height: var(--spui-control-height-md);
-    --control-icon-size: var(--spui-icon-size-sm);
-    --control-padding-right: var(--spui-spacing-10x);
+    --spui-select-control-font-size: 16px;
+    --spui-select-error-font-size: 12px;
+    --spui-select-control-height: var(--spui-control-height-md);
+    --spui-select-control-icon-size: var(--spui-icon-size-sm);
+    --spui-select-control-padding-right: var(--spui-spacing-10x);
   }
 
   &_size-xl {
-    --control-font-size: 18px;
-    --error-font-size: 14px;
-    --control-height: var(--spui-control-height-xl);
-    --control-icon-size: var(--spui-icon-size-base);
-    --control-padding-right: var(--spui-spacing-12x);
+    --spui-select-control-font-size: 18px;
+    --spui-select-error-font-size: 14px;
+    --spui-select-control-height: var(--spui-control-height-xl);
+    --spui-select-control-icon-size: var(--spui-icon-size-base);
+    --spui-select-control-padding-right: var(--spui-spacing-12x);
   }
 
   // Модификаторы
@@ -58,8 +58,8 @@
 
     cursor: pointer;
     display: flex;
-    height: var(--control-height);
-    padding: var(--spui-spacing-none) var(--control-padding-right) var(--spui-spacing-none) var(--spui-spacing-4x);
+    height: var(--spui-select-control-height);
+    padding: var(--spui-spacing-none) var(--spui-select-control-padding-right) var(--spui-spacing-none) var(--spui-spacing-4x);
     align-items: center;
     align-self: stretch;
     width: 100%;
@@ -120,7 +120,7 @@
   &__value {
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-regular);
-    font-size: var(--control-font-size);
+    font-size: var(--spui-select-control-font-size);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -137,8 +137,8 @@
     cursor: pointer;
     position: absolute;
     right: var(--spui-spacing-4x);
-    width: var(--control-icon-size);
-    height: var(--control-icon-size);
+    width: var(--spui-select-control-icon-size);
+    height: var(--spui-select-control-icon-size);
     top: 0;
     bottom: 0;
     margin: auto;
@@ -155,17 +155,17 @@
     z-index: 15;
 
     &_size-md {
-      --control-font-size: 16px;
+      --spui-select-control-font-size: 16px;
       --empty-options-font-size: 12px;
-      --control-icon-size: var(--spui-icon-size-sm);
-      --control-padding-right: var(--spui-spacing-10x);
+      --spui-select-control-icon-size: var(--spui-icon-size-sm);
+      --spui-select-control-padding-right: var(--spui-spacing-10x);
     }
 
     &_size-xl {
-      --control-font-size: 18px;
+      --spui-select-control-font-size: 18px;
       --empty-options-font-size: 14px;
-      --control-icon-size: var(--spui-icon-size-base);
-      --control-padding-right: var(--spui-spacing-12x);
+      --spui-select-control-icon-size: var(--spui-icon-size-base);
+      --spui-select-control-padding-right: var(--spui-spacing-12x);
     }
 
     &_placementBottom {
@@ -199,7 +199,7 @@
     font-style: italic;
     color: var(--spui-color-text-secondary);
     font-size: var(--empty-options-font-size);
-    padding: var(--spui-spacing-3x) var(--control-padding-right) var(--spui-spacing-3x) var(--spui-spacing-4x);
+    padding: var(--spui-spacing-3x) var(--spui-select-control-padding-right) var(--spui-spacing-3x) var(--spui-spacing-4x);
   }
 
   &__option {
@@ -207,8 +207,8 @@
     position: relative;
     white-space: pre-line;
     color: var(--spui-color-text-primary);
-    font-size: var(--control-font-size);
-    padding: var(--spui-spacing-3x) var(--control-padding-right) var(--spui-spacing-3x) var(--spui-spacing-4x);
+    font-size: var(--spui-select-control-font-size);
+    padding: var(--spui-spacing-3x) var(--spui-select-control-padding-right) var(--spui-spacing-3x) var(--spui-spacing-4x);
 
     &:hover {
       background-color: var(--spui-color-surface-page);
@@ -223,7 +223,7 @@
     padding-top: var(--spui-spacing-2x);
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-regular);
-    font-size: var(--error-font-size);
+    font-size: var(--spui-select-error-font-size);
     color: var(--spui-color-text-error);
 
     &_absolutePosition {

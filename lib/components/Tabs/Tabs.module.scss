@@ -2,42 +2,32 @@
 
 .spTabs {
   $block: &;
-
-  --tabs-container-gap: var(--spui-spacing-1x);
-  --tabs-container-padding: var(--spui-spacing-1x);
-  --tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-4x);
-  --tab-item-height: var(--spui-control-height-md);
-  --tabs-contained-content-height: var(--spui-control-height-base);
-  --tab-item-bg-hover: var(--spui-color-surface-secondary-hover);
-  --tab-item-font-size: 16px;
-
-
   display: flex;
   align-items: flex-start;
   @include mixins.starting-style-appearance();
 
   &_separated {
     background-color: transparent;
-    gap: var(--tabs-container-gap);
+    gap: var(--spui-tabs-container-gap);
     padding: var(--spui-spacing-none);
   }
 
   &--size-md {
-    --tabs-container-gap: var(--spui-spacing-1x);
-    --tabs-container-padding: 6px;
-    --tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-4x);
-    --tab-item-height: var(--spui-control-height-md);
-    --tabs-contained-content-height: var(--spui-control-height-base);
-    --tab-item-font-size: 16px;
+    --spui-tabs-container-gap: var(--spui-spacing-1x);
+    --spui-tabs-container-padding: 6px;
+    --spui-tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+    --spui-tab-item-height: var(--spui-control-height-md);
+    --spui-tabs-contained-content-height: var(--spui-control-height-base);
+    --spui-tab-item-font-size: 16px;
   }
 
   &--size-xl {
-    --tabs-container-gap: var(--spui-spacing-2x);
-    --tabs-container-padding: var(--spui-spacing-2x);
-    --tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-5x);
-    --tab-item-height: var(--spui-control-height-xl);
-    --tabs-contained-content-height: var(--spui-control-height-md);
-    --tab-item-font-size: 20px;
+    --spui-tabs-container-gap: var(--spui-spacing-2x);
+    --spui-tabs-container-padding: var(--spui-spacing-2x);
+    --spui-tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-5x);
+    --spui-tab-item-height: var(--spui-control-height-xl);
+    --spui-tabs-contained-content-height: var(--spui-control-height-md);
+    --spui-tab-item-font-size: 20px;
   }
 
   &--variant-contained {

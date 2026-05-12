@@ -10,15 +10,15 @@
   @include mixins.starting-style-appearance();
 
   &_size-md {
-    --control-font-size: 16px;
-    --error-font-size: 12px;
-    --control-height: var(--spui-control-height-md);
+    --spui-input-control-font-size: 16px;
+    --spui-input-error-font-size: 12px;
+    --spui-input-control-height: var(--spui-input-control-height-md);
   }
 
   &_size-xl {
-    --control-font-size: 18px;
-    --error-font-size: 14px;
-    --control-height: var(--spui-control-height-xl);
+    --spui-input-control-font-size: 18px;
+    --spui-input-error-font-size: 14px;
+    --spui-input-control-height: var(--spui-input-control-height-xl);
   }
 
   // Модификаторы
@@ -49,14 +49,14 @@
     $control: &;
 
     display: flex;
-    height: var(--control-height);
+    height: var(--spui-input-control-height);
     padding: var(--spui-spacing-none) var(--spui-spacing-4x);
     align-items: center;
     align-self: stretch;
     width: 100%;
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-regular);
-    font-size: var(--control-font-size);
+    font-size: var(--spui-input-control-font-size);
     color: var(--spui-color-text-primary);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -126,7 +126,7 @@
     padding-top: var(--spui-spacing-2x);
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-regular);
-    font-size: var(--error-font-size);
+    font-size: var(--spui-input-error-font-size);
     color: var(--spui-color-text-error);
 
     &_absolutePosition {

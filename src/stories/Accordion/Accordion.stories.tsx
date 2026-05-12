@@ -56,15 +56,15 @@ const meta: Meta<typeof Accordion> = {
         defaultValue: { summary: "false" },
       },
     },
-    level: {
-      description:
-        "Уровень вложенности аккордеона. Влияет на размер шрифта заголовка:\n- 1: 24px на всех устройствах\n- 2: 16px (мобильные) / 24px (планшеты и выше)\n",
+    size: {
+      description: "Размер компонента",
       control: { type: "radio" },
+      options: ["md", "xl"],
       table: {
-        defaultValue: { summary: "1" },
+        defaultValue: { summary: "xl" },
         type: {
-          summary: "TAccordionLevel",
-          detail: "1 | 2",
+          summary: "TAccordionSize",
+          detail: "'md' | 'xl'",
         },
       },
     },
@@ -243,7 +243,7 @@ export const Collapsed: Story = {
     noBorder: false,
     noPadding: false,
     name: "Основное задание",
-    level: 1,
+    size: "xl",
     infoTooltipText: "",
     tooltipPosition: ETooltipPosition.BottomLeft,
     children: DEFAULT_CONTENT,
@@ -274,14 +274,6 @@ export const InitiallyOpen: Story = {
     defaultOpen: true,
     name: "Предварительно открытый аккордеон",
     children: "Этот аккордеон изначально открыт при загрузке страницы",
-  },
-};
-
-export const Level2Accordion: Story = {
-  args: {
-    name: "Аккордеон второго уровня",
-    level: 2,
-    children: "Этот аккордеон имеет меньший размер заголовка на мобильных устройствах",
   },
 };
 

@@ -18,7 +18,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
     onOpen,
     noBorder = false,
     noPadding = false,
-    level = 1,
+    size = "xl",
     expandIconName = EIconName.ChevronDown,
     infoTooltipText,
     tooltipPosition,
@@ -40,6 +40,7 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.spAccordion]: true,
+    [styles[`spAccordion_size-${size}`]]: size,
     [styles.spAccordion_open]: open,
     [styles.spAccordion_noBorder]: noBorder,
     [styles.spAccordion_noPadding]: noPadding,
@@ -53,7 +54,6 @@ export const Accordion: React.FC<AccordionProps> = (props) => {
 
   const classNameTitle = cx({
     [styles.spAccordion__name]: true,
-    [styles[`spAccordion__name--level-${level}`]]: level,
     [styles.spAccordion__name_hiddenExpand]: isHiddenExpandIcon,
     ...(propsClassNameTitle && { [propsClassNameTitle]: true }),
   });
