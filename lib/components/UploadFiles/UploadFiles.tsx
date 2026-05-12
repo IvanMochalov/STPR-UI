@@ -1,9 +1,8 @@
 import cx from "clsx";
+import { DefaultDropzone, EllipsisTextWithTooltip } from "local-stpr-ui-kit";
 import React, { useCallback, useState } from "react";
 
-import { DefaultDropzone } from "../DefaultDropzone";
 import { useDefaultDropzone } from "../DefaultDropzone/hooks/useDefaultDropzone.ts";
-import { EllipsisTextWithTooltip } from "../EllipsisTextWithTooltip";
 import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { Spinner } from "../Spinner";

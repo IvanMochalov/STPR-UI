@@ -42,6 +42,18 @@ const meta: Meta<typeof Select> = {
         defaultValue: { summary: '"outlined"' },
       },
     },
+    size: {
+      description: "Размер поля ввода",
+      control: { type: "radio" },
+      options: ["md", "xl"],
+      table: {
+        defaultValue: { summary: "xl" },
+        type: {
+          summary: "TSelectSize",
+          detail: "'md' | 'xl'",
+        },
+      },
+    },
     disabled: {
       description: `Отключить селект. Заблокирует взаимодействие и изменит визуальный стиль.\n`,
       control: { type: "boolean" },
@@ -310,6 +322,7 @@ const [formData, setFormData] = useState({
   args: {
     options: OKRUG_OPTIONS,
     variant: "outlined",
+    size: "xl",
     placeholder: "Выберите из списка...",
     disabled: false,
     required: false,

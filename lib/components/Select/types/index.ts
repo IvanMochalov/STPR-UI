@@ -9,6 +9,7 @@ export type TSelectOption = {
 };
 
 export type TSelectVariant = "outlined" | "filled";
+export type TSelectSize = "md" | "xl";
 
 export interface ISelectProps {
   options: TSelectOption[];
@@ -35,6 +36,7 @@ export interface ISelectProps {
   classNameBaseTooltipRoot?: string;
   isSearchable?: boolean;
   searchPlaceholder?: string;
+  size?: TSelectSize;
 }
 
 export type TOnChangeSelect = (

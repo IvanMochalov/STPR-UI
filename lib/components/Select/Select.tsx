@@ -12,6 +12,7 @@ import { ISelectProps } from "./types";
 export const Select: React.FC<ISelectProps> = (props) => {
   const {
     options = [],
+    size = "xl",
     placeholder = "Выберите из списка...",
     value,
     name,
@@ -64,6 +65,7 @@ export const Select: React.FC<ISelectProps> = (props) => {
 
   const classNameRoot = cx({
     [styles.spSelect]: true,
+    [styles[`spSelect_size-${size}`]]: size,
     [styles.spSelect_error]: Boolean(error),
     [styles.spSelect_absolutePositionError]: isAbsolutePositionError,
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
@@ -97,6 +99,7 @@ export const Select: React.FC<ISelectProps> = (props) => {
   const classNameSearch = styles.spSelect__search;
 
   const classNameLabel = cx({
+    [styles.spSelect__label]: true,
     ...(propsClassNameLabel && { [propsClassNameLabel]: true }),
   });
 
@@ -166,6 +169,7 @@ export const Select: React.FC<ISelectProps> = (props) => {
               ref={refListWrapper}
               className={cx(
                 styles.spSelect__listWrapper,
+                size && [styles[`spSelect__listWrapper_size-${size}`]],
                 listStyle?.placement === "bottom" && styles.spSelect__listWrapper_placementBottom,
                 listStyle?.placement === "top" && styles.spSelect__listWrapper_placementTop,
               )}

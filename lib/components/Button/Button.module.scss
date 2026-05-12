@@ -97,7 +97,7 @@
   }
 
   &_link {
-    background-color: var(--spui-color-surface-transparent, transparent);
+    background-color: var(--spui-color-surface-transparent);
     color: var(--spui-color-text-action);
 
     &:hover {
