@@ -59,7 +59,7 @@ npm version major -m "release: %s"   # 0.5.116 → 1.0.0   (ломающие и�
 ## 4. Сборка и публикация пакета в npm
 
 ```bash
-npm run build
+npm run build:lib
 npm publish
 ```
 
@@ -72,5 +72,5 @@ npm publish
 
 1. Обновить **CHANGELOG.md**: оформить запись под новой версией.
 2. Поднять версию: **`npm version patch`** / **`minor`** / **`major -m "release: %s"`**.
-3. Собрать и опубликовать пакет: **`npm run build`** → **`npm publish`**.
+3. Собрать и опубликовать пакет: **`npm run build:lib`** → **`npm publish`**.
 4. ...Деплой

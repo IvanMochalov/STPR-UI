@@ -8,7 +8,7 @@ import { EIconName, Icon } from "../Icons";
 import { Label } from "../Label";
 import { Spinner } from "../Spinner";
 import { ETooltipPosition, InfoTooltip, Tooltip } from "../Tooltip";
-import { FileRejection, TLocalErrorFile, UploadFilesProps } from "./types";
+import { FileRejection, IUploadFilesProps,TLocalErrorFile } from "./types";
 import styles from "./UploadFiles.module.scss";
 import {
   formatFileSize,
@@ -17,7 +17,7 @@ import {
   validateAcceptedFilesByImageDimensions,
 } from "./utils";
 
-export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
+export const UploadFiles: React.FC<IUploadFilesProps> = (props) => {
   const {
     placeholder = "Загрузите файл",
     variant = "input",

@@ -1,6 +1,6 @@
 /**
  * Генерирует src/documentation/Changelog.mdx из CHANGELOG.md и версии из package.json.
- * Запускается перед storybook и storybook:build, чтобы в Storybook отображалась актуальная история версий.
+ * Запускается перед storybook и build:storybook, чтобы в Storybook отображалась актуальная история версий.
  */
 import fs from "fs";
 import path from "path";

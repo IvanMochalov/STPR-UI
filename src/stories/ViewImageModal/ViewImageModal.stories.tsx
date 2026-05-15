@@ -3,6 +3,7 @@ import { useModal } from "@components/Modal";
 import { ViewImageModal } from "@components/ViewImageModal";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import viewImageExampleUrl from "../../story-assets/images/viewImageExample.jpg?url";
 import styles from "./ViewImageModalStories.module.scss";
 
 const meta: Meta<typeof ViewImageModal> = {
@@ -21,7 +22,7 @@ const meta: Meta<typeof ViewImageModal> = {
 - **Адаптивные размеры**: 350px (мобильные) → 740px (планшеты) → 825px (desktop)
 - **Индикатор загрузки**: отображение спиннера во время загрузки изображения
 - **Обработка ошибок**: автоматическая подмена на fallback изображение при ошибках
-- **Запасное изображение**: возможность указать резервное изображение
+- **Запасное изображение**: по умолчанию файл из пакета (подкаталог components-assets в артефакте dist); можно переопределить пропом fallbackSrc
 - **Блокировка скролла**: автоматическое управление прокруткой страницы
 - **Оптимизированное отображение**: object-fit: contain для правильного отображения
 
@@ -76,7 +77,8 @@ return (
       },
     },
     fallbackSrc: {
-      description: "URL запасного изображения, которое отображается при ошибке загрузки основного",
+      description:
+        "URL запасного изображения при ошибке загрузки основного; по умолчанию — `/components-assets/ViewImageModal/fallBackSrc.jpeg` из пакета (при `base` в Storybook см. `args`); пустая строка отключает подмену",
       control: { type: "text" },
     },
     zIndex: {
@@ -130,8 +132,8 @@ return (
     },
   },
   args: {
-    src: "/images/viewImageExample.jpg",
-    fallbackSrc: "/images/fallBackSrc.jpeg",
+    src: viewImageExampleUrl,
+    fallbackSrc: `${import.meta.env.BASE_URL}components-assets/ViewImageModal/fallBackSrc.jpeg`,
     onLoad: () => console.log("loaded ViewImageModal"),
     onError: () => console.log("error ViewImageModal"),
     showLoader: true,
@@ -176,8 +178,7 @@ export const WithoutLoader: Story = {
 export const WithErrorHandling: Story = {
   name: "ViewImageModal with Error Handling",
   args: {
-    src: "/images/non-existent-image.jpg", // Несуществующее изображение для демонстрации ошибки
-    fallbackSrc: "/images/fallBackSrc.jpeg",
+    src: `${import.meta.env.BASE_URL}images/non-existent-image.jpg`,
   },
   render: (args) => {
     const { isOpen, onOpenModal, onCloseModal } = useModal();

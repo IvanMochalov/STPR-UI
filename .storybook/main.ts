@@ -12,7 +12,7 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-a11y",
   ],
-  staticDirs: ["../public"],
+  staticDirs: ["../public", "../src/story-assets"],
   core: {
     builder: "@storybook/builder-vite",
   },

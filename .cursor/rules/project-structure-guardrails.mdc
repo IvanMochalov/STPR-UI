@@ -13,6 +13,7 @@ alwaysApply: true
   - process docs in `src/documentation/development/*.mdx`;
   - short how-to references in `src/documentation/cheatSheets/*.mdx`.
 - Keep shared Storybook/demo helpers in `src/hooks`, `src/utils`, `src/styles`, and media assets in `src/images`.
+- Keep Storybook-only static fixtures and demo images in `src/story-assets/` (served via `.storybook/main.ts` `staticDirs`); keep static files shipped with the library (fallback images, IFC wasm, etc.) under `public/components-assets/<Component>/…` (copied into `dist/` by Vite `copyPublicDir`).
 - Keep Storybook runtime config in `.storybook/`; do not place component business logic there.
 - Keep automation/build helpers in `scripts/` and project-level editor/agent config in `.cursor/`.
 - Treat `dist/` and `storybook-static/` as generated output; do not place source-of-truth code there.

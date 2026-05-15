@@ -1,2 +1,2 @@
 export { Textarea } from "./Textarea";
-export type { TextareaProps, TOnChangeTextarea } from "./types";
+export type { ITextareaProps, TOnChangeTextarea } from "./types";

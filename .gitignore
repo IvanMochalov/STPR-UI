@@ -40,5 +40,8 @@ dist-ssr
 *storybook.log
 storybook-static
 
-# Генерируется из CHANGELOG.md и package.json при запуске storybook / storybook:build
+# Генерируется из CHANGELOG.md и package.json при запуске storybook / build:storybook
 src/documentation/Changelog.mdx
+
+# Копируется из node_modules/web-ifc при postinstall
+public/components-assets/IfcPreview/web-ifc/

@@ -25,4 +25,4 @@ alwaysApply: true
   2) mandatory update of component stories in `src/stories` for every added component or public API change;
   3) update `CHANGELOG.md` using changelog rule;
   4) start post-change verification by running the `project-health-check` skill from `.cursor/skills/project-health-check/SKILL.md`;
-  5) run verification commands: `npm run lint`, `npm run build`, `npm run storybook:build`.
+  5) run verification commands: `npm run lint`, `npm run build:lib`, `npm run build:storybook`.

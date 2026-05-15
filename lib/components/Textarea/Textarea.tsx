@@ -4,9 +4,9 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import { Label } from "../Label";
 import styles from "./Textarea.module.scss";
-import { TextareaProps } from "./types";
+import { ITextareaProps } from "./types";
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
+export const Textarea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>((props, ref) => {
   const {
     value,
     onChange,

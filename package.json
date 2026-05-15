@@ -19,7 +19,7 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "./dist/test-stpr-ui-kit.umd.cjs",
+  "main": "./dist/test-stpr-ui-kit.js",
   "module": "./dist/test-stpr-ui-kit.js",
   "types": "./dist/test-stpr-ui-kit.es.d.ts",
   "exports": {
@@ -27,23 +27,24 @@
     ".": {
       "types": "./dist/test-stpr-ui-kit.es.d.ts",
       "import": "./dist/test-stpr-ui-kit.js",
-      "require": "./dist/test-stpr-ui-kit.umd.cjs"
+      "default": "./dist/test-stpr-ui-kit.js"
     }
   },
   "peerDependencies": {
     "react": "^16.9.0 || ^17 || ^18 || ^19",
-    "react-dom": "^16.9.0 || ^17 || ^18 || ^19"
+    "react-dom": "^16.9.0 || ^17 || ^18 || ^19",
+    "three": "^0.184.0",
+    "web-ifc": "^0.0.77"
   },
   "scripts": {
-    "dev": "vite",
+    "postinstall": "node scripts/copy-web-ifc-wasm.mjs",
     "build:ignore-tsc": "vite build",
-    "build": "node scripts/inline-changelog.js && tsc && vite build",
+    "build:lib": "node scripts/inline-changelog.js && tsc && vite build",
     "changelog:update": "node scripts/inline-changelog.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "storybook": "node scripts/inline-changelog.js && storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "storybook:build": "node scripts/inline-changelog.js && storybook build --output-dir storybook-static/themes/main/assets/storybook && node scripts/fix-storybook-paths.js"
+    "dev:storybook": "node scripts/inline-changelog.js && storybook dev -p 6006",
+    "build:storybook": "node scripts/inline-changelog.js && storybook build --output-dir storybook-static/themes/main/assets/storybook && node scripts/fix-storybook-paths.js"
   },
   "dependencies": {
     "@mona-health/react-input-mask": "^3.0.3",
@@ -68,6 +69,7 @@
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-input-mask": "^3.0.6",
+    "@types/three": "^0.184.1",
     "@typescript-eslint/eslint-plugin": "^8.59.1",
     "@typescript-eslint/parser": "^8.59.1",
     "@vitejs/plugin-react": "^5.2.0",
@@ -82,10 +84,12 @@
     "rollup-plugin-copy": "^3.5.0",
     "sass": "^1.99.0",
     "storybook": "^10.3.6",
+    "three": "^0.184.0",
     "typescript": "^6.0.3",
     "vite": "^7.2.2",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-lib-inject-css": "^2.2.2",
-    "vite-plugin-svgr": "^5.2.0"
+    "vite-plugin-svgr": "^5.2.0",
+    "web-ifc": "^0.0.77"
   }
 }

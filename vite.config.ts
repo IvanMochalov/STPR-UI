@@ -4,8 +4,25 @@ import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
+import { peerDependencies } from "./package.json";
 
-// https://vitejs.dev/config/
+const libRoot = resolve(__dirname, "lib");
+const peerNames = Object.keys(peerDependencies);
+
+/** Peer'ы и их подпути (`three/examples/jsm/...`, `react-dom/client` и т.д.) — не бандлим в dist. */
+const isExternalPeer = (id: string): boolean => {
+  if (id === "react/jsx-runtime") {
+    return true;
+  }
+
+  if (id.startsWith(".") || id.startsWith("/") || id.startsWith("\0")) {
+    return false;
+  }
+
+  return peerNames.some((name) => id === name || id.startsWith(`${name}/`));
+};
+
+// https://vitejs.dev/config/ — плоский dist: один ESM entry + CSS + типы (+ public: fonts, components-assets).
 export default defineConfig({
   base: "/",
   resolve: {
@@ -15,18 +32,18 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    emptyOutDir: true,
+    copyPublicDir: true,
     lib: {
-      entry: resolve(__dirname, "lib/test-stpr-ui-kit.ts"),
+      entry: resolve(libRoot, "test-stpr-ui-kit.ts"),
       name: "test-stpr-ui-kit",
+      formats: ["es"],
+      fileName: "test-stpr-ui-kit",
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: isExternalPeer,
       output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "jsxRuntime",
-        },
+        inlineDynamicImports: true,
       },
     },
   },
@@ -37,6 +54,8 @@ export default defineConfig({
       tsconfigPath: "tsconfig.json",
       insertTypesEntry: true,
       include: ["lib/**/*.ts", "lib/**/*.tsx"],
+      outDir: "dist",
+      rollupTypes: true,
     }),
     libInjectCss(),
   ],

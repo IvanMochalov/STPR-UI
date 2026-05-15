@@ -2,7 +2,7 @@ import { Accept, DropEvent, ErrorCode, FileError, FileRejection } from "react-dr
 
 import { ETooltipPosition } from "../../Tooltip";
 
-export interface UploadFilesProps {
+export interface IUploadFilesProps {
   placeholder?: string;
   variant?: "input" | "dropzone";
   name: string;

@@ -6,7 +6,7 @@ export type TTextareaVariant = "outlined" | "filled";
 export type TTextareaResize = "none" | "both" | "horizontal" | "vertical";
 export type TTextareaWrap = "hard" | "soft" | "off";
 
-export interface TextareaProps {
+export interface ITextareaProps {
   name: string;
   variant?: TTextareaVariant;
   onChange: TOnChangeTextarea;

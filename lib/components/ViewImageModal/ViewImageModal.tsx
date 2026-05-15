@@ -9,6 +9,9 @@ import { Text } from "../Text";
 import { ViewImageModalProps } from "./types";
 import styles from "./ViewImageModal.module.scss";
 
+/** Файл лежит в `public/components-assets/` и копируется в `dist/components-assets/` при сборке; путь от корня раздачи. При `base` приложения не `/` передайте свой `fallbackSrc` (например с `import.meta.env.BASE_URL`). */
+const defaultFallbackImageUrl = "/components-assets/ViewImageModal/fallBackSrc.jpeg";
+
 export const ViewImageModal: React.FC<ViewImageModalProps> = (props) => {
   const {
     classNameRoot: propsClassNameRoot,
@@ -16,7 +19,7 @@ export const ViewImageModal: React.FC<ViewImageModalProps> = (props) => {
     src,
     onLoad,
     onError,
-    fallbackSrc,
+    fallbackSrc = defaultFallbackImageUrl,
     showLoader = true,
     onClose,
   } = props;
