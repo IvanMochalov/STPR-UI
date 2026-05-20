@@ -14,91 +14,85 @@ const meta: Meta<typeof IfcPreview> = {
     docs: {
       description: {
         component: `
-Предпросмотр IFC: карточка с данными загруженного файла и оверлеем действий при наведении.
-Просмотр 3D открывается в отдельном слое (Layer).
+Карточка предпросмотра IFC с оверлеем действий. 3D открывается в \`Layer\` через внутренний [\`IfcViewer\`](?path=/docs/components-ifcviewer--docs).
+
+## Источники модели
+
+| Проп | Назначение |
+|------|------------|
+| \`url\` | HTTP(S) или \`blob:\` — URL IFC для просмотра |
+| \`file\` | Локальный файл (\`readonly={false}\`), приоритет над \`url\` |
+
+При открытии просмотра \`file\` превращается в \`blob:\` URL и передаётся в \`IfcViewer\`.
 
 ## Режимы (\`readonly\`)
 
-- **\`readonly={true}\`** — только **просмотр**: модель через \`ifcData\` или \`url\`. Кнопок загрузки и удаления нет.
-- **\`readonly={false}\`** — **просмотр**, **загрузка** файла с диска (иконка Upload) и **удаление** (иконка Trash), если модель уже есть. При просмотре приоритет: \`file\` → \`ifcData\` → \`url\`.
+- **\`readonly={true}\`** — только просмотр по \`url\`, без Upload и Trash.
+- **\`readonly={false}\`** — Upload, Trash и просмотр; приоритет источника: \`file\` → \`url\`.
 
 ## Лимит размера для просмотра
 
 - **\`maxFileSizeMb\`**: \`50\` | \`100\` | \`150\` (по умолчанию **50**).
-- **\`disableFileSizeLimit\`**: \`false\` по умолчанию — лимит действует.
-- Файл **можно выбрать** на карточку любого размера; при нажатии «Просмотр», если размер превышает лимит, в Layer показывается: «Загрузите файл размером до {N} МБ».
-- Для отключения лимита: \`disableFileSizeLimit={true}\`.
-
-\`\`\`jsx
-<IfcPreview maxFileSizeMb={100} />
-<IfcPreview disableFileSizeLimit />
-\`\`\`
+- **\`disableFileSizeLimit\`**: по умолчанию \`false\`.
+- Файл на карточку можно выбрать любого размера; при превышении лимита в Layer показывается ошибка.
+- Отключение: \`disableFileSizeLimit={true}\`.
 
 ## Зависимости
 
-- **Peer-зависимости**: \`three\` и \`web-ifc\` (те же мажорные версии, что у UI-кита).
-- **Файл \`web-ifc.wasm\`**: должен отдаваться по HTTP как статика; в этом репозитории он копируется при \`npm install\` в \`public/components-assets/IfcPreview/web-ifc/web-ifc.wasm\` и попадает в \`dist/components-assets/...\` вместе со сборкой библиотеки.
-- Демо-модель в сторях: \`src/story-assets/fixtures/sample.ifc\`.
+- **Peer**: \`three\`, \`web-ifc\` (те же мажорные версии, что у UI-кита).
+- **\`web-ifc.wasm\`**: копируется при \`npm install\` в \`public/components-assets/IfcPreview/web-ifc/\` и попадает в \`dist/\` при сборке библиотеки.
 
-## \`wasmPublicPath\`: зачем и как
+## \`wasmPublicPath\`
 
-По умолчанию компонент грузит WASM с URL **\`/components-assets/IfcPreview/web-ifc/\`** (каталог должен содержать \`web-ifc.wasm\`).
-
-В своём приложении вы кладёте wasm **туда, куда отдаёт ваш билд** (например \`public/\` в Vite). **URL каталога на сервере должен совпадать** с тем, что вы передаёте в \`wasmPublicPath\` (обычно с \`\${import.meta.env.BASE_URL}\`, если у Vite нестандартный \`base\`).
-
-Если путь неверный, браузер вместо WASM получит HTML (404 или \`index.html\` SPA) — тогда в консоли бывает ошибка вида \`WebAssembly.instantiate(): expected magic word ... found 3c 21 64 6f\` (это начало \`<!do...\`).
-
-## Базовое использование (Storybook / корень сайта)
-
-Файл лежит в \`public/components-assets/IfcPreview/web-ifc/\`, приложение с \`base: "/"\`:
-
-\`\`\`jsx
-<IfcPreview />
-\`\`\`
-
-## Другая папка в \`public\` (ваш префикс)
-
-Например wasm лежит в \`public/lk/themes/main/assets/agr/components-assets/IfcPreview/web-ifc/web-ifc.wasm\` — тогда каталог для \`wasmPublicPath\` тот же относительный URL:
+По умолчанию: \`/components-assets/IfcPreview/web-ifc/\`. В Vite с \`base\` не \`"/"\` передайте каталог с \`\${import.meta.env.BASE_URL}\`.
 
 \`\`\`jsx
 const wasmPublicPath =
-  \`\${import.meta.env.BASE_URL}lk/themes/main/assets/agr/components-assets/IfcPreview/web-ifc/\`;
+  \`\${import.meta.env.BASE_URL}components-assets/IfcPreview/web-ifc/\`;
 
-<IfcPreview wasmPublicPath={wasmPublicPath} />
+<IfcPreview readonly={false} wasmPublicPath={wasmPublicPath} />
+<IfcPreview readonly url={modelUrl} wasmPublicPath={wasmPublicPath} />
 \`\`\`
         `,
       },
     },
   },
   args: {
-    mode: "view",
     wasmPublicPath,
     disableFileSizeLimit: false,
     readonly: false,
     maxFileSizeMb: 50,
   },
   argTypes: {
-    mode: {
-      table: {
-        type: { summary: "TIfcPreviewMode", detail: `"view" | "dev"` },
-        defaultValue: { summary: "view" },
-      },
-    },
-    wasmPublicPath: {
-      table: {
-        defaultValue: { summary: "/components-assets/IfcPreview/web-ifc/" },
-      },
-    },
     readonly: {
       control: "boolean",
+      description: "Только просмотр по url (true) или ещё загрузка/удаление файла (false).",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
+    url: {
+      control: false,
+      description: "URL IFC-модели. В readonly — основной источник; иначе fallback после file.",
+    },
+    file: {
+      control: false,
+      description: "Локальный File (readonly=false). Controlled, если проп передан явно.",
+      table: {
+        type: { summary: "File | null | undefined" },
+      },
+    },
+    wasmPublicPath: {
+      description: "Каталог со статикой web-ifc.wasm (слэш в конце не обязателен).",
+      table: {
+        defaultValue: { summary: "/components-assets/IfcPreview/web-ifc/" },
+      },
+    },
     maxFileSizeMb: {
       control: { type: "radio" },
       options: [50, 100, 150],
+      description: "Лимит размера IFC для открытия 3D-просмотра (МБ).",
       table: {
         type: { summary: "TIfcPreviewMaxFileSizeMb", detail: "50 | 100 | 150" },
         defaultValue: { summary: "50" },
@@ -106,31 +100,17 @@ const wasmPublicPath =
     },
     disableFileSizeLimit: {
       control: "boolean",
+      description: "Отключить проверку maxFileSizeMb перед просмотром.",
       table: { defaultValue: { summary: "false" } },
     },
-    url: { control: false },
-    ifcData: {
-      control: false,
-      table: {
-        type: { summary: "ArrayBuffer | Uint8Array | null | undefined" },
-        defaultValue: { summary: "null" },
-      },
-    },
-    file: {
-      control: false,
-      table: {
-        type: { summary: "File | null | undefined" },
-        defaultValue: { summary: "null" },
-      },
-    },
-    onFileChange: { action: "onFileChange" },
-    onClear: { action: "onClear" },
-    onModelLoaded: { action: "onModelLoaded" },
-    onError: { action: "onError" },
-    onOpenViewer: { action: "onOpenViewer" },
-    onCloseViewer: { action: "onCloseViewer" },
-    classNameRoot: { control: false },
-    children: { control: false },
+    onFileChange: { action: "onFileChange", description: "Смена или сброс file (readonly=false)." },
+    onClear: { action: "onClear", description: "После Trash: сбросьте file и url у родителя в controlled-режиме." },
+    onModelLoaded: { action: "onModelLoaded", description: "Модель отображена в IfcViewer." },
+    onError: { action: "onError", description: "Ошибка лимита, загрузки или IfcViewer." },
+    onOpenViewer: { action: "onOpenViewer", description: "Layer открыт, viewerUrl подготовлен." },
+    onCloseViewer: { action: "onCloseViewer", description: "Пользователь закрыл Layer." },
+    classNameRoot: { control: false, description: "CSS-класс корня карточки." },
+    children: { control: false, description: "Слот под канвасом в Layer (после onModelLoaded)." },
   },
 };
 
@@ -146,7 +126,6 @@ export const ReadonlyWithFixtureUrl: Story = {
   name: "Readonly (fixture URL)",
   args: {
     readonly: true,
-    ifcData: null,
     url: fixtureIfcUrl,
   },
   render: (args) => (

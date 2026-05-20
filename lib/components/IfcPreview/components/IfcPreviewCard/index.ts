@@ -1,0 +1,1 @@
+export { IfcPreviewCard } from "./IfcPreviewCard";

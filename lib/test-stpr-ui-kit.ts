@@ -24,6 +24,8 @@ import { Form } from "@components/Form";
 import { EIconName, Icon } from "@components/Icons";
 import type { IIfcPreviewProps } from "@components/IfcPreview";
 import { IfcPreview } from "@components/IfcPreview";
+import type { IIfcViewerProps } from "@components/IfcViewer";
+import { IfcViewer } from "@components/IfcViewer";
 import type { IInputProps, TOnBlurInput, TOnChangeInput } from "@components/Input";
 import { Input } from "@components/Input";
 import { Label } from "@components/Label";
@@ -74,7 +76,9 @@ export {
   Form,
   Icon,
   IfcPreview,
+  IfcViewer,
   IIfcPreviewProps,
+  IIfcViewerProps,
   IInputProps,
   InfoTooltip,
   Input,

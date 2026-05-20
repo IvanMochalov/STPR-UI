@@ -18,14 +18,14 @@
 - `InfoTooltip`: добавлен параметр classNameTriggerIcon для кастомной стилизации иконки;
 - `Select`: добавлена настройка размера через `size: "md" | "xl"`;
 - `Accordion`: добавлена настройка размера через `size: "md" | "xl"`;
-- `IfcPreview`: предпросмотр IFC (карточка + `Layer`): `readonly` с приоритетом `ifcData` или загрузкой по `url`,
-  иначе локальный файл; по умолчанию `wasmPublicPath` указывает на `components-assets/IfcPreview/web-ifc/` в `dist` (в репозитории wasm копируется туда при `npm install`); `onModelLoaded`, `caption`, слот `children`; ленивая подгрузка Three.js + web-ifc;
-- Пакет: peer-зависимости `three` и `web-ifc` для `IfcPreview` и 3D-просмотра;
+- `IfcPreview`: карточка предпросмотра IFC с оверлеем (просмотр, Upload, Trash); 3D в `Layer` через `IfcViewer`;
+- `IfcViewer`: автономный 3D-просмотр IFC по `url`; внутри — загрузка файла, web-ifc, Three.js, `Spinner` с прогрессом;
 
 ### Changed
 
-- `ViewImageModal`: при ошибке загрузки основного `src` по умолчанию подставляется запасное изображение из `public/components-assets/` (в артефакте сборки — `dist/components-assets/ViewImageModal/fallBackSrc.jpeg`); при нестандартном `base` приложения задайте `fallbackSrc` вручную; отключение подмены — `fallbackSrc=""`;
-- Раскладка статики репозитория: демо-ассеты Storybook в `src/story-assets/`; в `public/components-assets/` — wasm для `IfcPreview` (`IfcPreview/web-ifc/` после `npm install`) и прочие файлы, копируемые в `dist/`; шрифты остаются в `public/fonts/`;
+- `ViewImageModal`: при ошибке загрузки основного `src` по умолчанию подставляется запасное изображение из
+  `public/components-assets/` (в артефакте сборки — `dist/components-assets/ViewImageModal/fallBackSrc.jpeg`); при
+  нестандартном `base` приложения задайте `fallbackSrc` вручную; отключение подмены — `fallbackSrc=""`;
 - `Button`: обновлена логика рендера контента — при `loading` спиннер заменяет только стартовую иконку (если она есть),
   end-иконка продолжает отображаться;
 - `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (
@@ -42,8 +42,10 @@
 - `Label`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Select`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - Пакет: сборка `dist/` — плоский артефакт как раньше: один ESM `test-stpr-ui-kit.js`, `test-stpr-ui-kit.css`,
-  единый `test-stpr-ui-kit.es.d.ts` (`rollupTypes`), без UMD; зависимости из `dependencies` в бандле, наружу — только peer'ы;
-  динамический импорт IFC вшит в основной чанк (`inlineDynamicImports`); содержимое `public/` копируется в `dist` при сборке.
+  единый `test-stpr-ui-kit.es.d.ts` (`rollupTypes`), без UMD; зависимости из `dependencies` в бандле, наружу — только
+  peer'ы;
+  динамический импорт IFC вшит в основной чанк (`inlineDynamicImports`); содержимое `public/` копируется в `dist` при
+  сборке.
 
 ### Removed
 

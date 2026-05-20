@@ -22,23 +22,3 @@ export const isNullOrWhitespace = (input: unknown): boolean => {
 
   return input.toString().replace(/\s/g, "").length < 1;
 };
-
-/**
- * Обрабатывает строковое значение формы:
- * - Если значение `null`, `undefined`, пустое или состоит только из пробелов — возвращает `undefined`
- * - В остальных случаях возвращает строку, очищенную от пробелов по краям (trim)
- *
- * @param str - Входное значение для обработки
- * @returns
- *    - `undefined`, если строка пустая или состоит только из пробелов
- *    - Обрезанную строку (trim) в остальных случаях
- */
-export const handleFormString = (str: unknown): string | undefined => {
-  if (isNullOrWhitespace(str)) {
-    return undefined;
-  }
-
-  // Явное приведение к строке с проверкой
-  const stringValue = typeof str === "string" ? str : str?.toString();
-  return stringValue?.trim();
-};

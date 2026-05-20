@@ -1,1 +1,0 @@
-export { IfcViewerCanvas } from "./IfcViewerCanvas";
