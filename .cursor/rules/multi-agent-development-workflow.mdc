@@ -25,8 +25,8 @@ Use this workflow when a task involves implementation (new feature, enhancement,
 
 1. Plan with `planner`.
 2. Validate plan with `arch-review` before editing.
-3. Implement component changes in `lib/components/**`.
-4. Synchronize exports in `lib/test-stpr-ui-kit.ts` if public API changed.
+3. Implement component changes in `src/components/**`.
+4. Synchronize exports in `src/test-stpr-ui-kit.ts` if public API changed.
 5. Update or create story in `src/stories/<ComponentName>/<ComponentName>.stories.tsx`.
 6. Update `CHANGELOG.md` using Keep a Changelog sections (`Added`, `Changed`, `Fixed`, `Removed`, `Security`).
 7. Run quality gates once via `test-runner`: `npm run lint`, `npm run build:lib`, `npm run build:storybook`.
@@ -55,8 +55,8 @@ Every role returns:
 
 Task is done only when all are true:
 
-- Component API and implementation are aligned in `lib/components/**`.
-- Public exports are aligned in `lib/test-stpr-ui-kit.ts` (if needed).
+- Component API and implementation are aligned in `src/components/**`.
+- Public exports are aligned in `src/test-stpr-ui-kit.ts` (if needed).
 - Storybook stories reflect current API and states.
 - `CHANGELOG.md` updated only for package-relevant changes (no Storybook-only entries).
 - `lint`, `build:lib`, and `build:storybook` pass.

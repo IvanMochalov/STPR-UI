@@ -5,12 +5,12 @@
 
 ---
 
-## 1. Структура компонента в `lib/components`
+## 1. Структура компонента в `src/components`
 
-Каждый компонент живёт в своей папке `lib/components/<ComponentName>/`. Типовая структура:
+Каждый компонент живёт в своей папке `src/components/<ComponentName>/`. Типовая структура:
 
 ```
-lib/components/<ComponentName>/
+src/components/<ComponentName>/
 ├── <ComponentName>.tsx          # React-компонент
 ├── <ComponentName>.module.scss  # Стили (CSS Modules)
 ├── index.ts                     # Реэкспорт компонента и типов
@@ -81,7 +81,7 @@ export type { ModalProps } from "./types";
 
 ## 3. Подключение компонента к сборке библиотеки
 
-Все публичные API библиотеки задаются в **`lib/test-stpr-ui-kit.ts`**.
+Все публичные API библиотеки задаются в **`src/test-stpr-ui-kit.ts`**.
 
 1. **Добавить импорты** в начало файла:
     - компоненты: `import { ComponentName } from "./components/ComponentName";`
@@ -111,7 +111,7 @@ export type { ModalProps } from "./types";
 
 ### Импорты в стори
 
-Компонент и типы импортируйте из `@components/<ComponentName>` (алиас на `lib/components/<ComponentName>`):
+Компонент и типы импортируйте из `@components/<ComponentName>` (алиас на `src/components/<ComponentName>`):
 
 `import { ComponentName, type SomeProps } from "@components/ComponentName";`
 
@@ -231,10 +231,10 @@ decorators: [
 
 ## 5. Чек-лист: новый компонент
 
-- [ ] Создана папка `lib/components/<ComponentName>/`.
+- [ ] Создана папка `src/components/<ComponentName>/`.
 - [ ] Добавлены `ComponentName.tsx`, `ComponentName.module.scss`, `types/index.ts`, `index.ts`.
 - [ ] В `index.ts` экспортированы компонент и нужные типы (и хуки, если есть).
-- [ ] В `lib/test-stpr-ui-kit.ts` добавлены импорты и экспорты для компонента и всех типов/хуков, которые должны быть
+- [ ] В `src/test-stpr-ui-kit.ts` добавлены импорты и экспорты для компонента и всех типов/хуков, которые должны быть
   публичными.
 - [ ] Создана папка `src/stories/<ComponentName>/` и файл `<ComponentName>.stories.tsx`.
 - [ ] В стори заданы `meta` (title, component, tags, parameters.docs, argTypes, args), `export default meta`, одна или

@@ -1,0 +1,97 @@
+@use "../../styles/global" as styles;
+
+.viewImageModal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  max-width: 350px;
+  height: fit-content;
+  background-color: styles.$color-white;
+
+  &_loading {
+    opacity: 0;
+  }
+
+  @include styles.respond-to(sm) {
+    max-width: 740px;
+  }
+
+  @include styles.respond-to(xl) {
+    max-width: 825px;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    opacity: 1;
+    @include styles.transition-all-ease-in-out(300ms);
+
+    &_loading {
+      opacity: 0;
+    }
+
+    &_error {
+      display: none;
+    }
+  }
+
+  &__spinner {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__errorWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    min-width: 350px;
+    gap: 16px;
+
+    @include styles.respond-to(sm) {
+      padding: 32px;
+      gap: 24px;
+      min-width: 400px;
+    }
+  }
+
+  &__errorIcon {
+    width: 48px;
+    height: 48px;
+    color: styles.$color-accent-red;
+  }
+
+  &__layer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__closeButton {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+
+    & :global {
+      & .stpr-icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @include styles.respond-to(sm) {
+      right: 24px;
+      top: 24px;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@use "../../styles/global" as styles;
+
+.spIcon {
+  @include styles.starting-style-appearance();
+}

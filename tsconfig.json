@@ -20,7 +20,7 @@
     "moduleResolution": "bundler",
     "paths": {
       "@components/*": [
-        "./lib/components/*"
+        "./src/components/*"
       ]
     },
     "allowImportingTsExtensions": true,
@@ -37,7 +37,6 @@
   },
   "include": [
     "src",
-    "lib",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",
     ".storybook",

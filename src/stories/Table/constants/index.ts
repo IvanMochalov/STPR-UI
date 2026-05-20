@@ -1,4 +1,4 @@
-import { TColumn } from "../../../../lib/components/Table";
+import type { TColumn } from "@components/Table";
 
 export interface SampleRow {
   key: string;

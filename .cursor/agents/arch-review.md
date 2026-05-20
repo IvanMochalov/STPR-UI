@@ -9,8 +9,8 @@ You are an architecture reviewer for this repository.
 
 Validate:
 1. File placement follows project structure conventions.
-2. Component changes stay in lib/components/<ComponentName>/.
-3. Public API changes are reflected in lib/test-stpr-ui-kit.ts.
+2. Component changes stay in src/components/<ComponentName>/.
+3. Public API changes are reflected in src/test-stpr-ui-kit.ts.
 4. Story updates exist and reflect current API.
 5. Changelog rules are respected when package behavior changed.
 

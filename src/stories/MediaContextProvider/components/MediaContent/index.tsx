@@ -1,6 +1,5 @@
+import { IMediaContext, MediaContext } from "@components/MediaContextProvider";
 import { useContext } from "react";
-
-import { IMediaContext, MediaContext } from "../../../../../lib/components/MediaContextProvider";
 
 export const MediaContent = () => {
   const { device } = useContext<IMediaContext>(MediaContext);

@@ -1,0 +1,45 @@
+@use "../../styles/global" as styles;
+
+.spContextMenu {
+  font-family: styles.$main-font;
+  font-weight: 400;
+  margin: 0;
+  display: flex;
+  padding: 8px 0;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid styles.$color-accent-blue;
+  background-color: styles.$color-white;
+  @include styles.starting-style-appearance();
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 24px;
+    font-size: 16px;
+    line-height: 120%;
+    gap: 12px;
+
+    &:hover {
+      background-color: styles.$color-secondary-blue-light;
+    }
+
+    & :global {
+      & .stpr-icon {
+        color: styles.$color-accent-blue;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &_deleteItem {
+      & :global {
+        & .stpr-icon {
+          color: styles.$color-accent-red;
+        }
+      }
+    }
+  }
+}

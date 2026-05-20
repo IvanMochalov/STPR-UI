@@ -6,14 +6,12 @@ import svgr from "vite-plugin-svgr";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import { peerDependencies } from "./package.json";
 
-const libRoot = resolve(__dirname, "lib");
-
 // https://vitejs.dev/config/ — плоский dist: один ESM entry + CSS + типы (+ public: fonts, components-assets).
 export default defineConfig({
   base: "/",
   resolve: {
     alias: {
-      "@components": resolve(__dirname, "lib/components"),
+      "@components": resolve(__dirname, "src/components"),
     },
   },
   build: {
@@ -21,7 +19,7 @@ export default defineConfig({
     emptyOutDir: true,
     copyPublicDir: true,
     lib: {
-      entry: resolve(libRoot, "test-stpr-ui-kit.ts"),
+      entry: resolve(__dirname, "src/test-stpr-ui-kit.ts"),
       name: "test-stpr-ui-kit",
       formats: ["es"],
       fileName: "test-stpr-ui-kit",
@@ -39,7 +37,7 @@ export default defineConfig({
     dts({
       tsconfigPath: "tsconfig.json",
       insertTypesEntry: true,
-      include: ["lib/**/*.ts", "lib/**/*.tsx"],
+      include: ["src/components/**/*.ts", "src/components/**/*.tsx", "src/test-stpr-ui-kit.ts"],
       outDir: "dist",
       rollupTypes: true,
     }),

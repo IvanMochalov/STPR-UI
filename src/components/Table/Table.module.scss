@@ -1,0 +1,156 @@
+@use "sass:color";
+@use "../../styles/global" as styles;
+
+.tableWrapperRoot {
+  position: relative;
+
+  &_hasError {
+    outline: 1px solid styles.$color-accent-red;
+  }
+
+  &__errorTooltip {
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 0;
+  }
+}
+
+.tableWrapper {
+  width: 100%;
+  @include styles.custom-scrollbar(styles.$color-frost-blue);
+  @include styles.starting-style-appearance();
+}
+
+.table {
+  $block: &;
+
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  & th, td {
+    text-align: start;
+    color: styles.$color-table-font;
+    font-family: styles.$main-font;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  & tr:hover {
+    & td {
+      background-color: styles.$color-very-light-blue-bg-2;
+    }
+  }
+
+  & th {
+    padding: 12px 16px;
+    background-color: styles.$color-very-light-gray-background;
+    font-weight: 500;
+  }
+
+  &__tdContent {
+    display: block;
+    padding: 18px 16px;
+    @include styles.inherit-font-style;
+    @include styles.starting-style-appearance();
+  }
+
+  &__controlWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &__control {
+      color: styles.$color-accent-blue;
+      cursor: pointer;
+      @include styles.starting-style-appearance();
+
+      &_disabled {
+        color: styles.$color-steel-gray;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__loadingWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 60px;
+  }
+
+  &__noDataWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color: styles.$color-gray-1;
+    font-style: italic;
+  }
+
+  // Стили для сортировки
+  &__sortableHeader {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: styles.$color-gray-4;
+      & #{$block}__sortIcon {
+        color: styles.$color-accent-blue;
+      }
+    }
+  }
+
+  &__headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+  }
+
+  &__sortIcon {
+    font-size: 16px;
+    line-height: 1;
+    color: styles.$color-gray-2;
+    font-weight: bold;
+  }
+
+  //Default Styles
+  &--variant-default {
+    & th, td {
+      border: 1px solid styles.$color-secondary-blue-light-dark;
+    }
+  }
+
+  //ZNP Styles
+  &--variant-znp {
+    & th, td {
+      border-bottom: 1px solid styles.$color-secondary-blue-light-dark;
+    }
+
+    #{$block}__tdContent {
+      color: styles.$color-black;
+      font-weight: 500;
+    }
+  }
+}
+
+// Стили для тултипов (из main.module.scss), используемые в Table
+.tooltip {
+  $block: &;
+  padding: 8px 12px !important;
+
+  &_hasError {
+    background-color: styles.$color-red-3-transparent-10;
+
+    #{$block}__content {
+      color: styles.$color-red-2;
+    }
+  }
+
+  &__content {
+    font-size: 12px;
+  }
+}

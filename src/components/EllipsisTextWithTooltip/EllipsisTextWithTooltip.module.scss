@@ -1,0 +1,15 @@
+@use "../../styles/global" as styles;
+
+.ellipsisTextWithTooltip {
+  $block: &;
+  width: 100%;
+  position: relative;
+
+  &_inheritFontStyles {
+    @include styles.inherit-font-style;
+  }
+
+  &__tooltip {
+    width: 100%;
+  }
+}

@@ -66,7 +66,7 @@ description: Оркестрация разработки компонентны�
 
 1. `planner` -> детальный план.
 2. `arch-review` -> подтверждение плана или корректировки.
-3. `implementer` -> изменения в `lib/components/**` и `lib/test-stpr-ui-kit.ts` (если нужен публичный экспорт).
+3. `implementer` -> изменения в `src/components/**` и `src/test-stpr-ui-kit.ts` (если нужен публичный экспорт).
 4. `documenter` -> обновление `src/stories/**`, `src/documentation/**`, `CHANGELOG.md` (если релевантно).
 5. `test-runner` -> запуск quality gates.
 6. `debugger` -> исправления при падении quality gates, затем повтор шага 5.
@@ -85,7 +85,7 @@ description: Оркестрация разработки компонентны�
 Ограничения:
 - Соблюдай правила из .cursor/rules/*.
 - Для компонентных задач соблюдай цепочку:
-  lib/components -> lib/test-stpr-ui-kit.ts -> src/stories -> CHANGELOG.md -> quality gates.
+  src/components -> src/test-stpr-ui-kit.ts -> src/stories -> CHANGELOG.md -> quality gates.
 - Критерий готовности: npm run lint, npm run build:lib, npm run build:storybook проходят.
 
 Работай через роли planner, arch-review, implementer, documenter, test-runner, debugger, review, verifier.

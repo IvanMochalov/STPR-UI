@@ -17,8 +17,8 @@ When invoked:
 
 For this repository, include in plan when applicable:
 
-- component code in lib/components/<ComponentName>/
-- public exports in lib/test-stpr-ui-kit.ts
+- component code in src/components/<ComponentName>/
+- public exports in src/test-stpr-ui-kit.ts
 - stories in src/stories/<ComponentName>/
 - changelog update in CHANGELOG.md
 - quality gates: npm run lint, npm run build:lib, npm run build:storybook
