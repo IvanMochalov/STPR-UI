@@ -92,12 +92,23 @@ const fixCssModuleAssets = async (distDir: string): Promise<void> => {
 export const libDistPostprocess = (
   distDir: string,
   barrelFileName = "test-stpr-ui-kit.js",
-): Plugin => ({
-  name: "vite-plugin-lib-dist-postprocess",
-  apply: "build",
-  enforce: "post",
-  async closeBundle() {
-    await fixCssModuleAssets(distDir);
-    await rewriteBarrel(join(distDir, barrelFileName));
-  },
-});
+): Plugin => {
+  let isLibBuild = false;
+
+  return {
+    name: "vite-plugin-lib-dist-postprocess",
+    apply: "build",
+    enforce: "post",
+    configResolved(config) {
+      isLibBuild = Boolean(config.build?.lib);
+    },
+    async closeBundle() {
+      if (!isLibBuild) {
+        return;
+      }
+
+      await fixCssModuleAssets(distDir);
+      await rewriteBarrel(join(distDir, barrelFileName));
+    },
+  };
+};
