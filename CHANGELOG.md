@@ -20,6 +20,7 @@
 - `Accordion`: добавлена настройка размера через `size: "md" | "xl"`;
 - `IfcPreview`: карточка предпросмотра IFC с оверлеем (просмотр, Upload, Trash); 3D в `Layer` через `IfcViewer`;
 - `IfcViewer`: автономный 3D-просмотр IFC по `url`; внутри — загрузка файла, web-ifc, Three.js, `Spinner` с прогрессом;
+- Пакет: subpath `test-stpr-ui-kit/styles/tokens.css` — токены дизайн-системы подключаются явно в приложении.
 
 ### Changed
 
@@ -41,11 +42,13 @@
 - `Input`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Label`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Select`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- Пакет: сборка `dist/` — плоский артефакт как раньше: один ESM `test-stpr-ui-kit.js`, `test-stpr-ui-kit.css`,
-  единый `test-stpr-ui-kit.es.d.ts` (`rollupTypes`), без UMD; зависимости из `dependencies` в бандле, наружу — только
-  peer'ы;
-  динамический импорт IFC вшит в основной чанк (`inlineDynamicImports`); содержимое `public/` копируется в `dist` при
-  сборке.
+- Пакет: ESM-сборка с `preserveModules` — в `dist/` отдельные модули по компонентам; у потребителя работает
+  tree-shaking: импорт `{ Button }` из корня пакета подтягивает только нужный код и CSS компонента, а не всю библиотеку;
+  корневой `test-stpr-ui-kit.js` — barrel из re-export'ов;
+- Пакет: стили компонентов — отдельный `.css` на модуль (side-effect при импорте); `react`, `react-dom`, peer- и
+  runtime-зависимости из `package.json` не попадают в `dist/` (`external`);
+- Пакет: типы — `tsc -p tsconfig.lib.json` → `dist/test-stpr-ui-kit.d.ts` и зеркало структуры `src/components`;
+- Пакет: содержимое `public/` (шрифты, `components-assets`, wasm) копируется в `dist/` при сборке.
 
 ### Removed
 

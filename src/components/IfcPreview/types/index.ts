@@ -13,7 +13,7 @@ export type IIfcPreviewProps = {
    * `true` — только просмотр по `url`, без загрузки и удаления с диска.
    * `false` — просмотр, загрузка файла (Upload) и удаление (Trash) при наличии модели.
    */
-  readonly: boolean;
+  readonly?: boolean;
 
   /**
    * URL IFC-модели (HTTP(S) или `blob:`). Передаётся в `IfcViewer` при открытии просмотра.

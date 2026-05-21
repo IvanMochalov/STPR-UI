@@ -17,18 +17,20 @@
     "dist"
   ],
   "sideEffects": [
-    "*.css"
+    "**/*.css",
+    "**/*.scss"
   ],
   "main": "./dist/test-stpr-ui-kit.js",
   "module": "./dist/test-stpr-ui-kit.js",
-  "types": "./dist/test-stpr-ui-kit.es.d.ts",
+  "types": "./dist/test-stpr-ui-kit.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/test-stpr-ui-kit.es.d.ts",
+      "types": "./dist/test-stpr-ui-kit.d.ts",
       "import": "./dist/test-stpr-ui-kit.js",
       "default": "./dist/test-stpr-ui-kit.js"
-    }
+    },
+    "./styles/tokens.css": "./dist/styles/include-tokens.css"
   },
   "peerDependencies": {
     "react": "^16.9.0 || ^17 || ^18 || ^19",
@@ -39,7 +41,7 @@
   "scripts": {
     "postinstall": "node scripts/copy-web-ifc-wasm.mjs",
     "build:ignore-tsc": "vite build",
-    "build:lib": "node scripts/inline-changelog.js && tsc && vite build",
+    "build:lib": "node scripts/inline-changelog.js && tsc && vite build && node scripts/build-tokens-css.mjs && tsc -p tsconfig.lib.json",
     "changelog:update": "node scripts/inline-changelog.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

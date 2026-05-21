@@ -1,126 +1,53 @@
-// Включение include-tokens в бандл (для объявления переменных)
-import "./styles/include-tokens.scss";
-
-import { Accordion } from "@components/Accordion";
-import { ApplyButtons } from "@components/ApplyButtons";
-import { AuthProtected } from "@components/AuthProtected";
-import { BaseTooltip } from "@components/BaseTooltip";
-import { Breadcrumb, type TCrumbItem } from "@components/Breadcrumb";
-import { Button } from "@components/Button";
-import type { TOnChangeCheckbox } from "@components/Checkbox";
-import { Checkbox } from "@components/Checkbox";
-import { Confirm } from "@components/Confirm";
-import type { TContextMenuOption } from "@components/ContextMenu";
-import { ContextMenu } from "@components/ContextMenu";
-import type { TOnChangeDatePicker } from "@components/DatePicker";
-import { DatePicker } from "@components/DatePicker";
-import type { TOnChangeDatePickerInput } from "@components/DatePickerInput";
-import { DatePickerInput } from "@components/DatePickerInput";
-import { DefaultDropzone } from "@components/DefaultDropzone";
-import type { TDropdownListItem } from "@components/Dropdown";
-import { Dropdown } from "@components/Dropdown";
-import { EllipsisTextWithTooltip } from "@components/EllipsisTextWithTooltip";
-import { Form } from "@components/Form";
-import { EIconName, Icon } from "@components/Icons";
-import type { IIfcPreviewProps } from "@components/IfcPreview";
-import { IfcPreview } from "@components/IfcPreview";
-import type { IIfcViewerProps } from "@components/IfcViewer";
-import { IfcViewer } from "@components/IfcViewer";
-import type { IInputProps, TOnBlurInput, TOnChangeInput } from "@components/Input";
-import { Input } from "@components/Input";
-import { Label } from "@components/Label";
-import { Layer } from "@components/Layer";
-import { MediaContext, MediaContextProvider } from "@components/MediaContextProvider";
-import { Modal, useModal } from "@components/Modal";
-import { Portal } from "@components/Portal";
-import { ProgressWrapper, useAnimatedValue } from "@components/ProgressWrapper";
-import type {
-  ISelectProps,
-  TOnBlurSelect,
-  TOnChangeSelect,
-  TSelectOption,
-} from "@components/Select";
-import { Select } from "@components/Select";
-import { Skeleton } from "@components/Skeleton";
-import { Spinner } from "@components/Spinner";
-import type { TableProps, TClickOnCellAction, TColumn } from "@components/Table";
-import { Table, useTableActions } from "@components/Table";
-import type { TabsProps, TPaneItem } from "@components/Tabs";
-import { Tabs } from "@components/Tabs";
-import { Text } from "@components/Text";
-import type { ITextareaProps, TOnChangeTextarea } from "@components/Textarea";
-import { Textarea } from "@components/Textarea";
-import { TextWithLabel } from "@components/TextWithLabel";
-import { ETooltipPosition, InfoTooltip, Tooltip } from "@components/Tooltip";
-import type { IUploadFilesProps } from "@components/UploadFiles";
-import { UploadFiles } from "@components/UploadFiles";
-import { ViewImageModal } from "@components/ViewImageModal";
-
+export { Accordion } from "./components/Accordion";
+export { ApplyButtons } from "./components/ApplyButtons";
+export { AuthProtected } from "./components/AuthProtected";
+export { BaseTooltip } from "./components/BaseTooltip";
+export { Breadcrumb, type TCrumbItem } from "./components/Breadcrumb";
+export { Button } from "./components/Button";
+export { Checkbox, type TOnChangeCheckbox } from "./components/Checkbox";
+export { Confirm } from "./components/Confirm";
+export { ContextMenu, type TContextMenuOption } from "./components/ContextMenu";
+export { DatePicker, type TOnChangeDatePicker } from "./components/DatePicker";
+export { DatePickerInput, type TOnChangeDatePickerInput } from "./components/DatePickerInput";
+export { DefaultDropzone } from "./components/DefaultDropzone";
+export { Dropdown, type TDropdownListItem } from "./components/Dropdown";
+export { EllipsisTextWithTooltip } from "./components/EllipsisTextWithTooltip";
+export { Form } from "./components/Form";
+export { EIconName, Icon } from "./components/Icons";
+export { IfcPreview, type IIfcPreviewProps } from "./components/IfcPreview";
+export { IfcViewer, type IIfcViewerProps } from "./components/IfcViewer";
 export {
-  Accordion,
-  ApplyButtons,
-  AuthProtected,
-  BaseTooltip,
-  Breadcrumb,
-  Button,
-  Checkbox,
-  Confirm,
-  ContextMenu,
-  DatePicker,
-  DatePickerInput,
-  DefaultDropzone,
-  Dropdown,
-  EIconName,
-  EllipsisTextWithTooltip,
-  ETooltipPosition,
-  Form,
-  Icon,
-  IfcPreview,
-  IfcViewer,
-  IIfcPreviewProps,
-  IIfcViewerProps,
-  IInputProps,
-  InfoTooltip,
+  type IInputProps,
   Input,
-  ISelectProps,
-  ITextareaProps,
-  IUploadFilesProps,
-  Label,
-  Layer,
-  MediaContext,
-  MediaContextProvider,
-  Modal,
-  Portal,
-  ProgressWrapper,
+  type TOnBlurInput,
+  type TOnChangeInput,
+} from "./components/Input";
+export { Label } from "./components/Label";
+export { Layer } from "./components/Layer";
+export { MediaContext, MediaContextProvider } from "./components/MediaContextProvider";
+export { Modal, useModal } from "./components/Modal";
+export { Portal } from "./components/Portal";
+export { ProgressWrapper, useAnimatedValue } from "./components/ProgressWrapper";
+export {
+  type ISelectProps,
   Select,
-  Skeleton,
-  Spinner,
+  type TOnBlurSelect,
+  type TOnChangeSelect,
+  type TSelectOption,
+} from "./components/Select";
+export { Skeleton } from "./components/Skeleton";
+export { Spinner } from "./components/Spinner";
+export {
   Table,
-  TableProps,
-  Tabs,
-  TabsProps,
-  TClickOnCellAction,
-  TColumn,
-  TContextMenuOption,
-  TCrumbItem,
-  TDropdownListItem,
-  Text,
-  Textarea,
-  TextWithLabel,
-  TOnBlurInput,
-  TOnBlurSelect,
-  TOnChangeCheckbox,
-  TOnChangeDatePicker,
-  TOnChangeDatePickerInput,
-  TOnChangeInput,
-  TOnChangeSelect,
-  TOnChangeTextarea,
-  Tooltip,
-  TPaneItem,
-  TSelectOption,
-  UploadFiles,
-  useAnimatedValue,
-  useModal,
+  type TableProps,
+  type TClickOnCellAction,
+  type TColumn,
   useTableActions,
-  ViewImageModal,
-};
+} from "./components/Table";
+export { Tabs, type TabsProps, type TPaneItem } from "./components/Tabs";
+export { Text } from "./components/Text";
+export { type ITextareaProps, Textarea, type TOnChangeTextarea } from "./components/Textarea";
+export { TextWithLabel } from "./components/TextWithLabel";
+export { ETooltipPosition, InfoTooltip, Tooltip } from "./components/Tooltip";
+export { type IUploadFilesProps,UploadFiles } from "./components/UploadFiles";
+export { ViewImageModal } from "./components/ViewImageModal";

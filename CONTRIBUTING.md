@@ -83,17 +83,22 @@ export type { ModalProps } from "./types";
 
 Все публичные API библиотеки задаются в **`src/test-stpr-ui-kit.ts`**.
 
-1. **Добавить импорты** в начало файла:
-    - компоненты: `import { ComponentName } from "./components/ComponentName";`
-    - типы: `import type { TSomeType, ISomeProps } from "./components/ComponentName";`
-    - хуки: `import { useSomeHook } from "./components/ComponentName";`
-    - enum/константы: `import { ESomeEnum } from "./components/ComponentName";`
+Добавляйте только **re-export** (без отдельных `import` в начале файла) — так Rollup и потребительский bundler лучше
+отсекают неиспользуемые модули:
 
-2. **Добавить экспорты** в блок `export { ... }`:
-    - компоненты, хуки, enum — как значение;
-    - типы и интерфейсы — тоже в том же блоке (в TypeScript они будут видны как типы при `import type`).
+```ts
+export { ComponentName } from "./components/ComponentName";
+export type { TSomeType, ISomeProps } from "./components/ComponentName";
+export { useSomeHook } from "./components/ComponentName";
+```
 
-Путь импорта всегда от корня `lib`: `"./components/<ComponentName>"` — при этом подтягивается `index.ts` этой папки.
+- компоненты, хуки, enum — как значение;
+- типы — через `export type { ... }` или `export { type ... }` в одной строке с компонентом.
+
+Путь всегда `"./components/<ComponentName>"` — резолвится в `index.ts` папки компонента.
+
+После `npm run build:lib` entry в `dist/test-stpr-ui-kit.js` пересобирается плагином `libDistPostprocess` в цепочку
+`export … from` для ESM-потребителей.
 
 ---
 
@@ -115,7 +120,14 @@ export type { ModalProps } from "./types";
 
 `import { ComponentName, type SomeProps } from "@components/ComponentName";`
 
-В опубликованном приложении используйте имя npm-пакета, например `test-stpr-ui-kit`.
+В опубликованном приложении используйте имя npm-пакета `test-stpr-ui-kit`:
+
+```tsx
+import "test-stpr-ui-kit/styles/tokens.css"; // один раз в entry приложения
+import { ComponentName } from "test-stpr-ui-kit";
+```
+
+Подробнее для потребителей: **Storybook → Documentation → Introduction** и шпаргалка **Documentation → Cheat sheets → Package usage**.
 
 ### Структура стори-файла
 
@@ -234,8 +246,7 @@ decorators: [
 - [ ] Создана папка `src/components/<ComponentName>/`.
 - [ ] Добавлены `ComponentName.tsx`, `ComponentName.module.scss`, `types/index.ts`, `index.ts`.
 - [ ] В `index.ts` экспортированы компонент и нужные типы (и хуки, если есть).
-- [ ] В `src/test-stpr-ui-kit.ts` добавлены импорты и экспорты для компонента и всех типов/хуков, которые должны быть
-  публичными.
+- [ ] В `src/test-stpr-ui-kit.ts` добавлены re-export для компонента и всех типов/хуков, которые должны быть публичными.
 - [ ] Создана папка `src/stories/<ComponentName>/` и файл `<ComponentName>.stories.tsx`.
 - [ ] В стори заданы `meta` (title, component, tags, parameters.docs, argTypes, args), `export default meta`, одна или
   несколько именованных стори.
@@ -251,3 +262,17 @@ decorators: [
   Components/Docs.
 
 После этого компонент доступен из пакета `test-stpr-ui-kit` и документирован в Storybook.
+
+---
+
+## 6. Документация для потребителей пакета
+
+Актуальные инструкции по установке и использованию в приложении:
+
+| Где | Содержание |
+|-----|------------|
+| **README.md** (корень репо) | Краткий quick start: токены, импорт компонентов, peer deps |
+| **Documentation → Introduction** | Полное руководство: токены, компоненты, шрифты, Vite + link, IFC-ассеты |
+| **Documentation → Cheat sheets → Package usage** | Чеклист для потребителя |
+
+При изменении публичного способа подключения стилей или entry API обновляйте эти разделы вместе с `package.json` `exports`.

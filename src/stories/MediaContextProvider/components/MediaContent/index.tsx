@@ -10,7 +10,7 @@ export const MediaContent = () => {
         display: "flex",
         alignItems: "center",
         gap: "24px",
-        fontFamily: "ALSHauss",
+        fontFamily: "ALS_Hauss",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>

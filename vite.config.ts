@@ -1,12 +1,22 @@
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
-import { peerDependencies } from "./package.json";
+import { dependencies, peerDependencies } from "./package.json";
+import { libDistPostprocess } from "./scripts/vite-plugin-lib-dist-postprocess";
 
-// https://vitejs.dev/config/ — плоский dist: один ESM entry + CSS + типы (+ public: fonts, components-assets).
+const distDir = resolve(__dirname, "dist");
+
+const externalDeps = [
+  "react",
+  "react/jsx-runtime",
+  "react-dom",
+  ...Object.keys(peerDependencies),
+  ...Object.keys(dependencies),
+];
+
+// ESM library: preserveModules для tree-shaking у потребителя + per-component CSS (+ public assets).
 export default defineConfig({
   base: "/",
   resolve: {
@@ -25,22 +35,14 @@ export default defineConfig({
       fileName: "test-stpr-ui-kit",
     },
     rollupOptions: {
-      external: ["react/jsx-runtime", ...Object.keys(peerDependencies)],
+      external: (id) =>
+        externalDeps.some((dep) => id === dep || id.startsWith(`${dep}/`)),
       output: {
-        inlineDynamicImports: true,
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        entryFileNames: "[name].js",
       },
     },
   },
-  plugins: [
-    react(),
-    svgr(),
-    dts({
-      tsconfigPath: "tsconfig.json",
-      insertTypesEntry: true,
-      include: ["src/components/**/*.ts", "src/components/**/*.tsx", "src/test-stpr-ui-kit.ts"],
-      outDir: "dist",
-      rollupTypes: true,
-    }),
-    libInjectCss(),
-  ],
+  plugins: [react(), svgr(), libInjectCss(), libDistPostprocess(distDir)],
 });
