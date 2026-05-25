@@ -54,11 +54,6 @@ export const Modal: React.FC<ModalProps> = (props) => {
     [styles[`modalWrapper__closeButton--size-${size}`]]: size,
   });
 
-  const classNameButtonIconContainer = cx({
-    [styles.modalWrapper__closeButtonIconContainer]: true,
-    [styles[`modalWrapper__closeButtonIconContainer--size-${size}`]]: size,
-  });
-
   const classNameContent = cx({
     [styles.modalWrapper__content]: true,
     [styles.modalWrapper__content_disabled]: disabled,
@@ -104,7 +99,6 @@ export const Modal: React.FC<ModalProps> = (props) => {
         {isVisibleCloseButton && onClose && (
           <Button
             classNameRoot={classNameCloseButton}
-            classNameIconContainerRoot={classNameButtonIconContainer}
             onClick={onClose}
             startIconName={EIconName.Close}
             variant={"link"}

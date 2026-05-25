@@ -41,9 +41,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
               <span title={text} className={styles.spBreadcrumb__listItem__text} onClick={onClick}>
                 {text}
               </span>
-              <div className={styles.spBreadcrumb__listItem__separator}>
-                <Icon name={EIconName.SelectChevronDown} rotate={-90} />
-              </div>
+              <Icon
+                name={EIconName.SelectChevronDown}
+                rotate={-90}
+                className={styles.spBreadcrumb__listItem__separator}
+              />
             </li>
           );
         })}

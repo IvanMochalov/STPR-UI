@@ -1,4 +1,5 @@
-@use "../../styles/global" as styles;
+@use "../../styles/mixins" as mixins;
+@use "../../styles/colors" as outdated_colors;
 
 .datePicker {
   $block: &;
@@ -6,7 +7,7 @@
   flex-direction: column;
   width: 100%;
   user-select: none;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 
   &_relative {
     position: relative;
@@ -21,14 +22,14 @@
   &__navigationWrapper {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: var(--spui-spacing-6x);
   }
 
   &__navigation {
     display: flex;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: var(--spui-icon-size-base);
+    height: var(--spui-icon-size-base);
     cursor: pointer;
 
     &_previous {
@@ -38,17 +39,17 @@
 
   &__error {
     padding-top: 8px;
-    font-family: styles.$main-font;
-    font-weight: 400;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
     font-size: 12px;
-    color: styles.$color-accent-red;
+    color: var(--spui-color-text-error);
 
     &_absolutePosition {
       position: absolute;
       top: 100%;
     }
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 14px;
     }
   }
@@ -65,11 +66,11 @@
     cursor: pointer;
 
     &_clear {
-      color: styles.$color-accent-red;
+      color: var(--spui-color-icon-error);
     }
 
     &_done {
-      color: styles.$color-gray-14;
+      color: outdated_colors.$color-gray-14;
     }
   }
 
@@ -78,11 +79,11 @@
     border: none;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    font-family: styles.$main-font;
-    padding: 24px;
+    gap: var(--spui-spacing-3x);
+    font-family: var(--spui-font-family-main), serif;
+    padding: var(--spui-spacing-6x);
     box-shadow: 0 4px 32px 0 #13131314;
-    background-color: styles.$color-white;
+    background-color: var(--spui-color-surface-default);
   }
 
   & :global {
@@ -103,33 +104,33 @@
     }
 
     & .react-datepicker__day-name {
-      color: styles.$color-gray-1;
+      color: var(--spui-color-text-secondary);
 
     }
 
     & .react-datepicker__day, .react-datepicker__day-name {
-      margin: 0;
+      margin: var(--spui-spacing-none);
       width: 42px;
       font-size: 18px;
       line-height: 42px;
       box-sizing: content-box;
-      border: 2px solid transparent;
+      border: var(--spui-border-width-md) solid var(--spui-color-surface-transparent);
     }
 
     & .react-datepicker__day {
-      color: styles.$color-black;
-      font-weight: 400;
-      @include styles.transition-all-ease-in-out(200ms);
+      color: var(--spui-color-text-primary);
+      font-weight: var(--spui-font-weight-regular);
+      @include mixins.transition-all-ease-in-out(200ms);
 
       &--disabled,
       &--outside-month {
-        color: styles.$color-gray-1;
+        color: var(--spui-color-text-secondary);
       }
 
       &--today {
-        border: 2px solid styles.$color-accent-blue;
-        background-color: transparent;
-        color: styles.$color-accent-blue;
+        border: var(--spui-border-width-md) solid var(--spui-color-border-action);
+        background-color: var(--spui-color-surface-transparent);
+        color: var(--spui-color-text-action);
 
         &:focus,
         &:focus-visible {
@@ -138,53 +139,54 @@
       }
 
       &--keyboard-selected {
-        color: styles.$color-accent-blue;
-        border-radius: 0;
-        background-color: styles.$color-secondary-blue-light-2;
-        border: 2px solid styles.$color-accent-blue;
+        color: var(--spui-color-text-action);
+        border-radius: var(--spui-border-radius-none);
+        background-color: var(--spui-color-surface-secondary);
+        border: var(--spui-border-width-md) solid var(--spui-color-border-action);
 
         &:focus-visible,
         &:hover {
-          background-color: styles.$color-frost-blue;
+          color: var(--spui-color-text-action) !important;
+          background-color: var(--spui-color-surface-secondary-hover);
         }
 
         &:active {
-          background-color: styles.$color-steel-gray;
+          background-color: var(--spui-color-surface-secondary-active);
         }
       }
 
       &--selected {
-        color: styles.$color-white;
-        border-radius: 0;
-        background-color: styles.$color-accent-blue;
-        border: 2px solid styles.$color-accent-blue;
+        color: var(--spui-color-text-on-action);
+        border-radius: var(--spui-border-radius-none);
+        background-color: var(--spui-color-surface-action);
+        border: var(--spui-border-width-md) solid var(--spui-color-border-action);
 
         &:focus-visible,
         &:hover {
-          background-color: styles.$color-aqua-blue;
-          border: 2px solid styles.$color-aqua-blue;
+          background-color: var(--spui-color-surface-action-hover);
+          border: var(--spui-border-width-md) solid var(--spui-color-border-action-hover);
         }
 
         &:active {
-          background-color: styles.$color-green-blue;
-          border: 2px solid styles.$color-green-blue;
+          background-color: var(--spui-color-surface-action-active);
+          border: var(--spui-border-width-md) solid var(--spui-color-border-action-active);
         }
 
         &:hover {
-          background-color: styles.$color-green-blue !important;
-          border-color: styles.$color-green-blue;
+          background-color: var(--spui-color-surface-action-active) !important;
+          border-color: var(--spui-color-border-action-active);
         }
       }
 
 
       &:hover {
-        border-radius: 0;
-        background-color: styles.$color-very-light-blue-bg-2;
+        border-radius: var(--spui-border-radius-none);
+        background-color: outdated_colors.$color-very-light-blue-bg-2;
       }
     }
 
     & .react-datepicker__month {
-      margin: 0;
+      margin: var(--spui-spacing-none);
     }
   }
 }
@@ -207,38 +209,37 @@
 
     & .react-datepicker__header--custom {
       padding: 0 0 16.5px 0;
-      background-color: transparent;
+      background-color: var(--spui-color-surface-transparent);
       border: none;
     }
 
     & .react-datepicker__day-name {
-      color: styles.$color-gray-1;
-
+      color: var(--spui-color-text-secondary);
     }
 
     & .react-datepicker__day, .react-datepicker__day-name {
-      margin: 0;
+      margin: var(--spui-spacing-none);
       width: 42px;
       font-size: 18px;
       line-height: 42px;
       box-sizing: content-box;
-      border: 2px solid transparent;
+      border: var(--spui-border-width-md) solid var(--spui-color-surface-transparent);
     }
 
     & .react-datepicker__day {
-      color: styles.$color-black;
-      font-weight: 400;
-      @include styles.transition-all-ease-in-out(200ms);
+      color: var(--spui-color-text-primary);
+      font-weight: var(--spui-font-weight-regular);
+      @include mixins.transition-all-ease-in-out(200ms);
 
       &--disabled,
       &--outside-month {
-        color: styles.$color-gray-1;
+        color: var(--spui-color-text-secondary);
       }
 
       &--today {
-        border: 2px solid styles.$color-accent-blue;
-        background-color: transparent;
-        color: styles.$color-accent-blue;
+        border: var(--spui-border-width-md) solid var(--spui-color-border-action);
+        background-color: var(--spui-color-surface-transparent);
+        color: var(--spui-color-text-action);
 
         &:focus,
         &:focus-visible {
@@ -247,53 +248,54 @@
       }
 
       &--keyboard-selected {
-        color: styles.$color-accent-blue;
-        border-radius: 0;
-        background-color: styles.$color-secondary-blue-light-2;
-        border: 2px solid styles.$color-accent-blue;
+        color: var(--spui-color-text-action);
+        border-radius: var(--spui-border-radius-none);
+        background-color: var(--spui-color-surface-secondary);
+        border: var(--spui-border-width-md) solid var(--spui-color-border-action);
 
         &:focus-visible,
         &:hover {
-          background-color: styles.$color-frost-blue;
+          color: var(--spui-color-text-action) !important;
+          background-color: var(--spui-color-surface-secondary-hover);
         }
 
         &:active {
-          background-color: styles.$color-steel-gray;
+          background-color: var(--spui-color-surface-secondary-active);
         }
       }
 
       &--selected {
-        color: styles.$color-white;
-        border-radius: 0;
-        background-color: styles.$color-accent-blue;
-        border: 2px solid styles.$color-accent-blue;
+        color: var(--spui-color-text-on-action);
+        border-radius: var(--spui-border-radius-none);
+        background-color: var(--spui-color-surface-action);
+        border: var(--spui-border-width-md) solid var(--spui-color-border-action);
 
         &:focus-visible,
         &:hover {
-          background-color: styles.$color-aqua-blue;
-          border: 2px solid styles.$color-aqua-blue;
+          background-color: var(--spui-color-surface-action-hover);
+          border: var(--spui-border-width-md) solid var(--spui-color-border-action-hover);
         }
 
         &:active {
-          background-color: styles.$color-green-blue;
-          border: 2px solid styles.$color-green-blue;
+          background-color: var(--spui-color-surface-action-active);
+          border: var(--spui-border-width-md) solid var(--spui-color-border-action-active);
         }
 
         &:hover {
-          background-color: styles.$color-green-blue !important;
-          border-color: styles.$color-green-blue;
+          background-color: var(--spui-color-surface-action-active) !important;
+          border-color: var(--spui-color-border-action-active);
         }
       }
 
 
       &:hover {
-        border-radius: 0;
-        background-color: styles.$color-very-light-blue-bg-2;
+        border-radius: var(--spui-border-radius-none);
+        background-color: outdated_colors.$color-very-light-blue-bg-2;
       }
     }
 
     & .react-datepicker__month {
-      margin: 0;
+      margin: var(--spui-spacing-none);
     }
   }
 }

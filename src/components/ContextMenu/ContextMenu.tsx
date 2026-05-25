@@ -17,20 +17,26 @@ export const ContextMenu: React.FC<ContextMenuProps> = (props) => {
     <ul className={classNameRoot}>
       {options?.map((option) => {
         const isDeleteControl = option.key === "delete";
+
         return (
           <li
             key={option.key}
-            className={cx({
-              [styles.spContextMenu__item]: true,
-              [styles.spContextMenu__item_deleteItem]: isDeleteControl,
-            })}
+            className={styles.spContextMenu__item}
             onClick={() => {
               if (onClickItem) {
                 onClickItem(option);
               }
             }}
           >
-            {option?.iconName && <Icon name={option.iconName} />}
+            {option?.iconName && (
+              <Icon
+                name={option.iconName}
+                className={cx({
+                  [styles.spContextMenu__item__icon]: true,
+                  [styles.spContextMenu__item__icon_delete]: isDeleteControl,
+                })}
+              />
+            )}
             {option.label}
           </li>
         );

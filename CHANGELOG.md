@@ -31,22 +31,27 @@
   end-иконка продолжает отображаться;
 - `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (
   `disabled`, `hover`, `active`) и размеров;
-- `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами;
 - `Accordion`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `ApplyButtons`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `BaseTooltip`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Breadcrumb`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами;
 - `Checkbox`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Tabs`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Tabs`: обновлены размеры и поведение вариантов по токенам — высота tab-элементов теперь фиксируется
-  через size-токены (`md`/`xl`) без расхождения между контейнером и элементами;
+- `ContextMenu`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `DatePicker`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `DatePickerInput`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Dropdown`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Form`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Input`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Label`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Select`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Tabs`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
+- `Tabs`: обновлены размеры и поведение вариантов по токенам — высота tab-элементов теперь фиксируется
+  через size-токены (`md`/`xl`) без расхождения между контейнером и элементами;
 - Пакет: ESM-сборка с `preserveModules` — в `dist/` отдельные модули по компонентам; у потребителя работает
   tree-shaking: импорт `{ Button }` из корня пакета подтягивает только нужный код и CSS компонента, а не всю библиотеку;
   корневой `test-stpr-ui-kit.js` — barrel из re-export'ов;
-- Пакет: стили компонентов — отдельный `.css` на модуль (side-effect при импорте); `react`, `react-dom`, peer- и
-  runtime-зависимости из `package.json` не попадают в `dist/` (`external`);
+- Пакет: стили компонентов — отдельный `.css` на модуль (side-effect при импорте);
 - Пакет: типы — `tsc -p tsconfig.lib.json` → `dist/test-stpr-ui-kit.d.ts` и зеркало структуры `src/components`;
 - Пакет: содержимое `public/` (шрифты, `components-assets`, wasm) копируется в `dist/` при сборке.
 
@@ -54,6 +59,7 @@
 
 - Пакет: артефакт UMD/CommonJS (`test-stpr-ui-kit.umd.cjs`) и поле `exports.require`; поддерживается только ESM.
 - `Button`: удален prop `color` и тип `TButtonColor`;
+- `Button`: удален prop `classNameIconContainerRoot`;
 - `Button`: удалены `iconName`, `icon`, `iconPosition` и тип `TButtonIconPosition` (вместо них используйте
   `startIconName`/`endIconName`);
 - `Button`: удален `iconRotate` (вместо него используйте `startIconRotate`/`endIconRotate`);

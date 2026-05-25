@@ -172,13 +172,6 @@ const meta: Meta<typeof Button> = {
         type: { summary: "string" },
       },
     },
-    classNameIconContainerRoot: {
-      description: "Дополнительный CSS-класс для контейнера иконки",
-      control: false,
-      table: {
-        type: { summary: "string" },
-      },
-    },
   },
 };
 

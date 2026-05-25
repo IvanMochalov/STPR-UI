@@ -20,6 +20,7 @@
   &__listItem {
     $listItem: &;
     display: flex;
+    align-items: center;
     flex-direction: row;
     gap: var(--spui-spacing-1x);
 
@@ -30,14 +31,10 @@
     }
 
     &__separator {
-      display: flex;
-      align-items: center;
       color: var(--spui-color-text-primary);
-
-      & :global .stpr-icon {
-        width: var(--spui-scale-3x);
-        height: var(--spui-scale-3x);
-      }
+      flex-shrink: 0;
+      width: var(--spui-scale-4x);
+      height: var(--spui-scale-4x);
     }
 
     &__text {

@@ -23,7 +23,6 @@ export interface ButtonProps extends React.PropsWithChildren {
   endIconName?: EIconName;
   classNameRoot?: string;
   classNameTextRoot?: string;
-  classNameIconContainerRoot?: string;
   startIconRotate?: number;
   endIconRotate?: number;
 }

@@ -19,7 +19,7 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
     ...(propsClassNameRoot && { [propsClassNameRoot]: true }),
   });
 
-  const spinnerElement = (
+  const getSpinnerElement = () => (
     <div
       className={classNameRoot}
       aria-label={loadingText ? undefined : "Loading"}
@@ -29,7 +29,7 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
   );
 
   if (!loadingText) {
-    return spinnerElement;
+    return getSpinnerElement();
   }
 
   const classNameSpinnerTextLine = cx({
@@ -40,7 +40,7 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
 
   return (
     <div className={styles.spinnerWithText}>
-      {spinnerElement}
+      {getSpinnerElement()}
       <div className={classNameSpinnerTextLine} aria-live="polite">
         <span className={styles.spinnerWithText__text}>{loadingText}</span>
         <span className={styles.spinnerWithText__dots} aria-hidden="true">

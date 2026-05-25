@@ -13,20 +13,20 @@
 
   &_addMargin {
     &.spForm--size-lg {
-      --form-gap: 32px;
+      --form-gap: var(--spui-spacing-8x);
       gap: var(--form-gap);
 
       @include styles.respond-to(sm) {
-        --form-gap: 48px;
+        --form-gap: var(--spui-spacing-12x);
       }
     }
 
     &.spForm--size-md {
-      --form-gap: 24px;
+      --form-gap: var(--spui-spacing-6x);
       gap: var(--form-gap);
 
       @include styles.respond-to(sm) {
-        --form-gap: 32px;
+        --form-gap: var(--spui-spacing-8x);
       }
     }
   }

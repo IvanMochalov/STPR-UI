@@ -147,7 +147,7 @@
   &__iconContainer {
     display: flex;
 
-    & :global .stpr-icon {
+    &__icon {
       width: var(--spui-icon-size-base);
       height: var(--spui-icon-size-base);
       flex-shrink: 0;

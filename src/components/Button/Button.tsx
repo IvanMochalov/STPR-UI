@@ -26,7 +26,6 @@ export const Button: React.FC<ButtonProps> = (props) => {
     noPadding = false,
     classNameRoot: propsClassNameRoot,
     classNameTextRoot: propsClassNameTextRoot,
-    classNameIconContainerRoot: propsClassNameIconContainerRoot,
   } = props;
 
   const _onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,7 +38,6 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   const classNameIconContainer = cx({
     [styles.spButton__iconContainer]: true,
-    ...(propsClassNameIconContainerRoot && { [propsClassNameIconContainerRoot]: true }),
   });
 
   const classNameText = cx({
@@ -60,7 +58,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
     return (
       <div className={classNameIconContainer}>
-        <Icon name={iconName} rotate={iconRotate} />
+        <Icon
+          name={iconName}
+          rotate={iconRotate}
+          className={styles.spButton__iconContainer__icon}
+        />
       </div>
     );
   };
