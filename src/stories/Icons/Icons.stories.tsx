@@ -189,7 +189,7 @@ export const CustomColors: Story = {
         <div key={color} className={styles.iconCard}>
           <Icon {...args} color={color} />
           <Text classNameRoot={styles.iconCard__iconName}>{label}</Text>
-          <Text style={{ fontSize: "12px", fontFamily: "monospace" }}>{color}</Text>
+          <Text classNameRoot={styles.iconCard__colorCode}>{color}</Text>
         </div>
       ))}
     </div>

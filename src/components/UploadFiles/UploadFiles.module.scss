@@ -1,4 +1,5 @@
-@use "../../styles/global" as styles;
+@use "../../styles/mixins" as mixins;
+@use "../../styles/colors" as outdated_colors;
 
 .spUploadFiles {
   $block: &;
@@ -9,12 +10,12 @@
   width: 100%;
   min-width: 280px;
   height: 100%;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 
   &_error {
     & #{$block}__control {
-      border-color: styles.$color-accent-red;
-      color: styles.$color-accent-red;
+      border-color: var(--spui-color-border-error);
+      color: var(--spui-color-icon-error);
     }
   }
 
@@ -29,13 +30,13 @@
 
   &__fileName {
     &_dragError {
-      color: styles.$color-accent-red;
+      color: var(--spui-color-text-error);
     }
   }
 
   &__startIcon {
     &_error {
-      color: styles.$color-accent-red;
+      color: var(--spui-color-icon-error);
     }
   }
 
@@ -66,7 +67,7 @@
       #{$block}__placeholder {
         font-size: 16px;
 
-        @include styles.respond-to(sm) {
+        @include mixins.respond-to(sm) {
           font-size: 18px;
         }
       }
@@ -84,44 +85,45 @@
       #{$block}__control {
         justify-content: center;
         height: 100%;
-        padding: 24px 48px;
+        padding: var(--spui-spacing-6x) var(--spui-spacing-12x);
         min-height: 190px;
 
-        @include styles.respond-to(sm) {
+        @include mixins.respond-to(sm) {
           padding: 32px 84px;
         }
       }
 
       #{$block}__control_loading {
-        $start-color: styles.$color-gray-3;
-        $end-color: styles.$color-white;
+        // TODO need seed and mapped tokens
+        $start-color: outdated_colors.$color-gray-3;
+        $end-color: var(--spui-color-surface-default);
         background-image: linear-gradient(
-                        90deg,
-                        $start-color 0%,
-                        $end-color 50%,
-                        $start-color 100%
+                90deg,
+                $start-color 0%,
+                $end-color 50%,
+                $start-color 100%
         );
         background-size: 200% 100%;
         animation: shimmer 2s infinite ease-in-out;
       }
 
       #{$block}__placeholder {
-        font-family: styles.$title-font;
+        font-family: var(--spui-font-family-title), serif;
+        font-weight: var(--spui-font-weight-medium);
         font-size: 20px;
-        font-weight: 500;
 
-        @include styles.respond-to(sm) {
+        @include mixins.respond-to(sm) {
           font-size: 24px;
         }
       }
 
       #{$block}__fileName {
         text-align: center;
-        font-family: styles.$title-font;
+        font-family: var(--spui-font-family-title), serif;
+        font-weight: var(--spui-font-weight-medium);
         font-size: 20px;
-        font-weight: 500;
 
-        @include styles.respond-to(sm) {
+        @include mixins.respond-to(sm) {
           font-size: 24px;
         }
       }
@@ -136,14 +138,14 @@
     min-height: 44px;
     display: flex;
     align-items: center;
-    color: styles.$color-gray-1;
-    background-color: styles.$color-white;
-    border: 1px dashed styles.$color-gray-1;
-    gap: 12px;
+    color: var(--spui-color-icon-disabled);
+    background-color: var(--spui-color-surface-default);
+    border: var(--spui-border-width-sm) dashed var(--color-gray);
+    gap: var(--spui-spacing-3x);
     cursor: pointer;
-    @include styles.transition-all-ease-in-out(200ms);
+    @include mixins.transition-all-ease-in-out(200ms);
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       padding: 16px;
       min-height: 56px;
     }
@@ -151,7 +153,7 @@
 
   &:not(#{$block}_fileUploaded, #{$block}_disabled) {
     & #{$block}__control:hover {
-      border-color: styles.$color-secondary-blue-light-2
+      border-color: var(--color-light-blue);
     }
   }
 
@@ -165,17 +167,17 @@
   &_fileUploaded {
     & #{$block}__control {
       cursor: default;
-      color: styles.$color-black;
+      color: var(--spui-color-icon-primary);
     }
   }
 
   &__fileNamesList {
-    margin: 0;
-    padding: 0;
+    margin: var(--spui-spacing-none);
+    padding: var(--spui-spacing-none);
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: var(--spui-spacing-6x);
     width: 100%;
     min-width: 240px;
 
@@ -190,7 +192,7 @@
 
     #{$block}__fileNamesListItem {
       width: 100%;
-      @include styles.starting-style-appearance();
+      @include mixins.starting-style-appearance();
 
       @container file-list-container (min-width: calc(170px * 2 + 24px)) {
         width: calc((100cqw - 24px) / 2);
@@ -208,29 +210,30 @@
 
   &__fileNamesListItem {
     position: relative;
-    gap: 10px;
+    gap: var(--spui-spacing-2x);
     display: flex;
     align-items: flex-start;
-    padding: 16px;
-    background-color: styles.$color-alice-blue;
+    padding: var(--spui-spacing-4x);
+    background-color: var(--spui-color-surface-page);
 
     &__iconContainer {
       display: flex;
-      color: styles.$color-accent-blue;
+      color: var(--spui-color-icon-action);
       flex-shrink: 0;
 
       & :global {
         & .stpr-icon {
-          height: 32px;
-          width: 32px;
+          height: var(--spui-icon-size-xl);
+          width: var(--spui-icon-size-xl);
         }
       }
 
       &_error :global {
+        color: var(--spui-color-icon-error);
+
         & .stpr-icon {
-          color: styles.$color-accent-red;
-          height: 28px;
-          width: 28px;
+          height: var(--spui-icon-size-lg);
+          width: var(--spui-icon-size-lg);
         }
       }
     }
@@ -239,7 +242,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: var(--spui-spacing-1x);
       overflow: hidden;
     }
 
@@ -253,20 +256,21 @@
     }
 
     &__fileNameTooltip {
-      padding: 8px !important;
+      padding: var(--spui-spacing-2x) !important;
     }
 
     &__description {
       font-size: 12px;
       line-height: 1;
-      color: styles.$color-gray-60;
+      // TODO need seed and mapped tokens
+      color: outdated_colors.$color-gray-60;
 
       &__tooltipContent {
-        padding: 8px !important;
+        padding: var(--spui-spacing-2x) !important;
       }
 
       &_error {
-        color: styles.$color-accent-red;
+        color: var(--spui-color-text-error);
       }
     }
   }
@@ -276,29 +280,31 @@
     position: absolute;
     right: -10px;
     top: -10px;
-    color: styles.$color-black;
-    background-color: styles.$color-black-15;
+    color: var(--spui-color-text-primary);
+    // TODO need seed and mapped tokens
+    background-color: outdated_colors.$color-black-15;
     padding: 6px;
     width: fit-content;
     border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    @include styles.transition-all-ease-in-out(200ms);
+    @include mixins.transition-all-ease-in-out(200ms);
 
     &_error {
-      color: styles.$color-black;
+      color: var(--spui-color-text-primary);
     }
 
     & :global {
       & .stpr-icon {
-        width: 16px;
-        height: 16px;
+        width: var(--spui-icon-size-xs);
+        height: var(--spui-icon-size-xs);
       }
     }
 
     &:hover {
-      background-color: styles.$color-black-32;
+      // TODO need seed and mapped tokens
+      background-color: outdated_colors.$color-black-32;
     }
   }
 
@@ -319,20 +325,20 @@
 
     & :global {
       & .stpr-icon {
-        width: 20px;
-        height: 20px;
+        width: var(--spui-icon-size-sm);
+        height: var(--spui-icon-size-sm);
       }
     }
   }
 
   &__error {
-    padding-top: 8px;
-    font-family: styles.$main-font;
-    font-weight: 400;
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
     font-size: 12px;
-    color: styles.$color-accent-red;
+    color: var(--spui-color-text-error);
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 14px;
     }
   }

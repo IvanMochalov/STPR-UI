@@ -12,13 +12,13 @@
   &_size-md {
     --spui-input-control-font-size: 16px;
     --spui-input-error-font-size: 12px;
-    --spui-input-control-height: var(--spui-input-control-height-md);
+    --spui-input-control-height: var(--spui-control-height-md);
   }
 
   &_size-xl {
     --spui-input-control-font-size: 18px;
     --spui-input-error-font-size: 14px;
-    --spui-input-control-height: var(--spui-input-control-height-xl);
+    --spui-input-control-height: var(--spui-control-height-xl);
   }
 
   // Модификаторы

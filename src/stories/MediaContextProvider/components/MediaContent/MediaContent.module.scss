@@ -1,0 +1,33 @@
+@use "/src/styles/global" as styles;
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--spui-font-family-main), serif;
+}
+
+.deviceRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+
+  &_activeDesktop {
+    background-color: #4caf50;
+  }
+
+  &_activeTablet {
+    background-color: #2196f3;
+  }
+
+  &_activeMobile {
+    background-color: #ff9800;
+  }
+}

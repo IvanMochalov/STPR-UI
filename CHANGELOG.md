@@ -24,6 +24,7 @@
 
 ### Changed
 
+- Внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам во все компоненты;
 - `ViewImageModal`: при ошибке загрузки основного `src` по умолчанию подставляется запасное изображение из
   `public/components-assets/` (в артефакте сборки — `dist/components-assets/ViewImageModal/fallBackSrc.jpeg`); при
   нестандартном `base` приложения задайте `fallbackSrc` вручную; отключение подмены — `fallbackSrc=""`;
@@ -31,21 +32,6 @@
   end-иконка продолжает отображаться;
 - `Button`: обновлены визуальные стили для всех вариантов (`primary`, `secondary`, `text`, `link`), состояний (
   `disabled`, `hover`, `active`) и размеров;
-- `Accordion`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `ApplyButtons`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `BaseTooltip`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Breadcrumb`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Button`: обновлены размеры иконок и поведение `isOnlyIcon`/`noPadding` в сочетании с размерами;
-- `Checkbox`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `ContextMenu`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `DatePicker`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `DatePickerInput`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Dropdown`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Form`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Input`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Label`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Select`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
-- `Tabs`: внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам;
 - `Tabs`: обновлены размеры и поведение вариантов по токенам — высота tab-элементов теперь фиксируется
   через size-токены (`md`/`xl`) без расхождения между контейнером и элементами;
 - Пакет: ESM-сборка с `preserveModules` — в `dist/` отдельные модули по компонентам; у потребителя работает

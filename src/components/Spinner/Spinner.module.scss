@@ -1,4 +1,4 @@
-@use "../../styles/global" as styles;
+@use "../../styles/mixins" as mixins;
 
 .spinner {
   --spinner-size: 24px;
@@ -10,7 +10,7 @@
   position: relative;
   animation: spinner-rotate 1s linear infinite;
   flex-shrink: 0;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 
   &::before {
     content: "";
@@ -82,10 +82,10 @@
     display: block;
     text-align: center;
     overflow-wrap: break-word;
-    font-family: styles.$main-font;
-    font-weight: 400;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
     line-height: 120%;
-    color: styles.$color-black;
+    color: var(--spui-color-text-primary);
     font-size: var(--spinner-text-size);
 
     &--size {
@@ -117,14 +117,14 @@
     align-items: baseline;
     gap: 0.05em;
 
-    @include styles.inherit-font-style;
+    @include mixins.inherit-font-style;
   }
 
   &__dot {
     display: inline-block;
     animation: spinner-dot-wave 1.2s ease-in-out infinite both;
 
-    @include styles.inherit-font-style;
+    @include mixins.inherit-font-style;
 
     &::after {
       content: ".";
@@ -133,12 +133,15 @@
     &:nth-child(1) {
       animation-delay: 0s;
     }
+
     &:nth-child(2) {
       animation-delay: 0.15s;
     }
+
     &:nth-child(3) {
       animation-delay: 0.3s;
     }
+
     &:nth-child(4) {
       animation-delay: 0.45s;
     }

@@ -1,16 +1,16 @@
-@use "../../styles/global" as styles;
+@use "../../styles/mixins" as mixins;
 
 .spText {
   $block: &;
   display: inline-block;
-  font-family: styles.$main-font;
-  font-weight: 400;
+  font-family: var(--spui-font-family-main), serif;
+  font-weight: var(--spui-font-weight-regular);
   font-size: 16px;
   line-height: 120%;
   white-space: normal;
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 
-  @include styles.respond-to(sm) {
+  @include mixins.respond-to(sm) {
     font-size: 18px;
   }
 
@@ -22,59 +22,59 @@
   }
 
   &_type-h1 {
-    font-family: styles.$title-font;
-    font-weight: 700;
+    font-family: var(--spui-font-family-title), serif;
+    font-weight: var(--spui-font-weight-bold);
     font-size: 28px;
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 48px;
     }
   }
 
   &_type-h3 {
-    font-family: styles.$title-font;
-    font-weight: 700;
+    font-family: var(--spui-font-family-title), serif;
+    font-weight: var(--spui-font-weight-bold);
     font-size: 24px;
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 28px;
     }
 
-    @include styles.respond-to(lg) {
+    @include mixins.respond-to(lg) {
       font-size: 36px;
     }
   }
 
   &_type-p1 {
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 20px;
     }
   }
 
   &_type-p2 {
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 16px;
     }
   }
 
   &_type-description {
     font-size: 14px;
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 16px;
     }
   }
 
   &_type-link {
-    font-weight: 500;
+    color: var(--spui-color-text-action);
     font-size: 16px;
-    color: styles.$color-accent-blue;
+    font-weight: var(--spui-font-weight-medium);
 
-    @include styles.respond-to(sm) {
+    @include mixins.respond-to(sm) {
       font-size: 18px;
     }
 
     &:hover {
-      color: styles.$color-accent-blue;
+      color: var(--spui-color-text-action);
     }
   }
 

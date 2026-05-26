@@ -1,0 +1,16 @@
+.customHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #d63384;
+}
+
+.customHeaderTitle {
+  font-weight: bold;
+}
+
+.buttonsRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

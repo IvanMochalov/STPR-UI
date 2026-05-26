@@ -117,6 +117,7 @@ const meta: Meta<typeof Spinner> = {
   args: {
     size: "md",
     color: "#036bfd",
+    loadingText: "",
   },
 };
 
@@ -170,14 +171,7 @@ export const CustomColors: Story = {
   name: "Spinner with Custom Colors",
   render: () => {
     return (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "24px",
-          padding: "20px",
-        }}
-      >
+      <div className={styles.customColorsGrid}>
         <div className={styles.listItemWrapper}>
           <Spinner color="#036bfd" />
           <Text type={"description"} classNameRoot={styles.listItemWrapper__description}>

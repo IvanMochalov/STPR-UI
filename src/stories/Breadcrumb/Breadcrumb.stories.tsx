@@ -3,6 +3,8 @@ import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
 
+import styles from "./BreadcrumbStories.module.scss";
+
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
@@ -188,7 +190,7 @@ export const InteractiveBreadcrumb: Story = {
     }, [currentPage]);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div className={styles.interactiveColumn}>
         <Breadcrumb {...args} crumbsList={crumbList} />
         <Text type={"description"} color={"#666"}>
           Текущая страница: {currentPage}

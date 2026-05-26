@@ -6,6 +6,8 @@ import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 
+import styles from "./ConfirmStories.module.scss";
+
 const meta: Meta<typeof Confirm> = {
   title: "Components/Confirm",
   component: Confirm,
@@ -527,9 +529,9 @@ export const CustomHeaderContent: Story = {
   args: {
     zIndex: 1000,
     header: (
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#d63384" }}>
+      <div className={styles.customHeader}>
         <Icon name={EIconName.WarningColor} />
-        <Text style={{ fontWeight: "bold" }}>Важное предупреждение</Text>
+        <Text classNameRoot={styles.customHeaderTitle}>Важное предупреждение</Text>
       </div>
     ),
     subHeader:
@@ -556,7 +558,7 @@ export const MultipleConfirms: Story = {
     const { modalData, onOpenModal, onCloseModal } = useModal();
 
     return (
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+      <div className={styles.buttonsRow}>
         <Button onClick={() => onOpenModal({ isOpenFirstConfirm: true })}>
           Простое подтверждение
         </Button>

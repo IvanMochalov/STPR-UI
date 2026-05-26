@@ -3,6 +3,8 @@ import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 
+import styles from "./CheckboxStories.module.scss";
+
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
   component: Checkbox,
@@ -293,7 +295,7 @@ export const SizesComparison: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div className={styles.sizesColumn}>
         <Checkbox
           name="large"
           size="lg"
@@ -335,7 +337,7 @@ export const AllStates: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div className={styles.statesColumn}>
         <Checkbox
           name="normal"
           label="Обычный чекбокс"

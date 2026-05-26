@@ -1,6 +1,8 @@
 import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import styles from "./TextStories.module.scss";
+
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
   component: Text,
@@ -145,9 +147,7 @@ const meta: Meta<typeof Text> = {
   },
   render: (args) => {
     return (
-      <div
-        style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "20px" }}
-      >
+      <div className={styles.typesColumn}>
         <Text {...args} type={"h1"}>
           {`${args.children} with type="h1"`}
         </Text>
@@ -188,7 +188,7 @@ export const WithEllipsis: Story = {
     isEllipsis: true,
   },
   render: (args) => (
-    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+    <div className={styles.ellipsisBox}>
       <Text {...args} />
     </div>
   ),
@@ -227,7 +227,7 @@ export const AllTypes: Story = {
     children: "Пример текста",
   },
   render: (args) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "500px" }}>
+    <div className={styles.allTypesColumn}>
       <Text {...args} type="h1">
         Заголовок H1 - Главный заголовок
       </Text>

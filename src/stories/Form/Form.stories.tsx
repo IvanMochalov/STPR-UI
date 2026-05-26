@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { OKRUG_OPTIONS } from "../constants";
-import mainStyles from "../Stories.module.scss";
+import styles from "./FormStories.module.scss";
 
 const meta: Meta<typeof Form> = {
   title: "Components/Form",
@@ -139,10 +139,8 @@ const meta: Meta<typeof Form> = {
   },
   decorators: [
     (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <div style={{ width: "600px", maxWidth: "100%" }}>
-          <Story />
-        </div>
+      <div className={styles.decoratorWrapper}>
+        <Story />
       </div>
     ),
   ],

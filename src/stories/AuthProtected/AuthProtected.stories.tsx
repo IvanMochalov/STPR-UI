@@ -143,7 +143,7 @@ export const Default: Story = {
         <div className={styles.contentWrapper}>
           <Text type="h3">Защищенный контент</Text>
           <Text>Этот контент доступен только авторизованным пользователям</Text>
-          <div style={{ marginTop: "20px" }}>
+          <div className={styles.actionSection}>
             <Button onClick={() => setIsNotAuth(true)}>Сымитировать отсутствие авторизации</Button>
           </div>
         </div>
@@ -170,7 +170,7 @@ export const CustomMessage: Story = {
         <div className={styles.contentWrapper}>
           <Text type="h3">Премиум контент</Text>
           <Text>Этот раздел доступен только зарегистрированным пользователям</Text>
-          <div style={{ marginTop: "20px" }}>
+          <div className={styles.actionSection}>
             <Button onClick={() => setIsNotAuth(true)}>Сымитировать отсутствие авторизации</Button>
           </div>
         </div>

@@ -4,6 +4,7 @@
 .spBaseTooltip {
   $block: &;
   background-color: var(--spui-color-surface-default);
+  // TODO need seed and mapped tokens
   box-shadow: 0 10px 45px 0 outdated_colors.$color-rgba-19-15;
   width: max-content;
   max-width: 300px;

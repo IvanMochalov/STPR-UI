@@ -30,3 +30,10 @@
   color: styles.$color-accent-blue;
   font-size: 20px;
 }
+
+.customColorsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 20px;
+}

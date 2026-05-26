@@ -1,10 +1,8 @@
 import { Text } from "@components/Text";
 import { UploadFiles } from "@components/UploadFiles";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import cx from "clsx";
 import React, { useState } from "react";
 
-import mainStyles from "../Stories.module.scss";
 import styles from "./UploadFilesStories.module.scss";
 
 const meta: Meta<typeof UploadFiles> = {
@@ -328,7 +326,7 @@ const [formData, setFormData] = useState({
   },
   decorators: [
     (Story) => (
-      <div className={cx(mainStyles.storyWrapper, styles.localStoryWrapper)}>
+      <div className={styles.localStoryWrapper}>
         <Story />
       </div>
     ),

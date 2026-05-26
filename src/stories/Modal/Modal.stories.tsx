@@ -7,6 +7,8 @@ import { Modal, useModal } from "@components/Modal";
 import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import styles from "./ModalStories.module.scss";
+
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
@@ -527,7 +529,7 @@ export const WithoutCloseButton: Story = {
         <Button onClick={() => onOpenModal({})}>Открыть окно</Button>
         {isOpen && (
           <Modal {...args} onClose={onCloseModal}>
-            <div style={{ marginTop: "20px", textAlign: "center" }}>
+            <div className={styles.footerActions}>
               <Button onClick={onCloseModal}>Закрыть модальное окно</Button>
             </div>
           </Modal>
@@ -562,8 +564,8 @@ export const CustomHeader: Story = {
   args: {
     children: "Заголовок этого модального окна реализован как кастомный React-компонент.",
     header: (
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#007bff" }}>
-        <span style={{ fontSize: "24px", fontWeight: "bold" }}>⚡</span>
+      <div className={styles.customHeader}>
+        <span className={styles.customHeaderIcon}>⚡</span>
         <span>Кастомный заголовок</span>
       </div>
     ),
@@ -587,7 +589,7 @@ export const SizesComparison: Story = {
     const { modalData, onOpenModal, onCloseModal } = useModal();
 
     return (
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      <div className={styles.sizesComparisonRow}>
         <Button onClick={() => onOpenModal({ isOpenMd: true })}>Открыть Medium (600px)</Button>
         <Button onClick={() => onOpenModal({ isOpenLg: true })}>Открыть Large (920px)</Button>
 

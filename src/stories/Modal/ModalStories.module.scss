@@ -1,5 +1,28 @@
 @use "/src/styles/global" as styles;
 
 .scrollableContent {
-  @include styles.custom-scrollbar()
+  @include styles.custom-scrollbar();
+}
+
+.footerActions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.customHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: styles.$color-accent-blue;
+}
+
+.customHeaderIcon {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sizesComparisonRow {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }

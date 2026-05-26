@@ -70,6 +70,7 @@
     }
 
     &_done {
+      // TODO need seed and mapped tokens
       color: outdated_colors.$color-gray-14;
     }
   }
@@ -181,6 +182,7 @@
 
       &:hover {
         border-radius: var(--spui-border-radius-none);
+        // TODO need seed and mapped tokens
         background-color: outdated_colors.$color-very-light-blue-bg-2;
       }
     }
@@ -290,6 +292,7 @@
 
       &:hover {
         border-radius: var(--spui-border-radius-none);
+        // TODO need seed and mapped tokens
         background-color: outdated_colors.$color-very-light-blue-bg-2;
       }
     }

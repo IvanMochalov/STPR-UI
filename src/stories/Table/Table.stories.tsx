@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import { defaultColumns, SampleRow } from "./constants";
 import { defaultTableData } from "./constants";
+import styles from "./TableStories.module.scss";
 
 const TableSampleRow = Table as ComponentType<TableProps<SampleRow>>;
 
@@ -459,9 +460,7 @@ export const WithCustomRenderCell: Story = {
         title: "Кол-во",
         width: 80,
         renderCell: (row) => (
-          <span style={{ fontWeight: 600, color: "var(--color-accent-blue, #036bfd)" }}>
-            {row.count ?? "—"}
-          </span>
+          <span className={styles.countCellHighlight}>{row.count ?? "—"}</span>
         ),
       },
       { key: "description", title: "Описание" },

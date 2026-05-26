@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { OKRUG_OPTIONS } from "../constants";
-import mainStyles from "../Stories.module.scss";
+import styles from "./SelectStories.module.scss";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
@@ -312,10 +312,8 @@ const [formData, setFormData] = useState({
   },
   decorators: [
     (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <div style={{ width: "400px", marginTop: "80px" }}>
-          <Story />
-        </div>
+      <div className={styles.decoratorWrapper}>
+        <Story />
       </div>
     ),
   ],
@@ -582,7 +580,7 @@ export const AbsolutePositionError: Story = {
     };
 
     return (
-      <div style={{ position: "relative", paddingBottom: "30px" }}>
+      <div className={styles.absoluteErrorWrapper}>
         <Select
           {...args}
           name={"fieldWithError"}

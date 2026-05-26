@@ -23,3 +23,15 @@
     font-weight: 500;
   }
 }
+
+.fluidHeightWrapper {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fluidHeightDemoContainer {
+  height: 200px;
+  border: 1px dashed #ccc;
+  padding: 8px;
+}

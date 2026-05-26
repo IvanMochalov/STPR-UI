@@ -1,50 +1,32 @@
 import { IMediaContext, MediaContext } from "@components/MediaContextProvider";
 import { useContext } from "react";
 
+import styles from "./MediaContent.module.scss";
+
 export const MediaContent = () => {
   const { device } = useContext<IMediaContext>(MediaContext);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "24px",
-        fontFamily: "ALS_Hauss",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+    <div className={styles.root}>
+      <div className={styles.deviceRow}>
         <div
-          style={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: device.isDesktop ? "#4CAF50" : "#E0E0E0",
-          }}
+          className={`${styles.indicator} ${
+            device.isDesktop ? styles.indicator_activeDesktop : ""
+          }`}
         />
         <span>Desktop</span>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div className={styles.deviceRow}>
         <div
-          style={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: device.isTablet ? "#2196F3" : "#E0E0E0",
-          }}
+          className={`${styles.indicator} ${device.isTablet ? styles.indicator_activeTablet : ""}`}
         />
         <span>Tablet</span>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div className={styles.deviceRow}>
         <div
-          style={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: device.isMobile ? "#FF9800" : "#E0E0E0",
-          }}
+          className={`${styles.indicator} ${device.isMobile ? styles.indicator_activeMobile : ""}`}
         />
         <span>Mobile</span>
       </div>

@@ -24,6 +24,7 @@
     gap: var(--spui-spacing-3x);
 
     &:hover {
+      // TODO need seed and mapped tokens
       background-color: outdated_colors.$color-secondary-blue-light;
     }
 

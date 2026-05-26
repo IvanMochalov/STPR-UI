@@ -1,0 +1,11 @@
+@use "/src/styles/global" as styles;
+
+.decoratorWrapper {
+  position: relative;
+  border: 1px dashed styles.$color-gray-1;
+  padding: 20px 40px;
+}
+
+.hintMuted {
+  color: styles.$color-gray-1;
+}

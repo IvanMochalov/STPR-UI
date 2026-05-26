@@ -722,10 +722,7 @@ export const FluidHeight: Story = {
     };
 
     return (
-      <div
-        className={styles.storiesWrapper}
-        style={{ height: "300px", display: "flex", flexDirection: "column" }}
-      >
+      <div className={`${styles.storiesWrapper} ${styles.fluidHeightWrapper}`}>
         <Textarea
           {...args}
           name={"fluidText"}
@@ -801,7 +798,7 @@ export const AutoSizeVsFluidHeight: Story = {
             <Text type={"description"} classNameRoot={styles.viewTextareaListItem__description}>
               Fluid Height режим (fluidHeight=true, autoSize автоматически отключается)
             </Text>
-            <div style={{ height: "200px", border: "1px dashed #ccc", padding: "8px" }}>
+            <div className={styles.fluidHeightDemoContainer}>
               <Textarea
                 name={"fluidHeightText"}
                 value={formData.fluidHeightText}

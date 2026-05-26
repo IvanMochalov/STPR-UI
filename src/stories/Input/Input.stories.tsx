@@ -539,7 +539,7 @@ export const WithPatternValidation: Story = {
     return (
       <div className={styles.storiesWrapper}>
         <Input {...args} name={"numbersOnly"} value={formData.numbersOnly} onChange={onChange} />
-        <Text type="description" style={{ marginTop: "8px", color: "#666" }}>
+        <Text type="description" classNameRoot={styles.patternHint}>
           Попробуйте ввести буквы - они не будут приниматься
         </Text>
       </div>

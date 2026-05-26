@@ -1,9 +1,7 @@
 import { DatePicker, type TOnChangeDatePicker } from "@components/DatePicker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import cx from "clsx";
 import { useState } from "react";
 
-import mainStyles from "../Stories.module.scss";
 import localStyles from "./DatePickerStories.module.scss";
 
 const meta: Meta<typeof DatePicker> = {
@@ -359,7 +357,7 @@ const [selectedDate, setSelectedDate] = useState(null);
   },
   decorators: [
     (Story) => (
-      <div className={cx(mainStyles.storyWrapper, localStyles.storiesWrapper)}>
+      <div className={localStyles.storiesWrapper}>
         <Story />
       </div>
     ),
