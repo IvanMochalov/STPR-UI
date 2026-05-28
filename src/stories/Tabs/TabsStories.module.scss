@@ -1,5 +1,3 @@
-@use "/src/styles/global" as styles;
-
 .complexTabsExample {
   display: flex;
   flex-direction: column;
@@ -7,7 +5,7 @@
 
   &__tabContentWrapper {
     padding: 20px;
-    border: 1px solid styles.$color-secondary-blue-light-dark;
+    border: 1px solid var(--spui-color-border-primary);
     border-radius: 8px;
   }
 }

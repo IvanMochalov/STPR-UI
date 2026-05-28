@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import * as sass from "sass";
 
 const root = join(fileURLToPath(new URL("..", import.meta.url)));
-const input = join(root, "src/styles/include-tokens.scss");
-const output = join(root, "dist/styles/include-tokens.css");
+const input = join(root, "src/styles/tokens.scss");
+const output = join(root, "dist/styles/tokens.css");
 
 const main = async () => {
   const result = sass.compile(input, {

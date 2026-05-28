@@ -1,8 +1,8 @@
 import { Text } from "@components/Text";
-import { ETooltipPosition,InfoTooltip } from "@components/Tooltip";
+import { ETooltipPosition, InfoTooltip } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import styles from "./InfoTooltip.module.scss";
+import styles from "./InfoTooltipStories.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
   title: "Components/InfoTooltip",

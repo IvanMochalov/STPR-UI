@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .layer {
   position: fixed;
@@ -7,8 +6,7 @@
   overflow: hidden;
   overflow-y: auto;
   z-index: 1400;
-  // TODO need seed and mapped tokens
-  background: outdated_colors.$color-black-70;
+  background: var(--spui-color-surface-mask);
   padding: 20px;
   @include mixins.starting-style-appearance();
   @include mixins.custom-scrollbar();

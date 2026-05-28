@@ -1,6 +1,3 @@
-@use "constants" as *;
-@use "colors" as *;
-
 @mixin respond-to($breakpoint) {
   @if $breakpoint == xs {
     @media only screen and (max-width: 767px) {
@@ -67,10 +64,10 @@
 }
 
 // Стили scrollbar для использования в компонентах
-@mixin custom-scrollbar($custom-track-background : $scrollbar-track-background) {
+@mixin custom-scrollbar($custom-track-background : var(--spui-color-surface-transparent)) {
   &::-webkit-scrollbar {
-    width: $scrollbar-width;
-    height: $scrollbar-width;
+    width: var(--spui-scrollbar-width);
+    height: var(--spui-scrollbar-width);
   }
 
   &::-webkit-scrollbar-track {
@@ -78,10 +75,10 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: $scrollbar-thumb-background;
+    background: var(--color-aqua-blue);
 
     &:hover {
-      background: $scrollbar-thumb-background-hover;
+      background: var(--color-accent-blue);
     }
   }
 }

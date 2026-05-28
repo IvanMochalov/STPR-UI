@@ -1,5 +1,3 @@
-@use "/src/styles/global" as styles;
-
 .textList {
   display: flex;
   flex-direction: column;
@@ -13,6 +11,6 @@
 
 .withEllipsis {
   width: 200px;
-  border: 1px solid styles.$color-secondary-blue-light-dark;
+  border: 1px solid var(--spui-color-border-primary);
   padding: 16px;
 }

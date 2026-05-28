@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .spCheckbox {
   $block: &;
@@ -53,8 +52,7 @@
       color: var(--spui-color-border-error);
 
       &:hover {
-        // TODO need seed and mapped tokens
-        color: outdated_colors.$color-red-2;
+        color: var(--spui-color-red-600);
       }
     }
 

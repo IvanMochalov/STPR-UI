@@ -16,12 +16,12 @@ const outPath = path.join(root, "src", "documentation", "Changelog.mdx");
 const changelog = fs.readFileSync(changelogPath, "utf-8");
 const { version } = JSON.parse(fs.readFileSync(packagePath, "utf-8"));
 
-const mdx = `import { Meta, Title } from "@storybook/addon-docs/blocks";
+const mdx = `import { Meta, Title, Subtitle } from "@storybook/addon-docs/blocks";
 
 <Meta title="Documentation/Changelog" />
 <Title>История версий</Title>
 
-Текущая версия пакета в репозитории: **${version}**.
+<Subtitle>Текущая версия пакета в репозитории: **${version}**.</Subtitle>
 
 Ниже — полная история изменений из \`CHANGELOG.md\`. По ней можно выбрать нужную версию для установки.
 

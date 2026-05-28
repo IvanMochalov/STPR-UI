@@ -1,11 +1,9 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .spBaseTooltip {
   $block: &;
   background-color: var(--spui-color-surface-default);
-  // TODO need seed and mapped tokens
-  box-shadow: 0 10px 45px 0 outdated_colors.$color-rgba-19-15;
+  box-shadow: 0 10px 45px 0 var(--spui-color-gray-300);
   width: max-content;
   max-width: 300px;
   position: absolute;

@@ -30,7 +30,7 @@
       "import": "./dist/test-stpr-ui-kit.js",
       "default": "./dist/test-stpr-ui-kit.js"
     },
-    "./styles/tokens.css": "./dist/styles/include-tokens.css"
+    "./styles/tokens.css": "./dist/styles/tokens.css"
   },
   "peerDependencies": {
     "react": "^16.9.0 || ^17 || ^18 || ^19",

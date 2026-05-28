@@ -1,6 +1,3 @@
-@use "/src/styles/global" as styles;
-
-
 .customStylesSkeletonWrapper {
   display: flex;
   flex-direction: column;
@@ -16,8 +13,8 @@
 
 .customStylesSkeleton {
   border-radius: 60px;
-  --start-color: #{styles.$color-accent-blue};
-  --end-color: #{styles.$color-secondary-blue-light-2};
+  --start-color: var(--color-accent-blue);
+  --end-color: var(--color-red);
 }
 
 .circleSkeletons {

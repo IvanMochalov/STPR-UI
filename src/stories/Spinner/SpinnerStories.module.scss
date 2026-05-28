@@ -1,5 +1,3 @@
-@use "/src/styles/global" as styles;
-
 .allSizesSpinnerWrapper {
   display: flex;
   align-items: center;
@@ -22,12 +20,12 @@
   gap: 8px;
 
   &__description {
-    color: styles.$color-gray-1;
+    color: var(--color-gray);
   }
 }
 
 .customLoadingText {
-  color: styles.$color-accent-blue;
+  color: var(--color-accent-blue);
   font-size: 20px;
 }
 

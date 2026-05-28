@@ -1,5 +1,5 @@
-@use "../../styles/global" as styles;
+@use "../../styles/mixins" as mixins;
 
 .spIcon {
-  @include styles.starting-style-appearance();
+  @include mixins.starting-style-appearance();
 }

@@ -4,7 +4,7 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
-## [1.0.0] — IN FUTURE (не опубликовано)
+## [1.0.0] — 2026-05-28
 
 ### Added
 
@@ -24,7 +24,7 @@
 
 ### Changed
 
-- Внедрены CSS Custom Properties с переходом от SCSS-переменных к mapped token-ам во все компоненты;
+- Внедрены CSS Custom Properties с переходом от SCSS-переменных к token-ам во все компоненты;
 - `ViewImageModal`: при ошибке загрузки основного `src` по умолчанию подставляется запасное изображение из
   `public/components-assets/` (в артефакте сборки — `dist/components-assets/ViewImageModal/fallBackSrc.jpeg`); при
   нестандартном `base` приложения задайте `fallbackSrc` вручную; отключение подмены — `fallbackSrc=""`;

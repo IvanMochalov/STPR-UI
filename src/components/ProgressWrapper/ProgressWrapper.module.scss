@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .progressWrapper {
   $block: &;
@@ -22,8 +21,7 @@
     &#{$block}--animated-backgroundProgress {
       background: linear-gradient(
               to right,
-                // TODO need seed and mapped tokens
-              outdated_colors.$color-very-light-blue-bg-3 var(--progress, 0%),
+              var(--spui-color-blue-50) var(--progress, 0%),
               var(--spui-color-surface-default) var(--progress, 0%)
       );
     }

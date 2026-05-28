@@ -1,7 +1,7 @@
-@use "/src/styles/global" as styles;
+@use "/src/styles/mixins" as mixins;
 
 .scrollableContent {
-  @include styles.custom-scrollbar();
+  @include mixins.custom-scrollbar();
 }
 
 .footerActions {
@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: styles.$color-accent-blue;
+  color: var(--color-accent-blue);
 }
 
 .customHeaderIcon {

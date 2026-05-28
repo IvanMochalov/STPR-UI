@@ -400,7 +400,7 @@ export const Default: Story = {
     };
 
     return (
-      <>
+      <div className={localStyles.defaultStoriesWrapper}>
         <DatePicker
           {...args}
           enablePortal={false}
@@ -415,7 +415,7 @@ export const Default: Story = {
           selected={formData.createAt}
           onChange={onChange}
         />
-      </>
+      </div>
     );
   },
 };

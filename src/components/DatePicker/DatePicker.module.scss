@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .datePicker {
   $block: &;
@@ -70,8 +69,7 @@
     }
 
     &_done {
-      // TODO need seed and mapped tokens
-      color: outdated_colors.$color-gray-14;
+      color: var(--spui-color-gray-500);
     }
   }
 
@@ -182,8 +180,7 @@
 
       &:hover {
         border-radius: var(--spui-border-radius-none);
-        // TODO need seed and mapped tokens
-        background-color: outdated_colors.$color-very-light-blue-bg-2;
+        background-color: var(--spui-color-blue-50);
       }
     }
 
@@ -292,8 +289,7 @@
 
       &:hover {
         border-radius: var(--spui-border-radius-none);
-        // TODO need seed and mapped tokens
-        background-color: outdated_colors.$color-very-light-blue-bg-2;
+        background-color: var(--spui-color-blue-50);
       }
     }
 

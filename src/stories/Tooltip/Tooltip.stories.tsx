@@ -238,7 +238,7 @@ export const Clickable: Story = {
     text: "Этот тултип появляется только по клику и закрывается при клике вне области",
     trigger: (
       <Text classNameRoot={cx(styles.clickableTooltipTrigger, styles.defaultTooltipTrigger)}>
-        Кликни на меня
+        Кликни по мне
       </Text>
     ),
   },

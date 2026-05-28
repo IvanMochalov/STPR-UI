@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .spContextMenu {
   font-family: var(--spui-font-family-main), serif;
@@ -24,8 +23,7 @@
     gap: var(--spui-spacing-3x);
 
     &:hover {
-      // TODO need seed and mapped tokens
-      background-color: outdated_colors.$color-secondary-blue-light;
+      background-color: var(--spui-color-blue-50);
     }
 
     &__icon {

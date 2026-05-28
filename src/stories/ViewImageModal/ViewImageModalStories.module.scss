@@ -1,7 +1,5 @@
-@use "/src/styles/global" as styles;
-
 .customViewImageModal {
-  border: 2px solid styles.$color-accent-blue;
+  border: 2px solid var(--color-accent-blue);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
 }

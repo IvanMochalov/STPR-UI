@@ -1,10 +1,9 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .skeleton {
   // Стандартные цвета
   // TODO need seed and mapped tokens
-  --start-color: #{outdated_colors.$color-gray-3};
+  --start-color: var(--spui-color-gray-100);
   --end-color: var(--spui-color-surface-default);
 
   background-color: var(--start-color);
@@ -26,7 +25,7 @@
   // Модификаторы для кастомных цветов
   &_customStart {
     // TODO need seed and mapped tokens
-    --start-color: var(--custom-start-color, #{outdated_colors.$color-gray-3});
+    --start-color: var(--custom-start-color, var(--spui-color-gray-100));
   }
 
   &_customEnd {

@@ -53,8 +53,6 @@ SomeComponent/
 - Импорт стилей: `import styles from "./ComponentName.module.scss"`.
 - Импорт типов из `./types`.
 - Импорт других компонентов библиотеки из `../ComponentName` (относительно текущей папки компонента).
-- Импорт глобальных стилей/переменных при необходимости из `@use "/src/styles/global"` или аналога (как в существующих
-  компонентах).
 
 ### `index.ts`
 
@@ -127,7 +125,8 @@ import "test-stpr-ui-kit/styles/tokens.css"; // один раз в entry при�
 import { ComponentName } from "test-stpr-ui-kit";
 ```
 
-Подробнее для потребителей: **Storybook → Documentation → Introduction** и шпаргалка **Documentation → Cheat sheets → Package usage**.
+Подробнее для потребителей: **Storybook → Documentation → Introduction** и шпаргалка **Documentation → Cheat sheets →
+Package usage**.
 
 ### Структура стори-файла
 
@@ -269,10 +268,11 @@ decorators: [
 
 Актуальные инструкции по установке и использованию в приложении:
 
-| Где | Содержание |
-|-----|------------|
-| **README.md** (корень репо) | Краткий quick start: токены, импорт компонентов, peer deps |
-| **Documentation → Introduction** | Полное руководство: токены, компоненты, шрифты, Vite + link, IFC-ассеты |
-| **Documentation → Cheat sheets → Package usage** | Чеклист для потребителя |
+| Где                                              | Содержание                                                              |
+|--------------------------------------------------|-------------------------------------------------------------------------|
+| **README.md** (корень репо)                      | Краткий quick start: токены, импорт компонентов, peer deps              |
+| **Documentation → Introduction**                 | Полное руководство: токены, компоненты, шрифты, Vite + link, IFC-ассеты |
+| **Documentation → Cheat sheets → Package usage** | Чеклист для потребителя                                                 |
 
-При изменении публичного способа подключения стилей или entry API обновляйте эти разделы вместе с `package.json` `exports`.
+При изменении публичного способа подключения стилей или entry API обновляйте эти разделы вместе с `package.json`
+`exports`.

@@ -1,4 +1,4 @@
-@use "../../styles/global" as styles;
+@use "../../styles/mixins" as mixins;
 
 .ellipsisTextWithTooltip {
   $block: &;
@@ -6,7 +6,7 @@
   position: relative;
 
   &_inheritFontStyles {
-    @include styles.inherit-font-style;
+    @include mixins.inherit-font-style;
   }
 
   &__tooltip {

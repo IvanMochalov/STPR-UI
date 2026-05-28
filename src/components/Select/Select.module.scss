@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .spSelect {
   // Общие стили блока
@@ -151,8 +150,7 @@
     flex-direction: column;
     background-color: var(--spui-color-surface-default);
     border-radius: var(--spui-border-radius-sm);
-    // TODO need seed and mapped tokens
-    box-shadow: 1px 1px 26px 0 outdated_colors.$color-rgba-19-15;
+    box-shadow: 1px 1px 26px 0 var(--spui-color-gray-300);
     z-index: 15;
 
     &_size-md {

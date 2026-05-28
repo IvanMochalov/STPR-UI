@@ -1,5 +1,4 @@
 @use "../../styles/mixins" as mixins;
-@use "../../styles/colors" as outdated_colors;
 
 .tableWrapperRoot {
   position: relative;
@@ -38,15 +37,13 @@
 
   & tr:hover {
     & td {
-      // TODO need seed and mapped tokens
-      background-color: outdated_colors.$color-very-light-blue-bg-2;
+      background-color: var(--spui-color-blue-50);
     }
   }
 
   & th {
     padding: 12px 16px;
-    // TODO need seed and mapped tokens
-    background-color: outdated_colors.$color-very-light-gray-background;
+    background-color: var(--spui-color-gray-50);
     font-weight: var(--spui-font-weight-medium);
   }
 
@@ -116,8 +113,7 @@
   &__sortIcon {
     font-size: 16px;
     line-height: 1;
-    // TODO need seed and mapped tokens
-    color: outdated_colors.$color-gray-2;
+    color: var(--spui-color-gray-400);
     font-weight: var(--spui-font-weight-medium);
   }
 
@@ -148,11 +144,11 @@
 
   &_hasError {
     // TODO need seed and mapped tokens
-    background-color: outdated_colors.$color-red-3-transparent-10;
+    background-color: var(--spui-color-red-100);
 
     #{$block}__content {
       // TODO need seed and mapped tokens
-      color: outdated_colors.$color-red-2;
+      color: var(--spui-color-text-error);
     }
   }
 
