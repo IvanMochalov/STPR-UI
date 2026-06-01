@@ -39,6 +39,7 @@ dist-ssr
 
 *storybook.log
 storybook-static
+storybook-static-pages
 
 # Генерируется из CHANGELOG.md и package.json при запуске storybook / build:storybook
 src/documentation/Changelog.mdx
