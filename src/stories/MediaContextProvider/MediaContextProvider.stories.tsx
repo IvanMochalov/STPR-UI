@@ -1,7 +1,6 @@
+import { MediaContextProvider } from "@components/MediaContextProvider";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { MediaContextProvider } from "../../../lib/components/MediaContextProvider";
-import mainStyles from "../Stories.module.scss";
 import { MediaContent } from "./components";
 
 const meta: Meta<typeof MediaContextProvider> = {
@@ -76,13 +75,6 @@ const { device:
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

@@ -1,4 +1,4 @@
-import { TSelectOption } from "../../../lib/components/Select";
+import type { TSelectOption } from "@components/Select";
 
 export const OKRUG_OPTIONS: TSelectOption[] = [
   {

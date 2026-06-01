@@ -1,11 +1,7 @@
+import { DatePicker, type TOnChangeDatePicker } from "@components/DatePicker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import cx from "clsx";
 import { useState } from "react";
 
-import { DatePicker } from "../../../lib/components/DatePicker";
-import { TOnChangeDatePicker } from "../../../lib/components/DatePicker";
-import { Input, TOnChangeInput } from "../../../lib/components/Input";
-import mainStyles from "../Stories.module.scss";
 import localStyles from "./DatePickerStories.module.scss";
 
 const meta: Meta<typeof DatePicker> = {
@@ -33,7 +29,7 @@ const meta: Meta<typeof DatePicker> = {
       control: false,
       table: {
         type: {
-          detail: `(data: { name: string; value: Date | null }, event?: React.ChangeEvent<HTMLInputElement>) => void`,
+          detail: `(data: { name: string; value: Date | null }, event?: React.ChangeEvent&lt;HTMLInputElement&gt;) => void`,
           summary: "TOnChangeDatePicker",
         },
       },
@@ -224,14 +220,14 @@ const meta: Meta<typeof DatePicker> = {
       description: `Callback при нажатии кнопки мыши на поле ввода.\n`,
       control: false,
       table: {
-        type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
+        type: { summary: "(event: React.MouseEvent&lt;HTMLDivElement, MouseEvent&gt;) => void" },
       },
     },
     onMouseEnter: {
       description: `Callback при наведении курсора на поле ввода.\n`,
       control: false,
       table: {
-        type: { summary: "(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void" },
+        type: { summary: "(event: React.MouseEvent&lt;HTMLDivElement, MouseEvent&gt;) => void" },
       },
     },
 
@@ -361,7 +357,7 @@ const [selectedDate, setSelectedDate] = useState(null);
   },
   decorators: [
     (Story) => (
-      <div className={cx(mainStyles.storyWrapper, localStyles.storiesWrapper)}>
+      <div className={localStyles.storiesWrapper}>
         <Story />
       </div>
     ),
@@ -394,7 +390,6 @@ export const Default: Story = {
   render: (args) => {
     const [formData, setFormData] = useState({
       createAt: null,
-      someText: "",
     });
 
     const onChange: TOnChangeDatePicker = ({ name, value }) => {
@@ -404,21 +399,8 @@ export const Default: Story = {
       }));
     };
 
-    const onChangeInput: TOnChangeInput = (_event, { name, value }) => {
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    };
-
     return (
-      <>
-        <Input
-          label={"какой-то текст"}
-          name={"someText"}
-          value={formData.someText}
-          onChange={onChangeInput}
-        />
+      <div className={localStyles.defaultStoriesWrapper}>
         <DatePicker
           {...args}
           enablePortal={false}
@@ -433,13 +415,14 @@ export const Default: Story = {
           selected={formData.createAt}
           onChange={onChange}
         />
-      </>
+      </div>
     );
   },
 };
 
 export const WithError: Story = {
   name: "With Error State",
+  render: Default.render,
   args: {
     label: "Дата с ошибкой",
     error: "Дата не может быть в прошлом",
@@ -448,6 +431,7 @@ export const WithError: Story = {
 
 export const Disabled: Story = {
   name: "Disabled State",
+  render: Default.render,
   args: {
     label: "Отключенная дата",
     disabled: true,
@@ -455,6 +439,7 @@ export const Disabled: Story = {
 };
 
 export const WithDateRange: Story = {
+  render: Default.render,
   args: {
     label: "Дата в диапазоне",
     minDate: new Date(2024, 0, 1),
@@ -464,6 +449,7 @@ export const WithDateRange: Story = {
 
 export const ReadOnly: Story = {
   name: "Read Only Input",
+  render: Default.render,
   args: {
     label: "Только чтение",
     readOnlyInput: true,
@@ -471,6 +457,7 @@ export const ReadOnly: Story = {
 };
 
 export const WithoutClearButton: Story = {
+  render: Default.render,
   args: {
     label: "Без кнопки очистки",
     isClearable: false,

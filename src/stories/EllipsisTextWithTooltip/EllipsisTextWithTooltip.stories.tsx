@@ -1,7 +1,7 @@
+import { EllipsisTextWithTooltip } from "@components/EllipsisTextWithTooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { EllipsisTextWithTooltip } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
+import styles from "./EllipsisTextWithTooltipStories.module.scss";
 
 const meta: Meta<typeof EllipsisTextWithTooltip> = {
   title: "Components/EllipsisTextWithTooltip",
@@ -196,13 +196,6 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     text: "Ellipsis Text With Tooltip",
     title: "Ellipsis Text With Tooltip",
@@ -213,15 +206,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
   },
   render: (args) => {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "20px",
-          maxWidth: "380px",
-        }}
-      >
+      <div className={styles.typesColumn}>
         <EllipsisTextWithTooltip {...args} type={"h1"} text={`${args.text} with type="h1"`} />
         <EllipsisTextWithTooltip {...args} type={"h3"} text={`${args.text} with type="h1"`} />
         <EllipsisTextWithTooltip {...args} type={"p1"} text={`${args.text} with type="p1"`} />
@@ -240,7 +225,7 @@ const meta: Meta<typeof EllipsisTextWithTooltip> = {
           text={`${args.text}, with long text and fixed end!`}
         />
 
-        <div style={{ fontSize: "18px", fontWeight: "bold" }}>
+        <div className={styles.inheritFontWrapper}>
           <EllipsisTextWithTooltip
             {...args}
             isInheritFontStyles={true}
@@ -266,11 +251,9 @@ export const WithLongText: Story = {
     text: "Очень длинный текст который точно не поместится в ограниченный контейнер и будет обрезан с многоточием",
   },
   render: (args) => (
-    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+    <div className={styles.demoBox}>
       <EllipsisTextWithTooltip {...args} />
-      <div style={{ marginTop: "10px", fontSize: "12px", color: "#666" }}>
-        (Наведите на текст чтобы увидеть тултип)
-      </div>
+      <div className={styles.demoHint}>(Наведите на текст чтобы увидеть тултип)</div>
     </div>
   ),
 };
@@ -282,11 +265,9 @@ export const TextWithFixEnd: Story = {
     text: "SomeLongNameOfExampleFile.pdf",
   },
   render: (args) => (
-    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+    <div className={styles.demoBox}>
       <EllipsisTextWithTooltip {...args} />
-      <div style={{ marginTop: "10px", fontSize: "12px", color: "#666" }}>
-        (Наведите на текст чтобы увидеть тултип)
-      </div>
+      <div className={styles.demoHint}>(Наведите на текст чтобы увидеть тултип)</div>
     </div>
   ),
 };
@@ -297,11 +278,9 @@ export const WithShortText: Story = {
     text: "Короткий текст",
   },
   render: (args) => (
-    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+    <div className={styles.demoBox}>
       <EllipsisTextWithTooltip {...args} />
-      <div style={{ marginTop: "10px", fontSize: "12px", color: "#666" }}>
-        (Тултип не покажется - текст помещается)
-      </div>
+      <div className={styles.demoHint}>(Тултип не покажется - текст помещается)</div>
     </div>
   ),
 };
@@ -313,7 +292,7 @@ export const ClickableWithTooltip: Story = {
     onClick: () => alert("Текст был кликнут!"),
   },
   render: (args) => (
-    <div style={{ width: "150px", border: "1px solid #eee", padding: "10px" }}>
+    <div className={styles.demoBoxNarrow}>
       <EllipsisTextWithTooltip {...args} />
     </div>
   ),
@@ -326,7 +305,7 @@ export const CustomColor: Story = {
     color: "#ff0000",
   },
   render: (args) => (
-    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px" }}>
+    <div className={styles.demoBox}>
       <EllipsisTextWithTooltip {...args} />
     </div>
   ),
@@ -339,7 +318,7 @@ export const InheritFontStyles: Story = {
     isInheritFontStyles: true,
   },
   render: (args) => (
-    <div style={{ width: "200px", border: "1px solid #eee", padding: "10px", fontSize: "18px" }}>
+    <div className={styles.demoBoxInheritFont}>
       <EllipsisTextWithTooltip {...args} />
     </div>
   ),

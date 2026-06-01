@@ -1,9 +1,8 @@
+import { Button } from "@components/Button";
+import { Spinner } from "@components/Spinner";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button } from "../../../lib/components/Button";
-import { Spinner } from "../../../lib/components/Spinner";
-import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./SpinnerStories.module.scss";
 
 const meta: Meta<typeof Spinner> = {
@@ -38,6 +37,22 @@ const meta: Meta<typeof Spinner> = {
         type: { summary: "string" },
       },
     },
+    loadingText: {
+      description:
+        "Текст под спиннером. В конце строки автоматически отображаются четыре точки с волновой анимацией (поочерёдное поднятие и опускание). Шрифт точек совпадает с текстом.\n",
+      control: { type: "text" },
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    classNameSpinnerTextLine: {
+      description:
+        "Дополнительный CSS-класс для строки с текстом загрузки (блок с loadingText и анимированными точками). Применяется только при переданном loadingText. Позволяет переопределить шрифт, цвет, размер и другие стили строки.\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
   },
   parameters: {
     docs: {
@@ -52,12 +67,15 @@ const meta: Meta<typeof Spinner> = {
 - **Доступность** - встроенные ARIA-атрибуты для screen readers
 - **CSS-переменные** - гибкая настройка через CSS Custom Properties
 - **Производительность** - оптимизированная анимация с использованием CSS transforms
+- **Текст загрузки (loadingText)** - опциональная строка под спиннером; в конце отображаются четыре точки с волновой анимацией (поочерёдное поднятие и опускание, как волна на трибунах). Текст переносится по строкам, точки остаются в конце последней строки.
 
 ## Визуальные эффекты:
 - **Вращение** - непрерывное вращение внешнего контейнера
 - **Клиппинг-анимация** - плавное раскрытие и закрытие сегментов круга
 - **Адаптивная толщина** - толщина линии увеличивается с размером спиннера
 - **Плавность** - анимации используют ease-in-out для естественного движения
+- **Текст загрузки** - при переданном \`loadingText\` под спиннером показывается строка с текстом и четырьмя точками в конце
+- **Волна точек** - четыре точки в конце строки анимированы поочерёдным подъёмом и опусканием (как волна на трибунах); шрифт точек совпадает с текстом
 
 ## Размеры и толщина:
 - **sm**: диаметр 16px - толщина 2px
@@ -87,21 +105,19 @@ const meta: Meta<typeof Spinner> = {
   color="var(--accent-color)" 
   classNameRoot="custom-spinner"
 />
+
+// Спиннер с текстом загрузки (четыре точки в конце анимированы волной)
+<Spinner loadingText="Загрузка" />
+<Spinner size="lg" color="#036bfd" loadingText="Подождите" />
 \`\`\`
         `,
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     size: "md",
     color: "#036bfd",
+    loadingText: "",
   },
 };
 
@@ -155,14 +171,7 @@ export const CustomColors: Story = {
   name: "Spinner with Custom Colors",
   render: () => {
     return (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "24px",
-          padding: "20px",
-        }}
-      >
+      <div className={styles.customColorsGrid}>
         <div className={styles.listItemWrapper}>
           <Spinner color="#036bfd" />
           <Text type={"description"} classNameRoot={styles.listItemWrapper__description}>
@@ -208,5 +217,31 @@ export const ButtonLoading: Story = {
   name: "Spinner in Button Loading State",
   render: () => {
     return <Button loading={true}>Загрузка...</Button>;
+  },
+};
+
+export const WithLoadingText: Story = {
+  name: "Spinner with loadingText",
+  args: {
+    loadingText: "Загружаем данные о пользователе",
+    size: "lg",
+    color: "#036bfd",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Текст под спиннером. В конце строки четыре точки с волновой анимацией — поочерёдное поднятие и опускание (как волна на трибунах).",
+      },
+    },
+  },
+};
+
+export const WithLoadingTextLong: Story = {
+  name: "Spinner with long loadingText",
+  args: {
+    loadingText: "Пожалуйста, подождите",
+    size: "md",
+    classNameSpinnerTextLine: styles.customLoadingText,
   },
 };

@@ -1,9 +1,8 @@
+import { EllipsisTextWithTooltip } from "@components/EllipsisTextWithTooltip";
+import { EIconName, Icon } from "@components/Icons";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { EllipsisTextWithTooltip } from "../../../lib/components/EllipsisTextWithTooltip";
-import { EIconName, Icon } from "../../../lib/components/Icons";
-import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./IconsStories.module.scss";
 
 const meta: Meta<typeof Icon> = {
@@ -105,13 +104,6 @@ const meta: Meta<typeof Icon> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -197,7 +189,7 @@ export const CustomColors: Story = {
         <div key={color} className={styles.iconCard}>
           <Icon {...args} color={color} />
           <Text classNameRoot={styles.iconCard__iconName}>{label}</Text>
-          <Text style={{ fontSize: "12px", fontFamily: "monospace" }}>{color}</Text>
+          <Text classNameRoot={styles.iconCard__colorCode}>{color}</Text>
         </div>
       ))}
     </div>

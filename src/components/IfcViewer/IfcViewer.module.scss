@@ -1,0 +1,30 @@
+.ifcViewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.viewerHost {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.viewerSpinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.viewerErrorBanner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spui-spacing-4x);
+  z-index: 1;
+}

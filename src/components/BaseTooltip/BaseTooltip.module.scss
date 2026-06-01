@@ -1,0 +1,49 @@
+@use "../../styles/mixins" as mixins;
+
+.spBaseTooltip {
+  $block: &;
+  background-color: var(--spui-color-surface-default);
+  box-shadow: 0 10px 45px 0 var(--spui-color-gray-300);
+  width: max-content;
+  max-width: 300px;
+  position: absolute;
+  min-width: 160px;
+  z-index: 199;
+  overflow-y: auto;
+  @include mixins.custom-scrollbar();
+  @include mixins.box-sizing-border-box();
+  @include mixins.transition-all-ease-in-out(200ms);
+  @include mixins.starting-style-appearance();
+
+  &_noPadding {
+    padding: var(--spui-spacing-none);
+  }
+
+  @include mixins.respond-to(sm) {
+    max-width: 450px;
+  }
+
+  @include mixins.respond-to(xl) {
+    max-width: 600px;
+  }
+
+  &:not(#{$block}_noPadding) {
+    padding: var(--spui-spacing-3x);
+
+    @include mixins.respond-to(sm) {
+      padding: var(--spui-spacing-5x);
+    }
+
+    @include mixins.respond-to(xl) {
+      padding: var(--spui-spacing-3x);
+    }
+  }
+
+  &__content {
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-medium);
+    color: var(--spui-color-text-primary);
+    font-size: 14px;
+    white-space: pre-line;
+  }
+}

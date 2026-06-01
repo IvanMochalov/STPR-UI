@@ -1,10 +1,9 @@
+import { AuthProtected } from "@components/AuthProtected";
+import { Button } from "@components/Button";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { AuthProtected } from "../../../lib/components/AuthProtected";
-import { Button } from "../../../lib/components/Button";
-import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./AuthProtectedStories.module.scss";
 
 const meta: Meta<typeof AuthProtected> = {
@@ -119,13 +118,6 @@ const meta: Meta<typeof AuthProtected> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -151,7 +143,7 @@ export const Default: Story = {
         <div className={styles.contentWrapper}>
           <Text type="h3">Защищенный контент</Text>
           <Text>Этот контент доступен только авторизованным пользователям</Text>
-          <div style={{ marginTop: "20px" }}>
+          <div className={styles.actionSection}>
             <Button onClick={() => setIsNotAuth(true)}>Сымитировать отсутствие авторизации</Button>
           </div>
         </div>
@@ -178,7 +170,7 @@ export const CustomMessage: Story = {
         <div className={styles.contentWrapper}>
           <Text type="h3">Премиум контент</Text>
           <Text>Этот раздел доступен только зарегистрированным пользователям</Text>
-          <div style={{ marginTop: "20px" }}>
+          <div className={styles.actionSection}>
             <Button onClick={() => setIsNotAuth(true)}>Сымитировать отсутствие авторизации</Button>
           </div>
         </div>

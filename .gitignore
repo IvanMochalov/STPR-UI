@@ -23,5 +23,25 @@ dist-ssr
 *.sln
 *.sw?
 
+# Cursor: ignore all by default
+.cursor/*
+
+# Track team-shared AI config only
+!.cursor/rules/
+!.cursor/rules/**
+!.cursor/skills/
+!.cursor/skills/**
+!.cursor/commands/
+!.cursor/commands/**
+!.cursor/agents/
+!.cursor/agents/**
+!.cursor/hooks.json
+
 *storybook.log
 storybook-static
+
+# Генерируется из CHANGELOG.md и package.json при запуске storybook / build:storybook
+src/documentation/Changelog.mdx
+
+# Копируется из node_modules/web-ifc при postinstall
+public/components-assets/IfcPreview/web-ifc/

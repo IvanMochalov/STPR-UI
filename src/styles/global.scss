@@ -1,8 +1,0 @@
-// Реэкспорт переменных из colors, constants и mixins
-// для использования через `@use "src/styles/global" as styles`
-// в файлах стилей для компонентов
-@forward "colors";
-@forward "constants";
-@forward "mixins";
-// Подключаем шрифты
-@use "fonts";

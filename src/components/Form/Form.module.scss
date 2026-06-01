@@ -1,0 +1,50 @@
+@use "../../styles/mixins" as mixins;
+
+.spForm {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  @include mixins.starting-style-appearance();
+
+  // Модификаторы блока
+  &_fullWidth {
+    width: 100%;
+  }
+
+  &_addMargin {
+    &.spForm--size-lg {
+      --form-gap: var(--spui-spacing-8x);
+      gap: var(--form-gap);
+
+      @include mixins.respond-to(sm) {
+        --form-gap: var(--spui-spacing-12x);
+      }
+    }
+
+    &.spForm--size-md {
+      --form-gap: var(--spui-spacing-6x);
+      gap: var(--form-gap);
+
+      @include mixins.respond-to(sm) {
+        --form-gap: var(--spui-spacing-8x);
+      }
+    }
+  }
+
+  &_withSeparator {
+    & > *:not(:first-child) {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: calc(var(--form-gap) / -2);
+        height: 1px;
+        // TODO need mapped-token
+        background: var(--color-light-steel);
+      }
+    }
+  }
+}

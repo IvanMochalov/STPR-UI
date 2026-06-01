@@ -1,63 +1,48 @@
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
-import copy from "rollup-plugin-copy";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
+import { dependencies, peerDependencies } from "./package.json";
+import { libDistPostprocess } from "./scripts/vite-plugin-lib-dist-postprocess";
 
-// https://vitejs.dev/config/
+const distDir = resolve(__dirname, "dist");
+
+const externalDeps = [
+  "react",
+  "react/jsx-runtime",
+  "react-dom",
+  ...Object.keys(peerDependencies),
+  ...Object.keys(dependencies),
+];
+
+// ESM library: preserveModules для tree-shaking у потребителя + per-component CSS (+ public assets).
 export default defineConfig({
   base: "/",
-  build: {
-    outDir: "dist",
-    assetsDir: "assets",
-    lib: {
-      entry: resolve(__dirname, "lib/test-stpr-ui-kit.ts"),
-      name: "test-stpr-ui-kit",
-    },
-    rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "jsxRuntime",
-        },
-      },
-      plugins: [
-        {
-          name: "rewrite-font-paths",
-          generateBundle(_options, bundle) {
-            for (const [fileName, file] of Object.entries(bundle)) {
-              if (fileName.endsWith(".css") && "source" in file) {
-                // Заменяем абсолютные пути подключения шрифтов в стилях dist/lk/themes/main/assets/znp/index-ro-fpzNQ.css на относительные
-                file.source = file.source.toString().replace(/url\(\/fonts\//g, "url(../fonts/");
-              }
-            }
-          },
-        },
-        copy({
-          targets: [
-            {
-              src: "public/fonts/*",
-              dest: "dist/fonts",
-            },
-          ],
-          hook: "writeBundle",
-          copyOnce: true,
-        }),
-      ],
+  resolve: {
+    alias: {
+      "@components": resolve(__dirname, "src/components"),
     },
   },
-  plugins: [
-    react(),
-    svgr(),
-    dts({
-      insertTypesEntry: true,
-      include: ["lib"],
-      rollupTypes: true,
-    }),
-    libInjectCss(),
-  ],
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+    copyPublicDir: true,
+    lib: {
+      entry: resolve(__dirname, "src/test-stpr-ui-kit.ts"),
+      name: "test-stpr-ui-kit",
+      formats: ["es"],
+      fileName: "test-stpr-ui-kit",
+    },
+    rollupOptions: {
+      external: (id) =>
+        externalDeps.some((dep) => id === dep || id.startsWith(`${dep}/`)),
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        entryFileNames: "[name].js",
+      },
+    },
+  },
+  plugins: [react(), svgr(), libInjectCss(), libDistPostprocess(distDir)],
 });

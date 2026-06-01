@@ -1,0 +1,45 @@
+@use "../../styles/mixins" as mixins;
+
+.spApplyButtons {
+  $block: &;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spui-spacing-3x);
+
+  &_align {
+    &-right {
+      justify-content: flex-end;
+    }
+
+    &-left {
+      justify-content: flex-start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+  }
+
+  &_mobile-column {
+    flex-direction: column;
+    @include mixins.respond-to(sm) {
+      flex-direction: row
+    }
+  }
+
+  &_mobile-column-reverse {
+    flex-direction: column-reverse;
+    @include mixins.respond-to(sm) {
+      flex-direction: row
+    }
+  }
+
+  &__cancel {
+    width: auto;
+  }
+
+  &__submit {
+    width: auto;
+  }
+}

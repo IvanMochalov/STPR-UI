@@ -1,9 +1,8 @@
+import { Text } from "@components/Text";
+import { ETooltipPosition, InfoTooltip } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Text } from "../../../lib/components/Text";
-import { ETooltipPosition, InfoTooltip } from "../../../lib/components/Tooltip";
-import mainStyles from "../Stories.module.scss";
-import styles from "./InfoTooltip.module.scss";
+import styles from "./InfoTooltipStories.module.scss";
 
 const meta: Meta<typeof InfoTooltip> = {
   title: "Components/InfoTooltip",
@@ -128,8 +127,15 @@ const meta: Meta<typeof InfoTooltip> = {
         type: { summary: "() => void" },
       },
     },
+    classNameTriggerIcon: {
+      description: "Дополнительный CSS-класс для кастомной стилизации иконки\n",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     classNameTooltip: {
-      description: "Дополнительный CSS-класс для корневого элемента тултипа (триггера)\n",
+      description: "Дополнительный CSS-класс для родителя элемента триггера\n",
       control: false,
       table: {
         type: { summary: "string" },
@@ -157,13 +163,6 @@ const meta: Meta<typeof InfoTooltip> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     text: "Поясняющая информация о элементе интерфейса",
     isVisibleTooltip: true,

@@ -1,8 +1,8 @@
+import { Button } from "@components/Button";
+import { EIconName } from "@components/Icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button } from "../../../lib/components/Button";
-import { EIconName } from "../../../lib/components/Icons";
-import mainStyles from "../Stories.module.scss";
+import styles from "./ButtonStories.module.scss";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -12,22 +12,20 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component: `
-Универсальный компонент кнопки с поддержкой различных стилей, состояний и иконок. 
-Компонент предоставляет гибкие настройки внешнего вида и поведения.
+Универсальная кнопка с вариантами \`primary\`, \`secondary\`, \`text\`, \`link\` и размерами \`md\`/ \`xl\`.
 
 ## Основные возможности
 
-- **Три варианта стилей**: primary, secondary, link
-- **Два цвета**: blue (акцентный) и white (белый)
-- **Поддержка иконок**: возможность добавления иконок слева от текста
-- **Состояния**: disabled, loading, full width
-- **Типы кнопок**: button, submit, reset
-- **Адаптивный дизайн**: увеличенные отступы на планшетах и десктопе
+- **Четыре варианта стилей**: \`primary\`, \`secondary\`, \`text\`, \`link\`
+- **Размеры**: \`md\` и \`xl\`
+- **Поддержка иконок**: иконки задаются только через \`startIconName\` и \`endIconName\` (для \`isOnlyIcon\` используется только \`startIconName\`).
+- **Состояния**: \`disabled\`, \`loading\`, \`full width\`
+- **Типы кнопок**: \`button\`, \`submit\`, \`reset\`
 
 ## Базовое использование
 
 \`\`\`jsx
-<Button onClick={() => console.log("click");}>
+<Button variant="primary" startIconName={EIconName.Plus}>
   Кликни меня
 </Button>
 \`\`\`
@@ -38,39 +36,26 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       description:
-        "Стиль кнопки:\n- 'primary': основной стиль для главных действий\n- 'secondary': второстепенный стиль\n- 'link': текстовый стиль для ссылок",
+        "Вариант кнопки:\n- 'primary': акцентная\n- 'secondary': вторичная\n- 'text': текстовая с фоном в hover/focus\n- 'link': прозрачная ссылка",
       control: { type: "radio" },
-      options: ["primary", "secondary", "link"],
+      options: ["primary", "secondary", "text", "link"],
       table: {
         defaultValue: { summary: "primary" },
         type: {
           summary: "TButtonVariant",
-          detail: "'primary' | 'secondary' | 'link'",
+          detail: "'primary' | 'secondary' | 'text' | 'link'",
         },
       },
     },
-    iconPosition: {
-      description: "Позиция иконки:\n- 'start': иконка перед текстом\n- 'end': иконка после текста",
+    size: {
+      description: "Размер кнопки",
       control: { type: "radio" },
-      options: ["start", "end"],
+      options: ["md", "xl"],
       table: {
-        defaultValue: { summary: "start" },
+        defaultValue: { summary: "xl" },
         type: {
-          summary: "TButtonIconPosition",
-          detail: "'start' | 'end'",
-        },
-      },
-    },
-    color: {
-      description:
-        "Цветовая схема кнопки:\n- 'blue': акцентный синий (брендовый)\n- 'white': белый для цветных фонов",
-      control: { type: "radio" },
-      options: ["blue", "white"],
-      table: {
-        defaultValue: { summary: "blue" },
-        type: {
-          summary: "TButtonColor",
-          detail: "'white' | 'blue'",
+          summary: "TButtonSize",
+          detail: "'md' | 'xl'",
         },
       },
     },
@@ -81,15 +66,8 @@ const meta: Meta<typeof Button> = {
         type: { summary: "ReactNode" },
       },
     },
-    icon: {
-      description: "Кастомная иконка (не входящая в EIconName)",
-      control: false,
-      table: {
-        type: { summary: "ReactNode" },
-      },
-    },
     disabled: {
-      description: "Блокирует кнопку. Визуально затемняет и отключает взаимодействие",
+      description: "Блокирует кнопку",
       control: { type: "boolean" },
       table: {
         defaultValue: { summary: "false" },
@@ -143,13 +121,25 @@ const meta: Meta<typeof Button> = {
         type: { summary: "string" },
       },
     },
-    iconName: {
-      description: "Иконка для отображения слева от текста. Не отображается при loading=true",
+    startIconName: {
+      description: "Иконка в начале",
       control: { type: "select" },
-      options: Object.values(EIconName),
+      options: [...Object.values(EIconName), undefined],
     },
-    iconRotate: {
-      description: "Угол поворота иконки в градусах. Полезно для анимаций",
+    endIconName: {
+      description: "Иконка в конце",
+      control: { type: "select" },
+      options: [...Object.values(EIconName), undefined],
+    },
+    startIconRotate: {
+      description: "Угол поворота стартовой иконки в градусах. Полезно для анимаций",
+      control: { type: "range", min: 0, max: 360 },
+      table: {
+        defaultValue: { summary: "0" },
+      },
+    },
+    endIconRotate: {
+      description: "Угол поворота конечной иконки в градусах. Полезно для анимаций",
       control: { type: "range", min: 0, max: 360 },
       table: {
         defaultValue: { summary: "0" },
@@ -182,21 +172,7 @@ const meta: Meta<typeof Button> = {
         type: { summary: "string" },
       },
     },
-    classNameIconContainerRoot: {
-      description: "Дополнительный CSS-класс для контейнера иконки",
-      control: false,
-      table: {
-        type: { summary: "string" },
-      },
-    },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -206,132 +182,101 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
   args: {
     variant: "primary",
-    color: "blue",
+    size: "xl",
     children: "Default Button",
     type: "button",
     disabled: false,
     isFullWidth: false,
     noPadding: false,
     isOnlyIcon: false,
+    startIconName: undefined,
+    endIconName: undefined,
     loading: false,
-    iconPosition: "start",
+    style: {},
   },
 };
 
-export const PrimaryWhite: Story = {
-  args: {
-    variant: "primary",
-    color: "white",
-    children: "Primary White Button",
-  },
-};
-
-export const SecondaryBlue: Story = {
+export const Secondary: Story = {
   args: {
     variant: "secondary",
-    color: "blue",
-    children: "Secondary Blue Button",
+    children: "Secondary Button",
   },
 };
 
-export const SecondaryWhite: Story = {
+export const Text: Story = {
   args: {
-    variant: "secondary",
-    color: "white",
-    children: "Secondary White Button",
+    variant: "text",
+    children: "Text Button",
   },
 };
 
-export const LinkBlue: Story = {
+export const Link: Story = {
   args: {
     variant: "link",
-    color: "blue",
-    children: "Link Blue Button",
+    children: "Link Button",
   },
 };
 
-export const WithIcon: Story = {
-  name: "Button with Icon",
+export const WithStartIcon: Story = {
+  name: "With Start Icon",
   args: {
     variant: "primary",
-    color: "blue",
-    iconName: EIconName.Plus,
+    startIconName: EIconName.Plus,
     children: "Add Item",
   },
 };
 
-export const WithCustomIcon: Story = {
-  name: "Button with Custom Icon",
+export const WithStartAndEndIcon: Story = {
+  name: "With Start And End Icon",
   args: {
     variant: "primary",
-    color: "blue",
-    icon: (
-      <svg
-        className="stpr-icon"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.25008 10L8.75008 12.5L13.7501 7.50002M18.3334 10C18.3334 14.6024 14.6025 18.3334 10.0001 18.3334C5.39771 18.3334 1.66675 14.6024 1.66675 10C1.66675 5.39765 5.39771 1.66669 10.0001 1.66669C14.6025 1.66669 18.3334 5.39765 18.3334 10Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    children: "Add Item",
+    startIconName: EIconName.Plus,
+    endIconName: EIconName.Plus,
+    children: "Primary",
   },
 };
 
 export const IconOnly: Story = {
-  name: "Icon Only Button",
+  name: "Only Icon",
   args: {
     variant: "primary",
-    color: "blue",
-    iconName: EIconName.Trash,
+    startIconName: EIconName.Plus,
+    endIconName: EIconName.Trash,
     isOnlyIcon: true,
   },
 };
 
 export const LoadingState: Story = {
-  name: "Loading Button",
+  name: "Loading",
   args: {
     variant: "primary",
-    color: "blue",
     loading: true,
     children: "Saving...",
   },
 };
 
 export const DisabledState: Story = {
-  name: "Disabled Button",
+  name: "Disabled",
   args: {
     variant: "primary",
-    color: "blue",
     disabled: true,
     children: "Disabled Button",
   },
 };
 
 export const FullWidth: Story = {
-  name: "Full Width Button",
+  name: "Full Width",
   args: {
     variant: "primary",
-    color: "blue",
     isFullWidth: true,
     children: "Full Width Button",
   },
 };
 
 export const NoPadding: Story = {
-  name: "No Padding Button",
+  name: "No Padding",
   args: {
     variant: "primary",
-    color: "blue",
     noPadding: true,
     children: "No Padding",
   },
@@ -340,19 +285,17 @@ export const NoPadding: Story = {
 export const SubmitButton: Story = {
   args: {
     variant: "primary",
-    color: "blue",
     type: "submit",
     children: "Submit Form",
   },
 };
 
 export const RotatedIcon: Story = {
-  name: "Button with Rotated Icon",
+  name: "With Rotated Icon",
   args: {
     variant: "primary",
-    color: "blue",
-    iconName: EIconName.Trash,
-    iconRotate: 45,
+    startIconName: EIconName.Trash,
+    startIconRotate: 45,
     children: "Delete",
   },
 };
@@ -360,40 +303,62 @@ export const RotatedIcon: Story = {
 export const AllVariants: Story = {
   name: "All Variants Overview",
   render: () => (
-    <div
-      style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start" }}
-    >
-      <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-        <Button variant="primary" color="blue">
-          Primary Blue
-        </Button>
-        <Button variant="primary" color="white">
-          Primary White
-        </Button>
-        <Button variant="secondary" color="blue">
-          Secondary Blue
-        </Button>
-        <Button variant="secondary" color="white">
-          Secondary White
-        </Button>
-        <Button variant="link" color="blue">
-          Link Blue
-        </Button>
+    <div className={styles.allVariants}>
+      <div className={styles.section}>
+        <p className={styles.sectionTitle}>Variants</p>
+        <div className={styles.itemsRow}>
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="text">Text</Button>
+          <Button variant="link">Link</Button>
+        </div>
       </div>
 
-      <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-        <Button variant="primary" color="blue" iconName={EIconName.Plus}>
-          With Icon
-        </Button>
-        <Button variant="primary" color="blue" loading>
-          Loading
-        </Button>
-        <Button variant="primary" color="blue" disabled>
-          Disabled
-        </Button>
-        <Button variant="primary" color="blue" isFullWidth>
-          Full Width
-        </Button>
+      <div className={styles.section}>
+        <span className={styles.sectionTitle}>Sizes</span>
+        <div className={styles.itemsRowAligned}>
+          <Button size="md">{`size = "md"`}</Button>
+          <Button size="xl">{`size = "xl`}</Button>
+        </div>
+      </div>
+
+      <div className={styles.section}>
+        <span className={styles.sectionTitle}>Icons</span>
+        <div className={styles.itemsRow}>
+          <Button variant="primary" startIconName={EIconName.Plus}>
+            Start Icon
+          </Button>
+          <Button variant="primary" endIconName={EIconName.Trash}>
+            End Icon
+          </Button>
+          <Button variant="primary" startIconName={EIconName.Plus} endIconName={EIconName.Trash}>
+            Both Icons
+          </Button>
+          <Button variant="primary" startIconName={EIconName.Trash} startIconRotate={45}>
+            Rotated Icon
+          </Button>
+          <Button variant="secondary" startIconName={EIconName.Plus} isOnlyIcon />
+          <Button variant="secondary" startIconName={EIconName.Plus} isOnlyIcon size={"md"} />
+          <Button variant="secondary" startIconName={EIconName.Plus} isOnlyIcon noPadding />
+        </div>
+      </div>
+
+      <div className={styles.section}>
+        <span className={styles.sectionTitle}>States</span>
+        <div className={styles.itemsRow}>
+          <Button variant="primary" loading>
+            Loading
+          </Button>
+          <Button variant="primary" disabled>
+            Disabled
+          </Button>
+          <Button variant="primary" noPadding startIconName={EIconName.Plus}>
+            No Padding
+          </Button>
+          <Button variant="text" startIconName={EIconName.Plus} loading>
+            Loading Text
+          </Button>
+        </div>
       </div>
     </div>
   ),

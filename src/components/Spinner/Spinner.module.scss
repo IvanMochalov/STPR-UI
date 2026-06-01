@@ -1,0 +1,160 @@
+@use "../../styles/mixins" as mixins;
+
+.spinner {
+  --spinner-size: 24px;
+  --spinner-thickness: 2px;
+
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border-radius: 50%;
+  position: relative;
+  animation: spinner-rotate 1s linear infinite;
+  flex-shrink: 0;
+  @include mixins.starting-style-appearance();
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: var(--spinner-thickness) solid currentColor;
+    animation: spinner-clip 2s linear infinite;
+  }
+
+  // Size variants - адаптируем под новые размеры
+  &--size {
+    &-sm {
+      --spinner-size: 16px;
+      --spinner-thickness: 2px;
+    }
+
+    &-md {
+      --spinner-size: 24px;
+      --spinner-thickness: 3px;
+    }
+
+    &-lg {
+      --spinner-size: 32px;
+      --spinner-thickness: 4px;
+    }
+
+    &-xl {
+      --spinner-size: 48px;
+      --spinner-thickness: 5px;
+    }
+  }
+}
+
+@keyframes spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-clip {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+// Обёртка: спиннер + строка с loadingText и анимированными точками
+.spinnerWithText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  &__line {
+    --spinner-text-size: 14px;
+
+    display: block;
+    text-align: center;
+    overflow-wrap: break-word;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    line-height: 120%;
+    color: var(--spui-color-text-primary);
+    font-size: var(--spinner-text-size);
+
+    &--size {
+      &-sm {
+        --spinner-text-size: 8px;
+      }
+
+      &-md {
+        --spinner-text-size: 10px;
+      }
+
+      &-lg {
+        --spinner-text-size: 12px;
+      }
+
+      &-xl {
+        --spinner-text-size: 14px;
+      }
+    }
+  }
+
+  // Текст и точки в одном inline-потоке: при переносе точки остаются в конце последней строки
+  &__text {
+    display: inline;
+  }
+
+  &__dots {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+
+    @include mixins.inherit-font-style;
+  }
+
+  &__dot {
+    display: inline-block;
+    animation: spinner-dot-wave 1.2s ease-in-out infinite both;
+
+    @include mixins.inherit-font-style;
+
+    &::after {
+      content: ".";
+    }
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 0.45s;
+    }
+  }
+}
+
+@keyframes spinner-dot-wave {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-0.35em);
+  }
+}

@@ -1,0 +1,99 @@
+/* Reset and base styles
+ https://webcademy.ru/blog/739/
+*/
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+
+aside, nav, footer, header, section, main {
+  display: block;
+}
+
+img {
+  vertical-align: top;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button, input[type="submit"] {
+  display: inline-block;
+  box-shadow: none;
+  background: transparent none;
+  cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+input[type='file'] {
+  max-width: 100%;
+}
+
+// Кастомные стили для кода в документации
+code, pre {
+  &, & * {
+    font-family: 'Cascadia Code', /* Новый красивый от Microsoft (есть у многих разработчиков) */
+    'Fira Code', /* С лигатурами, популярен */
+    Consolas, /* Windows: красивый, современный, предустановлен */
+    Menlo, /* macOS: приятный моноширинный */
+    Monaco, /* macOS (старый, но часто бывает) */
+    'DejaVu Sans Mono', /* Linux (почти везде) */
+    'Courier New', /* Абсолютный fallback (везде, но грубоват) */
+    monospace !important; /* Браузерный системный моноширинный */
+  }
+}

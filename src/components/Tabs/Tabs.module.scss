@@ -1,0 +1,174 @@
+@use "../../styles/mixins" as mixins;
+
+.spTabs {
+  $block: &;
+  display: flex;
+  align-items: flex-start;
+  @include mixins.starting-style-appearance();
+
+  &_separated {
+    background-color: transparent;
+    gap: var(--spui-tabs-container-gap);
+    padding: var(--spui-spacing-none);
+  }
+
+  &--size-md {
+    --spui-tabs-container-gap: var(--spui-spacing-1x);
+    --spui-tabs-container-padding: 6px;
+    --spui-tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+    --spui-tab-item-height: var(--spui-control-height-md);
+    --spui-tabs-contained-content-height: var(--spui-control-height-base);
+    --spui-tab-item-font-size: 16px;
+  }
+
+  &--size-xl {
+    --spui-tabs-container-gap: var(--spui-spacing-2x);
+    --spui-tabs-container-padding: var(--spui-spacing-2x);
+    --spui-tab-item-padding: var(--spui-spacing-none) var(--spui-spacing-5x);
+    --spui-tab-item-height: var(--spui-control-height-xl);
+    --spui-tabs-contained-content-height: var(--spui-control-height-md);
+    --spui-tab-item-font-size: 20px;
+  }
+
+  &--variant-contained {
+    background-color: var(--spui-color-surface-page);
+    padding: var(--spui-spacing-none) var(--tabs-container-padding);
+
+    & #{$block}__tabElement {
+      color: var(--spui-color-text-secondary);
+      background-color: transparent;
+      padding: var(--spui-spacing-none);
+
+      &:hover {
+        &:not(#{$block}__tabElement_active) {
+          & #{$block}__tabContent {
+            background-color: var(--tab-item-bg-hover);
+          }
+        }
+      }
+    }
+
+    & #{$block}__tabElement_active {
+      color: var(--spui-color-text-action);
+      background-color: transparent;
+
+      & #{$block}__tooltip {
+        color: var(--spui-color-text-action);
+      }
+
+      & #{$block}__tabContent {
+        background-color: var(--spui-color-surface-default);
+      }
+    }
+
+    & #{$block}__tabContent {
+      height: var(--tabs-contained-content-height);
+      min-height: var(--tabs-contained-content-height);
+      padding: var(--tab-item-padding);
+      background-color: transparent;
+    }
+  }
+
+  &--variant-outlined {
+    background-color: transparent;
+    padding: var(--spui-spacing-none);
+
+    & #{$block}__tabElement {
+      border-bottom: var(--spui-border-width-md) solid transparent;
+      color: var(--spui-color-text-secondary);
+      background-color: transparent;
+
+      &:hover {
+        color: var(--spui-color-text-action);
+      }
+    }
+
+    & #{$block}__tabElement_active {
+      color: var(--spui-color-text-action);
+      border-bottom: var(--spui-border-width-md) solid var(--spui-color-border-action);
+
+      & #{$block}__tooltip {
+        color: var(--spui-color-text-action);
+      }
+    }
+  }
+
+  &--variant-filled {
+    background-color: transparent;
+    padding: var(--spui-spacing-none);
+
+    & #{$block}__tabElement {
+      border: var(--spui-border-width-sm) solid var(--spui-color-border-disabled, var(--color-light-smoke));
+      color: var(--spui-color-text-secondary);
+      background-color: var(--spui-color-surface-disabled);
+
+      &:hover {
+        border-color: var(--spui-color-border-action);
+      }
+    }
+
+    & #{$block}__tabElement_active {
+      color: var(--spui-color-text-on-action);
+      background-color: var(--spui-color-surface-action);
+      border-color: var(--spui-color-border-action);
+
+      & #{$block}__tooltip {
+        color: var(--spui-color-text-on-action);
+      }
+    }
+  }
+
+  &__tabElement {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    height: var(--tab-item-height);
+    min-height: var(--tab-item-height);
+    padding: var(--tab-item-padding);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: var(--tab-item-font-size);
+    line-height: 120%;
+
+    &_active {
+      font-weight: var(--spui-font-weight-medium);
+    }
+  }
+
+  &__tabContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spui-spacing-2x);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    padding: var(--spui-spacing-none);
+  }
+
+  &__iconContainer {
+    display: flex;
+
+    & :global .stpr-icon {
+      width: var(--spui-icon-size-base);
+      height: var(--spui-icon-size-base);
+      transition: unset;
+      flex-shrink: 0;
+    }
+  }
+
+  &__tabText {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__tooltip {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+}

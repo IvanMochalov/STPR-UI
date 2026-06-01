@@ -1,0 +1,351 @@
+@use "../../styles/mixins" as mixins;
+
+.spUploadFiles {
+  $block: &;
+
+  display: inline-flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  min-width: 280px;
+  height: 100%;
+  @include mixins.starting-style-appearance();
+
+  &_error {
+    & #{$block}__control {
+      border-color: var(--spui-color-border-error);
+      color: var(--spui-color-icon-error);
+    }
+  }
+
+  &__tooltipRoot {
+    width: 100%;
+  }
+
+  &__fileNameContainer {
+    width: 100%;
+    text-align: start;
+  }
+
+  &__fileName {
+    &_dragError {
+      color: var(--spui-color-text-error);
+    }
+  }
+
+  &__startIcon {
+    &_error {
+      color: var(--spui-color-icon-error);
+    }
+  }
+
+  &__placeholderContainer {
+    width: 100%;
+  }
+
+  &--variant {
+    &-input {
+      #{$block}__fileNameContainer {
+        max-width: calc(100% - 68px);
+      }
+
+      #{$block}__placeholderContainer {
+        text-align: start;
+        max-width: calc(100% - 36px);
+      }
+
+      #{$block}__placeholderContainer_withUloadTooltip {
+        max-width: calc(100% - 72px);
+      }
+
+      #{$block}__control {
+        padding: 12px 16px;
+        height: fit-content;
+      }
+
+      #{$block}__placeholder {
+        font-size: 16px;
+
+        @include mixins.respond-to(sm) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    &-dropzone {
+      #{$block}__fileNameContainer {
+        max-width: calc(100% - 32px);
+      }
+
+      #{$block}__placeholderContainer {
+        text-align: center;
+      }
+
+      #{$block}__control {
+        justify-content: center;
+        height: 100%;
+        padding: var(--spui-spacing-6x) var(--spui-spacing-12x);
+        min-height: 190px;
+
+        @include mixins.respond-to(sm) {
+          padding: 32px 84px;
+        }
+      }
+
+      #{$block}__control_loading {
+        // TODO need seed and mapped tokens
+        $start-color: var(--spui-color-gray-100);
+        $end-color: var(--spui-color-surface-default);
+        background-image: linear-gradient(
+                90deg,
+                $start-color 0%,
+                $end-color 50%,
+                $start-color 100%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite ease-in-out;
+      }
+
+      #{$block}__placeholder {
+        font-family: var(--spui-font-family-title), serif;
+        font-weight: var(--spui-font-weight-medium);
+        font-size: 20px;
+
+        @include mixins.respond-to(sm) {
+          font-size: 24px;
+        }
+      }
+
+      #{$block}__fileName {
+        text-align: center;
+        font-family: var(--spui-font-family-title), serif;
+        font-weight: var(--spui-font-weight-medium);
+        font-size: 20px;
+
+        @include mixins.respond-to(sm) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  &__control {
+    $control: &;
+
+    width: 100%;
+    position: relative;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    color: var(--spui-color-icon-disabled);
+    background-color: var(--spui-color-surface-default);
+    border: var(--spui-border-width-sm) dashed var(--color-gray);
+    gap: var(--spui-spacing-3x);
+    cursor: pointer;
+    @include mixins.transition-all-ease-in-out(200ms);
+
+    @include mixins.respond-to(sm) {
+      padding: 16px;
+      min-height: 56px;
+    }
+  }
+
+  &:not(#{$block}_fileUploaded, #{$block}_disabled) {
+    & #{$block}__control:hover {
+      border-color: var(--color-light-blue);
+    }
+  }
+
+  &_disabled {
+    & #{$block}__control {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &_fileUploaded {
+    & #{$block}__control {
+      cursor: default;
+      color: var(--spui-color-icon-primary);
+    }
+  }
+
+  &__fileNamesList {
+    margin: var(--spui-spacing-none);
+    padding: var(--spui-spacing-none);
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spui-spacing-6x);
+    width: 100%;
+    min-width: 240px;
+
+    // Проба верстки адаптива списка файлов на @container
+    container: file-list-container / inline-size;
+
+    &_loading {
+      opacity: 0.7;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    #{$block}__fileNamesListItem {
+      width: 100%;
+      @include mixins.starting-style-appearance();
+
+      @container file-list-container (min-width: calc(170px * 2 + 24px)) {
+        width: calc((100cqw - 24px) / 2);
+      }
+
+      @container file-list-container (min-width: calc(170px * 3 + 24px * 2)) {
+        width: calc((100cqw - 24px * 2) / 3);
+      }
+
+      @container file-list-container (min-width: calc(170px * 4 + 24px * 3)) {
+        width: calc((100cqw - 24px * 3) / 4);
+      }
+    }
+  }
+
+  &__fileNamesListItem {
+    position: relative;
+    gap: var(--spui-spacing-2x);
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spui-spacing-4x);
+    background-color: var(--spui-color-surface-page);
+
+    &__iconContainer {
+      display: flex;
+      color: var(--spui-color-icon-action);
+      flex-shrink: 0;
+
+      & :global {
+        & .stpr-icon {
+          height: var(--spui-icon-size-xl);
+          width: var(--spui-icon-size-xl);
+        }
+      }
+
+      &_error :global {
+        color: var(--spui-color-icon-error);
+
+        & .stpr-icon {
+          height: var(--spui-icon-size-lg);
+          width: var(--spui-icon-size-lg);
+        }
+      }
+    }
+
+    &__mainContent {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spui-spacing-1x);
+      overflow: hidden;
+    }
+
+    &__fileNameWrapper {
+      max-width: 90%;
+      overflow: hidden;
+    }
+
+    &__fileName {
+      font-size: 14px;
+    }
+
+    &__fileNameTooltip {
+      padding: var(--spui-spacing-2x) !important;
+    }
+
+    &__description {
+      font-size: 12px;
+      line-height: 1;
+      color: var(--color-gray-chicago);
+
+      &__tooltipContent {
+        padding: var(--spui-spacing-2x) !important;
+      }
+
+      &_error {
+        color: var(--spui-color-text-error);
+      }
+    }
+  }
+
+  &__fileNamesListItemDelete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    color: var(--spui-color-text-primary);
+    background-color: var(--spui-color-gray-300);
+    padding: 6px;
+    width: fit-content;
+    border-radius: 100%;
+    opacity: 0.5;
+    @include mixins.transition-all-ease-in-out(200ms);
+
+    &_error {
+      color: var(--spui-color-text-primary);
+    }
+
+    & :global {
+      & .stpr-icon {
+        width: var(--spui-icon-size-xs);
+        height: var(--spui-icon-size-xs);
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__infoTooltip {
+    margin-left: auto;
+  }
+
+  &__delete {
+    display: flex;
+    cursor: pointer;
+
+    &_loading {
+      opacity: 0.7;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+
+    & :global {
+      & .stpr-icon {
+        width: var(--spui-icon-size-sm);
+        height: var(--spui-icon-size-sm);
+      }
+    }
+  }
+
+  &__error {
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 12px;
+    color: var(--spui-color-text-error);
+
+    @include mixins.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

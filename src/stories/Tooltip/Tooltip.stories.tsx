@@ -1,16 +1,11 @@
+import { Button } from "@components/Button";
+import { EIconName, Icon } from "@components/Icons";
+import { Text } from "@components/Text";
+import { ETooltipPosition, Tooltip } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cx from "clsx";
 import { useState } from "react";
 
-import {
-  Button,
-  EIconName,
-  ETooltipPosition,
-  Icon,
-  Text,
-  Tooltip,
-} from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 import styles from "./TooltipStories.module.scss";
 
 const meta: Meta<typeof Tooltip> = {
@@ -27,7 +22,7 @@ const meta: Meta<typeof Tooltip> = {
 
 - **Два режима активации**: по наведению (\`hover\`) и по клику (\`click\`)
 - **12 позиций отображения**: полная поддержка всех сторон и углов
-- **Автоматическое позиционирование**: предотвращает выход за границы \`viewport\`
+- **Автоматическое позиционирование**: предотвращает выход за границы \`viewport\` (отключается параметром \`lockPosition\`)
 - **Портальное отображение**: рендеринг вне DOM-иерархии для избежания \`overflow\`
 - **Гибкая кастомизация**: поддержка кастомных триггеров и содержимого
 - **Обработка кликов вне области**: автоматическое закрытие при клике вне тултипа
@@ -132,11 +127,26 @@ const meta: Meta<typeof Tooltip> = {
         defaultValue: { summary: '"bottom-left"' },
       },
     },
+    lockPosition: {
+      description: `Запрещает перерасчёт позиции. Если true, используется только переданная позиция без проверки viewport и подбора альтернатив. Полезно для выпадающих списков.\n`,
+      control: { type: "boolean" },
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     text: {
       description: `Содержимое тултипа. Может быть строкой или React-компонентом. Поддерживает многострочный текст и HTML-разметку.\n`,
       control: { type: "text" },
       table: {
         type: { summary: "string | ReactNode" },
+      },
+    },
+    triggerTooltipGap: {
+      description: `Расстояние между триггером и тултипом.\nПо умолчанию 6.`,
+      control: { type: "number" },
+      table: {
+        type: { summary: "number" },
       },
     },
     noPadding: {
@@ -169,7 +179,7 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
     classNameTooltip: {
-      description: "Дополнительный CSS-класс для корневого элемента тултипа (триггера)\n",
+      description: "Дополнительный CSS-класс для родителя элемента триггера\n",
       control: false,
       table: {
         type: { summary: "string" },
@@ -197,13 +207,6 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     position: ETooltipPosition.BottomLeft,
     isVisibleTooltip: true,
@@ -211,6 +214,8 @@ const meta: Meta<typeof Tooltip> = {
     isStopPropagationClickOnTrigger: false,
     noPadding: false,
     isToggleClick: false,
+    lockPosition: false,
+    triggerTooltipGap: 6,
   },
 };
 
@@ -233,7 +238,7 @@ export const Clickable: Story = {
     text: "Этот тултип появляется только по клику и закрывается при клике вне области",
     trigger: (
       <Text classNameRoot={cx(styles.clickableTooltipTrigger, styles.defaultTooltipTrigger)}>
-        Кликни на меня
+        Кликни по мне
       </Text>
     ),
   },

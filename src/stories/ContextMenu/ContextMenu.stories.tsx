@@ -1,7 +1,6 @@
+import { ContextMenu } from "@components/ContextMenu";
+import { EIconName } from "@components/Icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import { ContextMenu, EIconName } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 
 const meta: Meta<typeof ContextMenu> = {
   title: "Components/ContextMenu",
@@ -78,13 +77,6 @@ const meta: Meta<typeof ContextMenu> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;

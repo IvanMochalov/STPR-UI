@@ -1,0 +1,37 @@
+.typesColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 380px;
+}
+
+.inheritFontWrapper {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.demoBox {
+  width: 200px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+.demoBoxNarrow {
+  width: 150px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+.demoBoxInheritFont {
+  width: 200px;
+  border: 1px solid #eee;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.demoHint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--color-gray);
+}

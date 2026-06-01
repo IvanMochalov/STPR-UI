@@ -1,9 +1,9 @@
+import { Breadcrumb, type TCrumbItem } from "@components/Breadcrumb";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
 
-import { Breadcrumb, TCrumbItem } from "../../../lib/components/Breadcrumb";
-import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
+import styles from "./BreadcrumbStories.module.scss";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
@@ -106,13 +106,6 @@ return <Breadcrumb crumbsList={crumbsList} />;
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -197,7 +190,7 @@ export const InteractiveBreadcrumb: Story = {
     }, [currentPage]);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div className={styles.interactiveColumn}>
         <Breadcrumb {...args} crumbsList={crumbList} />
         <Text type={"description"} color={"#666"}>
           Текущая страница: {currentPage}

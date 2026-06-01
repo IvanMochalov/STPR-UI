@@ -1,0 +1,84 @@
+@use "../../styles/mixins" as mixins;
+
+.spText {
+  $block: &;
+  display: inline-block;
+  font-family: var(--spui-font-family-main), serif;
+  font-weight: var(--spui-font-weight-regular);
+  font-size: 16px;
+  line-height: 120%;
+  white-space: normal;
+  @include mixins.starting-style-appearance();
+
+  @include mixins.respond-to(sm) {
+    font-size: 18px;
+  }
+
+  &_ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  &_type-h1 {
+    font-family: var(--spui-font-family-title), serif;
+    font-weight: var(--spui-font-weight-bold);
+    font-size: 28px;
+
+    @include mixins.respond-to(sm) {
+      font-size: 48px;
+    }
+  }
+
+  &_type-h3 {
+    font-family: var(--spui-font-family-title), serif;
+    font-weight: var(--spui-font-weight-bold);
+    font-size: 24px;
+
+    @include mixins.respond-to(sm) {
+      font-size: 28px;
+    }
+
+    @include mixins.respond-to(lg) {
+      font-size: 36px;
+    }
+  }
+
+  &_type-p1 {
+    @include mixins.respond-to(sm) {
+      font-size: 20px;
+    }
+  }
+
+  &_type-p2 {
+    @include mixins.respond-to(sm) {
+      font-size: 16px;
+    }
+  }
+
+  &_type-description {
+    font-size: 14px;
+    @include mixins.respond-to(sm) {
+      font-size: 16px;
+    }
+  }
+
+  &_type-link {
+    color: var(--spui-color-text-action);
+    font-size: 16px;
+    font-weight: var(--spui-font-weight-medium);
+
+    @include mixins.respond-to(sm) {
+      font-size: 18px;
+    }
+
+    &:hover {
+      color: var(--spui-color-text-action);
+    }
+  }
+
+  &_cursorPointer {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,67 @@
+@use "../../styles/mixins" as mixins;
+
+.progressWrapper {
+  $block: &;
+  position: relative;
+
+  width: 100%;
+  z-index: 1;
+  transition: background 0.3s ease;
+  @include mixins.starting-style-appearance();
+
+  &_loading {
+    opacity: 0.7;
+    pointer-events: none;
+    cursor: not-allowed;
+
+    &#{$block}--animated-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    &#{$block}--animated-backgroundProgress {
+      background: linear-gradient(
+              to right,
+              var(--spui-color-blue-50) var(--progress, 0%),
+              var(--spui-color-surface-default) var(--progress, 0%)
+      );
+    }
+  }
+
+  &__progressBadge {
+    z-index: 2;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: var(--spui-spacing-1x);
+    padding-left: var(--spui-spacing-2x);
+    font-size: 12px;
+    font-weight: var(--spui-font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    color: var(--spui-color-text-secondary);
+    transition: all 0.5s ease;
+
+    &_loading {
+      color: var(--spui-color-text-action);
+    }
+
+    @include mixins.respond-to(sm) {
+      padding: var(--spui-spacing-2x);
+      padding-left: var(--spui-spacing-3x);
+      font-size: 14px;
+    }
+  }
+}
+
+/* Анимация пульсации для элементов в процессе загрузки */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

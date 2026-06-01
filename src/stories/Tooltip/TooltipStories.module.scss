@@ -1,24 +1,22 @@
-@use "/src/styles/global" as styles;
-
 .defaultTooltipTrigger {
-  font-weight: 500;
-  padding: 12px 20px;
-  border: 1px dashed styles.$color-accent-blue;
-  color: styles.$color-accent-blue;
-  border-radius: 6px;
-  background-color: styles.$color-gray-4-transparent;
+  font-weight: var(--spui-font-weight-medium);
+  padding: var(--spui-spacing-3x) var(--spui-spacing-5x);
+  border: var(--spui-border-width-sm) dashed var(--color-accent-blue);
+  color: var(--color-accent-blue);
+  border-radius: var(--spui-border-radius-md);
+  background-color: var(--spui-color-surface-secondary);
 }
 
 .clickableTooltipTrigger {
-  border-color: styles.$color-green-1;
-  background-color: styles.$color-green-2-transparent-10;
-  color: styles.$color-green-1;
+  color: var(--green-dark);
+  background-color: var(--green-light);
+  border-color: var(--green-dark);
 }
 
 .toggleClickableTooltipTrigger {
-  border-color: styles.$color-red-2;
-  background-color: styles.$color-red-3-transparent-10;
-  color: styles.$color-red-2;
+  color: var(--purple-dark);
+  background-color: var(--purple-light);
+  border-color: var(--purple-dark);
 }
 
 .iconTooltipWrapper {
@@ -28,9 +26,9 @@
 }
 
 .iconTooltipTrigger {
-  color: styles.$color-accent-blue;
-  width: 20px;
-  height: 20px;
+  color: var(--color-accent-blue);
+  width: var(--spui-icon-size-sm);
+  height: var(--spui-icon-size-sm);
 }
 
 .allPositionTooltipWrapper {
@@ -60,7 +58,7 @@
   gap: 8px;
 
   &__title {
-    color: styles.$color-accent-blue;
+    color: var(--color-accent-blue);
     font-weight: 500;
   }
 
@@ -75,14 +73,14 @@
 
   &__description {
     font-size: 12px;
-    color: styles.$color-gray-1;
+    color: var(--color-gray);
   }
 }
 
 .noPaddingTooltipTextWrapper {
   border-radius: 6px;
-  background-color: styles.$color-accent-blue-light;
-  color: styles.$color-white;
+  background-color: var(--color-aqua-blue);
+  color: var(--color-white);
   font-size: 14px;
   padding: 6px;
 }
@@ -95,7 +93,7 @@
 
   &__logsWrapper {
     padding: 12px;
-    background-color: styles.$color-gray-4-transparent;
+    background-color: var(--spui-color-gray-100);
     border-radius: 4px;
     min-width: 300px;
     display: flex;
@@ -117,7 +115,7 @@
 
     &__description {
       font-size: 12px;
-      color: styles.$color-gray-1;
+      color: var(--color-gray);
       font-style: italic;
     }
   }
@@ -126,9 +124,9 @@
 .stopPropagationTooltipWrapper {
   padding: 30px;
   border-radius: 8px;
-  background-color: styles.$color-green-2-transparent-10;
-  border: 2px solid styles.$color-green-1;
-  color: styles.$color-green-1;
+  border: var(--spui-border-width-md) solid var(--green-dark);
+  color: var(--green-dark);
+  background-color: var(--green-light);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -136,6 +134,6 @@
 
   &__title {
     font-weight: 500;
-    color: styles.$color-green-2;
+    color: var(--green-dark);
   }
 }

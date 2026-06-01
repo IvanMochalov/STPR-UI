@@ -1,5 +1,3 @@
-@use "/src/styles/global" as styles;
-
 .storiesWrapper {
   display: flex;
   flex-direction: column;
@@ -19,7 +17,19 @@
   gap: 8px;
 
   &__description {
-    color: styles.$color-gray-1;
+    color: var(--color-gray);
     font-weight: 500;
   }
+}
+
+.fluidHeightWrapper {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fluidHeightDemoContainer {
+  height: 200px;
+  border: 1px dashed #ccc;
+  padding: 8px;
 }

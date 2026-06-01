@@ -1,0 +1,126 @@
+@use "../../styles/mixins" as mixins;
+
+.spCheckbox {
+  $block: &;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: fit-content;
+  @include mixins.starting-style-appearance();
+
+  &__control {
+    display: none
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 16px;
+    color: var(--spui-color-text-primary);
+
+    @include mixins.respond-to(sm) {
+      font-size: 20px;
+    }
+  }
+
+  &__box {
+    $block: &;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    gap: var(--spui-spacing-3x);
+    user-select: none;
+    color: var(--spui-color-border-action);
+
+    &:hover {
+      color: var(--spui-color-border-action-hover);
+    }
+
+    &_disabled {
+      cursor: default;
+      pointer-events: none;
+
+      color: var(--spui-color-border-disabled);
+    }
+
+    &_error {
+      color: var(--spui-color-border-error);
+
+      &:hover {
+        color: var(--spui-color-red-600);
+      }
+    }
+
+    &__checkmark {
+      display: flex;
+      width: var(--spui-control-height-base);
+      height: var(--spui-control-height-base);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: var(--spui-color-surface-default);
+      border: var(--spui-border-width-md) solid currentColor;
+      @include mixins.transition-all-ease-in-out(200ms);
+
+      &--size-lg {
+        width: var(--spui-control-height-base);
+        height: var(--spui-control-height-base);
+      }
+
+      &--size-md {
+        width: var(--spui-control-height-sm);
+        height: var(--spui-control-height-sm);
+      }
+    }
+
+    &__innerSquare {
+      background: var(--spui-color-surface-transparent);
+      transform: scale(0);
+      @include mixins.transition-all-ease-in-out(200ms);
+
+      &--size-lg {
+        width: var(--spui-icon-size-sm);
+        height: var(--spui-icon-size-sm);
+      }
+
+      &--size-md {
+        width: var(--spui-icon-size-xs);
+        height: var(--spui-icon-size-xs);
+      }
+
+      &_checked {
+        background-color: currentColor;
+        transform: scale(1);
+      }
+    }
+  }
+
+
+  &__tooltip {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__required {
+    margin-left: var(--spui-spacing-1x);
+    color: var(--spui-color-text-secondary);
+  }
+
+  &__error {
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 12px;
+    color: var(--spui-color-text-error);
+
+    @include mixins.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}

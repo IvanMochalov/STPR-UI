@@ -1,0 +1,5 @@
+@use "../../styles/mixins" as mixins;
+
+.spIcon {
+  @include mixins.starting-style-appearance();
+}

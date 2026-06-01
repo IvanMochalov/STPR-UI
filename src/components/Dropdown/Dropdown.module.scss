@@ -1,0 +1,80 @@
+@use "../../styles/mixins" as mixins;
+
+.spDropdown {
+  $block: &;
+
+  position: relative;
+  display: inline-flex;
+  height: var(--spui-control-height-md);
+  align-items: center;
+  width: fit-content;
+  background: var(--spui-color-surface-secondary);
+  cursor: pointer;
+  color: var(--spui-color-text-action);
+  @include mixins.starting-style-appearance();
+
+  &:hover {
+    background-color: var(--spui-color-surface-secondary);
+  }
+
+  &__labelText {
+    display: flex;
+    padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-right: var(--spui-border-width-sm) solid var(--spui-color-border-action);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-medium);
+    font-size: 16px;
+    color: currentColor;
+  }
+
+  &__tooltipContainer {
+    display: flex;
+    padding: var(--spui-spacing-none) var(--spui-spacing-3x);
+    align-items: center;
+    align-self: stretch;
+    color: currentColor;
+  }
+
+  &__dropdownList {
+    min-width: 275px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--spui-color-surface-default);
+  }
+
+  &__dropdownListHeader {
+    font-family: var(--spui-font-family-main), serif;
+    font-size: 18px;
+    color: var(--spui-color-text-secondary);
+    padding: var(--spui-spacing-4x);
+  }
+
+  &__dopdownListItem {
+    display: flex;
+    padding: var(--spui-spacing-3x) var(--spui-spacing-4x);
+    align-items: flex-start;
+    align-self: stretch;
+    justify-content: space-between;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 16px;
+    cursor: pointer;
+    gap: var(--spui-spacing-2x);
+
+    &:hover {
+      background-color: var(--spui-color-surface-page);
+    }
+
+    &_textCenter {
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  &__downloadListItemDescription {
+    color: var(--spui-color-text-secondary);
+  }
+}

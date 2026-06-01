@@ -1,0 +1,32 @@
+@use "../../styles/mixins" as mixins;
+
+.spTooltip {
+  $block: &;
+  position: relative;
+  display: flex;
+  width: fit-content;
+  @include mixins.starting-style-appearance();
+}
+
+.spInfoTooltip {
+  $infoBlock: &;
+  color: var(--spui-color-icon-disabled);
+
+  // hover-режим: синий при наведении
+  &_hover:hover {
+    color: var(--spui-color-icon-action);
+  }
+
+  // режим по клику: синий, когда тултип открыт (Tooltip вешает класс .active при isOpen)
+  &_clickable {
+    cursor: pointer;
+  }
+
+  &:global(.tooltip-active)#{$infoBlock} _clickable {
+    cursor: default;
+  }
+
+  &:global(.tooltip-active) {
+    color: var(--spui-color-icon-action);
+  }
+}

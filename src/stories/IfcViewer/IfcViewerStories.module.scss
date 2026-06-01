@@ -1,0 +1,16 @@
+@use "../../styles/mixins" as mixins;
+
+.storyShell {
+  width: 100%;
+  min-height: 480px;
+  height: 70vh;
+  max-height: 720px;
+  min-width: 280px;
+
+  @include mixins.respond-to(sm) {
+    min-width: 600px;
+  }
+  @include mixins.respond-to(lg) {
+    min-width: 800px;
+  }
+}

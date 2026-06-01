@@ -1,16 +1,13 @@
+import { ApplyButtons } from "@components/ApplyButtons";
+import { Button } from "@components/Button";
+import { Confirm } from "@components/Confirm";
+import { Form } from "@components/Form";
+import { Input } from "@components/Input";
+import { Modal, useModal } from "@components/Modal";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import {
-  ApplyButtons,
-  Button,
-  Confirm,
-  Form,
-  Input,
-  Modal,
-  Text,
-  useModal,
-} from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
+import styles from "./ModalStories.module.scss";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
@@ -234,7 +231,15 @@ return (
     },
     disabled: {
       description:
-        "Блокирует взаимодействие с модальным окном. При true отображает спинер поверх содержимого и блокирует все пользовательские события",
+        "Блокирует взаимодействие с модальным окном. При true блокирует все пользовательские события (pointer-events: none) и затемняет контент (opacity: 0.5).",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    loading: {
+      description:
+        "По сути то же, что disabled (блокирует взаимодействие и затемняет контент), но дополнительно отображает спиннер поверх всего содержимого. Используйте при асинхронной загрузке данных.",
       control: { type: "boolean" },
       table: {
         defaultValue: { summary: "false" },
@@ -333,6 +338,13 @@ return (
         type: { summary: "string" },
       },
     },
+    classNameSubHeaderRoot: {
+      description: "Дополнительный CSS-класс для саб-хедера модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     classNameFooterRoot: {
       description: "Дополнительный CSS-класс для футера модального окна",
       control: false,
@@ -348,13 +360,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -368,6 +373,7 @@ export const Default: Story = {
     header: "Заголовок модального окна",
     isHiddenModal: false,
     disabled: false,
+    loading: false,
     isVisibleCloseButton: true,
     textAlign: "left",
     size: "lg",
@@ -384,6 +390,24 @@ export const Default: Story = {
         {isOpen && <Modal {...args} onClose={onCloseModal} />}
       </>
     );
+  },
+};
+
+export const WithDisabled: Story = {
+  name: "Modal with disabled",
+  render: Default.render,
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const WithLoading: Story = {
+  name: "Modal with loading",
+  render: Default.render,
+  args: {
+    ...Default.args,
+    loading: true,
   },
 };
 
@@ -505,7 +529,7 @@ export const WithoutCloseButton: Story = {
         <Button onClick={() => onOpenModal({})}>Открыть окно</Button>
         {isOpen && (
           <Modal {...args} onClose={onCloseModal}>
-            <div style={{ marginTop: "20px", textAlign: "center" }}>
+            <div className={styles.footerActions}>
               <Button onClick={onCloseModal}>Закрыть модальное окно</Button>
             </div>
           </Modal>
@@ -540,8 +564,8 @@ export const CustomHeader: Story = {
   args: {
     children: "Заголовок этого модального окна реализован как кастомный React-компонент.",
     header: (
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#007bff" }}>
-        <span style={{ fontSize: "24px", fontWeight: "bold" }}>⚡</span>
+      <div className={styles.customHeader}>
+        <span className={styles.customHeaderIcon}>⚡</span>
         <span>Кастомный заголовок</span>
       </div>
     ),
@@ -565,7 +589,7 @@ export const SizesComparison: Story = {
     const { modalData, onOpenModal, onCloseModal } = useModal();
 
     return (
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      <div className={styles.sizesComparisonRow}>
         <Button onClick={() => onOpenModal({ isOpenMd: true })}>Открыть Medium (600px)</Button>
         <Button onClick={() => onOpenModal({ isOpenLg: true })}>Открыть Large (920px)</Button>
 

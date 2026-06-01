@@ -1,8 +1,11 @@
-@use "/src/styles/global" as styles;
-
 .storiesWrapper {
-  $block: &;
   min-height: 460px;
   width: 500px;
   align-items: flex-start;
+}
+
+.defaultStoriesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spui-spacing-4x);
 }

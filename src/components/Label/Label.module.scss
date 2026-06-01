@@ -1,0 +1,25 @@
+@use "../../styles/mixins" as mixins;
+
+.spLabel {
+  // Общие стили блока
+  --spui-label-font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: var(--spui-spacing-1x);
+  color: var(--spui-color-text-secondary);
+  font-family: var(--spui-font-family-main), serif;
+  font-weight: var(--spui-font-weight-regular);
+  font-size: var(--spui-label-font-size);
+  line-height: 20px;
+  @include mixins.starting-style-appearance();
+
+
+  @include mixins.respond-to(sm) {
+    --spui-label-font-size: 14px;
+  }
+
+  &__tooltipIcon {
+    width: var(--spui-icon-size-sm);
+    height: var(--spui-icon-size-sm);
+  }
+}

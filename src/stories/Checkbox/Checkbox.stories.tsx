@@ -1,9 +1,9 @@
+import { Checkbox } from "@components/Checkbox";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 
-import { Checkbox, CheckboxProps } from "../../../lib/components/Checkbox";
-import { ETooltipPosition } from "../../../lib/components/Tooltip";
-import mainStyles from "../Stories.module.scss";
+import styles from "./CheckboxStories.module.scss";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
@@ -144,13 +144,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     size: "lg",
     label: "Включить проверку",
@@ -167,6 +160,8 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 // Базовый render function для управления состоянием
+type CheckboxProps = React.ComponentProps<typeof Checkbox>;
+
 const CheckboxWithState = (args: CheckboxProps) => {
   const [formData, setFormData] = useState({
     is: args.checked || false,
@@ -300,7 +295,7 @@ export const SizesComparison: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div className={styles.sizesColumn}>
         <Checkbox
           name="large"
           size="lg"
@@ -342,7 +337,7 @@ export const AllStates: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div className={styles.statesColumn}>
         <Checkbox
           name="normal"
           label="Обычный чекбокс"

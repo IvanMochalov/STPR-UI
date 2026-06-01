@@ -1,12 +1,15 @@
+// Сбрасываем стили
+@use "../styles/reset";
+// Подключаем tokens.scss с объявлением переменных
+@use "../styles/tokens";
+// Подключаем шрифты
+@use "../styles/fonts";
+
 .storyWrapper {
   min-height: 30vh;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-
-  &,
-  & * {
-    box-sizing: border-box;
-  }
+  font-family: var(--spui-font-family-main), serif;
 }

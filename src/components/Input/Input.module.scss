@@ -1,0 +1,137 @@
+@use "../../styles/mixins" as mixins;
+
+.spInput {
+  // Общие стили блока
+  $block: &;
+
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  @include mixins.starting-style-appearance();
+
+  &_size-md {
+    --spui-input-control-font-size: 16px;
+    --spui-input-error-font-size: 12px;
+    --spui-input-control-height: var(--spui-control-height-md);
+  }
+
+  &_size-xl {
+    --spui-input-control-font-size: 18px;
+    --spui-input-error-font-size: 14px;
+    --spui-input-control-height: var(--spui-control-height-xl);
+  }
+
+  // Модификаторы
+  &_error {
+    & #{$block}__control {
+      border-color: var(--spui-color-border-error);
+      color: var(--spui-color-text-error);
+
+      &:hover {
+        &::placeholder {
+          color: var(--spui-color-text-error);
+        }
+      }
+    }
+  }
+
+  &_absolutePositionError {
+    position: relative;
+  }
+
+  // Элементы
+  &__container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__control {
+    $control: &;
+
+    display: flex;
+    height: var(--spui-input-control-height);
+    padding: var(--spui-spacing-none) var(--spui-spacing-4x);
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: var(--spui-input-control-font-size);
+    color: var(--spui-color-text-primary);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-width: 2px;
+    border-style: solid;
+
+    &_filled {
+      border-color: var(--spui-color-border-secondary);
+      background-color: var(--spui-color-surface-page);
+    }
+
+    &_outlined {
+      background-color: var(--spui-color-surface-transparent);
+      border-color: var(--spui-color-border-primary);
+    }
+
+    &_disabled {
+      pointer-events: none;
+      color: var(--spui-color-text-disabled);
+    }
+
+    &_clearable {
+      padding-right: var(--spui-spacing-12x);
+    }
+
+    &::placeholder,
+    &_disabled:hover::placeholder {
+      color: var(--spui-color-text-secondary);
+    }
+
+    &:hover {
+      &::placeholder {
+        color: var(--spui-color-text-primary);
+      }
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border-style: solid;
+      border-color: var(--spui-color-border-action);
+      background-color: var(--spui-color-surface-transparent);
+
+      &:hover {
+        &::placeholder {
+          color: var(--spui-color-text-secondary);
+        }
+      }
+    }
+  }
+
+  &__clearControl {
+    color: var(--spui-color-text-secondary);
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &__label {
+    margin-bottom: var(--spui-spacing-2x);
+  }
+
+  &__error {
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: var(--spui-input-error-font-size);
+    color: var(--spui-color-text-error);
+
+    &_absolutePosition {
+      position: absolute;
+      top: 100%;
+    }
+  }
+}

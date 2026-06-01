@@ -1,7 +1,7 @@
+import { Dropdown } from "@components/Dropdown";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Dropdown, ETooltipPosition } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
 import styles from "./DropdownStories.module.scss";
 
 const meta: Meta<typeof Dropdown> = {
@@ -101,13 +101,6 @@ const meta: Meta<typeof Dropdown> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     dropdownPosition: ETooltipPosition.BottomRight,
     labelText: "Выпадающий список",

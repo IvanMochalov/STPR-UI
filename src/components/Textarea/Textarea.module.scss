@@ -1,0 +1,144 @@
+@use "../../styles/mixins" as mixins;
+
+.spTextarea {
+  // Общие стили блока
+  $block: &;
+
+  width: 100%;
+  position: relative;
+  @include mixins.starting-style-appearance();
+
+  // Модификаторы
+  &_fluidHeight {
+    flex-grow: 1;
+    height: 100%;
+
+    & #{$block}__container,
+    & #{$block}__control {
+      height: 100%;
+    }
+  }
+
+  &_absolutePositionError {
+    position: relative;
+  }
+
+  &_error {
+    & #{$block}__control {
+      border-color: var(--spui-color-border-error);
+      color: var(--spui-color-text-error);
+
+      &:hover {
+        &::placeholder {
+          color: var(--spui-color-text-secondary);
+        }
+      }
+    }
+  }
+
+  // Элементы
+  &__container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__control {
+    $control: &;
+
+    width: 100%;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 16px;
+    color: var(--spui-color-text-primary);
+    padding: 11.5px 16px;
+    border-width: 2px;
+    border-style: solid;
+
+    @include mixins.custom-scrollbar();
+
+    @include mixins.respond-to(sm) {
+      font-size: 18px;
+      padding: 16.5px 16px;
+    }
+
+
+    &_filled {
+      border-color: var(--spui-color-border-secondary);
+      background-color: var(--spui-color-surface-page);
+    }
+
+    &_outlined {
+      background-color: var(--spui-color-surface-transparent);
+      border-color: var(--spui-color-border-primary);
+    }
+
+    &_resize {
+      &_none {
+        resize: none;
+      }
+
+      &_both {
+        resize: both;
+      }
+
+      &_horizontal {
+        resize: horizontal;
+      }
+
+      &_vertical {
+        resize: vertical;
+      }
+    }
+
+
+    &_disabled {
+      pointer-events: none;
+      color: var(--spui-color-text-disabled);
+    }
+
+    &::placeholder {
+      color: var(--spui-color-text-secondary);
+    }
+
+    &:hover {
+      &::placeholder {
+        color: var(--spui-color-text-primary);
+      }
+    }
+
+    &_disabled:hover::placeholder {
+      color: var(--spui-color-text-disabled);
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border-style: solid;
+      border-color: var(--spui-color-border-action);
+      background-color: var(--spui-color-surface-transparent);
+
+      &:hover {
+        &::placeholder {
+          color: var(--spui-color-text-secondary);
+        }
+      }
+    }
+  }
+
+  &__error {
+    padding-top: 8px;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 12px;
+    color: var(--spui-color-text-error);
+
+    &_absolutePosition {
+      position: absolute;
+      top: 100%;
+    }
+
+    @include mixins.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}

@@ -1,9 +1,10 @@
+import { Accordion } from "@components/Accordion";
+import { ProgressWrapper } from "@components/ProgressWrapper";
+import { TextWithLabel } from "@components/TextWithLabel";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { Accordion, ProgressWrapper, TextWithLabel } from "../../../lib/test-stpr-ui-kit.ts";
 import { useInterval } from "../../hooks/useInterval.ts";
-import mainStyles from "../Stories.module.scss";
 import styles from "./ProgressWrapperStories.module.scss";
 
 const meta: Meta<typeof ProgressWrapper> = {
@@ -118,6 +119,9 @@ const meta: Meta<typeof ProgressWrapper> = {
 
 ### Базовое использование
 \`\`\`jsx
+import { useInterval } from "test-stpr-ui-kit";
+
+...
 const doneValue = 100;
 const duration = 2000;
 const [progress, setProgress] = useState(0);
@@ -146,13 +150,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -164,7 +161,7 @@ export const Default: Story = {
   args: {
     value: 0,
     doneValue: 100,
-    duration: 20000,
+    duration: 2000,
     animationVariant: "backgroundProgress",
   },
   render: ({ animationVariant, duration = 2000, doneValue, value }) => {

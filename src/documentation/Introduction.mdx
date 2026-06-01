@@ -1,29 +1,145 @@
 import { Meta, Title } from '@storybook/addon-docs/blocks';
 
-<Meta title="Documantation/Introduction" />
-<Title>Welcome to Test STPR UI ⚡️</Title>
+<Meta title="Documentation/Introduction" />
+<Title>Добро пожаловать в Test STPR UI ⚡️</Title>
 
-Works out of the box. Test STPR UI contains a set of polished React components
-that work out of the box.
+Готовые к использованию React-компоненты с согласованным визуальным стилем.
 
-## 🚀 Quick Start
-#### 1. Install the Test STPR UI package
-⚡️Test STPR UI is made up of multiple components and tools which you can import
-one by one. All you need to do is install the `test-stpr-ui-kit` package:
+## 🚀 Быстрый старт
+
+### 1. Установка пакета
+
 ```bash
 npm install test-stpr-ui-kit
+# или
+yarn add test-stpr-ui-kit
 ```
-#### 2. Import components and use in your app
-Just use the components like this:
-```jsx
+
+### 2. Токены дизайн-системы (обязательно)
+
+Стили компонентов опираются на CSS-переменные (`--spui-*`). Подключите токены **один раз** в корне приложения (например `main.tsx` или `index.tsx`):
+
+```tsx
+import "test-stpr-ui-kit/styles/tokens.css";
+```
+
+Без этого файла компоненты могут отображаться без ожидаемых цветов, отступов и размеров.
+
+### 3. Импорт компонентов
+
+Публичный API — именованные экспорты из корня пакета (как раньше):
+
+```tsx
 import { Button, Form, Input } from "test-stpr-ui-kit";
 
 function App() {
   return (
     <Form>
-      <Input placeholder="Enter your name" />
-      <Button>Submit</Button>
+      <Input placeholder="Введите имя" />
+      <Button>Отправить</Button>
     </Form>
   );
 }
 ```
+
+Стили компонентов подключаются автоматически при импорте (побочные импорты в ESM-сборке). Отдельный CSS-файл на каждый компонент подключать не нужно.
+
+Типы:
+
+```ts
+import type { ButtonProps, TPaneItem } from "test-stpr-ui-kit";
+```
+
+### 4. Vite и локальная разработка библиотеки компонентов (`npm link`)
+
+При линковке пакета в соседний Vite-проект рекомендуется исключить UI-kit из предварительной сборки зависимостей (pre-bundling):
+
+```ts
+// vite.config.ts приложения-потребителя
+export default defineConfig({
+  optimizeDeps: {
+    exclude: ["test-stpr-ui-kit"],
+  },
+});
+```
+
+После `npm run build:lib` в репозитории библиотеки обновите линк в приложении и перезапустите dev-сервер.
+
+## 🔤 Подключение шрифтов
+
+Компоненты используют шрифты **ALS_Gorizont 2.1** и **ALS_Hauss**. Загрузка шрифтов не входит в стили компонентов — её нужно добавить в проект приложения.
+
+Файлы шрифтов поставляются в пакете: `node_modules/test-stpr-ui-kit/dist/fonts/` (после сборки библиотеки — копия из `public/`).
+
+Скопируйте правила `@font-face` ниже в глобальные стили (например `index.css` или `App.css`). Пример путей — скопируйте `.woff2` в `assets/fonts/` приложения или укажите URL на файлы из `node_modules`:
+
+```css
+@font-face {
+  font-family: "ALS_Gorizont 2.1";
+  src: url("../assets/fonts/ALS_Gorizont_Regular_Expanded_2.1.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALS_Gorizont 2.1";
+  src: url("../assets/fonts/ALS_Gorizont_Medium_Expanded_2.1.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALS_Gorizont 2.1";
+  src: url("../assets/fonts/ALS_Gorizont_Bold_Expanded_2.1.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALS_Hauss";
+  src: url("../assets/fonts/ALS_Hauss_Regular_1.002.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALS_Hauss";
+  src: url("../assets/fonts/ALS_Hauss_Medium_1.2.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ALS_Hauss";
+  src: url("../assets/fonts/ALS_Hauss_Bold_1.002.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+```
+
+**Примечание:** подстройте пути в `url("../assets/fonts/...")` под структуру вашего проекта. Имена семейств (`ALS_Gorizont 2.1`, `ALS_Hauss`) должны совпадать точно — на них ссылаются компоненты:
+
+```scss
+// Переменные шрифтов в test-stpr-ui-kit
+--font-family-gorizont: "ALS_Gorizont 2.1", Verdana, Arial, Sans-serif;
+--font-family-hauss: "ALS_Hauss", Verdana, Arial, Sans-serif;
+```
+
+## 📦 Статические ресурсы пакета
+
+В `dist/` также попадают:
+
+- `dist/fonts/` — шрифты ALS (см. выше);
+- `dist/components-assets/` — например `web-ifc.wasm` для `IfcPreview`, запасное изображение для `ViewImageModal`.
+
+Пути к WASM и ассетам резолвятся относительно опубликованного пакета; при нестандартном `base` у приложения см. пропсы компонентов (например `fallbackSrc` у `ViewImageModal`).
+
+## Для разработчиков библиотеки
+
+Добавление компонентов, стори и релиз — в **CONTRIBUTING.md** и **Documentation → Development → Release workflow**.

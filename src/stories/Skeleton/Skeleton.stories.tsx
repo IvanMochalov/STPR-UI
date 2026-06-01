@@ -1,8 +1,7 @@
+import { Skeleton } from "@components/Skeleton";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Skeleton } from "../../../lib/components/Skeleton";
-import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./SkeletonStories.module.scss";
 
 const meta: Meta<typeof Skeleton> = {
@@ -132,13 +131,6 @@ const meta: Meta<typeof Skeleton> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     width: "100%",
     height: "1rem",
@@ -191,31 +183,24 @@ export const CircleSkeletons: Story = {
 export const CardSkeleton: Story = {
   render: () => {
     return (
-      <div
-        style={{
-          border: "1px solid #e9ecef",
-          borderRadius: "8px",
-          padding: "20px",
-          width: "300px",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+      <div className={styles.cardSkeleton}>
+        <div className={styles.cardSkeleton__header}>
           <Skeleton width="48px" height="48px" circle={true} />
-          <div style={{ flex: 1 }}>
-            <Skeleton width="80%" height="16px" style={{ marginBottom: "8px" }} />
+          <div className={styles.cardSkeleton__headerContent}>
+            <Skeleton width="80%" height="16px" classNameRoot={styles.cardSkeleton__titleLine} />
             <Skeleton width="60%" height="12px" />
           </div>
         </div>
 
-        <Skeleton width="100%" height="120px" style={{ marginBottom: "12px" }} />
+        <Skeleton width="100%" height="120px" classNameRoot={styles.cardSkeleton__image} />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div className={styles.cardSkeleton__lines}>
           <Skeleton width="100%" height="14px" />
           <Skeleton width="90%" height="14px" />
           <Skeleton width="95%" height="14px" />
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "16px" }}>
+        <div className={styles.cardSkeleton__footer}>
           <Skeleton width="80px" height="32px" />
           <Skeleton width="60px" height="32px" />
         </div>

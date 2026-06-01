@@ -1,0 +1,57 @@
+@use "../../styles/mixins" as mixins;
+
+.spBreadcrumb {
+  $block: &;
+  display: block;
+  @include mixins.starting-style-appearance();
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: var(--spui-spacing-1x);
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: var(--spui-font-family-main), serif;
+    list-style: none;
+    margin: var(--spui-scale-0, 0);
+    padding: var(--spui-scale-0, 0);
+  }
+
+  &__listItem {
+    $listItem: &;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: var(--spui-spacing-1x);
+
+    &:last-child {
+      #{$listItem}__separator {
+        display: none;
+      }
+    }
+
+    &__separator {
+      color: var(--spui-color-text-primary);
+      flex-shrink: 0;
+      width: var(--spui-scale-4x);
+      height: var(--spui-scale-4x);
+    }
+
+    &__text {
+      color: var(--spui-color-text-secondary);
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 130%;
+
+      @include mixins.respond-to(sm) {
+        font-size: 16px;
+      }
+    }
+
+    &_active {
+      #{$listItem}__text {
+        color: var(--spui-color-text-primary);
+      }
+    }
+  }
+}

@@ -1,9 +1,12 @@
+import { Button } from "@components/Button";
+import { Confirm } from "@components/Confirm";
+import { EIconName, Icon } from "@components/Icons";
+import { useModal } from "@components/Modal";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 
-import { EIconName } from "../../../lib/components/Icons";
-import { Button, Confirm, Icon, Text, useModal } from "../../../lib/test-stpr-ui-kit.ts";
-import mainStyles from "../Stories.module.scss";
+import styles from "./ConfirmStories.module.scss";
 
 const meta: Meta<typeof Confirm> = {
   title: "Components/Confirm",
@@ -229,6 +232,22 @@ return (
         defaultValue: { summary: "false" },
       },
     },
+    disabledConfirm: {
+      description:
+        "Блокирует взаимодействие с модальным окном. При true блокирует все пользовательские события (pointer-events: none) и затемняет контент (opacity: 0.5).",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    loadingConfirm: {
+      description:
+        "По сути то же, что disabledConfirm (блокирует взаимодействие и затемняет контент), но дополнительно отображает спиннер поверх всего содержимого. Используйте при асинхронной загрузке данных.",
+      control: { type: "boolean" },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     formId: {
       description: "ID формы для привязки кнопки подтверждения",
       control: false,
@@ -276,6 +295,13 @@ return (
         type: { summary: "string" },
       },
     },
+    classNameSubHeaderRoot: {
+      description: "Дополнительный CSS-класс для саб-хедера модального окна",
+      control: false,
+      table: {
+        type: { summary: "string" },
+      },
+    },
     classNameFooterRoot: {
       description: "Дополнительный CSS-класс для футера модального окна",
       control: false,
@@ -284,13 +310,6 @@ return (
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     onClose: () => {},
     submit: () => {},
@@ -316,6 +335,8 @@ export const Default: Story = {
     cancelBtnDisabled: false,
     disabled: false,
     loading: false,
+    disabledConfirm: false,
+    loadingConfirm: false,
     applyButtonsMobileDirection: "column",
     isVisibleCloseButton: true,
     modalVerticalAlign: "top",
@@ -508,9 +529,9 @@ export const CustomHeaderContent: Story = {
   args: {
     zIndex: 1000,
     header: (
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#d63384" }}>
+      <div className={styles.customHeader}>
         <Icon name={EIconName.WarningColor} />
-        <Text style={{ fontWeight: "bold" }}>Важное предупреждение</Text>
+        <Text classNameRoot={styles.customHeaderTitle}>Важное предупреждение</Text>
       </div>
     ),
     subHeader:
@@ -537,7 +558,7 @@ export const MultipleConfirms: Story = {
     const { modalData, onOpenModal, onCloseModal } = useModal();
 
     return (
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+      <div className={styles.buttonsRow}>
         <Button onClick={() => onOpenModal({ isOpenFirstConfirm: true })}>
           Простое подтверждение
         </Button>

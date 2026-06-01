@@ -1,0 +1,27 @@
+---
+description: Changelog and release note update rules for component changes
+alwaysApply: true
+---
+
+# Changelog Workflow
+
+- Any meaningful component change must update `CHANGELOG.md` in the current unreleased section (or planned release section).
+- Follow Keep a Changelog format and `src/documentation/development/ReleaseWorkflow.mdx`.
+- Version header format: `## [x.y.z] — YYYY-MM-DD` (or `IN FUTURE` for planned release).
+- Allowed sections for new entries only:
+  - `Added`
+  - `Changed`
+  - `Fixed`
+  - `Removed`
+  - `Security`
+- Do not use `Updated` for new changelog records.
+- For component notes, include only package-relevant changes:
+  - public API changes;
+  - behavior changes;
+  - visual changes affecting delivered component.
+- Do not include Storybook-only changes in component release notes unless package behavior is affected.
+- For breaking changes, add migration guidance (what was removed/renamed and replacement).
+- Evaluate release impact with each change set:
+  - `patch` for fixes without public API expansion;
+  - `minor` for backward-compatible features;
+  - `major` for breaking changes.

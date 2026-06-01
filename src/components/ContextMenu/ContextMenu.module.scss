@@ -1,0 +1,39 @@
+@use "../../styles/mixins" as mixins;
+
+.spContextMenu {
+  font-family: var(--spui-font-family-main), serif;
+  font-weight: var(--spui-font-weight-regular);
+  margin: var(--spui-spacing-none);
+  display: flex;
+  padding: var(--spui-spacing-2x) var(--spui-spacing-none);
+  flex-direction: column;
+  align-items: stretch;
+  border: var(--spui-border-width-sm) solid var(--spui-color-border-action);
+  background-color: var(--spui-color-surface-default);
+  @include mixins.starting-style-appearance();
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--spui-spacing-2x) var(--spui-spacing-6x);
+    font-size: 16px;
+    line-height: 120%;
+    gap: var(--spui-spacing-3x);
+
+    &:hover {
+      background-color: var(--spui-color-blue-50);
+    }
+
+    &__icon {
+      color: var(--spui-color-icon-action);
+      width: var(--spui-icon-size-xs);
+      height: var(--spui-icon-size-xs);
+
+      &_delete {
+        color: var(--spui-color-icon-error);
+      }
+    }
+  }
+}

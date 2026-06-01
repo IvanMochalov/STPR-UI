@@ -1,20 +1,15 @@
+import { Accordion } from "@components/Accordion";
+import { Checkbox, type TOnChangeCheckbox } from "@components/Checkbox";
+import { Form } from "@components/Form";
+import { EIconName } from "@components/Icons";
+import { Input, type TOnChangeInput } from "@components/Input";
+import { Select, type TOnChangeSelect } from "@components/Select";
+import { ETooltipPosition } from "@components/Tooltip";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import {
-  Accordion,
-  Checkbox,
-  EIconName,
-  ETooltipPosition,
-  Form,
-  Input,
-  Select,
-  TOnChangeCheckbox,
-  TOnChangeInput,
-  TOnChangeSelect,
-} from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
-import mainStyles from "../Stories.module.scss";
+import styles from "./AccordionStories.module.scss";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
@@ -61,15 +56,15 @@ const meta: Meta<typeof Accordion> = {
         defaultValue: { summary: "false" },
       },
     },
-    level: {
-      description:
-        "Уровень вложенности аккордеона. Влияет на размер шрифта заголовка:\n- 1: 24px на всех устройствах\n- 2: 16px (мобильные) / 24px (планшеты и выше)\n",
+    size: {
+      description: "Размер компонента",
       control: { type: "radio" },
+      options: ["md", "xl"],
       table: {
-        defaultValue: { summary: "1" },
+        defaultValue: { summary: "xl" },
         type: {
-          summary: "TAccordionLevel",
-          detail: "1 | 2",
+          summary: "TAccordionSize",
+          detail: "'md' | 'xl'",
         },
       },
     },
@@ -221,50 +216,53 @@ const meta: Meta<typeof Accordion> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Accordion>;
 
-export const Default: Story = {
-  name: "Default Accordion",
+const DEFAULT_CONTENT = (
+  <div className={styles.contentText}>
+    Разработать комплексную стратегию устойчивого развития, направленную на баланс между ростом
+    населения и ограниченными ресурсами Земли. Внедрить глобальные программы по повышению уровня
+    образования, доступности контрацепции и гендерного равенства для снижения рождаемости в
+    перенаселенных регионах. Одновременно стимулировать переход на возобновляемые ресурсы,
+    технологии замкнутого цикла и альтернативные источники пищи (например, искусственное мясо).
+    Создать международные стандарты экологичного производства и потребления, чтобы минимизировать
+    нагрузку на планету. Реализовать эти меры через сотрудничество ООН, государств и частного
+    сектора с учетом культурных особенностей регионов.
+  </div>
+);
+
+export const Collapsed: Story = {
+  name: "Collapsed",
   args: {
     defaultOpen: false,
     isHiddenExpandIcon: false,
     noBorder: false,
     noPadding: false,
     name: "Основное задание",
-    level: 1,
+    size: "xl",
     infoTooltipText: "",
     tooltipPosition: ETooltipPosition.BottomLeft,
-    children: (
-      <div style={{ textAlign: "justify" }}>
-        Разработать комплексную стратегию устойчивого развития, направленную на баланс между ростом
-        населения и ограниченными ресурсами Земли. Внедрить глобальные программы по повышению уровня
-        образования, доступности контрацепции и гендерного равенства для снижения рождаемости в
-        перенаселенных регионах. Одновременно стимулировать переход на возобновляемые ресурсы,
-        технологии замкнутого цикла и альтернативные источники пищи (например, искусственное мясо).
-        Создать международные стандарты экологичного производства и потребления, чтобы
-        минимизировать нагрузку на планету. Реализовать эти меры через сотрудничество ООН,
-        государств и частного сектора с учетом культурных особенностей регионов.
-      </div>
-    ),
+    children: DEFAULT_CONTENT,
+  },
+};
+
+export const Expanded: Story = {
+  name: "Expanded",
+  args: {
+    ...Collapsed.args,
+    defaultOpen: true,
   },
 };
 
 export const WithInfoTooltip: Story = {
   name: "Accordion with InfoTooltip",
-  render: Default.render,
+  render: Collapsed.render,
   args: {
-    ...Default.args,
+    ...Collapsed.args,
     infoTooltipText: "Информация о том, как работает аккордеон",
     name: "Аккордеон с информационным тултипом",
   },
@@ -276,14 +274,6 @@ export const InitiallyOpen: Story = {
     defaultOpen: true,
     name: "Предварительно открытый аккордеон",
     children: "Этот аккордеон изначально открыт при загрузке страницы",
-  },
-};
-
-export const Level2Accordion: Story = {
-  args: {
-    name: "Аккордеон второго уровня",
-    level: 2,
-    children: "Этот аккордеон имеет меньший размер заголовка на мобильных устройствах",
   },
 };
 

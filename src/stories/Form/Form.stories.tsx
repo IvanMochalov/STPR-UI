@@ -1,17 +1,12 @@
+import { Checkbox, type TOnChangeCheckbox } from "@components/Checkbox";
+import { Form } from "@components/Form";
+import { Input, type TOnChangeInput } from "@components/Input";
+import { Select, type TOnChangeSelect } from "@components/Select";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import {
-  Checkbox,
-  Form,
-  Input,
-  Select,
-  TOnChangeCheckbox,
-  TOnChangeInput,
-  TOnChangeSelect,
-} from "../../../lib/test-stpr-ui-kit.ts";
 import { OKRUG_OPTIONS } from "../constants";
-import mainStyles from "../Stories.module.scss";
+import styles from "./FormStories.module.scss";
 
 const meta: Meta<typeof Form> = {
   title: "Components/Form",
@@ -144,10 +139,8 @@ const meta: Meta<typeof Form> = {
   },
   decorators: [
     (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <div style={{ width: "600px", maxWidth: "100%" }}>
-          <Story />
-        </div>
+      <div className={styles.decoratorWrapper}>
+        <Story />
       </div>
     ),
   ],

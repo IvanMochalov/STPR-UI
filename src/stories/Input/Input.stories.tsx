@@ -1,21 +1,90 @@
+import { Form } from "@components/Form";
+import { Input, type TOnChangeInput } from "@components/Input";
+import { Text } from "@components/Text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { Form } from "../../../lib/components/Form";
-import { Input, TOnChangeInput } from "../../../lib/components/Input";
-import { Text } from "../../../lib/components/Text";
-import mainStyles from "../Stories.module.scss";
 import styles from "./InputStories.module.scss";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Компонент поля ввода с поддержкой различных состояний, валидации и дополнительных функций.
+
+## Особенности:
+- **Два варианта стиля**: \`outlined\` (с границей) и \`filled\` (с заполненным фоном)
+- **Размеры**: \`md\` и \`xl\`
+- **Валидация и ошибки**: подсветка ошибок и текстовые сообщения
+- **Очистка значения**: иконка очистки при включенном \`isClearable\`
+- **Маски ввода**: поддержка форматирования через \`react-input-mask\`
+- **Подсказки лейбла**: встроенная поддержка тултипов для пояснений
+- **Паттерны ввода**: валидация по регулярным выражениям
+- **Доступность**: правильная семантика и поддержка screen readers
+
+## Состояния поля:
+- **Обычное**: стандартное состояние
+- **С ошибкой**: красная граница и текст ошибки
+- **Отключенное**: серый цвет и блокировка взаимодействия
+- **С фокусом**: синяя граница для указания активного состояния
+
+## Маски ввода:
+Компонент поддерживает форматирование ввода через маски. Используйте параметр \`mask\` для указания шаблона:
+- **Телефоны**: "+7 (999) 999-99-99"
+- **Даты**: "99.99.9999" 
+- **Серии документов**: "99 99"
+- **Смешанный ввод**: "aa-9999-aa"
+- **Регулярные выражения**: [/[a-zA-Zа-яА-Я]/, /[a-zA-Zа-яА-Я]/, " ", /\\\\d/, /\\\\d/] (подробнее на https://www.npmjs.com/package/react-input-mask)
+
+## Рекомендации по использованию:
+Используйте для текстового ввода в формах с поддержкой валидации, масок и подсказок.
+
+### Базовое использование
+
+\`\`\`jsx
+const [formData, setFormData] = useState({
+  address: "",
+});
+
+<Input
+  name="address"
+  value={formData.address}
+  onChange={(_event, { name, value }) =>
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+  label="Имя пользователя"
+  placeholder="Введите ваше имя"
+/>
+\`\`\`
+
+### Использование с маской
+
+\`\`\`jsx
+<Input
+  name="phone"
+  value={formData.phone}
+  onChange={onChange}
+  label="Телефон"
+  mask="+7 (999) 999-99-99"
+  placeholder="+7 (___) ___-__-__"
+/>
+\`\`\`
+        `,
+      },
+    },
+  },
   argTypes: {
     onChange: {
       description: `Callback-функция, вызываемая при изменении значения поля ввода.
 Получает два параметра:
-- event: стандартное React событие ChangeEvent<HTMLInputElement>
+- event: стандартное React событие ChangeEvent&lt;HTMLInputElement&gt;
 - data: объект с именем поля и новым значением
 
 Особенности:
@@ -27,7 +96,7 @@ const meta: Meta<typeof Input> = {
       table: {
         type: {
           detail:
-            "(event: React.ChangeEvent<HTMLInputElement>,\n" +
+            "(event: React.ChangeEvent&lt;HTMLInputElement&gt;,\n" +
             "data: {\n" +
             "  name: string;\n" +
             "  value: string | null;\n" +
@@ -43,6 +112,18 @@ const meta: Meta<typeof Input> = {
       table: {
         type: { summary: "TInputVariant", detail: "'outlined' | 'filled'" },
         defaultValue: { summary: '"outlined"' },
+      },
+    },
+    size: {
+      description: "Размер поля ввода",
+      control: { type: "radio" },
+      options: ["md", "xl"],
+      table: {
+        defaultValue: { summary: "xl" },
+        type: {
+          summary: "TInputSize",
+          detail: "'md' | 'xl'",
+        },
       },
     },
     disabled: {
@@ -227,85 +308,9 @@ const meta: Meta<typeof Input> = {
       control: false,
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component: `
-Компонент поля ввода с поддержкой различных состояний, валидации и дополнительных функций.
-
-## Особенности:
-- **Два варианта стиля**: outlined (с границей) и filled (с заполненным фоном)
-- **Валидация и ошибки**: подсветка ошибок и текстовые сообщения
-- **Очистка значения**: иконка очистки при включенном \`isClearable\`
-- **Маски ввода**: поддержка форматирования через \`react-input-mask\`
-- **Подсказки лейбла**: встроенная поддержка тултипов для пояснений
-- **Паттерны ввода**: валидация по регулярным выражениям
-- **Адаптивный дизайн**: разные размеры и отступы на мобильных и desktop
-- **Доступность**: правильная семантика и поддержка screen readers
-
-## Состояния поля:
-- **Обычное**: стандартное состояние
-- **С ошибкой**: красная граница и текст ошибки
-- **Отключенное**: серый цвет и блокировка взаимодействия
-- **С фокусом**: синяя граница для указания активного состояния
-
-## Маски ввода:
-Компонент поддерживает форматирование ввода через маски. Используйте параметр \`mask\` для указания шаблона:
-- **Телефоны**: "+7 (999) 999-99-99"
-- **Даты**: "99.99.9999" 
-- **Серии документов**: "99 99"
-- **Смешанный ввод**: "aa-9999-aa"
-- **Регулярные выражения**: [/[a-zA-Zа-яА-Я]/, /[a-zA-Zа-яА-Я]/, " ", /\\\\d/, /\\\\d/] (подробнее на https://www.npmjs.com/package/react-input-mask)
-
-## Рекомендации по использованию:
-Используйте для текстового ввода в формах с поддержкой валидации, масок и подсказок.
-
-### Базовое использование
-
-\`\`\`jsx
-const [formData, setFormData] = useState({
-  address: "",
-});
-
-<Input
-  name="address"
-  value={formData.address}
-  onChange={(_event, { name, value }) =>
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
-  }
-  label="Имя пользователя"
-  placeholder="Введите ваше имя"
-/>
-\`\`\`
-
-### Использование с маской
-
-\`\`\`jsx
-<Input
-  name="phone"
-  value={formData.phone}
-  onChange={onChange}
-  label="Телефон"
-  mask="+7 (999) 999-99-99"
-  placeholder="+7 (___) ___-__-__"
-/>
-\`\`\`
-        `,
-      },
-    },
-  },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     variant: "outlined",
+    size: "xl",
     isAbsolutePositionError: false,
     disabled: false,
     required: false,
@@ -534,7 +539,7 @@ export const WithPatternValidation: Story = {
     return (
       <div className={styles.storiesWrapper}>
         <Input {...args} name={"numbersOnly"} value={formData.numbersOnly} onChange={onChange} />
-        <Text type="description" style={{ marginTop: "8px", color: "#666" }}>
+        <Text type="description" classNameRoot={styles.patternHint}>
           Попробуйте ввести буквы - они не будут приниматься
         </Text>
       </div>

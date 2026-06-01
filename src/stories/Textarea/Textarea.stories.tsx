@@ -1,10 +1,9 @@
+import { Form } from "@components/Form";
+import { Text } from "@components/Text";
+import { Textarea, type TOnChangeTextarea } from "@components/Textarea";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import { Form } from "../../../lib/components/Form";
-import { Text } from "../../../lib/components/Text";
-import { Textarea, TOnChangeTextarea } from "../../../lib/components/Textarea";
-import mainStyles from "../Stories.module.scss";
 import styles from "./TextareaStories.module.scss";
 
 const meta: Meta<typeof Textarea> = {
@@ -15,7 +14,7 @@ const meta: Meta<typeof Textarea> = {
     onChange: {
       description: `Callback-функция, вызываемая при изменении значения текстового поля.
 Получает два параметра:
-- event: стандартное React событие ChangeEvent<HTMLTextAreaElement>
+- event: стандартное React событие ChangeEvent&lt;HTMLTextAreaElement&gt;
 - data: объект с именем поля и новым значением
 
 Особенности:
@@ -26,7 +25,7 @@ const meta: Meta<typeof Textarea> = {
       table: {
         type: {
           detail:
-            "(event: React.ChangeEvent<HTMLTextAreaElement>,\n" +
+            "(event: React.ChangeEvent&lt;HTMLTextAreaElement&gt;,\n" +
             "data: {\n" +
             "  name: string;\n" +
             "  value: string | null;\n" +
@@ -381,13 +380,6 @@ const meta: Meta<typeof Textarea> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     variant: "outlined",
     resize: "none",
@@ -730,10 +722,7 @@ export const FluidHeight: Story = {
     };
 
     return (
-      <div
-        className={styles.storiesWrapper}
-        style={{ height: "300px", display: "flex", flexDirection: "column" }}
-      >
+      <div className={`${styles.storiesWrapper} ${styles.fluidHeightWrapper}`}>
         <Textarea
           {...args}
           name={"fluidText"}
@@ -809,7 +798,7 @@ export const AutoSizeVsFluidHeight: Story = {
             <Text type={"description"} classNameRoot={styles.viewTextareaListItem__description}>
               Fluid Height режим (fluidHeight=true, autoSize автоматически отключается)
             </Text>
-            <div style={{ height: "200px", border: "1px dashed #ccc", padding: "8px" }}>
+            <div className={styles.fluidHeightDemoContainer}>
               <Textarea
                 name={"fluidHeightText"}
                 value={formData.fluidHeightText}

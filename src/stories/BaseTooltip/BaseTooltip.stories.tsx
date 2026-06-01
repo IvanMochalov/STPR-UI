@@ -1,8 +1,8 @@
+import { BaseTooltip } from "@components/BaseTooltip";
+import { Button } from "@components/Button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { BaseTooltip } from "../../../lib/components/BaseTooltip";
-import { Button } from "../../../lib/components/Button";
-import mainStyles from "../Stories.module.scss";
+import styles from "./BaseTooltipStories.module.scss";
 
 const meta: Meta<typeof BaseTooltip> = {
   title: "Components/BaseTooltip",
@@ -81,10 +81,8 @@ const meta: Meta<typeof BaseTooltip> = {
   },
   decorators: [
     (Story) => (
-      <div className={mainStyles.storyWrapper}>
-        <div style={{ position: "relative", border: "1px dashed black", padding: "20px 40px" }}>
-          <Story />
-        </div>
+      <div className={styles.decoratorWrapper}>
+        <Story />
       </div>
     ),
   ],
@@ -129,7 +127,7 @@ export const WithReactNode: Story = {
       <div>
         <strong>Тултип с React-компонентом</strong>
         <br />
-        <span style={{ color: "#666" }}>Может содержать любые React-элементы</span>
+        <span className={styles.hintMuted}>Может содержать любые React-элементы</span>
         <br />
         <Button onClick={() => alert("Кнопка в тултипе!")}>Пример кнопки</Button>
       </div>

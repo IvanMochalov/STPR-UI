@@ -1,0 +1,158 @@
+@use "../../styles/mixins" as mixins;
+
+.tableWrapperRoot {
+  position: relative;
+
+  &_hasError {
+    outline: var(--spui-border-width-sm) solid var(--spui-color-border-error);
+  }
+
+  &__errorTooltip {
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 0;
+  }
+}
+
+.tableWrapper {
+  width: 100%;
+  @include mixins.custom-scrollbar(var(--spui-color-surface-secondary-hover));
+  @include mixins.starting-style-appearance();
+}
+
+.table {
+  $block: &;
+
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  & th, td {
+    text-align: start;
+    color: var(--color-gray-chicago);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 12px;
+  }
+
+  & tr:hover {
+    & td {
+      background-color: var(--spui-color-blue-50);
+    }
+  }
+
+  & th {
+    padding: 12px 16px;
+    background-color: var(--spui-color-gray-50);
+    font-weight: var(--spui-font-weight-medium);
+  }
+
+  &__tdContent {
+    display: block;
+    padding: 18px 16px;
+    @include mixins.inherit-font-style;
+    @include mixins.starting-style-appearance();
+  }
+
+  &__controlWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &__control {
+      color: var(--spui-color-icon-action);
+      cursor: pointer;
+      @include mixins.starting-style-appearance();
+
+      &_disabled {
+        color: var(--spui-color-icon-disabled);
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__loadingWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 60px;
+  }
+
+  &__noDataWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color: var(--spui-color-text-secondary);
+    font-style: italic;
+  }
+
+  // Стили для сортировки
+  &__sortableHeader {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--spui-color-surface-disabled);
+
+      & #{$block}__sortIcon {
+        color: var(--spui-color-icon-action);
+      }
+    }
+  }
+
+  &__headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+  }
+
+  &__sortIcon {
+    font-size: 16px;
+    line-height: 1;
+    color: var(--spui-color-gray-400);
+    font-weight: var(--spui-font-weight-medium);
+  }
+
+  //Default Styles
+  &--variant-default {
+    & th, td {
+      border: var(--spui-border-width-sm) solid var(--spui-color-border-primary);
+    }
+  }
+
+  //ZNP Styles
+  &--variant-znp {
+    & th, td {
+      border-bottom: var(--spui-border-width-sm) solid var(--spui-color-border-primary);
+    }
+
+    #{$block}__tdContent {
+      color: var(--spui-color-text-primary);
+      font-weight: var(--spui-font-weight-medium);
+    }
+  }
+}
+
+// Стили для тултипов (из main.module.scss), используемые в Table
+.tooltip {
+  $block: &;
+  padding: 8px 12px !important;
+
+  &_hasError {
+    // TODO need seed and mapped tokens
+    background-color: var(--spui-color-red-100);
+
+    #{$block}__content {
+      // TODO need seed and mapped tokens
+      color: var(--spui-color-text-error);
+    }
+  }
+
+  &__content {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,124 @@
+@use "../../styles/mixins" as mixins;
+
+.datepickerInput {
+  // Общие стили блока
+  $block: &;
+
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  @include mixins.starting-style-appearance();
+
+  // Модификаторы
+  &_error {
+    & #{$block}__control {
+      border-color: var(--spui-color-border-error);
+      color: var(--spui-color-text-error);
+
+      &:hover {
+        &::placeholder {
+          color: var(--spui-color-text-secondary);
+        }
+      }
+    }
+  }
+
+  // Элементы
+  &__container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__control {
+    $control: &;
+
+    width: 100%;
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 16px;
+    color: var(--spui-color-text-primary);
+    padding: 11.5px 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-width: var(--spui-border-width-md);
+    border-style: solid;
+
+    @include mixins.respond-to(sm) {
+      font-size: 18px;
+      padding: 16.5px 16px;
+    }
+
+    &_filled {
+      border-color: var(--spui-color-border-secondary);
+      background-color: var(--spui-color-surface-page);
+    }
+
+    &_outlined {
+      border-color: var(--spui-color-border-primary);
+      background-color: var(--spui-color-surface-transparent);
+    }
+
+    &_disabled {
+      pointer-events: none;
+      color: var(--spui-color-text-disabled);
+    }
+
+    &_withIcon {
+      padding-right: var(--spui-spacing-12x);
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border-style: solid;
+      border-color: var(--spui-color-border-action);
+      background-color: var(--spui-color-surface-transparent);
+
+      &:hover {
+        &::placeholder {
+          color: var(--spui-color-text-secondary);
+        }
+      }
+
+      ~ #{$block}__icon {
+        color: var(--spui-color-icon-action);
+      }
+    }
+
+    &::placeholder {
+      color: var(--spui-color-text-secondary);
+    }
+
+    &:hover {
+      &::placeholder {
+        color: var(--spui-color-text-primary);
+      }
+    }
+
+    &_disabled:hover::placeholder {
+      color: var(--spui-color-text-disabled);
+    }
+  }
+
+  &__icon {
+    color: var(--spui-color-icon-disabled);
+    cursor: pointer;
+    position: absolute;
+    right: var(--spui-spacing-4x);
+    top: var(--spui-spacing-none);
+    bottom: var(--spui-spacing-none);
+    margin: auto;
+  }
+
+  &__error {
+    padding-top: var(--spui-spacing-2x);
+    font-family: var(--spui-font-family-main), serif;
+    font-weight: var(--spui-font-weight-regular);
+    font-size: 12px;
+    color: var(--spui-color-text-error);
+
+    @include mixins.respond-to(sm) {
+      font-size: 14px;
+    }
+  }
+}
