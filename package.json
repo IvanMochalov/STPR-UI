@@ -47,7 +47,7 @@
     "preview": "vite preview",
     "dev:storybook": "node scripts/inline-changelog.js && storybook dev -p 6006",
     "build:storybook": "node scripts/inline-changelog.js && storybook build --output-dir storybook-static/themes/main/assets/storybook && node scripts/fix-storybook-paths.js",
-    "build:storybook-pages": "node scripts/inline-changelog.js && storybook build"
+    "build:storybook-pages": "node scripts/inline-changelog.js && storybook build --output-dir storybook-static-pages"
   },
   "dependencies": {
     "@mona-health/react-input-mask": "^3.0.3",
