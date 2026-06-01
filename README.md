@@ -61,8 +61,6 @@ export default defineConfig({
 
 Full guide (tokens, fonts, IFC assets, TypeScript): **Storybook → Documentation → Introduction**.
 
-Quick checklist: **Documentation → Cheat sheets → Package usage**.
-
 ## For library contributors
 
 See **CONTRIBUTING.md** (components, stories, `src/test-stpr-ui-kit.ts`, release workflow).

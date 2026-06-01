@@ -125,8 +125,7 @@ import "test-stpr-ui-kit/styles/tokens.css"; // один раз в entry при�
 import { ComponentName } from "test-stpr-ui-kit";
 ```
 
-Подробнее для потребителей: **Storybook → Documentation → Introduction** и шпаргалка **Documentation → Cheat sheets →
-Package usage**.
+Подробнее для потребителей: **Storybook → Documentation → Introduction**.
 
 ### Структура стори-файла
 
@@ -268,11 +267,10 @@ decorators: [
 
 Актуальные инструкции по установке и использованию в приложении:
 
-| Где                                              | Содержание                                                              |
-|--------------------------------------------------|-------------------------------------------------------------------------|
-| **README.md** (корень репо)                      | Краткий quick start: токены, импорт компонентов, peer deps              |
-| **Documentation → Introduction**                 | Полное руководство: токены, компоненты, шрифты, Vite + link, IFC-ассеты |
-| **Documentation → Cheat sheets → Package usage** | Чеклист для потребителя                                                 |
+| Где                              | Содержание                                                              |
+|----------------------------------|-------------------------------------------------------------------------|
+| **README.md** (корень репо)      | Краткий quick start: токены, импорт компонентов, peer deps              |
+| **Documentation → Introduction** | Полное руководство: токены, компоненты, шрифты, Vite + link, IFC-ассеты |
 
 При изменении публичного способа подключения стилей или entry API обновляйте эти разделы вместе с `package.json`
 `exports`.
