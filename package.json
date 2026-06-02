@@ -7,10 +7,10 @@
   "homepage": "https://stroimprosto.mos.ru/storybook?path=/",
   "repository": {
     "type": "git",
-    "url": "https://gitflic.ru/project/arnold2023/test-storybook"
+    "url": "https://github.com/IvanMochalov/STPR-UI"
   },
   "bugs": {
-    "url": "https://gitflic.ru/project/arnold2023/test-storybook/issues"
+    "url": "https://github.com/IvanMochalov/STPR-UI/issues"
   },
   "type": "module",
   "files": [
