@@ -68,9 +68,48 @@ npm publish
 
 ---
 
-## 6. Краткая последовательность при релизе
+## 5. Push тегов и создание GitHub Release
+
+После `npm version` тег существует только локально. Необходимо явно запушить коммит и тег:
+
+```bash
+git push origin main --tags
+```
+
+Затем создайте GitHub Release — без этого шага раздел **Releases** в репозитории останется пустым, даже если тег виден в git.
+
+**Через `gh` CLI:**
+
+```bash
+gh release create v1.0.0 --notes "Release v1.0.0"
+```
+
+**Через GitHub UI:**
+
+1. Открыть репозиторий → **Releases** → **Create a new release**.
+2. В поле «Choose a tag» выбрать существующий тег (например, `v1.0.0`).
+3. Заполнить описание → **Publish release**.
+
+---
+
+## 6. Деплой Storybook на GitHub Pages
+
+```bash
+npm run build:storybook-pages
+npm run deploy-storybook-pages
+```
+
+- `build:storybook-pages` собирает Storybook с base-путём `/STPR-UI/` для GitHub Pages.
+- `deploy-storybook-pages` публикует сборку в ветку `gh-pages`.
+- После деплоя Storybook доступен по адресу: https://ivanmochalov.github.io/STPR-UI/
+
+---
+
+## 7. Краткая последовательность при релизе
 
 1. Обновить **CHANGELOG.md**: оформить запись под новой версией.
 2. Поднять версию: **`npm version patch`** / **`minor`** / **`major -m "release: %s"`**.
 3. Собрать и опубликовать пакет: **`npm run build:lib`** → **`npm publish`**.
-4. ...Деплой
+4. Запушить коммит и тег: **`git push origin main --tags`**.
+5. Создать GitHub Release: **`gh release create vX.Y.Z`** или через GitHub UI.
+6. Задеплоить Storybook: **`npm run build:storybook-pages`** → **`npm run deploy-storybook-pages`**.
