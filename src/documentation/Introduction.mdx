@@ -133,12 +133,16 @@ export default defineConfig({
 
 ## 📦 Статические ресурсы пакета
 
-В `dist/` также попадают:
+Установка пакета — обычный `npm install test-stpr-ui-kit` **без** `--ignore-scripts` и без postinstall-хуков: в npm попадает только `dist/`, lifecycle-скрипты не выполняются.
+
+В `dist/` также лежат:
 
 - `dist/fonts/` — шрифты ALS (см. выше);
-- `dist/components-assets/` — например `web-ifc.wasm` для `IfcPreview`, запасное изображение для `ViewImageModal`.
+- `dist/components-assets/` — например `web-ifc.wasm` для `IfcPreview` / `IfcViewer`, запасное изображение для `ViewImageModal`.
 
-Пути к WASM и ассетам резолвятся относительно опубликованного пакета; при нестандартном `base` у приложения см. пропсы компонентов (например `fallbackSrc` у `ViewImageModal`).
+Для IFC-компонентов установите peer-зависимости `three` и `web-ifc` и отдавайте `web-ifc.wasm` из статики приложения (по умолчанию каталог `/components-assets/IfcPreview/web-ifc/`). Файл можно скопировать из `node_modules/test-stpr-ui-kit/dist/components-assets/IfcPreview/web-ifc/web-ifc.wasm` или из установленного peer `web-ifc`.
+
+При нестандартном `base` у Vite передайте `wasmPublicPath` с `${import.meta.env.BASE_URL}` (см. стори `IfcPreview` / `IfcViewer`). Для `ViewImageModal` при необходимости задайте `fallbackSrc`.
 
 ## Для разработчиков библиотеки
 

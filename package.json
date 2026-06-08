@@ -39,15 +39,15 @@
     "web-ifc": "^0.0.77"
   },
   "scripts": {
-    "postinstall": "node scripts/copy-web-ifc-wasm.mjs",
+    "copy:web-ifc-wasm": "node scripts/copy-web-ifc-wasm.mjs",
     "build:ignore-tsc": "vite build",
-    "build:lib": "node scripts/inline-changelog.js && tsc && vite build && node scripts/build-tokens-css.mjs && tsc -p tsconfig.lib.json",
+    "build:lib": "node scripts/inline-changelog.js && tsc && npm run copy:web-ifc-wasm && vite build && node scripts/build-tokens-css.mjs && tsc -p tsconfig.lib.json",
     "changelog:update": "node scripts/inline-changelog.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "dev:storybook": "node scripts/inline-changelog.js && storybook dev -p 6006",
-    "build:storybook": "node scripts/inline-changelog.js && storybook build --output-dir storybook-static/themes/main/assets/storybook && node scripts/fix-storybook-paths.js",
-    "build:storybook-pages": "node scripts/inline-changelog.js && storybook build --output-dir storybook-static-pages",
+    "dev:storybook": "node scripts/inline-changelog.js && npm run copy:web-ifc-wasm && storybook dev -p 6006",
+    "build:storybook": "node scripts/inline-changelog.js && npm run copy:web-ifc-wasm && storybook build --output-dir storybook-static/themes/main/assets/storybook && node scripts/fix-storybook-paths.js",
+    "build:storybook-pages": "node scripts/inline-changelog.js && npm run copy:web-ifc-wasm && storybook build --output-dir storybook-static-pages",
     "deploy-storybook-pages": "gh-pages -d storybook-static-pages"
   },
   "dependencies": {

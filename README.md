@@ -14,8 +14,9 @@ yarn add test-stpr-ui-kit
 npm install test-stpr-ui-kit
 ```
 
-The package is **ESM-only**. Runtime dependencies (`clsx`, `date-fns`, `react-datepicker`, etc.) are installed
-transitively with the package.
+The package is **ESM-only** and has **no install scripts** — a normal install works without `--ignore-scripts`.
+Runtime dependencies (`clsx`, `date-fns`, `react-datepicker`, etc.) are installed transitively with the package.
+Static assets (fonts, `web-ifc.wasm`, etc.) are pre-bundled in `dist/` at publish time.
 
 ### Peer dependencies
 

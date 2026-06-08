@@ -3,6 +3,18 @@
 Документ описывает, как добавлять новые компоненты в библиотеку и как писать к ним истории в Storybook. Предназначен для
 разработчиков, работающих с репозиторием.
 
+### Локальная настройка
+
+После `npm install` в корне репозитория дополнительных install-скриптов нет. `web-ifc.wasm` для IFC-компонентов и
+Storybook копируется автоматически при:
+
+- `npm run build:lib` — перед `vite build` (wasm попадает в `dist/components-assets/`);
+- `npm run dev:storybook` / `build:storybook` / `build:storybook-pages` — в `public/components-assets/` для статики
+  Storybook.
+
+При необходимости копирование можно запустить вручную: `npm run copy:web-ifc-wasm` (нужен установленный `web-ifc` в
+`devDependencies`).
+
 ---
 
 ## 1. Структура компонента в `src/components`

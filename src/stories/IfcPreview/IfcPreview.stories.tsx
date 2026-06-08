@@ -40,7 +40,7 @@ const meta: Meta<typeof IfcPreview> = {
 ## Зависимости
 
 - **Peer**: \`three\`, \`web-ifc\` (те же мажорные версии, что у UI-кита).
-- **\`web-ifc.wasm\`**: копируется при \`npm install\` в \`public/components-assets/IfcPreview/web-ifc/\` и попадает в \`dist/\` при сборке библиотеки.
+- **\`web-ifc.wasm\`**: поставляется в пакете в \`dist/components-assets/IfcPreview/web-ifc/\` (копируется при \`npm run build:lib\` в репозитории библиотеки). Установка пакета не запускает дополнительных скриптов.
 
 ## \`wasmPublicPath\`
 

@@ -4,6 +4,14 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 
+## [1.0.1] — 2026-06-08
+
+### Fixed
+
+- Пакет: удалён `postinstall`, из-за которого `npm install test-stpr-ui-kit` падал у потребителей (скрипт
+  `copy-web-ifc-wasm.mjs` не входил в опубликованный tarball). Копирование `web-ifc.wasm` выполняется только при
+  `npm run build:lib` / сборке Storybook в репозитории библиотеки; wasm по-прежнему поставляется в `dist/`.
+
 ## [1.0.0] — 2026-05-28
 
 ### Added

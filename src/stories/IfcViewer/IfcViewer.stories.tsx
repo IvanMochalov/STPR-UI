@@ -31,7 +31,7 @@ const meta: Meta<typeof IfcViewer> = {
 ## Зависимости
 
 - **Peer**: \`three\`, \`web-ifc\`.
-- **\`web-ifc.wasm\`**: тот же путь, что у \`IfcPreview\` — \`components-assets/IfcPreview/web-ifc/\` после \`npm install\`.
+- **\`web-ifc.wasm\`**: тот же путь, что у \`IfcPreview\` — \`dist/components-assets/IfcPreview/web-ifc/\` в опубликованном пакете.
 
 \`\`\`jsx
 const wasmPublicPath =

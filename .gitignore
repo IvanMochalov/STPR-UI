@@ -44,5 +44,5 @@ storybook-static-pages
 # Генерируется из CHANGELOG.md и package.json при запуске storybook / build:storybook
 src/documentation/Changelog.mdx
 
-# Копируется из node_modules/web-ifc при postinstall
+# Копируется из node_modules/web-ifc скриптом copy:web-ifc-wasm (build:lib / Storybook)
 public/components-assets/IfcPreview/web-ifc/
