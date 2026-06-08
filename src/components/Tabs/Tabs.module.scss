@@ -3,7 +3,7 @@
 .spTabs {
   $block: &;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   @include mixins.starting-style-appearance();
 
   &_separated {
@@ -32,7 +32,7 @@
 
   &--variant-contained {
     background-color: var(--spui-color-surface-page);
-    padding: var(--spui-spacing-none) var(--tabs-container-padding);
+    padding: var(--spui-spacing-none) var(--spui-tabs-container-padding);
 
     & #{$block}__tabElement {
       color: var(--spui-color-text-secondary);
@@ -62,9 +62,9 @@
     }
 
     & #{$block}__tabContent {
-      height: var(--tabs-contained-content-height);
-      min-height: var(--tabs-contained-content-height);
-      padding: var(--tab-item-padding);
+      height: var(--spui-tabs-contained-content-height);
+      min-height: var(--spui-tabs-contained-content-height);
+      padding: var(--spui-tab-item-padding);
       background-color: transparent;
     }
   }
@@ -123,12 +123,12 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    height: var(--tab-item-height);
-    min-height: var(--tab-item-height);
-    padding: var(--tab-item-padding);
+    height: var(--spui-tab-item-height);
+    min-height: var(--spui-tab-item-height);
+    padding: var(--spui-tab-item-padding);
     font-family: var(--spui-font-family-main), serif;
     font-weight: var(--spui-font-weight-regular);
-    font-size: var(--tab-item-font-size);
+    font-size: var(--spui-tab-item-font-size);
     line-height: 120%;
 
     &_active {
