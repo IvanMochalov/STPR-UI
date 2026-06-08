@@ -1,1 +1,0 @@
-import{r}from"./iframe-DFzgFXfL.js";const p=(s={})=>{const{initialValue:a=null}=s,[l,o]=r.useState(a);return{isOpen:!!l,modalData:l,onOpenModal:(e,n=!1)=>{if(n){o(t=>({...t,...e}));return}o(e)},onCloseModal:(e,n)=>{if(n&&Object.keys(n).length>0){o(t=>({...t,...n}));return}o(null)}}};export{p as u};
